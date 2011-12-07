@@ -48,7 +48,7 @@ class UForumsController < ApplicationController
       share_to = get_share(0)
     end
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
-    @cur_page = share_to ? "1" : 0
+    @cur_page = share_to ? "1" : "0"
   end
 
   def create
@@ -162,9 +162,13 @@ class UForumsController < ApplicationController
     ufo_cmt.user = current_user
     ufo_cmt.ufo = objufo
     ufo_cmt.save
-
+    
+    objufo.ufo_members.each do |member|
+      if member.recev_mail
+          UfoMail.cmtinform(current_user, member.user,@ufo_author,objufo).deliver
+      end
+    end
     redirect_to user_u_forum_path(objufo.user, objufo)
-
   end
 
   def post_lounge
@@ -264,6 +268,7 @@ class UForumsController < ApplicationController
 
     share_to = get_share(arr_p[0][1])
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
+    @cur_page = share_to ? "1" : "0"
 
     #reset the selected users
     session[:list_selected_usrs] = []
@@ -272,11 +277,14 @@ class UForumsController < ApplicationController
   end
 
   def page_share
-
     share_to = get_share(params[:share].to_i)
 
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     @cur_page = params[:page]
+    
+    puts "share to size == "
+    puts "share to size == "
+    puts "share to size == #{share_to.size}"
     render :layout => false
   end
 
@@ -411,6 +419,7 @@ class UForumsController < ApplicationController
       member.ufo_id = objufo.id
       member.recev_mail = true
       member.save
+      UfoMail.inviteinform(member.user,@ufo_author,objufo).deliver
     end
 
     session[:list_selected_show] = []

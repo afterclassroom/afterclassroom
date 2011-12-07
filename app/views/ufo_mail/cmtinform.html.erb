@@ -3,7 +3,9 @@
     <div>
        Hello <%= @friend.name %>, <br/>
        
-      <a href="<%= user_url(@ufo_author) %>"><%= @ufo_author.name %></a>  invite you to join a 
+       <a href="<%= user_url(@current_user) %>"><%= @current_user.name %></a> 
+       
+      posted a new comment at
       <%= link_to "topic", user_u_forum_url(@ufo_author, @ufo) %>.<br/>
        
       Yours sincerely, <br/>

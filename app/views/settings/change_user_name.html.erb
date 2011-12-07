@@ -5,7 +5,7 @@
         Please enter a new username *
       </div>
       <div class="postInp">
-        <input type="text" style="width:270px;" value="" id="username" name="username" class="required"/>
+        <input type="text" style="width:270px;" value="" id="username" name="username" class="required noSpecialChars"/>
       </div>
       <div id="valid_div" style="display: none; background: url(/images/iconCheck.gif) no-repeat scroll left 2px transparent; margin-left: 10px; padding-left: 18px;">Username is available</div>
       <div id="invalid_div" style="display: none; background: url(/images/icon-ing.gif) no-repeat scroll left 2px transparent; margin-left: 10px; padding-left: 18px;">Username is not available</div>
@@ -17,13 +17,20 @@
     </div>
   </form>
 </div>
+<script>
+$(document).ready(function(){
+    $.validator.addMethod("noSpecialChars", function(value, element) {
+      return this.optional(element) || /^[a-z0-9\_]+$/i.test(value);
+  }, "Username must contain only letters, numbers, or underscore.");
+});
+</script>
 <script language="javascript">
   function sendChange(){
     $("#editeUsername").submit();
   }
   var path = "<%= check_login_user_settings_url(current_user) %>";
   $().ready(function(){
-    $("#editeUsername").validate({});
+    $("#editeUsername").validate();
     $('#username').autocomplete({
       source: function(request, response) {
         $.ajax({

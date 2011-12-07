@@ -13,25 +13,15 @@
   <div class="col571 proCen">
     <div class="col571in">
       <div class="proCenCont">
-        <div class="proInfTop"></div>
-        <div class="proFavPageT"></div>
         <% @favorites.each do |f| %>
-          <div id="each_item_<%= f.id %>">
-            <div id="del_btn_<%= f.id %>" style="padding-left: 538px; position: absolute; padding-top: 8px; display: none;">
-              <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), {:controller => "profiles", :action => "delete_prof", :prf_id => f.id  }, :remote => false, :method => :get, :confirm => 'Are you sure you want to delete it?') %>
+          <div class="favorite_item" style="float:left; width:100%">
+            <div class="del_wall" style="float: right; display: none; cursor: pointer;" onclick="DeleteFavorite('<%= f.id %>')">
+							<img id="block_wall_img" src="/images/icon-ing.gif" />
             </div>
-            <%= item_favorite(f) %>
+						<div style="float:left; width:95%">
+            	<%= item_favorite(f) %>
+						</div>
           </div>
-          <script type="text/javascript">
-            $(document).ready(function(){
-              $("#each_item_<%= f.id %>").hover(function(){
-                $("#del_btn_<%= f.id %>").show();
-              }, function(){
-                $("#del_btn_<%= f.id %>").hide();
-              });
-
-            })
-          </script>
         <% end %>
         <div class="proFavPage">
           <div class="proFavPageR">
@@ -52,8 +42,44 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
+
+<!--Alert-->
+<div id="delete_favorite_alert" title="Confirm detele" style="display:none;">
+  Are you sure?
+</div>
+<!--Alert-->
+
 <script>
+	function DeleteFavorite(id){
+		$("#delete_favorite_alert").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          document.location.href = "<%= delete_prof_user_profiles_path(current_user) %>?prf_id=" + id
+        },
+        Cancel: function() {
+          $(this).dialog('close');
+        }
+      }
+    });
+
+	}
   $(document).ready(function(){
     $('.assContT').css('width','400px');
   });
+	$(document).ready(function(){
+    $(".favorite_item").hover(function(){
+      $(".del_wall", this).show();
+    }, function(){
+      $(".del_wall", this).hide();
+    })
+  });
+</script>
+<script>
+$(window).load(function(){
+    $('.AfterDes').imagefit();
+});
+$(function(){
+    $('.AfterClCom').imagefit();
+});
 </script>

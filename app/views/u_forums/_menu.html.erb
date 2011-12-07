@@ -1,16 +1,29 @@
 <% menu_title = "" %>
+<% own_topic_selected = "" %>
+<% invite_topic_selected = "" %>
+
 <% if current_user == @ufo_author %>
   <% menu_title = "Your Topics" %>
 <% else %>
   <% menu_title = "#{@ufo_author.name}'s Topics" %>
 <% end %>
+
+<% if params[:category]=="friend_topic" %>
+<% own_topic_selected = "" %>
+<% invite_topic_selected = "menuFoselect" %>
+<% else %>
+<% own_topic_selected = "menuFoselect" %>
+<% invite_topic_selected = "" %>
+
+<% end %>
+
 <div class="inboxFoTop">
-  <div class="markFo <%= "menuFoselect" if @str_action = "Your topics" %>">
-    <!-- a href="javascript:;">User's Topics</a -->
+  <div class="markFo <%= own_topic_selected %>">
+    
     <%= link_to( menu_title, {:controller => "u_forums", :action => "index" }, :remote => false, :style=>"", :method => :get) %>
 
   </div>
-  <div class="markFo <%= "menuFoselect" if @str_action = "#{@ufo_author.name}'s invited topics" %>">
+  <div class="markFo <%= invite_topic_selected %>">
     <%= link_to( "Friend Invited Topics", {:controller => "u_forums", :action => "index", :category => "friend_topic" }, :remote => false, :style=>"", :method => :get, :class => "vtip", :title => "Topics that your friend share with you.") %>
   </div>
   <% if current_user == @ufo_author %>

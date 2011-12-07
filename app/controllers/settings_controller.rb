@@ -67,11 +67,26 @@ class SettingsController < ApplicationController
     type = params[:type]
     val = params[:value]
     
-    pr = PrivateSetting.find_or_create_by_user_id_and_type_setting(current_user.id, type)
-    pr.share_to = val.to_i
-    pr.save
-    hash = Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}]
-    render :text => hash.index(val.to_i)
+    str_return = ""
+    
+    if type == "tag_photo" || type == "tag_video" || type =="tag_story" || type =="tag_music"
+      pr = PrivateSetting.find_or_create_by_user_id_and_type_setting(current_user.id, type)
+      pr.share_to = val.to_i
+      pr.save
+      pr = current_user.private_settings.where(:type_setting => type).first
+      str = pr ? Hash[TAGS_SETTING.map {|x| [x[0], x[1]]}].key(pr.share_to) : "No Verify"
+      str_return = str
+    else
+      pr = PrivateSetting.find_or_create_by_user_id_and_type_setting(current_user.id, type)
+      pr.share_to = val.to_i
+      pr.save
+      hash = Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}]
+      str_return = hash.index(val.to_i)
+    end
+    
+    
+    
+    render :text => str_return
   end
   
   def networks
@@ -224,9 +239,15 @@ class SettingsController < ApplicationController
   end
 
 	def check_login
+		special = "?<>',?[]}{=-)(*&^%$#`~{}"
+		regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
 		username = params[:username]
-		logins = User.where(:login => username.downcase)
-		render :text => (logins.size > 0) ? "invalid" : "valid"
+		if username =~ regex
+			render :text => "invalid"
+		else
+			logins = User.where(:login => username.downcase)
+			render :text => (logins.size > 0) ? "invalid" : "valid"
+		end
 	end
 
 	def change_school
