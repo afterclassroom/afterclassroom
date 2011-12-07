@@ -335,7 +335,6 @@
       });
     
       function share_select(val, tp){
-        alert('val == '+tp);
         $.ajax({
           url: '<%= save_private_setting_user_settings_path(current_user) %>',
           type: 'POST',
