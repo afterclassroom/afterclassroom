@@ -121,6 +121,8 @@ class UForumsController < ApplicationController
     
     #init the session to store the list of selected user to add to friend list
     session[:list_selected_show] = []
+    
+    @cur_page = share_to ? "1" : "0"
 
     render :layout => false 
   end
