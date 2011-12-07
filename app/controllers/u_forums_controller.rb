@@ -108,7 +108,7 @@ class UForumsController < ApplicationController
   def save_custom
     @ufo = Ufo.find(params[:id])
 
-    custom_setting = UfoCustom.find(params[:id])
+    custom_setting = UfoCustom.where(:ufo_id => params[:id]).first
     custom_setting.share_to_index = params[:shareto]
     custom_setting.save
 
@@ -127,7 +127,7 @@ class UForumsController < ApplicationController
 
   def save_custom_b
     @ufo = Ufo.find(params[:id])
-    custom_setting = UfoCustom.find(params[:id])
+    custom_setting = UfoCustom.where(:ufo_id => params[:id]).first
     custom_setting.share_to_index = params[:shareto]
     custom_setting.save
 

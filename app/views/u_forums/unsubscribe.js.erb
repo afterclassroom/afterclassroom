@@ -2,4 +2,9 @@ $('#member_<%= current_user.id %>').attr('class', 'AsImgSelect');
 $('#onthis_panel').show();
 $('#onthis_area').hide();
 $('#member_paging').show();
-$('#unsubscribe').html('test');
+$('#unsubscribe').after("<div id='subscribe' style='float: right; margin-top: -13px;'>
+                  <%= link_to( "Subscribe", 
+                    {:controller => "u_forums", :action => "subscribe", :ufo_id => @ufo.id }, :remote => false, :style=>"",
+                    :method => :get, :class => "vtip", :title => "Subscribe to this topic") %>
+                </div>");
+$('#unsubscribe').remove();
