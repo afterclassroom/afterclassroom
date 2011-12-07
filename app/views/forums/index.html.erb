@@ -23,9 +23,9 @@
 </div>
 <!--Content-->
 <% if controller.action_name == "search" %><!-- this condition to fix bug 1100 -->
-  <% strstyle = @forums.results.length < 2 ? "min-height: 370px;" : "" %>
+  <% strstyle = @forums.results.length < 2 ? "min-height: 670px;" : "" %>
 <% else %>
-  <% strstyle = @forums.length <= 2 ? "min-height: 370px;" : "" %><!-- this condition to fix bug 1100 -->
+  <% strstyle = @forums.length <= 2 ? "min-height: 670px;" : "" %><!-- this condition to fix bug 1100 -->
 <% end %>
 <div class="contMainLH" style="<%= strstyle %>">
   <div class="col654 QAs">
