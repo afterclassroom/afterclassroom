@@ -596,7 +596,14 @@ class UForumsController < ApplicationController
     end #end user_friends each
     #case 3: the exception topic which invited author
     added_ids = tmparr.map(&:id)
-    remain_memberships = @ufo_author.ufo_members.where('ufo_id not in (?)',added_ids)
+
+    remain_memberships = nil
+    if added_ids.size > 0
+      remain_memberships = @ufo_author.ufo_members.where('ufo_id not in (?)',added_ids)
+    else
+      remain_memberships = @ufo_author.ufo_members
+    end
+    puts "size == #{remain_memberships.size}"
     if remain_memberships != nil
       remain_memberships.each do |ufo_member|
         ufo = ufo_member.ufo
