@@ -827,7 +827,11 @@ module ApplicationHelper
           when "PostQa"
           link = post_qa_path(obj)
           img_link = link_to image_post_thumb("post_qas", obj.post), link, :target => "_blank"
-          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          if !check_image_in_content(obj.post.description)
+          	image = '<div class="assImg"><div>' + img_link + '</div></div>'
+					else
+						image = nil
+					end
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
           when "PostTutor"

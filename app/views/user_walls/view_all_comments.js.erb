@@ -1,1 +1,4 @@
 $("#wall_list_comment_<%= @obj.class.name %>_<%= @obj.id %>").html("<%= escape_javascript( render( :partial => "widget_all_comments") ) %>");
+$(function(){
+    $('.AfterClCom').imagefit();
+});

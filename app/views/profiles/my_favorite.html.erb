@@ -13,8 +13,6 @@
   <div class="col571 proCen">
     <div class="col571in">
       <div class="proCenCont">
-        <div class="proInfTop"></div>
-        <div class="proFavPageT"></div>
         <% @favorites.each do |f| %>
           <div id="each_item_<%= f.id %>">
             <div id="del_btn_<%= f.id %>" style="padding-left: 538px; position: absolute; padding-top: 8px; display: none;">
@@ -56,4 +54,12 @@
   $(document).ready(function(){
     $('.assContT').css('width','400px');
   });
+</script>
+<script>
+$(window).load(function(){
+    $('.AfterDes').imagefit();
+});
+$(function(){
+    $('.AfterClCom').imagefit();
+});
 </script>
