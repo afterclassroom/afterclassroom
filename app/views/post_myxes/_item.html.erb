@@ -1,7 +1,7 @@
 <div class="assItem">
     <div class="assItemL">
         <div class="assPic">
-            <%= show_image_user_post(post.user) %>
+            <%= post.post_myx.anonymous ? raw('<div style="height: 52px;"><img title="Anonymous" src="/images/icons/icon_defaut/icon_members.png?1321524145" class="vtip avatar_144" alt="Icon_members"></div>') : show_image_user_post(post.user) %>
         </div>
         <div class="assContT">
             <h2 class="titleH2"><%= link_to title, post_myx_path(post.post_myx) %></h2>

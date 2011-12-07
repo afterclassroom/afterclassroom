@@ -78,18 +78,8 @@ class UserWallsController < ApplicationController
       obj_comment.user = current_user
       @obj.comments << obj_comment
       @wall.update_attribute(:updated_at, Time.now)
-			@wall.user_wall_follows.each do |f|
-				if f.count_update == USERWALLFOLLOW_MAX
-					f.destroy
-				else
-					f.count_update = f.count_update
-				end
-			end
+			update_user_wall_follow(@wall, current_user)
       if @wall.user != current_user
-				# UserWall follow
-				user_wall_follow = UserWallFollow.find_or_create_by_user_id_and_user_wall_id(:user_id => current_user.id, :user_wall_id => @wall.id)
-				user_wall_follow.count_update = 0
-				user_wall_follow.save
 				# Send notification
         subject = "#{current_user.name} left comments on your Student Lounge"
         content = "Hello #{@wall.user.name},<br/>"
