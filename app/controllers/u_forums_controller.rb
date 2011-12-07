@@ -48,7 +48,7 @@ class UForumsController < ApplicationController
       share_to = get_share(0)
     end
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
-    @cur_page = share_to ? "1" : 0
+    @cur_page = share_to ? "1" : "0"
   end
 
   def create
@@ -268,6 +268,7 @@ class UForumsController < ApplicationController
 
     share_to = get_share(arr_p[0][1])
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
+    @cur_page = share_to ? "1" : "0"
 
     #reset the selected users
     session[:list_selected_usrs] = []
@@ -276,11 +277,14 @@ class UForumsController < ApplicationController
   end
 
   def page_share
-
     share_to = get_share(params[:share].to_i)
 
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     @cur_page = params[:page]
+    
+    puts "share to size == "
+    puts "share to size == "
+    puts "share to size == #{share_to.size}"
     render :layout => false
   end
 
