@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   include Notify
   include Postwall
   include SimpleCaptcha::ControllerHelpers
+	include UpdateUserWallFollow
   
   helper :all # include all helpers, all the time
   #config.filter_parameters :password, :password_confirmation
