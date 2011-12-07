@@ -297,3 +297,9 @@ Dec 7, 2011 9:00:30 AM org.apache.solr.update.processor.LogUpdateProcessor finis
 INFO: {add=[User 4]} 0 7
 Dec 7, 2011 9:00:30 AM org.apache.solr.core.SolrCore execute
 INFO: [] webapp=/solr path=/update params={wt=ruby} status=0 QTime=7 
+Dec 7, 2011 11:18:43 AM org.apache.solr.core.SolrCore execute
+INFO: [] webapp=/solr path=/select params={sort=created_at_d+desc&qf=name_texts^2+email_texts&hl.simple.pre=@@@hl@@@&hl.fl=name_texts&wt=ruby&hl=on&rows=5&defType=dismax&fl=*+score&start=0&q=danny&hl.simple.post=@@@endhl@@@&fq=type:User} hits=11 status=0 QTime=1878 
+Dec 7, 2011 11:26:46 AM org.apache.solr.core.SolrCore execute
+INFO: [] webapp=/solr path=/select params={sort=created_at_d+desc&qf=name_texts^2+email_texts&hl.simple.pre=@@@hl@@@&hl.fl=name_texts&wt=ruby&hl=on&rows=5&defType=dismax&fl=*+score&start=0&q=vtip&hl.simple.post=@@@endhl@@@&fq=type:User} hits=0 status=0 QTime=24 
+Dec 7, 2011 11:27:01 AM org.apache.solr.core.SolrCore execute
+INFO: [] webapp=/solr path=/select params={sort=created_at_d+desc&qf=name_texts^2+email_texts&hl.simple.pre=@@@hl@@@&hl.fl=name_texts&wt=ruby&hl=on&rows=5&defType=dismax&fl=*+score&start=0&q=david&hl.simple.post=@@@endhl@@@&fq=type:User} hits=1 status=0 QTime=9 
