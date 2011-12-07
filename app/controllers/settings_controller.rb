@@ -219,9 +219,15 @@ class SettingsController < ApplicationController
   end
 
 	def check_login
+		special = "?<>',?[]}{=-)(*&^%$#`~{}"
+		regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
 		username = params[:username]
-		logins = User.where(:login => username.downcase)
-		render :text => (logins.size > 0) ? "invalid" : "valid"
+		if username =~ regex
+			render :text => "invalid"
+		else
+			logins = User.where(:login => username.downcase)
+			render :text => (logins.size > 0) ? "invalid" : "valid"
+		end
 	end
 
 	def change_school
