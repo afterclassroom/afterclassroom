@@ -225,7 +225,7 @@
         <div class="assPage">
           <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
             <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
-            <%= will_paginate @ufo_cmts %> 
+            <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
           </div>
         </div>
 
