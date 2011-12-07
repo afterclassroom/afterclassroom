@@ -165,7 +165,9 @@ class UForumsController < ApplicationController
     
     objufo.ufo_members.each do |member|
       if member.recev_mail
+        if member.user != current_user #stop send mail to author of comment
           UfoMail.cmtinform(current_user, member.user,@ufo_author,objufo).deliver
+        end
       end
     end
     redirect_to user_u_forum_path(objufo.user, objufo)
