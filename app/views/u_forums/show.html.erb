@@ -2,11 +2,11 @@
 <%= render :partial => "navigation" %>
 
 <div class="slStoryL" style="margin-bottom: 10px;">
-  <div class="contDetL">
+  <div class="contDetL" style="width: auto">
     <div class="contDetLin">
       <div class="inboxLeft">
-        <div class="overall" style="height: 885;">
-          <div style="margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 50px; border-bottom: solid 2px #ebebeb; padding-bottom: 10px;">
+        <div class="overall">
+          <div style="margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 65px; border-bottom: solid 2px #ebebeb; padding-bottom: 10px;">
             <div style="background: url('/images/ufo_gstar.png') no-repeat; width: 18px; height: 18px; margin-top: 2px;"></div>
             <div style="overflow: hidden; height: 30px; width: 542px; margin-left: 24px; margin-top: -27px;">
               <label style="float: left; font-size: 17px;color: #969696;margin-top: 6px;"><%= @ufo.title %></label>
@@ -18,10 +18,14 @@
             </div>
             <div class="AsDContImg" style="float: right; margin-right: 9px; margin-top: -30px;">
               <%= show_image_user_post(@ufo.user) %>
-              <% if current_user == @ufo_author   %>        
-              <%= link_to( "Edit", edit_user_u_forum_path(@ufo.user, @ufo), :method => :get) %>
-              <%= link_to( "Delete", user_u_forum_path(@ufo.user, @ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?') %>
-              <a href="javascript:;" id="setting_panel_btn">Setting</a>
+              <% if current_user == @ufo_author   %>  
+                <span style="float: left;margin-left: -45px;margin-top: 20px;" class="inboxFoSedit vtip" title="Edit this topic">
+                  <%= link_to( "", edit_user_u_forum_path(@ufo.user, @ufo), :method => :get) %>
+                </span>
+                <span style="float: left;margin-left: -10px;" class="inboxFoSemove vtip" title="Delete this topic">
+                  <%= link_to( "", user_u_forum_path(@ufo.user, @ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?', :style=>"padding-bottom: 25px;margin:0px") %>
+                </span>
+                <a href="javascript:;" id="setting_panel_btn">Setting</a>
               <% end %>
             </div>  
           </div>
@@ -159,90 +163,34 @@
             </div>
           </div>
           
-          <%= render :partial => "cmt_form" %>
-
-<<<<<<< HEAD
-          <div style="background-color: #ebebeb; height: 28px; padding: 2px 2px 9px;" id="show_hide_cmt">
-            <div style="background-color: white; width: 88px; height: 33px;padding-bottom: 2px;margin-left: 2px;">             
-              <span class="vtip" title="Show or Hide the comment area" style="position: absolute;cursor: pointer;background: url('/images/btm_cmt01.png') no-repeat center;height: 30px;padding-bottom: 5px;padding-left: 27px;width: 60px;">
-                <span style="cursor: pointer;color: #FFFFFF;margin-top: 10px;margin-left: -7px;position: absolute;">Comment</span>
-              </span>              
-            </div>
-          </div>
-
-
-          <%= form_for(@ufo_cmt, :remote => false,:url => url_for(:controller => "u_forums", :action => "save_cmt") , :html => {:multipart => true, :id => "form_cmt", :method => "post" }) do |f| %>
-            <%= hidden_field_tag "ufo_id", @ufo.id %>
-
-
-            <div style="background-color: #ebebeb">
-              <div style="background-color: white;">
-                <div class="AsDContImg" style="margin: 18px; margin-top: 1px;">
-                  <%= show_image_user_post(current_user) %>
-                </div>
-
-                <label style="text-align: left; margin-top: 18px;">Leave your comment</label>
-
-                <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
-  At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
-                </textarea --> 
-                <div style="overflow: hidden;">
-                  <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => '{validate:{required:true}}'%>
-                </div>
-
-                <div style="padding-bottom: 20px;height: 60px; width: 545px; margin-top: 0px; margin-left: 86px;">
-                  <div class="postItemB" style="margin-left: 6px;margin-top: 10px;width: 552px;">
-                    <div id="divinputfile">
-                      <div class="postItemC">
-                        <input type="file" style="width: 550px; height: 24px; margin-top: 2px;" size="94" onchange="$('#fakefilepc').val(this.value);" name="ufo_cmt[ucmt_attach]" id="ufo_cmt_ucmt_attach" class=" filepc">
-                      </div>
-                      <div style="margin-top: -26px;" id="fakeinputfile">
-                        <input type="text" id="fakefilepc" name="fakefilepc" style="width: 478px;">
-                      </div>
-                    </div>
+          <div class="contFoT" style="margin-top: 5px;border-bottom: 1px solid #EBEBEB;background-color: #EBEBEB">
+            <div class="contFoD" style="border-top: 4px solid #EBEBEB;background-color: #EBEBEB">
+              <div class="contFoC">
+                <div class="assPage">
+                  <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
+                    <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
+                    <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
                   </div>
-                  <div style="  float:right;margin-right: -13px;margin-top: 15px;" class="submit_add_comforum">
-                    <span>
-                      <input type="submit" value="Add this comment" name="commit" id="ufo_cmt_submit"/>
-                    </span>
+                </div>
+                <div style=" min-height: 100px; padding: 10px;">
+                  <% @ufo_cmts.each do |cmt| %>
+                    <%= render :partial => "item_cmt", :locals => {:cmt => cmt} %>
+                  <% end %>
+                </div>
+                <div class="assPage">
+                  <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
+                    <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
+                    <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
                   </div>
                 </div>
               </div>
             </div>
-          <% end %><!-- end form -->
-=======
->>>>>>> 01c6b44206b1e899cf6b01e1f77b588e3d0a267a
-
-
+          </div>
         </div>
       </div>
     </div>
+   <%= render :partial => "cmt_form" %>
   </div>
-  <div class="contFoT">
-    <div class="contFoD">
-      <div class="contFoC">
-        <div class="assPage">
-          <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
-            <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
-            <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
-          </div>
-        </div>
-        <div style=" min-height: 100px; padding: 10px;">
-          <% @ufo_cmts.each do |cmt| %>
-            <%= render :partial => "item_cmt", :locals => {:cmt => cmt} %>
-          <% end %>
-        </div>
-        <div class="assPage">
-          <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
-            <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
-            <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
 </div>
 
 
