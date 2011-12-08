@@ -108,7 +108,7 @@ class UForumsController < ApplicationController
   def save_custom
     @ufo = Ufo.find(params[:id])
 
-    custom_setting = UfoCustom.find(params[:id])
+    custom_setting = UfoCustom.where(:ufo_id => params[:id]).first
     custom_setting.share_to_index = params[:shareto]
     custom_setting.save
 
@@ -121,13 +121,15 @@ class UForumsController < ApplicationController
     
     #init the session to store the list of selected user to add to friend list
     session[:list_selected_show] = []
+    
+    @cur_page = share_to ? "1" : "0"
 
     render :layout => false 
   end
 
   def save_custom_b
     @ufo = Ufo.find(params[:id])
-    custom_setting = UfoCustom.find(params[:id])
+    custom_setting = UfoCustom.where(:ufo_id => params[:id]).first
     custom_setting.share_to_index = params[:shareto]
     custom_setting.save
 
@@ -430,8 +432,8 @@ class UForumsController < ApplicationController
   end
 
   def unsubscribe
-    objufo = Ufo.find(params[:ufo_id])
-    member = objufo.ufo_members.where(:user_id => current_user.id).first
+     @objufo = Ufo.find(params[:ufo_id])
+    member = @objufo.ufo_members.where(:user_id => current_user.id).first
     member.recev_mail = false
     member.save
 
@@ -469,6 +471,7 @@ class UForumsController < ApplicationController
   def destroy
     ufo = Ufo.find(params[:id])
     ufo.destroy
+    flash[:notice] = "Your topic was deleted."
     redirect_to user_u_forums_path(@ufo_author)
   end
 

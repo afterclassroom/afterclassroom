@@ -7,7 +7,7 @@
           <% if @ufo.ufo_members.map(&:user_id).include?(current_user.id) %>
         
               <% if current_user.ufo_members.where(:ufo_id =>@ufo.id).first.recev_mail == true %>    
-              <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
+              <div id="unsubscribe" style="float: right; margin-top: -13px;"><a href="javascript:;">Unsubscribe</a></div>
               <% else %>
                 <div id="subscribe" style="float: right; margin-top: -13px;">
                   <%= link_to( "Subscribe", 

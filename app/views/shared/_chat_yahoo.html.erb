@@ -1,37 +1,13 @@
 <% if get_chat_id(user_post, "yahoo") != "" %>
-  <span id="Test_Result_yahoo"></span>
+  <a href="ymsgr:SendIM?<%=  get_chat_id(user_post, "yahoo")%>">
+    <img border="0" style="height: 12px; width: 12px; float: left;" src="http://opi.yahoo.com/online?u=<%=  get_chat_id(user_post, "yahoo")%>&amp;m=g&amp;t=0">
+  </a>
   <span style="margin-left: 13px;margin-top: 5px;">Yahoo</span>
-  <script>
-    $(document).ready(function(){
-      TestYahooID("<%= get_chat_id(user_post, "yahoo") %>");
-    });
-    function TestYahooID(IDyahoo)
-    { 
-      Test_Result1 = document.getElementById('Test_Result_yahoo');	
-      if (IDyahoo !='')
-      option_test = '<p><a href="ymsgr:SendIM?'+IDyahoo+'"><img src="http://opi.yahoo.com/online?u='+IDyahoo+'&m=g&t=0" border="0" style="height:12px;width:12px;float:left"></a>';
-      else
-        option_test = '<p align="center"><b>IDtest</b>';
-      Test_Result1.innerHTML = option_test;
-    }
-  </script>
 <% end %>
 <% if get_chat_id(user_post, "skype") != "" %>
-  <span id="Test_Result_Skype"></span>
+  <a href="skype:<%=  get_chat_id(user_post, "skype")%>?chat">
+    <img border="0" style="float: left; height: 16px; width: 16px;" src="http://mystatus.skype.com/smallicon/<%=  get_chat_id(user_post, "skype")%>">
+  </a>
   <span style="margin-left: 9px;margin-top: 5px;">Skype</span>
-  <script>
-    $(document).ready(function(){
-      TestSkypeID("<%= get_chat_id(user_post, "skype") %>");
-    });
-    function TestSkypeID(IDskype)
-    { 
-      Test_Result2 = document.getElementById('Test_Result_Skype');	
-      if (IDskype !='')
-      option_test2 = '<p align="center"><a href="skype:'+IDskype+'?chat"><img src="http://mystatus.skype.com/smallicon/'+IDskype+'" border="0" style="float: left;height: 16px;width: 16px"></a>';
-      else
-        option_test2 = '<p align="center"><b>Introduce un ID pentru test</b>';
-      Test_Result2.innerHTML = option_test2;
-    }
-  </script>
 <% end %>
 
