@@ -157,6 +157,7 @@
                   <span class="forums_dow" style="color: #1988C7;margin-top: 5px;position: absolute;">Download</span> 
                 </div>
               </div>
+            <%= link_to raw("<div>#{ufo_image_post(controller_name, @ufo)}</div>"), @ufo.ufo_attach.url %>
             <% end %>
             <div style="padding-top: 10px;">
               <%= raw(@ufo.content)  %>

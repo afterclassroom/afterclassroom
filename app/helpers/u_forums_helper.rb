@@ -29,5 +29,17 @@ module UForumsHelper
     select_tag "lounge_setting", options_for_select(lounge_setting, val), :class => "menuPrivate", :style => "width: 130px"
   end
 
+  def ufo_image_post(ctrl_name, post)
+    file_path = post.ufo_attach_file_name
+    if post.ufo_attach_content_type =~ /^image.*/
+      path = post.ufo_attach.url
+    else
+      puts "  THERE"
+      file_ext = File.extname(file_path).delete(".").downcase if file_path
+      path = "/images/icons/file_type/#{file_ext}.png"
+    end
+    
+    image_tag path, :style => "height: 51px; width: 51px;"
+  end
 
 end
