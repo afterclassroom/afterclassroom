@@ -151,13 +151,13 @@
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
           <div style="border: 0px solid black; padding: 10px;">
             <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
-              <div style="overflow:hidden">
+              <!-- div style="overflow:hidden">
                 <div class="btmDownfo">
-                  <a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow"></a>
+                  <a href="javascript:downloadFile('<%#= @ufo.ufo_attach.url %>')" class="downarrow"></a>
                   <span class="forums_dow" style="color: #1988C7;margin-top: 5px;position: absolute;">Download</span> 
                 </div>
-              </div>
-            <%= link_to raw("<div>#{ufo_image_post(controller_name, @ufo)}</div>"), @ufo.ufo_attach.url %>
+              </div -->
+              <%= link_to raw("<div>#{ufo_image_post(controller_name, @ufo)}</div>"), @ufo.ufo_attach.url %>
             <% end %>
             <div style="padding-top: 10px;">
               <%= raw(@ufo.content)  %>
