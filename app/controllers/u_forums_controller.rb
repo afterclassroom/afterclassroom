@@ -432,8 +432,8 @@ class UForumsController < ApplicationController
   end
 
   def unsubscribe
-    objufo = Ufo.find(params[:ufo_id])
-    member = objufo.ufo_members.where(:user_id => current_user.id).first
+     @objufo = Ufo.find(params[:ufo_id])
+    member = @objufo.ufo_members.where(:user_id => current_user.id).first
     member.recev_mail = false
     member.save
 
