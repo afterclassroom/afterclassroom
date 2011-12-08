@@ -432,8 +432,8 @@ class UForumsController < ApplicationController
   end
 
   def unsubscribe
-    objufo = Ufo.find(params[:ufo_id])
-    member = objufo.ufo_members.where(:user_id => current_user.id).first
+     @objufo = Ufo.find(params[:ufo_id])
+    member = @objufo.ufo_members.where(:user_id => current_user.id).first
     member.recev_mail = false
     member.save
 
@@ -471,6 +471,7 @@ class UForumsController < ApplicationController
   def destroy
     ufo = Ufo.find(params[:id])
     ufo.destroy
+    flash[:notice] = "Your topic was deleted."
     redirect_to user_u_forums_path(@ufo_author)
   end
 
