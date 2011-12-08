@@ -18,6 +18,11 @@
             </div>
             <div class="AsDContImg" style="float: right; margin-right: 9px; margin-top: -30px;">
               <%= show_image_user_post(@ufo.user) %>
+              <% if current_user == @ufo_author   %>        
+              <%= link_to( "Edit", edit_user_u_forum_path(@ufo.user, @ufo), :method => :get) %>
+              <%= link_to( "Delete", user_u_forum_path(@ufo.user, @ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?') %>
+              <a href="javascript:;" id="setting_panel_btn">Setting</a>
+              <% end %>
             </div>  
           </div>
           <div id="wait_area" style="margin-left: 298px; margin-top: 6px; display:none;">
@@ -25,7 +30,7 @@
           </div>
 
           <% if current_user == @ufo_author   %>                  
-            <div id="setting_area" style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; min-height: 120px; width: 593px;">
+            <div id="setting_area" style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; min-height: 120px; width: 593px; display: none;">
               <div class="contentBoxFo">
                 <div>
                   <div>
@@ -232,7 +237,9 @@
   }
 
   $(document).ready(function(){
-  
+    $('#setting_panel_btn').click(function(){
+      $('#setting_area').toggle();
+    });
     $('#ufo_cmt_submit').click(function(){
       SubmitComment();
     });
