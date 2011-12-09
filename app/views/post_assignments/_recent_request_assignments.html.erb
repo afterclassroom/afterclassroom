@@ -1,27 +1,29 @@
 <% cache "recents_#{@class_name}_#{@school}" do %>
-<div class="col300 Recent">
-  <div class="col300in">
-    <h1 class="col300Title">Recent requested Quizzes</h1>
-    <div class="col300Cont">
-      <%
-      assignments_recent = PostAssignment.with_school(@school).recent.with_limit
-    %>
-      <% if assignments_recent.size > 0 %>
+  <div class="col300 Recent">
+    <div class="col300in">
+      <div style="background: url(/images/icons_after/recent_requested_quizzes.png) no-repeat scroll 0 0 transparent;line-height: 20px;height: 24px;border-bottom: 1px solid #DBDBDB;">
+        <h1 class="col195Title" style="border-bottom:0 none;margin-left: 25px">Recent requested Quizzes</h1>
+      </div>
+      <div class="col300Cont">
         <%
-        assignments_recent.each do |asg|
-        %>
-          <div class="recentItem">
-            <div class="recentImg"><%= show_image_user_post(asg.post.user) %></div>
-            <div class="recentInf">
-              <div class="recentName"><%= show_user_post(asg.post.user) %></div>
-              <div class="recentUni"><span>at</span><%= link_to asg.post.school.name, :controller => "post_assignments", :action => "index", :from_school => asg.post.school %></div>
-              <div class="recentDes"><%= link_to asg.post.title, post_assignment_path(asg) %></div>
+        assignments_recent = PostAssignment.with_school(@school).recent.with_limit
+      %>
+        <% if assignments_recent.size > 0 %>
+          <%
+          assignments_recent.each do |asg|
+          %>
+            <div class="recentItem">
+              <div class="recentImg"><%= show_image_user_post(asg.post.user) %></div>
+              <div class="recentInf">
+                <div class="recentName"><%= show_user_post(asg.post.user) %></div>
+                <div class="recentUni"><span>at</span><%= link_to asg.post.school.name, :controller => "post_assignments", :action => "index", :from_school => asg.post.school %></div>
+                <div class="recentDes"><%= link_to asg.post.title, post_assignment_path(asg) %></div>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
-      <div class="recentBottom">&nbsp;</div>
+        <div class="recentBottom">&nbsp;</div>
+      </div>
     </div>
   </div>
-</div>
 <% end %>

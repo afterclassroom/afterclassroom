@@ -7,8 +7,10 @@
     text = "Browse by subject "
   end %>
   <div class="col300 Br-by-sub">
-    <div class="col300in">   
-        <h1 class="col300Title"><%= text %></h1>
+    <div class="col300in">
+      <div style="background: url(/images/icons_after/browse_by_subject.png) no-repeat scroll 0 0 transparent;line-height: 20px;height: 24px;border-bottom: 1px solid #DBDBDB;">
+        <h1 class="col300Title" style="border-bottom:0 none;margin-left: 25px"><%= text %></h1>
+      </div>
   <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
       <div style="float: right; position: relative; margin-top: -27px; cursor: pointer;" id="open_menu">
         <img src="/images/open.png">
