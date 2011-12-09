@@ -23,9 +23,15 @@
     <%= link_to( menu_title, {:controller => "u_forums", :action => "index" }, :remote => false, :style=>"", :method => :get) %>
 
   </div>
+  
+  <% if current_user == @ufo_author %>
   <div class="markFo <%= invite_topic_selected %>">
     <%= link_to( "Friend Invited Topics", {:controller => "u_forums", :action => "index", :category => "friend_topic" }, :remote => false, :style=>"", :method => :get, :class => "vtip", :title => "Topics that your friend share with you.") %>
   </div>
+  <% end %>
+  
+  
+  
   <% if current_user == @ufo_author %>
   <div class="markFo"><a href="javascript:;" id="ufo_setngs" class="vtip" title="Default setting will be applied when you create a new topic.">Default Settings </a></div>
   <%  end %>

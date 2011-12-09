@@ -539,14 +539,14 @@ class UForumsController < ApplicationController
     else
       share_to = get_share(arr_p[0][1])
       if share_to != nil
-        if share_to.include?(current_user) && share_to.include?(@ufo_author)
+        if share_to.include?(current_user) #&& share_to.include?(@ufo_author)
           valid_ufo = ufo
           check = true
         end
       end
-      #case 2: friend does not share with author's groups, but current_user is a member of topic
+      #case 2: friend does not share with current_user's groups, but current_user is a member of topic
       if !check
-        if (ufo.ufo_members.where(:user_id => @ufo_author.id).size > 0 )  && (ufo.ufo_members.where(:user_id => current_user.id).size > 0)
+        if (ufo.ufo_members.where(:user_id => current_user.id).size > 0 )  && (ufo.ufo_members.where(:user_id => current_user.id).size > 0)
           valid_ufo = ufo
         end
       end #end if
@@ -592,7 +592,7 @@ class UForumsController < ApplicationController
   
   def load_friend_ufos
     tmparr = []
-    @ufo_author.user_friends.each do |usr|
+    current_user.user_friends.each do |usr|
       usr.ufos.each do |ufo|
         if membership_validate(ufo) != nil
           tmparr << ufo
