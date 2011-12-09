@@ -42,6 +42,9 @@
                       </div>
                     </div>
                     <div class="assDes" style="width: 521px;">
+                      <% if ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
+                        <%= link_to raw("<div>#{ufo_image_post(controller_name, ufo)}</div>"), ufo.ufo_attach.url %>
+                      <% end %>
                       <%= raw( truncate_html(ufo.content, :length => 400, :omission => '...') ) %>
                     </div>
                     <div class="assItbodderTopemB">

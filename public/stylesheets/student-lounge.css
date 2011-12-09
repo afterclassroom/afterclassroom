@@ -5973,6 +5973,19 @@ div.ufo_sel div.ufo_span2b{
 .inboxFoSemove a:hover{
     background: url("/images/detele_forumH.png") no-repeat scroll 0 0 transparent;
 }
+.inboxFoSeting a{
+    color: #797979;
+    cursor: pointer;
+    line-height: 25px;
+    text-decoration: none;
+    background: url("/images/setting_forum.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    margin-right: 5px;
+    width: 29px;
+}
+.inboxFoSeting a:hover{
+    background: url("/images/setting_forumH.png") no-repeat scroll 0 0 transparent;
+}
 .assPicFo a{
     font-family: arial;
     font-size: 13px;

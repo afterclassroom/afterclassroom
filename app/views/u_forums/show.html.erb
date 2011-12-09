@@ -2,11 +2,11 @@
 <%= render :partial => "navigation" %>
 
 <div class="slStoryL" style="margin-bottom: 10px;">
-  <div class="contDetL">
+  <div class="contDetL" style="width: auto">
     <div class="contDetLin">
       <div class="inboxLeft">
-        <div class="overall" style="height: 885;">
-          <div style="margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 50px; border-bottom: solid 2px #ebebeb; padding-bottom: 10px;">
+        <div class="overall">
+          <div style="margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 65px; border-bottom: solid 2px #ebebeb; padding-bottom: 10px;">
             <div style="background: url('/images/ufo_gstar.png') no-repeat; width: 18px; height: 18px; margin-top: 2px;"></div>
             <div style="overflow: hidden; height: 30px; width: 542px; margin-left: 24px; margin-top: -27px;">
               <label style="float: left; font-size: 17px;color: #969696;margin-top: 6px;"><%= @ufo.title %></label>
@@ -18,10 +18,16 @@
             </div>
             <div class="AsDContImg" style="float: right; margin-right: 9px; margin-top: -30px;">
               <%= show_image_user_post(@ufo.user) %>
-              <% if current_user == @ufo_author   %>        
-              <%= link_to( "Edit", edit_user_u_forum_path(@ufo.user, @ufo), :method => :get) %>
-              <%= link_to( "Delete", user_u_forum_path(@ufo.user, @ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?') %>
-              <a href="javascript:;" id="setting_panel_btn">Setting</a>
+              <% if current_user == @ufo_author   %>  
+                <span style="float: left;margin-left: -42px;margin-top: 20px;" class="inboxFoSedit vtip" title="Edit this topic">
+                  <%= link_to( "", edit_user_u_forum_path(@ufo.user, @ufo), :method => :get) %>
+                </span>
+                <span style="float: left;margin-left: -10px;" class="inboxFoSemove vtip" title="Delete this topic">
+                  <%= link_to( "", user_u_forum_path(@ufo.user, @ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?', :style=>"padding-bottom: 25px;margin:0px") %>
+                </span>
+              <span style="float: left;margin-left: 3px;" class="inboxFoSeting vtip" title="Setting this topic">
+                <a href="javascript:;" id="setting_panel_btn" style="padding-bottom: 25px"></a>
+              </span>
               <% end %>
             </div>  
           </div>
@@ -147,51 +153,47 @@
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
           <div style="border: 0px solid black; padding: 10px;">
             <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
-              <div style="overflow:hidden">
+              <!-- div style="overflow:hidden">
                 <div class="btmDownfo">
-                  <a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow"></a>
+                  <a href="javascript:downloadFile('<%#= @ufo.ufo_attach.url %>')" class="downarrow"></a>
                   <span class="forums_dow" style="color: #1988C7;margin-top: 5px;position: absolute;">Download</span> 
                 </div>
-              </div>
+              </div -->
+              <%= link_to raw("<div>#{ufo_image_post(controller_name, @ufo)}</div>"), @ufo.ufo_attach.url %>
             <% end %>
             <div style="padding-top: 10px;">
               <%= raw(@ufo.content)  %>
             </div>
           </div>
           
-          <%= render :partial => "cmt_form" %>
-
-
-
+          <div class="contFoT" style="margin-top: 5px;border-bottom: 1px solid #EBEBEB;background-color: #EBEBEB">
+            <div class="contFoD" style="border-top: 4px solid #EBEBEB;background-color: #EBEBEB">
+              <div class="contFoC">
+                <div class="assPage">
+                  <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
+                    <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
+                    <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
+                  </div>
+                </div>
+                <div style=" min-height: 100px; padding: 10px;">
+                  <% @ufo_cmts.each do |cmt| %>
+                    <%= render :partial => "item_cmt", :locals => {:cmt => cmt} %>
+                  <% end %>
+                </div>
+                <div class="assPage">
+                  <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
+                    <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
+                    <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+   <%= render :partial => "cmt_form" %>
   </div>
-  <div class="contFoT">
-    <div class="contFoD">
-      <div class="contFoC">
-        <div class="assPage">
-          <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
-            <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
-            <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
-          </div>
-        </div>
-        <div style=" min-height: 100px; padding: 10px;">
-          <% @ufo_cmts.each do |cmt| %>
-            <%= render :partial => "item_cmt", :locals => {:cmt => cmt} %>
-          <% end %>
-        </div>
-        <div class="assPage">
-          <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
-            <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
-            <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
 </div>
 
 
