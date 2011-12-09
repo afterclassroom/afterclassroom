@@ -1,8 +1,7 @@
 class KindeditorImage < ActiveRecord::Base
    before_create :randomize_file_name
     has_attached_file :data, {
-    :bucket => 'afterclassroom_post',
-    :styles => Proc.new { |a| a.instance.file_styles }
+    :bucket => 'afterclassroom_post'
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
     
     private

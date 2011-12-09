@@ -23,7 +23,7 @@
           </div>
           <div class="stoDetR">
             <div class="stoDetRT">
-              <%= @music.user.full_name %>: <%= @music.title %>
+              <%= @music.user.full_name %>: <%= link_to @music.music_album.name, play_list_user_musics_url(current_user, :music_album_id => @music.music_album) %>
             </div>
           </div>
         </div>
@@ -61,9 +61,6 @@
                 });
               });
             </script>
-          </div>
-          <div style="text-align: center;margin-top: 15px;">
-            <%= link_to "View music album: #{@music.music_album.name}", play_list_user_musics_url(current_user, :music_album_id => @music.music_album) %>
           </div>
         </div>
         <%= render :partial => "music_action" %>

@@ -1,5 +1,9 @@
-<% @walls.each do |wall| %>
-	<%= render :partial => "user_walls/wall_item", :locals => {:wall => wall} %>
+<% @walls.each do |w| %>
+	<% if w.wall_parent %>
+              <%= render :partial => "user_walls/wall_item_with_parent", :locals => {:wall => w} %>
+            <% else %>
+              <%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
+            <% end %>
 <% end %>
 <%= render :partial => 'shared/javascript_load' %>
 <script type="text/javascript">
@@ -9,4 +13,12 @@
         imgLoader = new Image();// preload image
         imgLoader.src = tb_pathToImage;
     });
+</script>
+<script>
+$(window).load(function(){
+    $('.AfterDes').imagefit();
+});
+$(function(){
+    $('.AfterClCom').imagefit();
+});
 </script>
