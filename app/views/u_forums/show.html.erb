@@ -151,7 +151,7 @@
           </div>
 
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
-          <div style="border: 0px solid black; padding: 10px;">
+          <div class="assDesShow" style="border: 0px solid black; padding: 10px;">
             <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
               <!-- div style="overflow:hidden">
                 <div class="btmDownfo">
@@ -161,9 +161,9 @@
               </div -->
               <%= link_to raw("<div>#{ufo_image_post(controller_name, @ufo)}</div>"), @ufo.ufo_attach.url %>
             <% end %>
-            <div style="padding-top: 10px;">
+            <span style="padding-top: 10px;">
               <%= raw(@ufo.content)  %>
-            </div>
+            </span>
           </div>
           
           <div class="contFoT" style="margin-top: 5px;border-bottom: 1px solid #EBEBEB;background-color: #EBEBEB">
