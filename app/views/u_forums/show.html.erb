@@ -151,7 +151,7 @@
           </div>
 
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
-          <div style="border: 0px solid black; padding: 10px;">
+          <div class="assDesShow" style="border: 0px solid black; padding: 10px;">
             <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
               <!-- div style="overflow:hidden">
                 <div class="btmDownfo">
@@ -161,15 +161,15 @@
               </div -->
               <%= link_to raw("<div>#{ufo_image_post(controller_name, @ufo)}</div>"), @ufo.ufo_attach.url %>
             <% end %>
-            <div style="padding-top: 10px;">
+            <span style="padding-top: 10px;">
               <%= raw(@ufo.content)  %>
-            </div>
+            </span>
           </div>
           
           <div class="contFoT" style="margin-top: 5px;border-bottom: 1px solid #EBEBEB;background-color: #EBEBEB">
-            <div class="contFoD" style="border-top: 4px solid #EBEBEB;background-color: #EBEBEB">
+            <div class="contFoD" style="border-top: 1px solid #EBEBEB;background-color: #EBEBEB">
               <div class="contFoC">
-                <div class="assPage">
+                <div class="assPage" style="padding-bottom: 0px">
                   <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
                     <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
                     <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
@@ -181,7 +181,7 @@
                   <% end %>
                 </div>
                 <div class="assPage">
-                  <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
+                  <div style="border-bottom: 0px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
                     <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
                     <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
                   </div>
@@ -346,9 +346,6 @@
       });//end ajax
     }
     
-    $('#show_hide_cmt').click(function(){
-      $('form#form_cmt').toggle();
-    });
 
     //BEGIN toggle the add new member area
     $('#invite_btn').click(function(){

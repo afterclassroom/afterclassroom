@@ -1,12 +1,3 @@
-<div style="background-color: #ebebeb; height: 30px; padding: 2px 2px 9px;" id="show_hide_cmt">
-  <div style="background-color: white; width: 88px; height: 33px;padding-bottom: 2px;margin-left: 2px;">             
-    <span class="vtip" title="Show or Hide the comment area" style="position: absolute;cursor: pointer;background: url('/images/btm_cmt01.png') no-repeat center;height: 30px;padding-bottom: 5px;padding-left: 27px;width: 60px;">
-      <span style="cursor: pointer;color: #FFFFFF;margin-top: 10px;margin-left: -7px;position: absolute;">Comment</span>
-    </span>              
-  </div>
-</div>
-
-
 <%= form_for(@ufo_cmt, :remote => false,:url => url_for(:controller => "u_forums", :action => "save_cmt") , :html => {:multipart => true, :id => "form_cmt", :method => "post" }) do |f| %>
   <%= hidden_field_tag "ufo_id", @ufo.id %>
 
@@ -18,9 +9,6 @@
 
       <label style="text-align: left;">Leave your comment</label>
 
-      <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
-  At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
-      </textarea --> 
       <div style="overflow: hidden;">
         <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => '{validate:{required:true}}'%>
       </div>

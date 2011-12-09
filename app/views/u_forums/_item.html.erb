@@ -1,79 +1,79 @@
-          <div class="assItemForu">
-            <div class="bodderTop"></div>
-            <div class="inboxCeTop"></div>
-            <div class="assForum">
-              <div class="assPic">
-                <%= show_image_user_post(ufo.user) %>
+<div class="assItemForu">
+  <div class="bodderTop"></div>
+  <div class="inboxCeTop"></div>
+  <div class="assForum">
+    <div class="assPic">
+      <%= show_image_user_post(ufo.user) %>
+    </div>
+
+    <div style="float: left; width: 500px;" class="assPicFo">
+      <%= link_to truncate_html(ufo.title, :length => 55, :omission => '...'), user_u_forum_path(ufo.user, ufo) %>
+
+    </div>
+
+    <% if current_user == ufo.user %>
+
+      <div class="inboxFoSe vtip" title="Custom setting of each topic will override the default setting.">
+        <a href="javascript:;" id="setting<%= ufo.id %>">
+          <span class="span1">Setting</span>
+        </a>
+      </div>
+      <div class="inboxFoSedit vtip" title="Edit this topic">
+        <%= link_to( content_tag(:span, "",:class => "span1"), edit_user_u_forum_path(@ufo_author, ufo), :method => :get) %>
+      </div>
+      <div class="inboxFoSemove vtip" title="Delete this topic">
+        <%= link_to( content_tag(:span, "",:class => "span1"), user_u_forum_path(@ufo_author, ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?') %>
+      </div>
+    <% end %>
+
+    <div class="assContFoT">
+      <div class="assContFoD">
+        <div class="assContFoC">
+          <div class="assInfT" style="padding-bottom: 8px;">
+            <div class="assInfL">
+              <div>
+                <span>Posted by:</span>
+                <%= show_user_post(ufo.user) %>
+                <span>
+                  <%= time_ago_in_words(ufo.created_at, true) %> ago.
+
+                </span>
               </div>
+            </div>
+          </div>
+          <div class="assDes" style="width: 521px;overflow: hidden;">
+            <% if ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
+              <%= link_to raw("<div>#{ufo_image_post(controller_name, ufo)}</div>"), ufo.ufo_attach.url %>
+            <% end %>
+            <%= raw( truncate_html(ufo.content, :length => 400, :omission => '...') ) %>
+          </div>
+          <div class="assItbodderTopemB">
+            <div class="assInfT">
+              <div class="assInfB">
 
-              <div style="float: left; width: 500px;" class="assPicFo">
-                <%= link_to truncate_html(ufo.title, :length => 55, :omission => '...'), user_u_forum_path(ufo.user, ufo) %>
-
-              </div>
-
-              <% if current_user == ufo.user %>
-              
-                <div class="inboxFoSe vtip" title="Custom setting of each topic will override the default setting.">
-                  <a href="javascript:;" id="setting<%= ufo.id %>">
-                    <span class="span1">Setting</span>
-                  </a>
-                </div>
-                <div class="inboxFoSedit vtip" title="Edit this topic">
-                  <%= link_to( content_tag(:span, "",:class => "span1"), edit_user_u_forum_path(@ufo_author, ufo), :method => :get) %>
-                </div>
-                <div class="inboxFoSemove vtip" title="Delete this topic">
-                  <%= link_to( content_tag(:span, "",:class => "span1"), user_u_forum_path(@ufo_author, ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?') %>
-                </div>
-              <% end %>
-
-              <div class="assContFoT">
-                <div class="assContFoD">
-                  <div class="assContFoC">
-                    <div class="assInfT" style="padding-bottom: 8px;">
-                      <div class="assInfL">
-                        <div>
-                          <span>Posted by:</span>
-                          <%= show_user_post(ufo.user) %>
-                          <span>
-                            <%= time_ago_in_words(ufo.created_at, true) %> ago.
-
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="assDes" style="width: 521px;">
-                      <% if ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
-                        <%= link_to raw("<div>#{ufo_image_post(controller_name, ufo)}</div>"), ufo.ufo_attach.url %>
-                      <% end %>
-                      <%= raw( truncate_html(ufo.content, :length => 400, :omission => '...') ) %>
-                    </div>
-                    <div class="assItbodderTopemB">
-                      <div class="assInfT">
-                        <div class="assInfB">
-
-                          <%= render :partial => "rating_action", :locals => {:ufo => ufo } %>
-                          <!-- div id="rate_1144">
-                            <div style="background: none repeat scroll 0% 0% transparent;" class="qashdU">
-                              <a href="">0</a>
-                            </div>
-                            <div class="qashdD">
-                              <a href="">0</a>
-                            </div>
-                          </div -->
-                          <div style="background: url(&quot;/images/bor-ad.png&quot;) no-repeat scroll left top transparent; padding: 0pt 2px;">
-                            <div class="com">
-                              <!-- a href="">Comments (<span id="post_1144_comments">0</span>)</a -->
-                              <%= link_to "Comments", user_u_forum_path(ufo.user, ufo) %> (<%= ufo.ufo_cmts.size %>)
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <%= render :partial => "rating_action", :locals => {:ufo => ufo } %>
+                <!-- div id="rate_1144">
+                  <div style="background: none repeat scroll 0% 0% transparent;" class="qashdU">
+                    <a href="">0</a>
+                  </div>
+                  <div class="qashdD">
+                    <a href="">0</a>
+                  </div>
+                </div -->
+                <div style="background: url(&quot;/images/bor-ad.png&quot;) no-repeat scroll left top transparent; padding: 0pt 2px;">
+                  <div class="com">
+                    <!-- a href="">Comments (<span id="post_1144_comments">0</span>)</a -->
+                    <%= link_to "Comments", user_u_forum_path(ufo.user, ufo) %> (<%= ufo.ufo_cmts.size %>)
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div id="item_dlg<%= ufo.id %>" title="Custom settings for <%= raw (ufo.title) %>" style="display:none;">
@@ -86,9 +86,9 @@
   </div>
 </div>
 <script type="text/javascript">
-var ajaxobj<%= ufo.id %>;
-$(document).ready(function(){
-  $('#setting<%= ufo.id %>').click(function(){
+  var ajaxobj<%= ufo.id %>;
+  $(document).ready(function(){
+    $('#setting<%= ufo.id %>').click(function(){
 
       var stn_path = "<%= item_setting_user_u_forums_path %>";
 
@@ -100,7 +100,7 @@ $(document).ready(function(){
             type: 'GET',
             dataType: 'script',
             data: ({
-              id: <%= ufo.id %>,
+              id: <%= ufo.id %>
             })
           });
         },
@@ -111,16 +111,15 @@ $(document).ready(function(){
         resizable: false,
         closeOnEscape: true,
         overlay: { 
-            opacity: 0.7, 
-            background: "black" 
+          opacity: 0.7, 
+          background: "black" 
         },
         beforeClose: function(event, ui) {
           $('#item_cnt<%= ufo.id %>').html("");
           $('#waiting_id<%= ufo.id %>').show();
           ajaxobj<%= ufo.id %>.abort();
         }
-
       });
+    });
   });
-});
 </script>
