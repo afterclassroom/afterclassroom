@@ -432,13 +432,13 @@ class UserWallsController < ApplicationController
   def next_page_wall
     @type = params[:type]
     user_id = params[:user_id]
-    user = User.find(user_id)
+    @user = User.find(user_id)
     @page = params[:page]
     case @type
       when "student_lounge"
       @walls = current_user.walls_with_setting.paginate :page => params[:page], :per_page => 10
     else
-      @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
+      @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
     end
     render :layout => false
   end

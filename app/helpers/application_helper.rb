@@ -395,7 +395,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login('Submit')
     else
-      link_to(raw('<input type="button" value="Submit" name="commit">'), "javascript:;", :onclick => "request_form_submit();")
+      link_to(raw('<input id="submit_form" type="button" value="Submit" name="commit">'), "javascript:;") + raw("<script>$(document).ready(function(){  $('#submit_form').click(function(){ request_form_submit();  });});</script>")
     end
   end
   
@@ -715,7 +715,7 @@ module ApplicationHelper
     if wall.user_wall_link
       link = "/gadgets_proxy/link?url=#{wall.user_wall_link.link}"
       if wall.user_wall_link.image_link != ""
-        img_link = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank")
+        img_link = link_to(raw(image_tag("/gadgets_proxy/link?url=#{wall.user_wall_link.image_link}", :style => "width:92px;height:68px")), link, :target => "_blank")
         image = get_image_wall(wall.id, img_link)
       end
       title = wall.user_wall_link.title
