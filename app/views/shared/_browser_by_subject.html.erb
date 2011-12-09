@@ -7,19 +7,17 @@
     text = "Browse by subject "
   end %>
   <div class="col300 Br-by-sub">
-    <div class="col300in">
-      <div style="background: url(/images/icons_after/browse_by_subject.png) no-repeat scroll 0 0 transparent;line-height: 15px;height: 20px;border-bottom: 1px solid #DBDBDB;">
-        <h1 class="col300Title" style="border-bottom:0 none;margin-left: 23px"><%= text %></h1>
-      </div>
+    <div class="col300in">   
+        <h1 class="col300Title"><%= text %></h1>
   <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
-      <div style="float: right; position: relative; margin-top: -23px; cursor: pointer;" id="open_menu">
+      <div style="float: right; position: relative; margin-top: -27px; cursor: pointer;" id="open_menu">
         <img src="/images/open.png">
       </div><%# end %>
       <div class="col300Cont">
         <% if @tags and @tags.to_a.size > 0
           max_count = @tags.sort_by(&:count).last.count.to_f %>
           <div class="tabClouse">
-            <div id="tags_button" style="margin-top:-7px">
+            <div id="tags_button">
             </div>
     <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
             <div class="navigation-container-tag">                
