@@ -2,6 +2,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'mime/types'
 class Music < ActiveRecord::Base
+	before_create :change_file_name
   # Relations
   belongs_to :user
   belongs_to :music_album
@@ -63,4 +64,11 @@ class Music < ActiveRecord::Base
   def total_bad
     self.ratings.count(:conditions => ["rating = ?", 0])
   end
+
+	private
+    def change_file_name
+      unless music_attach_file_name.nil?
+        self.music_attach.instance_write(:file_name, "#{music_attach_file_name.gsub("'", "`")}")
+      end
+    end
 end

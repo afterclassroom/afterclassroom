@@ -124,7 +124,7 @@ class MusicsController < ApplicationController
   # POST /musics
   # POST /musics.xml
   def create
-    begin
+			@music_albums = current_user.music_albums
       @music = Music.new(params[:music])
       @music.user = current_user
       if @music.save
@@ -132,7 +132,7 @@ class MusicsController < ApplicationController
           mp3_info = Mp3Info.open(@music.music_attach.path)
           @music.length_in_seconds = mp3_info.length.to_i
           @music.artist = mp3_info.tag.artist
-          @music.title ||= mp3_info.tag.title.sub( "'", %q{\\\'} ) if mp3_info.tag.title
+          @music.title ||= mp3_info.tag.title if mp3_info.tag.title
           @music.length_in_seconds = mp3_info.length.to_i
           @music.save!
         rescue
@@ -142,11 +142,8 @@ class MusicsController < ApplicationController
         post_wall(@music)
         redirect_to user_music_album_path(current_user, @music.music_album)
       else
-        render :action => "new"
-      end
-    rescue
-      flash[:error] = 'Music was successfully created.'
-      render :action => "new"
+				flash[:error] = 'Music was error created.'
+      	render :action => "new"
     end
   end
   

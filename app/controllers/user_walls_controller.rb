@@ -79,7 +79,7 @@ class UserWallsController < ApplicationController
       @obj.comments << obj_comment
       @wall.update_attribute(:updated_at, Time.now)
 			update_user_wall_follow(@wall, current_user)
-      if @wall.user != current_user
+      if @wall.user != current_usernex
 				# Send notification
         subject = "#{current_user.name} left comments on your Student Lounge"
         content = "Hello #{@wall.user.name},<br/>"

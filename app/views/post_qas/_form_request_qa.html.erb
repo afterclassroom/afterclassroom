@@ -28,7 +28,7 @@
 				        </div>
 								<div class="reqLa">
 				            <label>
-				                Anonymous <%= f.check_box :anonymous %> 
+				                Anonymous <%= f.check_box :anonymous, :value => "0" %> 
 				            </label>
 				        </div>
 				        <%= render :partial => "/shared/form_request_post/select_tag" %>
