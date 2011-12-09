@@ -9,9 +9,6 @@
 
       <label style="text-align: left;">Leave your comment</label>
 
-      <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
-  At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
-      </textarea --> 
       <div style="overflow: hidden;">
         <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => '{validate:{required:true}}'%>
       </div>
