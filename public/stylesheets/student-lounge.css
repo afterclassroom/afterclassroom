@@ -5734,6 +5734,15 @@ span.btmTag a:hover{
 }
 
 /**** BEGIN forum button for studenLounge  *****/
+.assDes div{
+    background: url("/images/bgi-col300.png") no-repeat scroll 0 0 transparent;
+    padding: 3px;
+    float: left;
+    padding-right: 10px;
+}
+.assDes div img{
+    border: 0 none;
+}
 .AsImgSelect {
     float: left;
     width: 60px;
