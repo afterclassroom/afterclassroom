@@ -25,6 +25,20 @@
       <%= show_user_post(cmt.user) %>
     </div>
     <div style="color: #969696"><%= time_ago_in_words(cmt.created_at, true) %> ago.</div>
+    <% if  cmt.ucmt_attach.url != "/ucmt_attaches/original/missing.png"%>
+    <div class="assDes" style="width: 521px;">
+      <%= link_to raw("<div>#{ufocmt_image_post(controller_name, cmt)}</div>"), cmt.ucmt_attach.url %>
+    </div>
+    <% end %>
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div style="overflow: hidden;margin-bottom: 10px;"><%= raw (cmt.content) %></div>
     <div style="float: right; display: none;">button collapse expand</div>
   </div>
