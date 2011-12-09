@@ -1,6 +1,7 @@
 <% menu_title = "" %>
 <% own_topic_selected = "" %>
 <% invite_topic_selected = "" %>
+<% subscribed_topic = "" %>
 
 <% if current_user == @ufo_author %>
   <% menu_title = "Your Topics" %>
@@ -8,14 +9,24 @@
   <% menu_title = "#{@ufo_author.name}'s Topics" %>
 <% end %>
 
-<% if params[:category]=="friend_topic" %>
-<% own_topic_selected = "" %>
-<% invite_topic_selected = "menuFoselect" %>
-<% else %>
-<% own_topic_selected = "menuFoselect" %>
-<% invite_topic_selected = "" %>
+<%# if params[:category]=="friend_topic" %>
+<%# own_topic_selected = "" %>
+<%# invite_topic_selected = "menuFoselect" %>
+<%# else %>
+<%# own_topic_selected = "menuFoselect" %>
+<%# invite_topic_selected = "" %>
+<%# end %>
+<%
+case params[:category]
+when "friend_topic"
+  invite_topic_selected = "menuFoselect"
+when "subscribed_topic"
+  subscribed_topic = "menuFoselect"
+else
+  own_topic_selected = "menuFoselect"
+end
+%>
 
-<% end %>
 
 <div class="inboxFoTop">
   <div class="markFo <%= own_topic_selected %>">
@@ -27,6 +38,9 @@
   <% if current_user == @ufo_author %>
   <div class="markFo <%= invite_topic_selected %>">
     <%= link_to( "Friend Invited Topics", {:controller => "u_forums", :action => "index", :category => "friend_topic" }, :remote => false, :style=>"", :method => :get, :class => "vtip", :title => "Topics that your friend share with you.") %>
+  </div>
+  <div class="markFo <%= subscribed_topic %>">
+    <%= link_to( "Subscribed Topics", {:controller => "u_forums", :action => "index", :category => "subscribed_topic" }, :remote => false, :style=>"", :method => :get, :class => "vtip", :title => "Topics that your friend share with you.") %>
   </div>
   <% end %>
   
