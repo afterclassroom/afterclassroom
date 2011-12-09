@@ -34,7 +34,17 @@ module UForumsHelper
     if post.ufo_attach_content_type =~ /^image.*/
       path = post.ufo_attach.url
     else
-      puts "  THERE"
+      file_ext = File.extname(file_path).delete(".").downcase if file_path
+      path = "/images/icons/file_type/#{file_ext}.png"
+    end
+    
+    image_tag path, :style => "height: 45px; width: 45px;"
+  end
+  def ufocmt_image_post(ctrl_name, post)
+    file_path = post.ucmt_attach_file_name
+    if post.ucmt_attach_content_type =~ /^image.*/
+      path = post.ucmt_attach.url
+    else
       file_ext = File.extname(file_path).delete(".").downcase if file_path
       path = "/images/icons/file_type/#{file_ext}.png"
     end
