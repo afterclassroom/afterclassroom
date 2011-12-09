@@ -140,7 +140,10 @@ class UForumsController < ApplicationController
     if (params[:category] == "friend_topic")
       load_friend_ufos
       @index_category = params[:category]
-    else
+    elsif (params[:category] == "subscribed_topic") 
+      load_subscribed_ufos
+      @index_category = params[:category]
+    else 
       load_current_user_ufos
       #init the default setting for the first time user view forum
       #because default setting is not set for all user at the first time they 
@@ -588,6 +591,11 @@ class UForumsController < ApplicationController
 
       @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
     end
+  end
+  
+  def load_subscribed_ufos
+    members = current_user.ufo_members.where(:recev_mail => true)
+    @ufos = members.map(&:ufo).paginate(:page => params[:page], :per_page => 10)
   end
   
   def load_friend_ufos
