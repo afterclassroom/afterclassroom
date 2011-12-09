@@ -41,7 +41,7 @@
               </div>
             </div>
           </div>
-          <div class="assDes" style="width: 521px;">
+          <div class="assDes" style="width: 521px;overflow: hidden;">
             <% if ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
               <%= link_to raw("<div>#{ufo_image_post(controller_name, ufo)}</div>"), ufo.ufo_attach.url %>
             <% end %>
