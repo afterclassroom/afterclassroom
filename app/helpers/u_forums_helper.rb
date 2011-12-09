@@ -39,7 +39,7 @@ module UForumsHelper
       path = "/images/icons/file_type/#{file_ext}.png"
     end
     
-    image_tag path, :style => "height: 51px; width: 51px;"
+    image_tag path, :style => "border: 0 none;float: left;height: 51px;padding-bottom: 10px;padding-right: 10px;width: 51px;"
   end
 
 end
