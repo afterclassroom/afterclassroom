@@ -1,8 +1,8 @@
-<div id="cmt_content_item<%= cmt.id %>" style="border-bottom: 1px solid #D2D9E7; min-height: 80px;">
+<div id="cmt_content_item<%= cmt.id %>" style="border-bottom: 1px solid #D2D9E7;float: left;padding-bottom: 10px;padding-top: 10px;">
   <div class="assPic">
     <%= show_image_user_post(cmt.user) %>
   </div>
-  <div style="margin-top: 10px;">
+  <div style="float: left;width: 573px;word-wrap: break-word;">
     <div class="item_cmt_doimg">
       <% if current_user == @ufo_author || current_user == cmt.user %>
         <div style="float: right;margin-top: -8px" class="item_cmt_img">
@@ -30,15 +30,6 @@
       <%= link_to raw("<div>#{ufocmt_image_post(controller_name, cmt)}</div>"), cmt.ucmt_attach.url %>
     </div>
     <% end %>
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div style="overflow: hidden;margin-bottom: 10px;"><%= raw (cmt.content) %></div>
     <div style="float: right; display: none;">button collapse expand</div>
   </div>

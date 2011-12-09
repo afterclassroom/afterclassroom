@@ -167,9 +167,9 @@
           </div>
           
           <div class="contFoT" style="margin-top: 5px;border-bottom: 1px solid #EBEBEB;background-color: #EBEBEB">
-            <div class="contFoD" style="border-top: 4px solid #EBEBEB;background-color: #EBEBEB">
+            <div class="contFoD" style="border-top: 1px solid #EBEBEB;background-color: #EBEBEB">
               <div class="contFoC">
-                <div class="assPage">
+                <div class="assPage" style="padding-bottom: 0px">
                   <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
                     <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
                     <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
@@ -181,7 +181,7 @@
                   <% end %>
                 </div>
                 <div class="assPage">
-                  <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
+                  <div style="border-bottom: 0px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
                     <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
                     <%= will_paginate @ufo_cmts, :param_name => "cmt_page" %> 
                   </div>
