@@ -473,6 +473,7 @@ class UForumsController < ApplicationController
 
   def destroy
     ufo = Ufo.find(params[:id])
+    del_post_wall(ufo)#remove the wall item of this ufo
     ufo.destroy
     flash[:notice] = "Your topic was deleted."
     redirect_to user_u_forums_path(@ufo_author)
