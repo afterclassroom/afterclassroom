@@ -2,3 +2,8 @@
 <% @comments.each do |c| %>
   <%= render :partial => "/post_qas/item_answer", :locals => {:comnt => c} %>
 <% end %>
+<script>
+$(function(){
+    $('.AsDcomDes').imagefit();
+});
+</script>

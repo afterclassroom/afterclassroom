@@ -140,7 +140,10 @@ class UForumsController < ApplicationController
     if (params[:category] == "friend_topic")
       load_friend_ufos
       @index_category = params[:category]
-    else
+    elsif (params[:category] == "subscribed_topic") 
+      load_subscribed_ufos
+      @index_category = params[:category]
+    else 
       load_current_user_ufos
       #init the default setting for the first time user view forum
       #because default setting is not set for all user at the first time they 
@@ -470,6 +473,7 @@ class UForumsController < ApplicationController
 
   def destroy
     ufo = Ufo.find(params[:id])
+    del_post_wall(ufo)#remove the wall item of this ufo
     ufo.destroy
     flash[:notice] = "Your topic was deleted."
     redirect_to user_u_forums_path(@ufo_author)
@@ -539,14 +543,14 @@ class UForumsController < ApplicationController
     else
       share_to = get_share(arr_p[0][1])
       if share_to != nil
-        if share_to.include?(current_user) && share_to.include?(@ufo_author)
+        if share_to.include?(current_user) #&& share_to.include?(@ufo_author)
           valid_ufo = ufo
           check = true
         end
       end
-      #case 2: friend does not share with author's groups, but current_user is a member of topic
+      #case 2: friend does not share with current_user's groups, but current_user is a member of topic
       if !check
-        if (ufo.ufo_members.where(:user_id => @ufo_author.id).size > 0 )  && (ufo.ufo_members.where(:user_id => current_user.id).size > 0)
+        if (ufo.ufo_members.where(:user_id => current_user.id).size > 0 )  && (ufo.ufo_members.where(:user_id => current_user.id).size > 0)
           valid_ufo = ufo
         end
       end #end if
@@ -590,9 +594,14 @@ class UForumsController < ApplicationController
     end
   end
   
+  def load_subscribed_ufos
+    members = current_user.ufo_members.where(:recev_mail => true)
+    @ufos = members.map(&:ufo).paginate(:page => params[:page], :per_page => 10)
+  end
+  
   def load_friend_ufos
     tmparr = []
-    @ufo_author.user_friends.each do |usr|
+    current_user.user_friends.each do |usr|
       usr.ufos.each do |ufo|
         if membership_validate(ufo) != nil
           tmparr << ufo
