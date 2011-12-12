@@ -389,7 +389,6 @@
                 registerEventsForDeleteLink(deleteLink,image);
                 tagBox.append(deleteLink);
             };
-            LoadTagHover();
             return tagBox;
         }
 		
