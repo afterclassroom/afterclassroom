@@ -10,7 +10,7 @@
           <ul id="carrousel" class="myCarousel" style="margin-left: -4px;">
             <% @arr_img.each do |img| %>
               <li>
-                <%= image_tag img, :width => "77px", :height => "68px" %>
+                <%= image_tag "/gadgets_proxy/link?url=#{img}", :width => "77px", :height => "68px" %>
               </li>
             <% end %>
           </ul>

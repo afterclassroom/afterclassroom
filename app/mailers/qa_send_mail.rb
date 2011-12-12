@@ -31,42 +31,13 @@ class QaSendMail < ActionMailer::Base
     @tool = tool
     mail :to => tool.user.email, :subject => "You've got mail from #{current_user.name}"
   end
-  # BEGIN SEND MAIL TAG VIDEO
-  def tag_vid_notify(user,video,tag_creator,verify_status)
-    @video = video
-    @tag_creator=tag_creator
-    @user = user
-    @statement = ""
 
-    if (verify_status == false)
-      @statement = "Please wait for the authorization from video owner."
-    end
-    
-    
-    mail :to => user.email, :subject => "You have been tagged!"
-  end
-
-  def inform_vid_owner(user,video,tag_creator, tag_verify_status)
-    @video = video
-    @tag_creator=tag_creator
-    @user = user
-
-    @str_of_verify = ""
-    if tag_verify_status == false #FALSE means this tag need to be verified 
-      @str_of_verify = "Please review and authorize !"
-    end
-
-    mail :to => @video.user.email, :subject => "New user has been tagged!"
-  end
 
   def tag_approved(user,video,author)
     @video = video
     @user = user
     @author = author
     mail :to => @user.email, :subject => "#{author.name} has approved you to video tag list!"
-  end
-
-  def tag_vid_approved_to_creator
   end
 
   def tag_vid_approved_to_creator(tag_creator,video,author,user)
