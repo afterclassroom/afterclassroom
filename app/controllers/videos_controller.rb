@@ -280,11 +280,34 @@ class VideosController < ApplicationController
             puts "++ abc"
             puts "++ == #{taginfo.verify}"
             if taginfo.verify == false
-              #if tag_creator tag him self, send mail to him self, inform him to wait for authorization, send another mail to author to inform him to authorize for tag-creator
-              #if tag_creator tag author, send mail to him self, inform him to wait for authorization, send another mail to author to inform him to authorize for tag-creator
-              #if tag_creator tag another user, send 1 mail to tag-creator to inform him to wait for authorization, DO NOT INFORM USER2 , inform author to authorize for tag-creator
-              #if author tag him self : no verify, no send mail, update taginfor.verify = true and save
-              #if author tag another user : no verify, no send mail to author, send mail to other user about has been tagged
+              #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+              #to wait for authorization, send another mail to author to inform him 
+              #to authorize for tag-creator
+              #CASE 2: if tag_creator tag author, send mail to him self, inform 
+              #him to wait for authorization, send another mail to author to 
+              #inform him to authorize for tag-creator
+              #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+              #to inform him to wait for authorization, DO NOT INFORM USER2 , 
+              #inform author to authorize for tag-creator
+              #CASE 4: if author tag him self : no verify, no send mail, 
+              #update taginfor.verify = true and save
+              #CASE 5: if author tag another user : no verify, no send mail to 
+              #author, send mail to other user about has been tagged
+              case current_user
+              when @video.user #tag creator is the author
+                case u
+                when @video.user #case 4
+                else #case 5, author tag another user
+                end
+              else #tag creator is not video author
+                case u
+                when current_user #case 1
+                  TagVidMail.inform_creator_to_wait(@video, current_user).deliver
+                  TagVidMail.inform_author_to_authorize(@video, current_user).deliver
+                when @video.user #case 2
+                else #another user #case 3
+                end
+              end
             else
             end
             #taginfo.verify equal to TRUE when no need to pass to verifying process
@@ -336,7 +359,7 @@ class VideosController < ApplicationController
 
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",true, u.id ] )
           if tag_creator != u #stop send mail when tag_creator add him/her-self
-            QaSendMail.tag_vid_approved_to_creator(tag_creator,video,current_user,u).deliver
+#            QaSendMail.tag_vid_approved_to_creator(tag_creator,video,current_user,u).deliver
           end
         end
       end #end each
@@ -348,7 +371,7 @@ class VideosController < ApplicationController
           QaSendMail.tag_removed(u,video,current_user).deliver
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",false, u.id ] )
           if tag_creator != u #stop send mail when tag_creator add him/her-self
-            QaSendMail.tag_vid_removed_to_creator(tag_creator,video,current_user,u).deliver
+#            QaSendMail.tag_vid_removed_to_creator(tag_creator,video,current_user,u).deliver
           end
         end
       end #end each
@@ -364,7 +387,7 @@ class VideosController < ApplicationController
     share_to.each do |i|
       u = User.find(i)
       if u
-        QaSendMail.tag_removed(u,video,current_user).deliver
+#        QaSendMail.tag_removed(u,video,current_user).deliver
       end
     end #end each
 
@@ -385,7 +408,7 @@ class VideosController < ApplicationController
     if @tagged_users.size > 0
       @tagged_users.each do |user|
         if user != @video.user
-          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
+#          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
         end
       end #end each
     end #end if
