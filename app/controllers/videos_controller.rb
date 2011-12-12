@@ -237,27 +237,91 @@ class VideosController < ApplicationController
             flash[:notice] = str_flash_msg
           end
           
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
           if taginfo.save
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++"
+            puts "++ abc"
+            puts "++ == #{taginfo.verify}"
+            if taginfo.verify == false
+              #if tag_creator tag him self, send mail to him self, inform him to wait for authorization, send another mail to author to inform him to authorize for tag-creator
+              #if tag_creator tag author, send mail to him self, inform him to wait for authorization, send another mail to author to inform him to authorize for tag-creator
+              #if tag_creator tag another user, send 1 mail to tag-creator to inform him to wait for authorization, DO NOT INFORM USER2 , inform author to authorize for tag-creator
+              #if author tag him self : no verify, no send mail, update taginfor.verify = true and save
+              #if author tag another user : no verify, no send mail to author, send mail to other user about has been tagged
+            else
+            end
             #taginfo.verify equal to TRUE when no need to pass to verifying process
             #when there is no need to verify, there is no need to wait for authorization
             #stop send mail when tag_creator tag him/her self
-            if (u != current_user)
-              QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
-            end
-            if ( (current_user != @video.user) && (@video.user != u) )
-              #the above condition is "NOT TO SEND mail to video owner"
-              #if any user tag OWNER to OWNER's video
-              QaSendMail.inform_vid_owner(u,@video, current_user,taginfo.verify).deliver
-            end
+#            if (u != current_user)
+#              QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
+#            end
+#            if ( (current_user != @video.user) && (@video.user != u) )
+#              #the above condition is "NOT TO SEND mail to video owner"
+#              #if any user tag OWNER to OWNER's video
+#              QaSendMail.inform_vid_owner(u,@video, current_user,taginfo.verify).deliver
+#            end
           end
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
           #if save then send mail to each user here, and to video.user
         end
       end #end each
 			
     end
 		#list of user has been tagged, and been verified
-      @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
-      @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
+    @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
   end
   
   def tag_decision
