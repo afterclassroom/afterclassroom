@@ -6307,6 +6307,9 @@ div.ufo_sel div.ufo_span2b{
     margin-bottom: 5px;
     text-align: center;
     width: 71px;
+    margin-left: 420px;
+    position: absolute;
+    margin-top: 19px;
 }
 .photoTag-cpanell a{
     color: #FFFFFF;

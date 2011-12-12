@@ -9,8 +9,8 @@
     </div>
   </div>
   <div id="container">
-    <div>
-      <a href="javascript:;" id="stop_tag" style="display:none;position:absolute; z-index:99;font-weight: bold;margin-left:40px;">Done</a>
+    <div class="done_tag" style="margin-left: 420px">
+      <a href="javascript:;" id="stop_tag" style="margin-top: 13px;display:none;position:absolute; z-index:99;font-weight: bold;margin-left:39px;">Done</a>
     </div>
     <p style="text-align:center">
       <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
@@ -57,6 +57,7 @@
   <%= hidden_field_tag "photo_id", @photo.id %>
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 <script type="text/javascript">
+  
   var overallCount = 0;//this variable support for show/hide accept/refuse
   var noOfRemove=0;//this variable support for show/hide ckbox at tag-list
   var begintag = false;//this variable support for phototag
@@ -144,7 +145,9 @@
       //photoTag-tag
     }//end if
     //END: fix bug for ie8
-
+    $(".photoTag-cpanell").css({
+      'top':$('#container').height()
+    });
   }//end function
 
   function TagByClick(e){
@@ -282,6 +285,17 @@
       'float': 'left', 
       'margin-left': '14px'
     });
+  });
+  jQuery(document).ready(function(){
+   jQuery(".photoTag-delete").click(function(){
+    jQuery.ajax({
+     type:POST,
+     url:url,
+     success:function(html){
+      LoadTagHover();
+     }
+    });
+   });
   });
   //END: select all
 </script>

@@ -168,21 +168,24 @@
 		
         var registerEventsForAddTagLink = function( link, image, image_id ){
             $(link).click(function(e){
-		//BEGIN DatNT note: setting this variable to true to allow user continue create tag
-		begintag = true;
-		$(this).hide();
+                //BEGIN DatNT note: setting this variable to true to allow user continue create tag
+                begintag = true;
+                $(this).hide();
+                var pos = $('.stoDbtm').offset();
                 $('.photoTag-cpanell').hide();
-		$('#stop_tag').show();
-		//detect firefox browser
-		if  ( $.browser.mozilla && $.browser.version > '2' ){
-		    //do nothing
-		}else {
-		   // $('#stop_tag').css('margin-left',''+$('.AsDOr').width()/2+'px');
-		}
+                $('#stop_tag').css({
+                    'top':pos.top
+                }).show();
+                //detect firefox browser
+                if  ( $.browser.mozilla && $.browser.version > '2' ){
+                //do nothing
+                }else {
+                // $('#stop_tag').css('margin-left',''+$('.AsDOr').width()/2+'px');
+                }
 	        
 
-		$('#stop_tag').css('display','');
-		//END DatNT note
+                $('#stop_tag').css('display','');
+                //END DatNT note
 
 
 		
@@ -289,7 +292,7 @@
                         },
                         select: function( event, ui){
                             $('#hidden_tempInput_'+i).val(ui.item.id);
-			    $('.inputSubmit').click();
+                            $('.inputSubmit').click();
                         }
                     });
                 }
@@ -330,7 +333,7 @@
                         extendTagBoxAttributes(tagBox,response.tag,image,image_id);
                     }).success(function() { 
                         $('#img_id_loader').hide();//hide the waiting image
-                       LoadTagHover(); //This function at show.html.erb at views/photos
+                        LoadTagHover(); //This function at show.html.erb at views/photos
                     });
                     removeNewTempTag();
                     showAllTags(image_id);                                    
@@ -371,11 +374,11 @@
             var dimension = {
                 width: tagJSON.width,
                 height: tagJSON.height
-                };
+            };
             var position = {
                 top: tagJSON.top,
                 left: tagJSON.left
-                };
+            };
             var tagBox = createTagBox(tagJSON.id,dimension,position,0);
             registerEventsForTagBox(tagBox);
             var innerElement = $("<div class='innerTag'></div>");
@@ -386,6 +389,7 @@
                 registerEventsForDeleteLink(deleteLink,image);
                 tagBox.append(deleteLink);
             };
+            LoadTagHover();
             return tagBox;
         }
 		
@@ -412,7 +416,7 @@
             var dimension = {
                 width: options.tag.defaultWidth,
                 height: options.tag.defaultHeight
-                };
+            };
             var position = {
                 top: (image.height()/2-dimension.height/2),
                 left: (image.width()/2-dimension.width/2)
@@ -438,7 +442,7 @@
         }
 		
         var createAddTagLink = function( image, image_id ){
-            var addTagLink = $('<a id="'+ options.imageWrapBox.addNewLinkIdPrefix + image_id + '" href="#" class="">'+ options.literals.addNewTag +'</a>');
+            var addTagLink = $('<a id="'+ options.imageWrapBox.addNewLinkIdPrefix + image_id + '" href="#" class="add_new_tag">'+ options.literals.addNewTag +'</a>');
             registerEventsForAddTagLink(addTagLink,image,image_id);
             return addTagLink;
         };
@@ -446,8 +450,8 @@
         var wrapImage = function( image, image_id ){
             var imageHeight = image.height();
             var imageWidth = image.width();
-            var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:'+ imageWidth +'px; display:block;margin:auto;"></div>');
-            var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;top:30px;left:0;height:'+ imageHeight +'px;width:'+ imageWidth +'px;"></div>');
+            var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;width:'+ imageWidth +'px; display:block;margin:auto;"></div>');
+            var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:relative;left:0;"></div>');
             canvas.append(wrapper);
             var controlPane = $('<div id="'+ options.imageWrapBox.controlPaneIdPrefix + image_id +'" class="photoTag-cpanell"></div>');
             canvas.append(controlPane);
@@ -519,9 +523,9 @@
                             prepareImage(this,$this);
                         });
                     }).success(function() { 
-                            LoadTagHover(); //this function is at show.html.erb of views/photos
-                            $('#img_id_loader').hide();
-                        });
+                    LoadTagHover(); //this function is at show.html.erb of views/photos
+                    $('#img_id_loader').hide();
+                });
             }
 
         });
