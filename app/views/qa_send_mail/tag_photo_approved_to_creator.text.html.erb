@@ -7,7 +7,14 @@
       <%= @photo.title == "" ? raw("<a href='#{user_photo_url(@photo.user, @photo)}'>photo</a>") : "photo: "  %> 
       <a href="<%= user_photo_url(@photo.user, @photo) %>"><%= @photo.title %></a>'s
       
-      tag list <br /> about <a href="<%= user_url(@user) %>"><%= @user.name %></a><br/>
+      tag list <br /> about 
+      <% if @tag_creator == @user %>
+        you.
+      <% else %>
+        <a href="<%= user_url(@user) %>"><%= @user.name %></a>
+      <% end %>
+      
+      <br/>
 
       Yours sincerely, <br/>
       Afterclassroom Support Team.
