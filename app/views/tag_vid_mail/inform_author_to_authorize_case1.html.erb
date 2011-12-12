@@ -5,14 +5,7 @@
 
 On your <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>, a tag of 
 
-<% if @user == @video.user %>
-you
-<% else %>
-<a href="<%= user_url(@user) %>"><%= @user.name %></a> 
-<% end %>
-
-
-has been added by <a href="<%= user_url(@user) %>"><%= @user.name %></a> . <br/>
+<a href="<%= user_url(@user) %>"><%= @user.name %></a> has been added by <a href="<%= user_url(@user) %>"><%= @user.name %></a>. <br/>
 
 Please review and authorize. <br/>
        

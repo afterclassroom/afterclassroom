@@ -302,11 +302,11 @@ class VideosController < ApplicationController
               else #tag creator is not video author
                 case u
                 when current_user #case 1
-                  TagVidMail.inform_creator_to_wait(@video, current_user).deliver
-                  TagVidMail.inform_author_to_authorize(@video, current_user).deliver
+                  TagVidMail.inform_creator_to_wait_case1(@video, current_user).deliver
+                  TagVidMail.inform_author_to_authorize_case1(@video, current_user).deliver
                 when @video.user #case 2
-                  TagVidMail.inform_creator_to_wait(@video, current_user).deliver
-                  TagVidMail.inform_author_to_authorize(@video, @video.user).deliver
+                  TagVidMail.inform_creator_to_wait_case2(@video, current_user).deliver
+                  TagVidMail.inform_author_to_authorize_case2(@video, current_user).deliver
                 else #another user #case 3
                   TagVidMail.inform_creator_to_wait_case3(@video, u).deliver
                   TagVidMail.inform_author_to_authorize_case3(@video, u,current_user).deliver
