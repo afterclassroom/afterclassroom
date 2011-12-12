@@ -457,7 +457,9 @@ class PhotosController < ApplicationController
           QaSendMail.tag_photo_approved(u,photo,current_user).deliver
 
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:photo_id],"Photo",true, u.id ] )
-          QaSendMail.tag_photo_approved_to_creator(tag_creator,photo,current_user,u).deliver
+          if tag_creator != u #do not send second mail when tag_creator tag him/her-self
+            QaSendMail.tag_photo_approved_to_creator(tag_creator,photo,current_user,u).deliver
+          end
         end
       end #end each      
     else
@@ -469,7 +471,9 @@ class PhotosController < ApplicationController
 
 
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:photo_id],"Photo",false, u.id ] )
-          QaSendMail.tag_photo_removed_to_creator(tag_creator,photo,current_user,u).deliver
+          if tag_creator != u #do not send second mail when tag_creator tag him/her-self
+            QaSendMail.tag_photo_removed_to_creator(tag_creator,photo,current_user,u).deliver
+          end
         end
       end #end each      
       TagInfo.refuse_photo(params[:checkbox],params[:photo_id])
