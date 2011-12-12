@@ -240,7 +240,10 @@ class VideosController < ApplicationController
           if taginfo.save
             #taginfo.verify equal to TRUE when no need to pass to verifying process
             #when there is no need to verify, there is no need to wait for authorization
-            QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
+            #stop send mail when tag_creator tag him/her self
+            if (u != current_user)
+              QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
+            end
             if ( (current_user != @video.user) && (@video.user != u) )
               #the above condition is "NOT TO SEND mail to video owner"
               #if any user tag OWNER to OWNER's video

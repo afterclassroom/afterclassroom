@@ -37,12 +37,9 @@ class QaSendMail < ActionMailer::Base
     @tag_creator=tag_creator
     @user = user
     @statement = ""
-
     if (verify_status == false)
       @statement = "Please wait for the authorization from video owner."
     end
-    
-    
     mail :to => user.email, :subject => "You have been tagged!"
   end
 
