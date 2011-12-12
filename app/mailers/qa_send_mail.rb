@@ -178,8 +178,7 @@ class QaSendMail < ActionMailer::Base
     @author = author
     @user = user
 
-    #mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
-    mail :to => "datefield@yahoo.com", :subject => "#{author.name} has approved your tag!"
+    mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
   end
 
   def tag_photo_removed_to_creator(tag_creator,photo,author,user)
