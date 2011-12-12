@@ -66,9 +66,6 @@ class QaSendMail < ActionMailer::Base
     mail :to => @user.email, :subject => "#{author.name} has approved you to video tag list!"
   end
 
-  def tag_vid_approved_to_creator
-  end
-
   def tag_vid_approved_to_creator(tag_creator,video,author,user)
     @video = video
     @tag_creator = tag_creator
