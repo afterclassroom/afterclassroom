@@ -3,9 +3,18 @@
     <div id="detail_window">
        Hello <%= @video.user.name %>, <br/>
 
-On your <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>, a tag of <a href="<%= user_url(@user) %>"><%= @user.name %></a> has been added.
+On your <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>, a tag of 
 
-Please review and authorize.
+<% if @user == @video.user %>
+you
+<% else %>
+<a href="<%= user_url(@user) %>"><%= @user.name %></a> 
+<% end %>
+
+
+has been added. <br/>
+
+Please review and authorize. <br/>
        
      
       Yours sincerely, <br/>
