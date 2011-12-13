@@ -308,7 +308,7 @@ class VideosController < ApplicationController
                   TagVidMail.inform_creator_to_wait_case2(@video, current_user).deliver
                   TagVidMail.inform_author_to_authorize_case2(@video, current_user).deliver
                 else #another user #case 3
-                  TagVidMail.inform_creator_to_wait_case3(@video, u).deliver
+                  TagVidMail.inform_creator_to_wait_case3(@video, u,current_user).deliver
                   TagVidMail.inform_author_to_authorize_case3(@video, u,current_user).deliver
                 end
               end

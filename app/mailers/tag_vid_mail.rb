@@ -14,9 +14,10 @@ class TagVidMail < ActionMailer::Base
 #    mail :to => current_user.email, :subject => "Please wait for #{@video.user.name} to authorize your tag"
     mail :to => "datefield@yahoo.com", :subject => "Please wait for #{@video.user.name} to authorize your tag"
   end
-  def inform_creator_to_wait_case3(video, user)
+  def inform_creator_to_wait_case3(video, user,tag_creator)
     @video = video
     @user = user
+    @tag_creator=tag_creator
 #    mail :to => current_user.email, :subject => "Please wait for #{@video.user.name} to authorize your tag"
     mail :to => "datefield@yahoo.com", :subject => "Please wait for #{@video.user.name} to authorize your tag"
   end
