@@ -100,4 +100,30 @@ class TagVidMail < ActionMailer::Base
     #mail :to => u.email, :subject => "You have been tagged on a video!"
     mail :to => "datefield@yahoo.com", :subject => "You have been tagged on a video!"
   end
+  def inform_creator_own_tag_accepted(video,tag_creator)
+    @video=video
+    @tag_creator=tag_creator
+#    mail :to => tag_creator.email, :subject => "Your tag has been authorized!"
+    mail :to => "datefield@yahoo.com", :subject => "Your tag has been authorized!"
+  end
+  def inform_creator_author_tag_accepted(video,tag_creator)
+    @video=video
+    @tag_creator=tag_creator
+#    mail :to => tag_creator.email, :subject => "Your tag of #{video.user.name} has been authorized!"
+    mail :to => "datefield@yahoo.com", :subject => "Your tag of #{video.user.name} has been authorized!"
+  end
+  def inform_creator_user_tag_accepted(video,tag_creator,u)
+    @video=video
+    @tag_creator=tag_creator
+    @user = u
+#    mail :to => tag_creator.email, :subject => "Your tag of #{u.name} has been authorized!"
+    mail :to => "datefield@yahoo.com", :subject => "Your tag of #{u.name} has been authorized!"
+  end
+  def inform_user_tag_created(video,tag_creator,u)
+    @video=video
+    @tag_creator=tag_creator
+    @user = u
+#    mail :to => u.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
+  end
 end
