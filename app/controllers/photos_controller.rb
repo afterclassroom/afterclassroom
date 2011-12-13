@@ -380,15 +380,82 @@ class PhotosController < ApplicationController
       tagphoto.height=params[:height]
     
       if tagphoto.save
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "=="
+        puts "==va"
+        puts "==val = #{taginfo.verify}"
+        if taginfo.verify == false #author enable verify of tag
+          #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+          #to wait for authorization, send another mail to author to inform him 
+          #to authorize for tag-creator
+          #CASE 2: if tag_creator tag author, send mail to him self, inform 
+          #him to wait for authorization, send another mail to author to 
+          #inform him to authorize for tag-creator
+          #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+          #to inform him to wait for authorization, DO NOT INFORM USER2 , 
+          #inform author to authorize for tag-creator
+          #CASE 4: if author tag him self : no verify, no send mail, 
+          #update taginfor.verify = true and save
+          #CASE 5: if author tag another user : no verify, no send mail to 
+          #author, send mail to other user about has been tagged
+          puts "currentusre = #{current_user.name}"
+          puts "usr = #{usr.name}"
+          puts "photo user = #{photo.user.name}"
+          case current_user
+          when photo.user #tag creator is the author
+            case usr
+            when photo.user #case 4:: has been implemented above; at the same place with case 5
+            else #case 5, author tag another user:: has been implemented above
+            end
+          else #tag creator is not video author
+            case usr
+            when current_user #case 1
+              TagPhotoMail.inform_creator_to_wait_case1(photo, current_user).deliver
+            when photo.user #case 2
+            else #another user #case 3
+            end
+          end              
+        else#taginfo.verify == true ::author disable verify of tag
+        end
         #taginfo.verify equal to TRUE when no need to pass to verifying process
         #when there is no need to verify, there is no need to wait for authorization
-        QaSendMail.tag_photo_notify(usr,photo, current_user,taginfo.verify).deliver
-        if ( (current_user != photo.user) && (usr != current_user) )
+#        QaSendMail.tag_photo_notify(usr,photo, current_user,taginfo.verify).deliver
+#        if ( (current_user != photo.user) && (usr != current_user) )
           #inform user that he/she has been tagged
-          QaSendMail.inform_photo_owner(usr,photo, current_user, taginfo.verify).deliver
+#          QaSendMail.inform_photo_owner(usr,photo, current_user, taginfo.verify).deliver
           #if author enable verify Seteting, inform tag_creator to wait for authorization
-          QaSendMail.inform_tag_creator(usr,photo, current_user, taginfo.verify).deliver
-        end
+#          QaSendMail.inform_tag_creator(usr,photo, current_user, taginfo.verify).deliver
+#        end
       end
     end
     
@@ -409,7 +476,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.js { render :json => arr.to_json()}
     end
-  end
+  end #end action add tag
   
   def usrdata
     list_friends = []
