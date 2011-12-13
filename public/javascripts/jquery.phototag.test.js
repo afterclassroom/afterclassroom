@@ -162,6 +162,7 @@
                         );
                     $('#' + options.tag.deleteLinkIdPrefix + tagId).parent().remove();
                     $('#' + options.imageWrapBox.tagListRemoveItemIdPrefix + tagId).parent().remove();
+                    LoadTagHover();
                 }
                 );
         }
@@ -171,11 +172,12 @@
                 //BEGIN DatNT note: setting this variable to true to allow user continue create tag
                 begintag = true;
                 $(this).hide();
-                var pos = $('.stoDbtm').offset();
+                // var pos = $('.stoDbtm').offset();
                 $('.photoTag-cpanell').hide();
-                $('#stop_tag').css({
-                    'top':pos.top
-                }).show();
+                $('#stop_tag').show();
+                // $('#stop_tag').css({
+                //     'top':pos.top
+                // }).show();
                 //detect firefox browser
                 if  ( $.browser.mozilla && $.browser.version > '2' ){
                 //do nothing

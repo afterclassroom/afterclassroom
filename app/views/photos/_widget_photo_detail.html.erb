@@ -9,17 +9,14 @@
     </div>
   </div>
   <div id="container">
-    <div class="done_tag" style="margin-left: 420px">
-      <a href="javascript:;" id="stop_tag" style="margin-top: 13px;display:none;position:absolute; z-index:99;font-weight: bold;margin-left:39px;">Done</a>
-    </div>
     <p style="text-align:center">
       <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
     </p>
-    <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
+    <div id="tag_list_place" style="position: relative;text-align: left; margin-left: 33px; width: 495px;"></div>
     <%
     if controller.action_name == 'show'
     %>
-      <div style="text-align:center;"><%= @photo.title %></div>
+      <div id="title_tag" style="text-align:center;"><%= @photo.title %></div>
     <% end %>
   </div>
 </div>
@@ -57,7 +54,7 @@
   <%= hidden_field_tag "photo_id", @photo.id %>
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 <script type="text/javascript">
-  
+
   var overallCount = 0;//this variable support for show/hide accept/refuse
   var noOfRemove=0;//this variable support for show/hide ckbox at tag-list
   var begintag = false;//this variable support for phototag
@@ -187,6 +184,7 @@
       //set Done link to be in center of image
 
     }//end if 
+
   }
   
   //BEGIN: code for tag user
@@ -195,7 +193,6 @@
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
-
     $('.photoTag').photoTag({
       requesTagstUrl: strrequesTagstUrl,
       deleteTagsUrl: strdeleteTagsUrl,
@@ -285,17 +282,6 @@
       'float': 'left', 
       'margin-left': '14px'
     });
-  });
-  jQuery(document).ready(function(){
-   jQuery(".photoTag-delete").click(function(){
-    jQuery.ajax({
-     type:POST,
-     url:url,
-     success:function(html){
-      LoadTagHover();
-     }
-    });
-   });
   });
   //END: select all
 </script>
