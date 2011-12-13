@@ -242,49 +242,8 @@ class VideosController < ApplicationController
             flash[:notice] = str_flash_msg
           end
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
           if taginfo.save
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++"
-            puts "++ abc"
-            puts "++ == #{taginfo.verify}"
-            if taginfo.verify == false
+            if taginfo.verify == false #author enable verify of tag
               #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
               #to wait for authorization, send another mail to author to inform him 
               #to authorize for tag-creator
@@ -301,9 +260,7 @@ class VideosController < ApplicationController
               case current_user
               when @video.user #tag creator is the author
                 case u
-                when @video.user #case 4
-                  taginfo.verify = true
-                  taginfo.save
+                when @video.user #case 4:: has been implemented above; at the same place with case 5
                 else #case 5, author tag another user:: has been implemented above
                 end
               else #tag creator is not video author
@@ -319,7 +276,31 @@ class VideosController < ApplicationController
                   TagVidMail.inform_author_to_authorize_case3(@video, u,current_user).deliver
                 end
               end
-            else
+            else #taginfo.verify == true::author disable verify tag
+              #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+              #the tag added successful, send mail to author about new tag created.
+              #CASE 2: if tag_creator tag author, send mail to him self, inform 
+              #the tag created success, send another mail to author to inform he has been tagged
+              #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+              #to inform him tag created success, send mail to user 2 that he has been tagged
+              #CASE 4: if author tag him self : no send mail
+              #CASE 5: if author tag another user : no send mail to 
+              #author, send mail to other user about has been tagged
+              case current_user
+              when @video.user #tag creator is the author
+                case u
+                when @video.user #case 4:: has been implemented above; at the same place with case 5
+                else #case 5, author tag another user:: has been implemented above
+                end
+              else #tag creator is not video author
+                case u
+                when current_user #case 1
+                  TagVidMail.inform_creator_self_tag_success(@video,current_user).deliver
+#                  TagVidMail.inform_author_tag_success(@video,current_user).deliver
+                when @video.user #case 2
+                else #another user #case 3
+                end
+              end              
             end
             #taginfo.verify equal to TRUE when no need to pass to verifying process
             #when there is no need to verify, there is no need to wait for authorization
