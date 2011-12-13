@@ -222,6 +222,11 @@ class VideosController < ApplicationController
           taginfo.verify = false if taginfo.verify.nil?
           if current_user == @video.user
             taginfo.verify = true
+            
+            if @video.user != u
+              #This is the case 5, please refer to below comment
+              TagVidMail.inform_user_been_tagged_by_author(@video, u).deliver
+            end
             flash[:notice] = "Your friend(s) has been tagged."
           else
             pr = @video.user.private_settings.where(:type_setting => "tag_video").first
@@ -299,7 +304,7 @@ class VideosController < ApplicationController
                 when @video.user #case 4
                   taginfo.verify = true
                   taginfo.save
-                else #case 5, author tag another user
+                else #case 5, author tag another user:: has been implemented above
                 end
               else #tag creator is not video author
                 case u
@@ -319,14 +324,14 @@ class VideosController < ApplicationController
             #taginfo.verify equal to TRUE when no need to pass to verifying process
             #when there is no need to verify, there is no need to wait for authorization
             #stop send mail when tag_creator tag him/her self
-#            if (u != current_user)
-#              QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
-#            end
-#            if ( (current_user != @video.user) && (@video.user != u) )
-#              #the above condition is "NOT TO SEND mail to video owner"
-#              #if any user tag OWNER to OWNER's video
-#              QaSendMail.inform_vid_owner(u,@video, current_user,taginfo.verify).deliver
-#            end
+            #            if (u != current_user)
+            #              QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
+            #            end
+            #            if ( (current_user != @video.user) && (@video.user != u) )
+            #              #the above condition is "NOT TO SEND mail to video owner"
+            #              #if any user tag OWNER to OWNER's video
+            #              QaSendMail.inform_vid_owner(u,@video, current_user,taginfo.verify).deliver
+            #            end
           end
           
           
@@ -365,7 +370,7 @@ class VideosController < ApplicationController
 
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",true, u.id ] )
           if tag_creator != u #stop send mail when tag_creator add him/her-self
-#            QaSendMail.tag_vid_approved_to_creator(tag_creator,video,current_user,u).deliver
+            #            QaSendMail.tag_vid_approved_to_creator(tag_creator,video,current_user,u).deliver
           end
         end
       end #end each
@@ -377,7 +382,7 @@ class VideosController < ApplicationController
           QaSendMail.tag_removed(u,video,current_user).deliver
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",false, u.id ] )
           if tag_creator != u #stop send mail when tag_creator add him/her-self
-#            QaSendMail.tag_vid_removed_to_creator(tag_creator,video,current_user,u).deliver
+            #            QaSendMail.tag_vid_removed_to_creator(tag_creator,video,current_user,u).deliver
           end
         end
       end #end each
@@ -393,7 +398,7 @@ class VideosController < ApplicationController
     share_to.each do |i|
       u = User.find(i)
       if u
-#        QaSendMail.tag_removed(u,video,current_user).deliver
+        #        QaSendMail.tag_removed(u,video,current_user).deliver
       end
     end #end each
 
@@ -414,7 +419,7 @@ class VideosController < ApplicationController
     if @tagged_users.size > 0
       @tagged_users.each do |user|
         if user != @video.user
-#          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
+          #          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
         end
       end #end each
     end #end if
