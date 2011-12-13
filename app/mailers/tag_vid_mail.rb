@@ -77,4 +77,27 @@ class TagVidMail < ActionMailer::Base
     mail :to => "datefield@yahoo.com", :subject => "You have been tagged on your video!"
   end
   
+  def inform_creator_tag_of_user_success(video,creator,u)
+    @video = video
+    @creator = creator
+    @user = u
+    #mail :to => creator.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "Your tag of #{u.name} has been created!"
+  end
+  
+  def inform_author_tag_of_user_success(video,current_user,u)
+    @video = video
+    @creator = current_user
+    @user = u
+    #mail :to => video.user.email, :subject => "New tag on your video"
+    mail :to => "datefield@yahoo.com", :subject => "New tag on your video"
+  end
+  
+  def inform_user_been_tagged(video,current_user,u)
+    @video = video
+    @creator = current_user
+    @user = u
+    #mail :to => u.email, :subject => "You have been tagged on a video!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged on a video!"
+  end
 end
