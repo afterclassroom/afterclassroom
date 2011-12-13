@@ -19,7 +19,7 @@
   <%= hidden_field_tag "video_id", @video.id %>
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 
-<div id="rate_pos" style="padding: 4px;width: 81px; float: left; margin-top: -40px; margin-left: 347px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
+<div id="rate_pos" style="position:absolute;padding: 4px;width: 81px; float: left; margin-top: -40px; margin-left: 347px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
   <%= render :partial => "videos/rating_action", :locals => {:post => @video, :controller_name => "videos"}%>
 </div>
 
