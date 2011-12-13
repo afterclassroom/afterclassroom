@@ -230,7 +230,7 @@ class QaSendMail < ActionMailer::Base
     @content = content
     @cmt_author = cmt_author
     @user = user
-    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video"
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for story"
   end
 
   #END send mail for story tag
