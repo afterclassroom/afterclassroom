@@ -33,7 +33,7 @@ end
     <%= link_to( "Friend Invited Topics", {:controller => "u_forums", :action => "index", :category => "friend_topic" }, :remote => false, :style=>"", :method => :get, :class => "vtip", :title => "Topics that your friend share with you.") %>
   </div>
   <div class="markFo <%= subscribed_topic %>">
-    <%= link_to( "Subscribed Topics", {:controller => "u_forums", :action => "index", :category => "subscribed_topic" }, :remote => false, :style=>"", :method => :get, :class => "vtip", :title => "Topics that your friend share with you.") %>
+    <%= link_to( "Subscribed Topics", {:controller => "u_forums", :action => "index", :category => "subscribed_topic" }, :remote => false, :style=>"", :method => :get, :class => "vtip", :title => "Topics that you have subscribed.") %>
   </div>
   <% end %>
   

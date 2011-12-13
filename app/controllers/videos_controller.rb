@@ -327,12 +327,18 @@ class VideosController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-#          QaSendMail.tag_approved(u,video,current_user).deliver
-
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",true, u.id ] )
-          if tag_creator != u #stop send mail when tag_creator add him/her-self
-           #??TagVidMail.inform_user_been_tagged(@video,current_user,u).deliver
-                        #QaSendMail.tag_vid_approved_to_creator(tag_creator,video,current_user,u).deliver
+          #case 1: tag-creator make own tag, send 1 mail to tag creator
+          #case 2: tag-creator tag author, send 1 mail to tag creator
+          #case 3: tag-creator tag user, send 1 mail to tag creator, 1 mail to user
+          case u
+          when tag_creator #case 1
+            TagVidMail.inform_creator_own_tag_accepted(video,tag_creator).deliver
+          when video.user #case 2
+            TagVidMail.inform_creator_author_tag_accepted(video,tag_creator).deliver
+          else #case 3
+            TagVidMail.inform_creator_user_tag_accepted(video,tag_creator,u).deliver
+            TagVidMail.inform_user_tag_created(video,tag_creator,u).deliver
           end
         end
       end #end each
@@ -341,10 +347,17 @@ class VideosController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-          QaSendMail.tag_removed(u,video,current_user).deliver
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",false, u.id ] )
-          if tag_creator != u #stop send mail when tag_creator add him/her-self
-            #            QaSendMail.tag_vid_removed_to_creator(tag_creator,video,current_user,u).deliver
+          #case 1: tag-creator make own tag, send 1 mail to tag creator about his tag is REFUSED
+          #case 2: tag-creator tag author, send 1 mail to tag creator about his tag is REFUSED
+          #case 3: tag-creator tag user, send 1 mail to tag creator, DO NOT SEND MAIL to user
+          case u
+          when tag_creator #case 1
+            TagVidMail.inform_creator_own_tag_refused(video,tag_creator).deliver
+          when video.user #case 2
+            TagVidMail.inform_creator_author_tag_refused(video,tag_creator).deliver
+          else #case 3
+            TagVidMail.inform_creator_user_tag_refused(video,tag_creator,u).deliver
           end
         end
       end #end each
@@ -360,7 +373,13 @@ class VideosController < ApplicationController
     share_to.each do |i|
       u = User.find(i)
       if u
-        #        QaSendMail.tag_removed(u,video,current_user).deliver
+        #case 1: author remove self, do not send mail
+        #case 2: author remove normal user, send mail to user
+        case u
+        when video.user#case 1
+        else#case 2
+          TagVidMail.inform_user_tag_removed(video,u).deliver
+        end
       end
     end #end each
 
