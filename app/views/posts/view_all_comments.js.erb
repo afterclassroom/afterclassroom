@@ -1,4 +1,5 @@
 $("#post_list_comment_<%= @post.id %>").html("<%= escape_javascript( render( :partial => "shared/post_comments/widget_all_comments") ) %>");
+vtip();
 tb_init('div.com a.thickbox');//pass where to apply thickbox
 $(function(){
     $('.AfterClCom').imagefit();
