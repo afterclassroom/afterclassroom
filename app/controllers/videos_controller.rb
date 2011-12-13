@@ -298,41 +298,16 @@ class VideosController < ApplicationController
                   TagVidMail.inform_creator_self_tag_success(@video,current_user).deliver
                   TagVidMail.inform_author_creator_self_tag_success(@video,current_user).deliver
                 when @video.user #case 2
-#                  TagVidMail.inform_creator_tag_of_author_success(@video,current_user).deliver
-#                  TagVidMail.inform_author_tag_of_author_success(@video,current_user).deliver
+                  TagVidMail.inform_creator_tag_of_author_success(@video,current_user).deliver
+                  TagVidMail.inform_author_tag_of_author_success(@video,current_user).deliver
                 else #another user #case 3
-#                  TagVidMail.inform_creator_tag_of_user_success(@video,current_user,u).deliver
-#                  TagVidMail.inform_author_tag_of_user_success(@video,current_user,u).deliver
-#                  TagVidMail.inform_user_been_tagged(@video,current_user,u).deliver
+                  TagVidMail.inform_creator_tag_of_user_success(@video,current_user,u).deliver
+                  TagVidMail.inform_author_tag_of_user_success(@video,current_user,u).deliver
+                  TagVidMail.inform_user_been_tagged(@video,current_user,u).deliver
                 end
               end              
             end
-            #taginfo.verify equal to TRUE when no need to pass to verifying process
-            #when there is no need to verify, there is no need to wait for authorization
-            #stop send mail when tag_creator tag him/her self
-            #            if (u != current_user)
-            #              QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
-            #            end
-            #            if ( (current_user != @video.user) && (@video.user != u) )
-            #              #the above condition is "NOT TO SEND mail to video owner"
-            #              #if any user tag OWNER to OWNER's video
-            #              QaSendMail.inform_vid_owner(u,@video, current_user,taginfo.verify).deliver
-            #            end
           end
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
           
           #if save then send mail to each user here, and to video.user
         end
@@ -352,11 +327,12 @@ class VideosController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-          QaSendMail.tag_approved(u,video,current_user).deliver
+#          QaSendMail.tag_approved(u,video,current_user).deliver
 
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",true, u.id ] )
           if tag_creator != u #stop send mail when tag_creator add him/her-self
-            #            QaSendMail.tag_vid_approved_to_creator(tag_creator,video,current_user,u).deliver
+           #??TagVidMail.inform_user_been_tagged(@video,current_user,u).deliver
+                        #QaSendMail.tag_vid_approved_to_creator(tag_creator,video,current_user,u).deliver
           end
         end
       end #end each
