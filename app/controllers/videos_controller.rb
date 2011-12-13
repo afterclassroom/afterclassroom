@@ -297,6 +297,8 @@ class VideosController < ApplicationController
               when @video.user #tag creator is the author
                 case u
                 when @video.user #case 4
+                  taginfo.verify = true
+                  taginfo.save
                 else #case 5, author tag another user
                 end
               else #tag creator is not video author
