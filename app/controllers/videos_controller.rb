@@ -296,7 +296,7 @@ class VideosController < ApplicationController
                 case u
                 when current_user #case 1
                   TagVidMail.inform_creator_self_tag_success(@video,current_user).deliver
-#                  TagVidMail.inform_author_tag_success(@video,current_user).deliver
+                  TagVidMail.inform_author_creator_self_tag_success(@video,current_user).deliver
                 when @video.user #case 2
                 else #another user #case 3
                 end
