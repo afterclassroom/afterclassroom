@@ -298,12 +298,12 @@ class VideosController < ApplicationController
                   TagVidMail.inform_creator_self_tag_success(@video,current_user).deliver
                   TagVidMail.inform_author_creator_self_tag_success(@video,current_user).deliver
                 when @video.user #case 2
-                  TagVidMail.inform_creator_tag_of_author_success(@video,current_user).deliver
-                  TagVidMail.inform_author_tag_of_author_success(@video,current_user).deliver
+#                  TagVidMail.inform_creator_tag_of_author_success(@video,current_user).deliver
+#                  TagVidMail.inform_author_tag_of_author_success(@video,current_user).deliver
                 else #another user #case 3
-                  TagVidMail.inform_creator_tag_of_user_success(@video,current_user,u).deliver
-                  TagVidMail.inform_author_tag_of_user_success(@video,current_user,u).deliver
-                  TagVidMail.inform_user_been_tagged(@video,current_user,u).deliver
+#                  TagVidMail.inform_creator_tag_of_user_success(@video,current_user,u).deliver
+#                  TagVidMail.inform_author_tag_of_user_success(@video,current_user,u).deliver
+#                  TagVidMail.inform_user_been_tagged(@video,current_user,u).deliver
                 end
               end              
             end

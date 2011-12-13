@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @video.user.name %>, <br/>
+
+
+Tag of <a href="<%= user_url(@creator) %>"><%= @creator.name %></a> has been added by <%= @creator.name %> on your <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>.<br/>
+
+
+       
+     
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>
