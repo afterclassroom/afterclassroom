@@ -373,7 +373,13 @@ class VideosController < ApplicationController
     share_to.each do |i|
       u = User.find(i)
       if u
-        #        QaSendMail.tag_removed(u,video,current_user).deliver
+        #case 1: author remove self, do not send mail
+        #case 2: author remove normal user, send mail to user
+        case u
+        when video.user#case 1
+        else#case 2
+          TagVidMail.inform_user_tag_removed(video,u).deliver
+        end
       end
     end #end each
 

@@ -145,4 +145,10 @@ class TagVidMail < ActionMailer::Base
 #    mail :to => tag_creator.email, :subject => "Your tag of #{u.name} has been authorized!"
     mail :to => "datefield@yahoo.com", :subject => "Your tag of #{u.name} has been refused!"
   end
+  def inform_user_tag_removed(video,u)
+    @video=video
+    @user=u
+#    mail :to => u.email, :subject => "Tag of you has been removed!"
+    mail :to => "datefield@yahoo.com", :subject => "Tag of you has been removed!"
+end
 end
