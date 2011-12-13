@@ -3,10 +3,12 @@
     <div id="detail_window">
        Hello <%= @video.user.name %>, <br/>
 
-On your <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>, a tag of 
 
-<a href="<%= user_url(@creator) %>"><%= @creator.name %></a> has been added by <a href="<%= user_url(@creator) %>"><%= @creator.name %></a>. <br/>
+Tag of <a href="<%= user_url(@creator) %>"><%= @creator.name %></a> has been added by <%= @creator.name %> on your <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>.<br/>
 
+
+       
+     
       Yours sincerely, <br/>
       Afterclassroom Support Team.
       
