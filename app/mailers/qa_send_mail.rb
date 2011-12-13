@@ -34,22 +34,8 @@ class QaSendMail < ActionMailer::Base
 
 
 
-  def tag_vid_removed_to_creator(tag_creator,video,author,user)
-    @video = video
-    @tag_creator = tag_creator
-    @author = author
-    @user = user
-
-    mail :to => @tag_creator.email, :subject => "#{author.name} has removed you tag!"
-  end
 
   
-  def tag_removed(user,video,author)
-    @video = video
-    @user = user
-    @author = author
-    mail :to => @user.email, :subject => "#{author.name} has removed you from video tag list!"
-  end
 
   def vid_cmt_added(user,video,content,cmt_author)
     @video = video
