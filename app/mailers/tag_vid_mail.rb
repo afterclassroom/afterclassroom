@@ -14,9 +14,10 @@ class TagVidMail < ActionMailer::Base
 #    mail :to => current_user.email, :subject => "Please wait for #{@video.user.name} to authorize your tag"
     mail :to => "datefield@yahoo.com", :subject => "Please wait for #{@video.user.name} to authorize your tag"
   end
-  def inform_creator_to_wait_case3(video, user)
+  def inform_creator_to_wait_case3(video, user,tag_creator)
     @video = video
     @user = user
+    @tag_creator=tag_creator
 #    mail :to => current_user.email, :subject => "Please wait for #{@video.user.name} to authorize your tag"
     mail :to => "datefield@yahoo.com", :subject => "Please wait for #{@video.user.name} to authorize your tag"
   end
@@ -40,5 +41,40 @@ class TagVidMail < ActionMailer::Base
     mail :to => "datefield@yahoo.com", :subject => "New tag on your video"
   end
   
+  def inform_user_been_tagged_by_author(video, user)
+    @video=video
+    @user= user
+#    mail :to => user.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
+    
+  end
+  
+  def inform_creator_self_tag_success(video,creator)
+    @video = video
+    @creator = creator
+    #mail :to => @creator.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
+  end
+  
+  def inform_author_creator_self_tag_success(video,creator)
+    @video = video
+    @creator = creator
+    #mail :to => video.user.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "New tag on your video"
+  end
+  
+  def inform_creator_tag_of_author_success(video,creator)
+    @video = video
+    @creator = creator
+    #mail :to => @creator.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "Your tag of #{video.user.name} has been created!"
+  end
+  
+  def inform_author_tag_of_author_success(video,creator)
+    @video = video
+    @creator = creator
+    #mail :to => video.user.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged on your video!"
+  end
   
 end
