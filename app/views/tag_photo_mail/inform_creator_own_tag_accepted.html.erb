@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @tag_creator.name %>, <br/>
+
+Tag of yourself at 
+
+<%= @photo.title == "" ? raw("<a href='#{user_photo_url(@photo.user, @photo)}'>photo</a>") : "photo: "  %> 
+<a href="<%= user_photo_url(@photo.user, @photo) %>"><%= @photo.title %></a>
+
+
+ has been authorized.<br/>
+
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>
