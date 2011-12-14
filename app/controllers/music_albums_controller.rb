@@ -228,8 +228,15 @@ class MusicAlbumsController < ApplicationController
               else #tag creator is not video author
                 case u
                 when current_user #case 1
+                  TagMusicMail.inform_creator_self_tag_success(@music_album,current_user).deliver
+                  TagMusicMail.inform_author_creator_self_tag_success(@music_album,current_user).deliver
                 when @music_album.user #case 2
+                  TagMusicMail.inform_creator_tag_of_author_success(@music_album,current_user).deliver
+                  TagMusicMail.inform_author_tag_of_author_success(@music_album,current_user).deliver
                 else #another user #case 3
+                  TagMusicMail.inform_creator_tag_of_user_success(@music_album,current_user,u).deliver
+                  TagMusicMail.inform_author_tag_of_user_success(@music_album,current_user,u).deliver
+                  TagMusicMail.inform_user_been_tagged(@music_album,current_user,u).deliver
                 end
               end              
             end            

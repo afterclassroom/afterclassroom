@@ -46,6 +46,51 @@ class TagMusicMail < ActionMailer::Base
 #    mail :to => user.email, :subject => "You have been invited!"
     mail :to => "datefield@yahoo.com", :subject => "You have been invited!"
   end
+  def inform_creator_self_tag_success(music_album,creator)
+    @music_album = music_album
+    @creator = creator
+#    mail :to => @creator.email, :subject => "You have been invited!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been invited!"
+  end
+  def inform_author_creator_self_tag_success(music_album,creator)
+    @music_album = music_album
+    @creator = creator
+#    mail :to => music_album.user.email, :subject => "New audience on your music album"
+    mail :to => "datefield@yahoo.com", :subject => "New audience on your music album"
+  end
+  def inform_creator_tag_of_author_success(music_album,creator)
+    @music_album = music_album
+    @creator = creator
+#    mail :to => @creator.email, :subject => "You sent a new invitation to #{music_album.user.name}!"
+    mail :to => "datefield@yahoo.com", :subject => "You sent a new invitation to #{music_album.user.name}!"
+  end
+  def inform_author_tag_of_author_success(music_album,creator)
+    @music_album = music_album
+    @creator = creator
+#    mail :to => music_album.user.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been invited!"
+  end
+  def inform_creator_tag_of_user_success(music_album,creator,u)
+    @music_album = music_album
+    @creator = creator
+    @user = u
+#    mail :to => creator.email, :subject => "You sent a new invitation of #{u.name}!"
+    mail :to => "datefield@yahoo.com", :subject => "You sent a new invitation of #{u.name}!"
+  end
+  def inform_author_tag_of_user_success(music_album,current_user,u)
+    @music_album = music_album
+    @creator = current_user
+    @user = u
+#    mail :to => music_album.user.email, :subject => "New invitation on your music album"
+    mail :to => "datefield@yahoo.com", :subject => "New invitation on your music album"
+  end
+  def inform_user_been_tagged(music_album,current_user,u)
+    @music_album = music_album
+    @creator = current_user
+    @user = u
+#    mail :to => u.email, :subject => "You have been invited to a music album!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been invited to a music album!"
+  end
   
 end
 
