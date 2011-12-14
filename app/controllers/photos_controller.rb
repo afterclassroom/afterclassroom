@@ -443,6 +443,8 @@ class PhotosController < ApplicationController
               TagPhotoMail.inform_creator_to_wait_case1(photo, current_user).deliver
               TagPhotoMail.inform_author_to_authorize_case1(photo, current_user).deliver
             when photo.user #case 2
+              TagPhotoMail.inform_creator_to_wait_case2(photo, current_user).deliver
+              TagPhotoMail.inform_author_to_authorize_case2(photo, current_user).deliver
             else #another user #case 3
             end
           end              
