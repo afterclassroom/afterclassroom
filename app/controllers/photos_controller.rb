@@ -441,6 +441,7 @@ class PhotosController < ApplicationController
             case usr
             when current_user #case 1
               TagPhotoMail.inform_creator_to_wait_case1(photo, current_user).deliver
+              TagPhotoMail.inform_author_to_authorize_case1(photo, current_user).deliver
             when photo.user #case 2
             else #another user #case 3
             end
