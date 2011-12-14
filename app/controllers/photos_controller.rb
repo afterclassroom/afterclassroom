@@ -451,15 +451,6 @@ class PhotosController < ApplicationController
             end
           end 
         end
-        #taginfo.verify equal to TRUE when no need to pass to verifying process
-        #when there is no need to verify, there is no need to wait for authorization
-        #        QaSendMail.tag_photo_notify(usr,photo, current_user,taginfo.verify).deliver
-        #        if ( (current_user != photo.user) && (usr != current_user) )
-        #inform user that he/she has been tagged
-        #          QaSendMail.inform_photo_owner(usr,photo, current_user, taginfo.verify).deliver
-        #if author enable verify Seteting, inform tag_creator to wait for authorization
-        #          QaSendMail.inform_tag_creator(usr,photo, current_user, taginfo.verify).deliver
-        #        end
       end
     end
     
