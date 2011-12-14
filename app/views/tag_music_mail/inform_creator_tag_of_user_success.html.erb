@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @creator.name %>, <br/>
+
+Your invitation to <a href="<%= user_url(@user) %>"><%= @user.name %></a> on 
+
+<a href="<%= play_list_user_musics_url(@music_album.user, :music_album_id => @music_album.id) %>"><%= @music_album.name %></a>
+
+
+ has been submited.<br/>
+
+
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>
