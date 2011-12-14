@@ -354,6 +354,10 @@ class PhotosController < ApplicationController
     taginfo.verify = false
     if current_user == photo.user
       taginfo.verify = true
+      if photo.user != usr
+        #This is the case 5, please refer to below comment
+        TagPhotoMail.inform_user_been_tagged_by_author(photo, usr).deliver
+      end
     else
       pr = photo.user.private_settings.where(:type_setting => "tag_photo").first
       if (pr != nil)
@@ -380,14 +384,72 @@ class PhotosController < ApplicationController
       tagphoto.height=params[:height]
     
       if tagphoto.save
-        #taginfo.verify equal to TRUE when no need to pass to verifying process
-        #when there is no need to verify, there is no need to wait for authorization
-        QaSendMail.tag_photo_notify(usr,photo, current_user,taginfo.verify).deliver
-        if ( (current_user != photo.user) && (usr != current_user) )
-          #inform user that he/she has been tagged
-          QaSendMail.inform_photo_owner(usr,photo, current_user, taginfo.verify).deliver
-          #if author enable verify Seteting, inform tag_creator to wait for authorization
-          QaSendMail.inform_tag_creator(usr,photo, current_user, taginfo.verify).deliver
+        if taginfo.verify == false #author enable verify of tag
+          #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+          #to wait for authorization, send another mail to author to inform him 
+          #to authorize for tag-creator
+          #CASE 2: if tag_creator tag author, send mail to him self, inform 
+          #him to wait for authorization, send another mail to author to 
+          #inform him to authorize for tag-creator
+          #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+          #to inform him to wait for authorization, DO NOT INFORM USER2 , 
+          #inform author to authorize for tag-creator
+          #CASE 4: if author tag him self : no verify, no send mail, 
+          #update taginfor.verify = true and save
+          #CASE 5: if author tag another user : no verify, no send mail to 
+          #author, send mail to other user about has been tagged
+          puts "currentusre = #{current_user.name}"
+          puts "usr = #{usr.name}"
+          puts "photo user = #{photo.user.name}"
+          case current_user
+          when photo.user #tag creator is the author
+            case usr
+            when photo.user #case 4:: has been implemented above; at the same place with case 5
+            else #case 5, author tag another user:: has been implemented above
+            end
+          else #tag creator is not video author
+            case usr
+            when current_user #case 1
+              TagPhotoMail.inform_creator_to_wait_case1(photo, current_user).deliver
+              TagPhotoMail.inform_author_to_authorize_case1(photo, current_user).deliver
+            when photo.user #case 2
+              TagPhotoMail.inform_creator_to_wait_case2(photo, current_user).deliver
+              TagPhotoMail.inform_author_to_authorize_case2(photo, current_user).deliver
+            else #another user #case 3
+              TagPhotoMail.inform_creator_to_wait_case3(photo, usr,current_user).deliver
+              TagPhotoMail.inform_author_to_authorize_case3(photo, usr,current_user).deliver
+            end
+          end              
+        else#taginfo.verify == true ::author disable verify of tag
+          #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+          #the tag added successful, send mail to author about new tag created.
+          #CASE 2: if tag_creator tag author, send mail to him self, inform 
+          #the tag created success, send another mail to author to inform he has been tagged
+          #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+          #to inform him tag created success, send mail to user 2 that he has been tagged
+          #CASE 4: if author tag him self : no send mail
+          #CASE 5: if author tag another user : no send mail to 
+          #author, send mail to other user about has been tagged
+          case current_user
+          when photo.user #tag creator is the author
+            case usr
+            when photo.user #case 4:: has been implemented above; at the same place with case 5
+            else #case 5, author tag another user:: has been implemented above
+            end
+          else #tag creator is not video author
+            case usr
+            when current_user #case 1
+              TagPhotoMail.inform_creator_self_tag_success(photo,current_user).deliver
+              TagPhotoMail.inform_author_creator_self_tag_success(photo,current_user).deliver
+            when photo.user #case 2
+              TagPhotoMail.inform_creator_tag_of_author_success(photo,current_user).deliver
+              TagPhotoMail.inform_author_tag_of_author_success(photo,current_user).deliver
+            else #another user #case 3
+              TagPhotoMail.inform_creator_tag_of_user_success(photo,current_user,usr).deliver
+              TagPhotoMail.inform_author_tag_of_user_success(photo,current_user,usr).deliver
+              TagPhotoMail.inform_user_been_tagged(photo,current_user,usr).deliver
+            end
+          end 
         end
       end
     end
@@ -409,7 +471,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.js { render :json => arr.to_json()}
     end
-  end
+  end #end action add tag
   
   def usrdata
     list_friends = []
@@ -454,10 +516,19 @@ class PhotosController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-          QaSendMail.tag_photo_approved(u,photo,current_user).deliver
-
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:photo_id],"Photo",true, u.id ] )
-          QaSendMail.tag_photo_approved_to_creator(tag_creator,photo,current_user,u).deliver
+          #case 1: tag-creator make own tag, send 1 mail to tag creator
+          #case 2: tag-creator tag author, send 1 mail to tag creator
+          #case 3: tag-creator tag user, send 1 mail to tag creator, 1 mail to user
+          case u
+          when tag_creator #case 1
+            TagPhotoMail.inform_creator_own_tag_accepted(photo,tag_creator).deliver
+          when photo.user #case 2
+            TagPhotoMail.inform_creator_author_tag_accepted(photo,tag_creator).deliver
+          else #case 3
+            TagPhotoMail.inform_creator_user_tag_accepted(photo,tag_creator,u).deliver
+            TagPhotoMail.inform_user_tag_created(photo,tag_creator,u).deliver
+          end
         end
       end #end each      
     else
@@ -465,11 +536,13 @@ class PhotosController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-          QaSendMail.tag_photo_removed(u,photo,current_user).deliver
+#          QaSendMail.tag_photo_removed(u,photo,current_user).deliver
 
 
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:photo_id],"Photo",false, u.id ] )
-          QaSendMail.tag_photo_removed_to_creator(tag_creator,photo,current_user,u).deliver
+          if tag_creator != u #do not send second mail when tag_creator tag him/her-self
+#            QaSendMail.tag_photo_removed_to_creator(tag_creator,photo,current_user,u).deliver
+          end
         end
       end #end each      
       TagInfo.refuse_photo(params[:checkbox],params[:photo_id])
@@ -477,7 +550,7 @@ class PhotosController < ApplicationController
     end
     
     redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]
-  end
+  end #end action tag_decision
   
   def remove_tagged
     photo = Photo.find(params[:photo_id])

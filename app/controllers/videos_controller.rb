@@ -222,6 +222,11 @@ class VideosController < ApplicationController
           taginfo.verify = false if taginfo.verify.nil?
           if current_user == @video.user
             taginfo.verify = true
+            
+            if @video.user != u
+              #This is the case 5, please refer to below comment
+              TagVidMail.inform_user_been_tagged_by_author(@video, u).deliver
+            end
             flash[:notice] = "Your friend(s) has been tagged."
           else
             pr = @video.user.private_settings.where(:type_setting => "tag_video").first
@@ -238,23 +243,80 @@ class VideosController < ApplicationController
           end
           
           if taginfo.save
-            #taginfo.verify equal to TRUE when no need to pass to verifying process
-            #when there is no need to verify, there is no need to wait for authorization
-            QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
-            if ( (current_user != @video.user) && (@video.user != u) )
-              #the above condition is "NOT TO SEND mail to video owner"
-              #if any user tag OWNER to OWNER's video
-              QaSendMail.inform_vid_owner(u,@video, current_user,taginfo.verify).deliver
+            if taginfo.verify == false #author enable verify of tag
+              #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+              #to wait for authorization, send another mail to author to inform him 
+              #to authorize for tag-creator
+              #CASE 2: if tag_creator tag author, send mail to him self, inform 
+              #him to wait for authorization, send another mail to author to 
+              #inform him to authorize for tag-creator
+              #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+              #to inform him to wait for authorization, DO NOT INFORM USER2 , 
+              #inform author to authorize for tag-creator
+              #CASE 4: if author tag him self : no verify, no send mail, 
+              #update taginfor.verify = true and save
+              #CASE 5: if author tag another user : no verify, no send mail to 
+              #author, send mail to other user about has been tagged
+              case current_user
+              when @video.user #tag creator is the author
+                case u
+                when @video.user #case 4:: has been implemented above; at the same place with case 5
+                else #case 5, author tag another user:: has been implemented above
+                end
+              else #tag creator is not video author
+                case u
+                when current_user #case 1
+                  TagVidMail.inform_creator_to_wait_case1(@video, current_user).deliver
+                  TagVidMail.inform_author_to_authorize_case1(@video, current_user).deliver
+                when @video.user #case 2
+                  TagVidMail.inform_creator_to_wait_case2(@video, current_user).deliver
+                  TagVidMail.inform_author_to_authorize_case2(@video, current_user).deliver
+                else #another user #case 3
+                  TagVidMail.inform_creator_to_wait_case3(@video, u,current_user).deliver
+                  TagVidMail.inform_author_to_authorize_case3(@video, u,current_user).deliver
+                end
+              end
+            else #taginfo.verify == true::author disable verify tag
+              #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+              #the tag added successful, send mail to author about new tag created.
+              #CASE 2: if tag_creator tag author, send mail to him self, inform 
+              #the tag created success, send another mail to author to inform he has been tagged
+              #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+              #to inform him tag created success, send mail to user 2 that he has been tagged
+              #CASE 4: if author tag him self : no send mail
+              #CASE 5: if author tag another user : no send mail to 
+              #author, send mail to other user about has been tagged
+              case current_user
+              when @video.user #tag creator is the author
+                case u
+                when @video.user #case 4:: has been implemented above; at the same place with case 5
+                else #case 5, author tag another user:: has been implemented above
+                end
+              else #tag creator is not video author
+                case u
+                when current_user #case 1
+                  TagVidMail.inform_creator_self_tag_success(@video,current_user).deliver
+                  TagVidMail.inform_author_creator_self_tag_success(@video,current_user).deliver
+                when @video.user #case 2
+                  TagVidMail.inform_creator_tag_of_author_success(@video,current_user).deliver
+                  TagVidMail.inform_author_tag_of_author_success(@video,current_user).deliver
+                else #another user #case 3
+                  TagVidMail.inform_creator_tag_of_user_success(@video,current_user,u).deliver
+                  TagVidMail.inform_author_tag_of_user_success(@video,current_user,u).deliver
+                  TagVidMail.inform_user_been_tagged(@video,current_user,u).deliver
+                end
+              end              
             end
           end
+          
           #if save then send mail to each user here, and to video.user
         end
       end #end each
 			
     end
 		#list of user has been tagged, and been verified
-      @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
-      @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
+    @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
   end
   
   def tag_decision
@@ -265,10 +327,19 @@ class VideosController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-          QaSendMail.tag_approved(u,video,current_user).deliver
-
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",true, u.id ] )
-          QaSendMail.tag_vid_approved_to_creator(tag_creator,video,current_user,u).deliver
+          #case 1: tag-creator make own tag, send 1 mail to tag creator
+          #case 2: tag-creator tag author, send 1 mail to tag creator
+          #case 3: tag-creator tag user, send 1 mail to tag creator, 1 mail to user
+          case u
+          when tag_creator #case 1
+            TagVidMail.inform_creator_own_tag_accepted(video,tag_creator).deliver
+          when video.user #case 2
+            TagVidMail.inform_creator_author_tag_accepted(video,tag_creator).deliver
+          else #case 3
+            TagVidMail.inform_creator_user_tag_accepted(video,tag_creator,u).deliver
+            TagVidMail.inform_user_tag_created(video,tag_creator,u).deliver
+          end
         end
       end #end each
     else
@@ -276,14 +347,18 @@ class VideosController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-          QaSendMail.tag_removed(u,video,current_user).deliver
-
-
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"Video",false, u.id ] )
-          QaSendMail.tag_vid_removed_to_creator(tag_creator,video,current_user,u).deliver
-
-
-
+          #case 1: tag-creator make own tag, send 1 mail to tag creator about his tag is REFUSED
+          #case 2: tag-creator tag author, send 1 mail to tag creator about his tag is REFUSED
+          #case 3: tag-creator tag user, send 1 mail to tag creator, DO NOT SEND MAIL to user
+          case u
+          when tag_creator #case 1
+            TagVidMail.inform_creator_own_tag_refused(video,tag_creator).deliver
+          when video.user #case 2
+            TagVidMail.inform_creator_author_tag_refused(video,tag_creator).deliver
+          else #case 3
+            TagVidMail.inform_creator_user_tag_refused(video,tag_creator,u).deliver
+          end
         end
       end #end each
       TagInfo.refuse_vid(params[:checkbox],params[:video_id])
@@ -298,7 +373,13 @@ class VideosController < ApplicationController
     share_to.each do |i|
       u = User.find(i)
       if u
-        QaSendMail.tag_removed(u,video,current_user).deliver
+        #case 1: author remove self, do not send mail
+        #case 2: author remove normal user, send mail to user
+        case u
+        when video.user#case 1
+        else#case 2
+          TagVidMail.inform_user_tag_removed(video,u).deliver
+        end
       end
     end #end each
 
@@ -319,7 +400,7 @@ class VideosController < ApplicationController
     if @tagged_users.size > 0
       @tagged_users.each do |user|
         if user != @video.user
-          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
+          #          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
         end
       end #end each
     end #end if
