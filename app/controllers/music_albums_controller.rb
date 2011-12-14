@@ -266,12 +266,12 @@ class MusicAlbumsController < ApplicationController
           #case 3: tag-creator tag user, send 1 mail to tag creator, 1 mail to user
           case u
           when tag_creator #case 1
-#            TagMusicMail.inform_creator_own_tag_accepted(@music_album,tag_creator).deliver
+            TagMusicMail.inform_creator_own_tag_accepted(@music_album,tag_creator).deliver
           when @music_album.user #case 2
-#            TagMusicMail.inform_creator_author_tag_accepted(@music_album,tag_creator).deliver
+            TagMusicMail.inform_creator_author_tag_accepted(@music_album,tag_creator).deliver
           else #case 3
-#            TagMusicMail.inform_creator_user_tag_accepted(@music_album,tag_creator,u).deliver
-#            TagMusicMail.inform_user_tag_created(@music_album,tag_creator,u).deliver
+            TagMusicMail.inform_creator_user_tag_accepted(@music_album,tag_creator,u).deliver
+            TagMusicMail.inform_user_tag_created(@music_album,tag_creator,u).deliver
           end
 #          QaSendMail.tag_music_approved(u,@music_album,current_user).deliver
         end
