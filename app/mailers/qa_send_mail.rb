@@ -46,13 +46,6 @@ class QaSendMail < ActionMailer::Base
   end
   #END SEND MAIL TAG VIDEO
 
-  def tag_photo_approved(user,photo,author)
-    @photo = photo
-    @user = user
-    @author = author
-
-    mail :to => @user.email, :subject => "#{author.name} has approved you to a photo tag list!"
-  end
 
   def tag_photo_removed(user,photo,author)
     @photo = photo
@@ -70,14 +63,6 @@ class QaSendMail < ActionMailer::Base
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for photo"
   end
 
-  def tag_photo_approved_to_creator(tag_creator,photo,author,user)
-    @photo = photo
-    @tag_creator = tag_creator
-    @author = author
-    @user = user
-
-    mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
-  end
 
   def tag_photo_removed_to_creator(tag_creator,photo,author,user)
     @photo = photo

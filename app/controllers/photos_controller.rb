@@ -529,13 +529,6 @@ class PhotosController < ApplicationController
             TagPhotoMail.inform_creator_user_tag_accepted(photo,tag_creator,u).deliver
             TagPhotoMail.inform_user_tag_created(photo,tag_creator,u).deliver
           end
-          
-#          QaSendMail.tag_photo_approved(u,photo,current_user).deliver
-          
-
-          #if tag_creator != u #do not send second mail when tag_creator tag him/her-self
-#            QaSendMail.tag_photo_approved_to_creator(tag_creator,photo,current_user,u).deliver
-          #end
         end
       end #end each      
     else
