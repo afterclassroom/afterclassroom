@@ -259,7 +259,7 @@ class MusicAlbumsController < ApplicationController
           puts "**d="
           puts "**d= #{u.name}"
           puts "**"
-          tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:video_id],"MusicAlbum",true, u.id ] )
+          tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:music_album_id],"MusicAlbum",true, u.id ] )
           puts "creator == #{tag_creator.name}"
           #case 1: tag-creator make own tag, send 1 mail to tag creator
           #case 2: tag-creator tag author, send 1 mail to tag creator
