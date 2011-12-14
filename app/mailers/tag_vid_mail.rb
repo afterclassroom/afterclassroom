@@ -70,7 +70,7 @@ class TagVidMail < ActionMailer::Base
     @video = video
     @creator = creator
     @user = u
-    mail :to => creator.email, :subject => "You have been tagged!"
+    mail :to => creator.email, :subject => "You added a new tag of #{u.name}!"
   end
   
   def inform_author_tag_of_user_success(video,current_user,u)

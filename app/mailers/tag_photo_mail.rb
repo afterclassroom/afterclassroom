@@ -69,6 +69,27 @@ class TagPhotoMail < ActionMailer::Base
 #    mail :to => photo.user.email, :subject => "You have been tagged!"
     mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
   end
+  def inform_creator_tag_of_user_success(photo,creator,u)
+    @photo = photo
+    @creator = creator
+    @user = u
+#    mail :to => creator.email, :subject => "You added a new tag of #{u.name}!"
+    mail :to => "datefield@yahoo.com", :subject => "You added a new tag of #{u.name}!"
+  end
+  def inform_author_tag_of_user_success(photo,current_user,u)
+    @photo = photo
+    @creator = current_user
+    @user = u
+#    mail :to => photo.user.email, :subject => "New tag on your photo"
+    mail :to => "datefield@yahoo.com", :subject => "New tag on your photo"
+  end
+  def inform_user_been_tagged(photo,current_user,u)
+    @photo = photo
+    @creator = current_user
+    @user = u
+#    mail :to => u.email, :subject => "You have been tagged on a photo!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged on a photo!"
+  end
   
 
 end

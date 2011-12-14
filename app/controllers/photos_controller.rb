@@ -445,6 +445,9 @@ class PhotosController < ApplicationController
               TagPhotoMail.inform_creator_tag_of_author_success(photo,current_user).deliver
               TagPhotoMail.inform_author_tag_of_author_success(photo,current_user).deliver
             else #another user #case 3
+              TagPhotoMail.inform_creator_tag_of_user_success(photo,current_user,usr).deliver
+              TagPhotoMail.inform_author_tag_of_user_success(photo,current_user,usr).deliver
+              TagPhotoMail.inform_user_been_tagged(photo,current_user,usr).deliver
             end
           end 
         end
