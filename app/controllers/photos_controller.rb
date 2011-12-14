@@ -446,6 +446,8 @@ class PhotosController < ApplicationController
               TagPhotoMail.inform_creator_to_wait_case2(photo, current_user).deliver
               TagPhotoMail.inform_author_to_authorize_case2(photo, current_user).deliver
             else #another user #case 3
+              TagPhotoMail.inform_creator_to_wait_case3(photo, usr,current_user).deliver
+              TagPhotoMail.inform_author_to_authorize_case3(photo, usr,current_user).deliver
             end
           end              
         else#taginfo.verify == true ::author disable verify of tag

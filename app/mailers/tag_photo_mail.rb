@@ -25,4 +25,19 @@ class TagPhotoMail < ActionMailer::Base
 #    mail :to => photo.user.email, :subject => "New tag on your photo"
     mail :to => "datefield@yahoo.com", :subject => "New tag on your photo"
   end
+  def inform_creator_to_wait_case3(photo, user,tag_creator)
+    @photo = photo
+    @user = user
+    @tag_creator=tag_creator
+#    mail :to => current_user.email, :subject => "Please wait for #{photo.user.name} to authorize your tag"
+    mail :to => "datefield@yahoo.com", :subject => "Please wait for #{photo.user.name} to authorize your tag"
+  end
+  def inform_author_to_authorize_case3(photo, u,current_user)
+    @photo = photo
+    @user = u
+    @current_user = current_user
+#    mail :to => @photo.user.email, :subject => "New tag on your video"
+    mail :to => "datefield@yahoo.com", :subject => "New tag on your video"
+  end
+
 end
