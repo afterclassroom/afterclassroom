@@ -17,7 +17,7 @@
 	<div class="postItem">
     <div class="postTit">Post as anonymous</div>
       <div>
-				<%= f.check_box :anonymous %>
+				<%= f.check_box :anonymous, :value => "0" %>
     </div>
   </div>
   <%= render :partial => "/shared/form_post/select_school" %>

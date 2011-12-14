@@ -4,9 +4,9 @@
       <img src="/images/icon-ing.gif">
     </div>
   <% end %>
-  <div class="proListPic"><%= show_image_user_post(comment.user) %></div>
+  <div class="proListPic"><%= comment.user_id == 0 ? raw('<div style="height: 52px;"><img title="Anonymous" src="/images/icons/icon_defaut/icon_members.png?1321524145" class="vtip avatar_144" alt="Icon_members"></div>') : show_image_user_post(comment.user) %></div>
   <div class="proListR" style="width: 84%">
-    <div class="AfterClCom"><%= show_user_post(comment.user) %> - <%= raw(comment.comment) %></div>
+    <div class="AfterClCom"><%= comment.user_id == 0 ? "Anonymous" : show_user_post(comment.user) %> - <%= raw(comment.comment) %></div>
     <div class="proListCont">
       <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %>
       <%= render :partial => "shared/post_comments/rating_action", :locals => {:comment => comment} %>

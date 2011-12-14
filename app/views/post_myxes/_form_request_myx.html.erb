@@ -15,7 +15,7 @@
           <div class="reqTi"><%= f.text_field :professor, :class => "{validate:{required:true}}" %></div>
 					<div class="reqLa">
 				            <label>
-				                Post as anonymous <%= f.check_box :anonymous %> 
+				                Post as anonymous <%= f.check_box :anonymous, :value => "0" %> 
 				            </label>
 				        </div>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
