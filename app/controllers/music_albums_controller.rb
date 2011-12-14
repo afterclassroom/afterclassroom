@@ -116,23 +116,16 @@ class MusicAlbumsController < ApplicationController
 
 
   def add_tag
-		
     @music_album = MusicAlbum.find(params[:music_album_id])
-
     str_flash_msg = "Your request has been sent to author. The approval will be sent to your email."
-
     share_to = params[:share_to]
-    
     user_ids = share_to.split(",")
-
     if user_ids.size > 0 
       user_ids.each do |i|
         u = User.find(i)
         if u
           #adding selected user into TagInfo
-          #adding selected user into TagInfo
           taginfo = TagInfo.find_or_create_by_tagable_id_and_tagable_user_and_tagable_type(params[:music_album_id], u.id, "MusicAlbum")
-					
           taginfo.tag_creator_id = current_user.id if taginfo.tag_creator_id.nil?
           taginfo.verify = false if taginfo.verify.nil?
           if current_user == @music_album.user
@@ -148,20 +141,147 @@ class MusicAlbumsController < ApplicationController
             else#user has not setting this, considered NO VERIFY BY DEFAULT
               taginfo.verify = true
             end
-            
-            
             flash[:notice] = str_flash_msg
           end
-
           if taginfo.save
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            if taginfo.verify == false #author enable verify of tag
+              #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+              #to wait for authorization, send another mail to author to inform him 
+              #to authorize for tag-creator
+              #CASE 2: if tag_creator tag author, send mail to him self, inform 
+              #him to wait for authorization, send another mail to author to 
+              #inform him to authorize for tag-creator
+              #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+              #to inform him to wait for authorization, DO NOT INFORM USER2 , 
+              #inform author to authorize for tag-creator
+              #CASE 4: if author tag him self : no verify, no send mail, 
+              #update taginfor.verify = true and save
+              #CASE 5: if author tag another user : no verify, no send mail to 
+              #author, send mail to other user about has been tagged
+              case current_user
+              when @music_album.user #tag creator is the author
+                case u
+                when @music_album.user #case 4:: has been implemented above; at the same place with case 5
+                else #case 5, author tag another user:: has been implemented above
+                end
+              else #tag creator is not video author
+                case u
+                when current_user #case 1
+                  TagMusicMail.inform_creator_to_wait_case1(@music_album, current_user).deliver
+                  TagMusicMail.inform_author_to_authorize_case1(@music_album, current_user).deliver
+                when @music_album.user #case 2
+                else #another user #case 3
+                end
+              end
+            else #taginfo.verify == true::author disable verify tag
+              #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
+              #the tag added successful, send mail to author about new tag created.
+              #CASE 2: if tag_creator tag author, send mail to him self, inform 
+              #the tag created success, send another mail to author to inform he has been tagged
+              #CASE 3: if tag_creator tag another user, send 1 mail to tag-creator 
+              #to inform him tag created success, send mail to user 2 that he has been tagged
+              #CASE 4: if author tag him self : no send mail
+              #CASE 5: if author tag another user : no send mail to 
+              #author, send mail to other user about has been tagged
+              case current_user
+              when @music_album.user #tag creator is the author
+                case u
+                when @music_album.user #case 4:: has been implemented above; at the same place with case 5
+                else #case 5, author tag another user:: has been implemented above
+                end
+              else #tag creator is not video author
+                case u
+                when current_user #case 1
+                when @music_album.user #case 2
+                else #another user #case 3
+                end
+              end              
+            end            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
           #   #taginfo.verify equal to TRUE when no need to pass to verifying process
           #   #when there is no need to verify, there is no need to wait for authorization
-            QaSendMail.tag_music_notify(u,@music_album, current_user,taginfo.verify).deliver
-            if ( (current_user != @music_album.user) && (@music_album.user != u) )
-              #the above condition is "NOT TO SEND mail to @music_album owner"
-              #if any user tag OWNER to OWNER's @music_album
-              QaSendMail.inform_music_album_owner(u,@music_album, current_user,taginfo.verify).deliver
-            end
+#            QaSendMail.tag_music_notify(u,@music_album, current_user,taginfo.verify).deliver
+#            if ( (current_user != @music_album.user) && (@music_album.user != u) )
+#              #the above condition is "NOT TO SEND mail to @music_album owner"
+#              #if any user tag OWNER to OWNER's @music_album
+#              QaSendMail.inform_music_album_owner(u,@music_album, current_user,taginfo.verify).deliver
+#            end
           end
           #if save then send mail to each user here, and to @music_album.user
         end

@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @music_album.user.name %>, <br/>
+
+On your 
+
+<a href="<%= play_list_user_musics_url(@music_album.user, :music_album_id => @music_album.id) %>"><%= @music_album.name %></a>, a tag of 
+
+<a href="<%= user_url(@user) %>"><%= @user.name %></a> has been added by <a href="<%= user_url(@user) %>"><%= @user.name %></a>. <br/>
+
+Please review and authorize. <br/>
+       
+     
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>

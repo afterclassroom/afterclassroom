@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @user.name %>, <br/>
+
+
+Please wait for <a href="<%= user_url(@music_album.user) %>"><%= @music_album.user.name %></a> to authorize tag of yourself at 
+
+
+<a href="<%= play_list_user_musics_url(@music_album.user, :music_album_id => @music_album.id) %>"><%= @music_album.name %></a>
+
+
+.<br/>
+       
+      
+      
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>
