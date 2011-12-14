@@ -102,6 +102,20 @@ class TagPhotoMail < ActionMailer::Base
 #    mail :to => tag_creator.email, :subject => "Your tag of #{photo.user.name} has been authorized!"
     mail :to => "datefield@yahoo.com", :subject => "Your tag of #{photo.user.name} has been authorized!"
   end
+  def inform_creator_user_tag_accepted(photo,tag_creator,u)
+    @photo = photo
+    @tag_creator=tag_creator
+    @user = u
+#    mail :to => tag_creator.email, :subject => "Your tag of #{u.name} has been authorized!"
+    mail :to => "datefield@yahoo.com", :subject => "Your tag of #{u.name} has been authorized!"
+  end
+  def inform_user_tag_created(photo,tag_creator,u)
+    @photo = photo
+    @tag_creator=tag_creator
+    @user = u
+#    mail :to => u.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
+  end
   
 
 end

@@ -526,6 +526,8 @@ class PhotosController < ApplicationController
           when photo.user #case 2
             TagPhotoMail.inform_creator_author_tag_accepted(photo,tag_creator).deliver
           else #case 3
+            TagPhotoMail.inform_creator_user_tag_accepted(photo,tag_creator,u).deliver
+            TagPhotoMail.inform_user_tag_created(photo,tag_creator,u).deliver
           end
           
 #          QaSendMail.tag_photo_approved(u,photo,current_user).deliver
