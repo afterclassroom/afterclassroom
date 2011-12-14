@@ -92,5 +92,51 @@ class TagMusicMail < ActionMailer::Base
     mail :to => "datefield@yahoo.com", :subject => "You have been invited to a music album!"
   end
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  def inform_creator_own_tag_accepted(music_album,tag_creator)
+    @music_album=music_album
+    @tag_creator=tag_creator
+#    mail :to => tag_creator.email, :subject => "Your invitation has been authorized!"
+    mail :to => "datefield@yahoo.com", :subject => "Your invitation has been authorized!"
+  end
+  def inform_creator_author_tag_accepted(music_album,tag_creator)
+    @music_album=music_album
+    @tag_creator=tag_creator
+#    mail :to => tag_creator.email, :subject => "Your tag of #{music_album.user.name} has been authorized!"
+    mail :to => "datefield@yahoo.com", :subject => "Your tag of #{music_album.user.name} has been authorized!"
+  end
+  def inform_creator_user_tag_accepted(music_album,tag_creator,u)
+    @music_album=music_album
+    @tag_creator=tag_creator
+    @user = u
+#    mail :to => tag_creator.email, :subject => "Your tag of #{u.name} has been authorized!"
+    mail :to => "datefield@yahoo.com", :subject => "Your tag of #{u.name} has been authorized!"
+  end
+  def inform_user_tag_created(music_album,tag_creator,u)
+    @music_album=music_album
+    @tag_creator=tag_creator
+    @user = u
+#    mail :to => u.email, :subject => "You have been tagged!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
+  end
+  
 end
 
