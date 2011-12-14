@@ -70,7 +70,7 @@
   </div>
 </form>
 <!--Alert-->
-<div id="dialog-message" title="Alert" style="display:none;">
+<div id="dialog-message-making" title="Alert" style="display:none;">
   <p>
     Please select at least one friend.
   </p>
@@ -171,12 +171,12 @@
       var content = $('#message_body').attr('value');
       var recipient = $('#frend_ids').val();
       if (recipient == "") {
-        $("#dialog-message").dialog({
+        $("#dialog-message-making").dialog({
           modal: true,
           buttons: {
             Ok: function(){
               //Close facebox
-              $("#dialog-message").dialog('close');
+              $("#dialog-message-making").dialog('close');
             }
           }
         });

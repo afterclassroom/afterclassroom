@@ -167,6 +167,10 @@ function option_submit(){
 
 function send_comment(id, type){
     comment = $('#comment').val();
+		anonymous = "0";
+		if ($('#anonymous')){
+			anonymous = $("#anonymous:checked").val();
+		}
     if (comment != "") {
         $.ajax({
             url: '/posts/create_comment',
@@ -176,7 +180,8 @@ function send_comment(id, type){
             data: ({
                 commentable_id: id,
                 commentable_type: type,
-                comment: comment
+                comment: comment,
+								anonymous: anonymous
             }),
             success: function(data){
                 $('#add_comments').append(data);

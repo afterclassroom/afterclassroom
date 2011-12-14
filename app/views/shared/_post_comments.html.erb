@@ -11,6 +11,13 @@
             <%= text_area_tag :comment, "" %>
           </div>
         </div>
+				<% if obj.class.name == "Post" %>
+					<% if Post.find(obj.id).type_name == "PostMyx" %>
+					<div >
+						Post as anonymous <%= check_box_tag "anonymous" %>
+		      </div>
+					<% end %>
+				<% end %>
         <div class="submit">
           <a href="javascript:;" onclick="send_comment('<%= obj.id %>', '<%= obj.class.name %>');">Send</a>
         </div>

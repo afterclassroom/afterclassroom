@@ -6,9 +6,14 @@
     </div>
     <div class="proListR">
       <div class="writeCom">
-        <%= text_area_tag "comment", nil, :id => "comment_#{post.id}", :onblur => "hidePostCommentForm('#{post.id}')" %>
+        <%= text_area_tag "comment", nil, :id => "comment_#{post.id}" %>
       </div>
     </div>
+		<% if post.type_name == "PostMyx"  %>
+		<div class="proListR" style="margin-left:40px">
+			Post as anonymous <%= check_box_tag :anonymous, "" %>
+    </div>
+		<% end %>
     <div class="proAttR" style="float:left; margin-left: 37px;">
       <input id="submitBtn<%= post.id %>" type="button" value="Send" name="commit" class="buttonCom" />
     </div>

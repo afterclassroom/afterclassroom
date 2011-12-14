@@ -23,7 +23,7 @@
           </div>
           <div class="stoDetR">
             <div class="stoDetRT">
-              <%= @photo.user.full_name %>: <%= link_to @photo.photo_album.name, user_photo_album_url(@photo.user, @photo.photo_album) %>
+              <%= @photo.user.full_name %>: <%= link_to @photo.photo_album.name, show_album_with_list_user_photos_url(@photo.user, :photo_album_id => @photo.photo_album) %>
             </div>
           </div>
         </div>

@@ -170,7 +170,7 @@ class PostQasController < ApplicationController
       @post_qa.post = @post
       if @post_qa.save!
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post_qa)
+        post_wall(@post_qa) if !@post_qa.anonymous or @post_qa.anonymous.nil?
         redirect_to post_qa_url(@post_qa)
       else
         flash[:error] = "Failed to create a new post."

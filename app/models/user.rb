@@ -372,6 +372,7 @@ class User < ActiveRecord::Base
 		str_cond = ""
 		if user_id_posts.size > 0 or user_wall_ids.size > 0
 			str_cond << "user_id_post IN('#{user_id_posts.join("', '")}')" if user_id_posts.size > 0
+			str_cond << "AND id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
 			str_cond << " OR " if user_id_posts.size > 0 and user_wall_ids.size > 0
 			str_cond << "id IN('#{user_wall_ids.join("', '")}')" if user_wall_ids.size > 0
 		end
@@ -386,7 +387,6 @@ class User < ActiveRecord::Base
     user_demo = User.find_by_email("demotoyou@gmail.com")
 		if user_demo
 			user_demo.posts.destroy_all
-			user_demo.selling_items.destroy_all
 			user_demo.stories.destroy_all
 			user_demo.photo_albums.destroy_all
 			user_demo.music_albums.destroy_all
@@ -408,7 +408,7 @@ class User < ActiveRecord::Base
 			user_demo.user_wall_posts.destroy_all
   		user_demo.ufos.destroy_all
   		user_demo.ufo_cmts.destroy_all
-  		user_demo.ufo_default.destroy_all
+  		user_demo.ufo_default.destroy
   		user_demo.ufo_members.destroy_all
 		end
   end

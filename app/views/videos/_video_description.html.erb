@@ -2,10 +2,10 @@
   <div class="musicNode">
     <div class="NodeCont">
       <p>
-        <span>Category: </span><%= @video.category %>
+        <span>Category: </span><%= raw(Youtube.video_categories[Youtube.video_categories.map {|a,b| b}.index(@video.category)][0]) %>
       </p>
       <p>
-        <span>Description:</span> <%= @video.description %>
+        <span>Description:</span> <%= raw(@video.description) %>
       </p>
     </div>
   </div>

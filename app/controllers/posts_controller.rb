@@ -16,7 +16,7 @@ class PostsController < ApplicationController
       @obj_comment.comment = comment
       @obj_comment.commentable_id = commentable_id
       @obj_comment.commentable_type = commentable_type
-      @obj_comment.user = current_user
+      @obj_comment.user = current_user if params[:anonymous].nil? or params[:anonymous] == 0
       @obj_comment.save
       obj = eval(commentable_type).find(commentable_id)
 			update_wall(@obj_comment)
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
       @obj_comment.comment = comment
       @obj_comment.commentable_id = @post.id
       @obj_comment.commentable_type = "Post"
-      @obj_comment.user = current_user
+      @obj_comment.user = current_user if params[:anonymous].nil? or params[:anonymous] == 0
       @obj_comment.save
       update_wall(@obj_comment)
       send_notification_when_comment(@post, @obj_comment)
