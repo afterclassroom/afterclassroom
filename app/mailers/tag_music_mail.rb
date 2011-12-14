@@ -40,6 +40,12 @@ class TagMusicMail < ActionMailer::Base
 #    mail :to => music_album.user.email, :subject => "New tag on your music album"
     mail :to => "datefield@yahoo.com", :subject => "New tag on your music album"
   end
+  def inform_user_been_tagged_by_author(music_album, user)
+    @music_album = music_album
+    @user = user
+#    mail :to => user.email, :subject => "You have been invited!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been invited!"
+  end
   
 end
 

@@ -131,6 +131,10 @@ class MusicAlbumsController < ApplicationController
           if current_user == @music_album.user
             taginfo.verify = true
             flash[:notice] = "Your friend(s) will listen this album shortly."
+            if @music_album.user != u
+              #This is the case 5, please refer to below comment
+              TagMusicMail.inform_user_been_tagged_by_author(@music_album, u).deliver
+            end
           else
             pr = @music_album.user.private_settings.where(:type_setting => "tag_music").first
             if (pr != nil)
