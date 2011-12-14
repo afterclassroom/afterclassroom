@@ -68,7 +68,8 @@
 		
       // play the clip specified in href- attribute with Flowplayer
       load_on_this_video(this.getAttribute("rel", 2), this.getAttribute("href", 2));
-		
+      //$f().play(this.getAttribute("href", 2));
+      //$f().setPlaylist(load_on_this_video);	
       // by returning false normal link behaviour is skipped
       return false;
     }
@@ -76,7 +77,6 @@
   // Ride the carousel...
   jQuery(document).ready(function() {
     jQuery('#mycarousel').jcarousel();
-    
   }); 
 
   function load_on_this_video(video_id, link){
