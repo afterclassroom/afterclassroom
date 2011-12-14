@@ -536,9 +536,6 @@ class PhotosController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-#          QaSendMail.tag_photo_removed(u,photo,current_user).deliver
-
-
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:photo_id],"Photo",false, u.id ] )
           #case 1: tag-creator make own tag, send 1 mail to tag creator about his tag is REFUSED
           #case 2: tag-creator tag author, send 1 mail to tag creator about his tag is REFUSED
@@ -551,16 +548,10 @@ class PhotosController < ApplicationController
           else #case 3
             TagPhotoMail.inform_creator_user_tag_refused(photo,tag_creator,u).deliver
           end
-
-#          if tag_creator != u #do not send second mail when tag_creator tag him/her-self
-#            QaSendMail.tag_photo_removed_to_creator(tag_creator,photo,current_user,u).deliver
-#          end
         end
       end #end each      
       TagInfo.refuse_photo(params[:checkbox],params[:photo_id])
-
     end
-    
     redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]
   end #end action tag_decision
   

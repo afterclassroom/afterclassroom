@@ -64,14 +64,6 @@ class QaSendMail < ActionMailer::Base
   end
 
 
-  def tag_photo_removed_to_creator(tag_creator,photo,author,user)
-    @photo = photo
-    @tag_creator = tag_creator
-    @author = author
-    @user = user
-
-    mail :to => @tag_creator.email, :subject => "#{author.name} has approved you tag!"
-  end
 
   #BEGIN send mail for music tag
   def tag_music_notify(user,mus_album,tag_creator,verify_status)
