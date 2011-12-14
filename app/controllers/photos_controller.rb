@@ -354,6 +354,10 @@ class PhotosController < ApplicationController
     taginfo.verify = false
     if current_user == photo.user
       taginfo.verify = true
+      if photo.user != usr
+        #This is the case 5, please refer to below comment
+        TagPhotoMail.inform_user_been_tagged_by_author(photo, usr).deliver
+      end
     else
       pr = photo.user.private_settings.where(:type_setting => "tag_photo").first
       if (pr != nil)
@@ -380,40 +384,6 @@ class PhotosController < ApplicationController
       tagphoto.height=params[:height]
     
       if tagphoto.save
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "=="
-        puts "==va"
-        puts "==val = #{taginfo.verify}"
         if taginfo.verify == false #author enable verify of tag
           #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
           #to wait for authorization, send another mail to author to inform him 
