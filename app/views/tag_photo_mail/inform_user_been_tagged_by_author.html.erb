@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @user.name %>, <br/>
+
+
+<a href="<%= user_url(@photo.user) %>"><%= @photo.user.name %></a> has tagged you on 
+
+<%= @photo.title == "" ? raw("<a href='#{user_photo_url(@photo.user, @photo)}'>photo</a>") : "photo: "  %> 
+<a href="<%= user_photo_url(@photo.user, @photo) %>"><%= @photo.title %></a>
+
+.<br/>
+      
+      
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>

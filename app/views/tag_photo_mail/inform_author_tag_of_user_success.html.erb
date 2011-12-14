@@ -1,0 +1,21 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @photo.user.name %>, <br/>
+
+On your 
+
+<%= @photo.title == "" ? raw("<a href='#{user_photo_url(@photo.user, @photo)}'>photo</a>") : "photo: "  %> 
+<a href="<%= user_photo_url(@photo.user, @photo) %>"><%= @photo.title %></a>
+
+
+, a tag of 
+
+<a href="<%= user_url(@user) %>"><%= @user.name %></a> has been added by <a href="<%= user_url(@creator) %>"><%= @creator.name %></a>. <br/>
+
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>

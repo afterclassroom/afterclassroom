@@ -51,13 +51,13 @@ class TagVidMail < ActionMailer::Base
   def inform_author_creator_self_tag_success(video,creator)
     @video = video
     @creator = creator
-    mail :to => video.user.email, :subject => "You have been tagged!"
+    mail :to => video.user.email, :subject => "New tag on your video"
   end
   
   def inform_creator_tag_of_author_success(video,creator)
     @video = video
     @creator = creator
-    mail :to => @creator.email, :subject => "You have been tagged!"
+    mail :to => @creator.email, :subject => "You added a new tag of #{video.user.name}!"
   end
   
   def inform_author_tag_of_author_success(video,creator)
@@ -70,7 +70,7 @@ class TagVidMail < ActionMailer::Base
     @video = video
     @creator = creator
     @user = u
-    mail :to => creator.email, :subject => "You have been tagged!"
+    mail :to => creator.email, :subject => "You added a new tag of #{u.name}!"
   end
   
   def inform_author_tag_of_user_success(video,current_user,u)
