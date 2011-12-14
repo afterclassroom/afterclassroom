@@ -198,7 +198,11 @@ class MusicAlbumsController < ApplicationController
                   TagMusicMail.inform_creator_to_wait_case1(@music_album, current_user).deliver
                   TagMusicMail.inform_author_to_authorize_case1(@music_album, current_user).deliver
                 when @music_album.user #case 2
+                  TagMusicMail.inform_creator_to_wait_case2(@music_album, current_user).deliver
+                  TagMusicMail.inform_author_to_authorize_case2(@music_album, current_user).deliver
                 else #another user #case 3
+                  TagMusicMail.inform_creator_to_wait_case3(@music_album, u,current_user).deliver
+                  TagMusicMail.inform_author_to_authorize_case3(@music_album, u,current_user).deliver
                 end
               end
             else #taginfo.verify == true::author disable verify tag

@@ -1,19 +1,19 @@
 <html>
   <body>
     <div id="detail_window">
-       Hello <%= @user.name %>, <br/>
+       Hello <%= @music_album.user.name %>, <br/>
 
-
-Please wait for <a href="<%= user_url(@music_album.user) %>"><%= @music_album.user.name %></a> to authorize your request to listen at 
-
+On your 
 
 <a href="<%= play_list_user_musics_url(@music_album.user, :music_album_id => @music_album.id) %>"><%= @music_album.name %></a>
 
+, a request to listen to
 
-.<br/>
+you has been added by <a href="<%= user_url(@user) %>"><%= @user.name %></a>. <br/>
+
+Please review and authorize. <br/>
        
-      
-      
+     
       Yours sincerely, <br/>
       Afterclassroom Support Team.
       
