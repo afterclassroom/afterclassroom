@@ -66,14 +66,6 @@ class QaSendMail < ActionMailer::Base
 
 
   #BEGIN send mail for music tag
-
-  def tag_music_removed(user,mus_album,author)
-    @mus_album = mus_album
-    @user = user
-    @author = author
-    mail :to => @user.email, :subject => "#{author.name} has removed you from music album listeners!"
-  end
-
   def music_cmt_added(user,mus_album,content,cmt_author)
     @mus_album = mus_album
     @content = content

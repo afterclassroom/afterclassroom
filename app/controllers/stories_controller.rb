@@ -267,14 +267,10 @@ class StoriesController < ApplicationController
   end
 
   def add_tag
-    
     @story = Story.find(params[:id])
-    
     share_to = params[:share_to]
     user_ids = share_to.split(",")
-
     str_flash_msg = "Your request has been sent to author. The approval will be sent to your email."
-
     if user_ids.size > 0 
       user_ids.each do |i|
         u = User.find(i)
@@ -283,7 +279,6 @@ class StoriesController < ApplicationController
           #adding selected user into TagInfo
           #adding selected user into TagInfo
           taginfo = TagInfo.find_or_create_by_tagable_id_and_tagable_user_and_tagable_type(params[:id], u.id, "Story")
-					
           taginfo.tag_creator_id = current_user.id if taginfo.tag_creator_id.nil?
           taginfo.verify = false if taginfo.verify.nil?
           if current_user == @story.user
@@ -299,13 +294,9 @@ class StoriesController < ApplicationController
             else#user has not setting this, considered NO VERIFY BY DEFAULT
               taginfo.verify = true
             end
-            
-            
             flash[:notice] = str_flash_msg
           end
-
           taginfo.save
-          
           if taginfo.save
           #   #taginfo.verify equal to TRUE when no need to pass to verifying process
           #   #when there is no need to verify, there is no need to wait for authorization
