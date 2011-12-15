@@ -301,58 +301,8 @@ class StoriesController < ApplicationController
             flash[:notice] = str_flash_msg
           end
           taginfo.save
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
           if taginfo.save
             if taginfo.verify == false #author enable verify of tag
-              
-              
-              
-              
               #CASE 1: if tag_creator tag him self, send mail to him self, inform him 
               #to wait for authorization, send another mail to author to inform him 
               #to authorize for tag-creator
@@ -436,18 +386,52 @@ class StoriesController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-          QaSendMail.tag_story_approved(u,@story,current_user).deliver
+#          QaSendMail.tag_story_approved(u,@story,current_user).deliver
+          tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:id],"Story",true, u.id ] )
+          #case 1: tag-creator make own tag, send 1 mail to tag creator
+          #case 2: tag-creator tag author, send 1 mail to tag creator
+          #case 3: tag-creator tag user, send 1 mail to tag creator, 1 mail to user
+          case u
+          when tag_creator #case 1
+            TagStoryMail.inform_creator_own_tag_accepted(@story,tag_creator).deliver
+          when @story.user #case 2
+            TagStoryMail.inform_creator_author_tag_accepted(@story,tag_creator).deliver
+          else #case 3
+            TagStoryMail.inform_creator_user_tag_accepted(@story,tag_creator,u).deliver
+            TagStoryMail.inform_user_tag_created(@story,tag_creator,u).deliver
+          end
         end
       end #end each
     else
-      TagInfo.refuse_story(params[:checkbox],params[:id])
       share_to = params[:checkbox]
       share_to.each do |i|
         u = User.find(i)
         if u
-          QaSendMail.tag_story_removed(u,@story,current_user).deliver
+#          QaSendMail.tag_story_removed(u,@story,current_user).deliver
+          tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:id],"Story",false, u.id ] )
+          #case 1: tag-creator make own tag, send 1 mail to tag creator about his tag is REFUSED
+          #case 2: tag-creator tag author, send 1 mail to tag creator about his tag is REFUSED
+          #case 3: tag-creator tag user, send 1 mail to tag creator, DO NOT SEND MAIL to user
+          case u
+          when tag_creator #case 1
+            TagStoryMail.inform_creator_own_tag_refused(@story,tag_creator).deliver
+          when @story.user #case 2
+            TagStoryMail.inform_creator_author_tag_refused(@story,tag_creator).deliver
+          else #case 3
+            TagStoryMail.inform_creator_user_tag_refused(@story,tag_creator,u).deliver
+          end
         end
       end #end each
+      TagInfo.refuse_story(params[:checkbox],params[:id])
+      
+      
+      
+      
+      
+      
+      
+      
+      
     end
     redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
   end
