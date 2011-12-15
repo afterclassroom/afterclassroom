@@ -230,37 +230,7 @@ class MusicAlbumsController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**"
-          puts "**d="
-          puts "**d= #{u.name}"
-          puts "**"
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:music_album_id],"MusicAlbum",true, u.id ] )
-          puts "creator == #{tag_creator.name}"
           #case 1: tag-creator make own tag, send 1 mail to tag creator
           #case 2: tag-creator tag author, send 1 mail to tag creator
           #case 3: tag-creator tag user, send 1 mail to tag creator, 1 mail to user
@@ -276,14 +246,63 @@ class MusicAlbumsController < ApplicationController
         end
       end #end each
     else
-      TagInfo.refuse_music(params[:checkbox],params[:music_album_id])
       share_to = params[:checkbox]
       share_to.each do |i|
         u = User.find(i)
         if u
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "**"
+          puts "** aa"
+          puts "user = #{u.name}"
+          tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:music_album_id],"MusicAlbum",false, u.id ] )
+          puts "tag creator = #{tag_creator.name}"
 #          QaSendMail.tag_music_removed(u,@music_album,current_user).deliver
+          #case 1: tag-creator make own tag, send 1 mail to tag creator about his tag is REFUSED
+          #case 2: tag-creator tag author, send 1 mail to tag creator about his tag is REFUSED
+          #case 3: tag-creator tag user, send 1 mail to tag creator, DO NOT SEND MAIL to user
+          case u
+          when tag_creator #case 1
+            TagMusicMail.inform_creator_own_tag_refused(@music_album,tag_creator).deliver
+          when @music_album.user #case 2
+            TagMusicMail.inform_creator_author_tag_refused(@music_album,tag_creator).deliver
+          else #case 3
+            TagMusicMail.inform_creator_user_tag_refused(@music_album,tag_creator,u).deliver
+          end
         end
       end #end each
+      TagInfo.refuse_music(params[:checkbox],params[:music_album_id])
     end
     redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
   end
