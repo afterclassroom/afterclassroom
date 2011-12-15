@@ -386,11 +386,6 @@ class StoriesController < ApplicationController
                 end
               end
             else#taginfo.verify == true::author disable verify tag
-              
-              
-              
-              
-              
               case current_user
               when @story.user #tag creator is the author
                 case u
@@ -408,24 +403,7 @@ class StoriesController < ApplicationController
                   TagStoryMail.inform_user_been_tagged(@story,current_user,u).deliver
                 end
               end                
-              
-              
-              
-              
-              
-              
-              
-              
-              
             end
-          #   #taginfo.verify equal to TRUE when no need to pass to verifying process
-          #   #when there is no need to verify, there is no need to wait for authorization
-#            QaSendMail.tag_story_notify(u,@story, current_user,taginfo.verify).deliver
-#            if ( (current_user != @story.user) && (@story.user != u) )
-              #the above condition is "NOT TO SEND mail to story author"
-              #if any user tag OWNER to OWNER's story
-#              QaSendMail.inform_story_owner(u,@story, current_user,taginfo.verify).deliver
-#            end
           end
           #if save then send mail to each user here, and to story.user
         end

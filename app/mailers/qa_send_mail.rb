@@ -77,32 +77,7 @@ class QaSendMail < ActionMailer::Base
   #END send mail for music tag
 
   #BEGIN send mail for story tag
-  def tag_story_notify(user,story,tag_creator,verify_status)
-    @story = story
-    @tag_creator=tag_creator
-    @user = user
-    @statement = ""
 
-    if (verify_status == false)
-      @statement = "Please wait for the authorization from the author."
-    end
-    
-    
-    mail :to => user.email, :subject => "Let's read this!"
-  end
-
-  def inform_story_owner(user,story,tag_creator, tag_verify_status)
-    @story = story
-    @tag_creator=tag_creator
-    @user = user
-
-    @str_of_verify = ""
-    if tag_verify_status == false #FALSE means this tag need to be verified 
-      @str_of_verify = "Please review and authorize !"
-    end
-
-    mail :to => @story.user.email, :subject => "New user has been invited to your story!"
-  end
   def tag_story_approved(user,story,author)
     @story = story
     @user = user
