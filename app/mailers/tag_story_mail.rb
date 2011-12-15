@@ -39,5 +39,11 @@ class TagStoryMail < ActionMailer::Base
     @current_user = current_user
     mail :to => "datefield@yahoo.com", :subject => "New invitation on your story"
   end
+  def inform_user_been_tagged_by_author(story, user)
+    @story = story
+    @user= user
+#    mail :to => user.email, :subject => "You have been invited!"
+    mail :to => "datefield@yahoo.com", :subject => "You have been invited!"
+  end
 
 end

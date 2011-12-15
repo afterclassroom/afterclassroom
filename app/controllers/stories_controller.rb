@@ -283,6 +283,10 @@ class StoriesController < ApplicationController
           taginfo.verify = false if taginfo.verify.nil?
           if current_user == @story.user
             taginfo.verify = true
+            if @story.user != u
+              #This is the case 5, please refer to below comment
+              TagStoryMail.inform_user_been_tagged_by_author(@story, u).deliver
+            end
             flash[:notice] = "Your friend(s) has been invited."
           else
             pr = @story.user.private_settings.where(:type_setting => "tag_story").first
@@ -381,14 +385,6 @@ class StoriesController < ApplicationController
                   TagStoryMail.inform_author_to_authorize_case3(@story, u,current_user).deliver
                 end
               end
-              
-              
-              
-              
-              
-              
-              
-              
             else
             end
           #   #taginfo.verify equal to TRUE when no need to pass to verifying process
