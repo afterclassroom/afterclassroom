@@ -1,0 +1,21 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @user.name %>, <br/>
+
+
+Please wait for <a href="<%= user_url(@story.user) %>"><%= @story.user.name %></a> to authorize tag of yourself at 
+
+<a href="<%= user_story_url(@story.user, @story) %>"><%= @story.title %></a>
+
+
+.<br/>
+       
+      
+      
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>
