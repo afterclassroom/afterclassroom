@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @story.user.name %>, <br/>
+
+On your 
+
+<a href="<%= user_story_url(@story.user, @story) %>"><%= @story.title %></a>
+
+, an invitation of 
+
+you has been added by <a href="<%= user_url(@creator) %>"><%= @creator.name %></a>. <br/>
+
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>

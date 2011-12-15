@@ -385,7 +385,38 @@ class StoriesController < ApplicationController
                   TagStoryMail.inform_author_to_authorize_case3(@story, u,current_user).deliver
                 end
               end
-            else
+            else#taginfo.verify == true::author disable verify tag
+              
+              
+              
+              
+              
+              case current_user
+              when @story.user #tag creator is the author
+                case u
+                when @story.user #case 4:: has been implemented above; at the same place with case 5
+                else #case 5, author tag another user:: has been implemented above
+                end
+              else #tag creator is not video author
+                case u
+                when current_user #case 1
+                  TagStoryMail.inform_author_creator_self_tag_success(@story,current_user).deliver
+                when @story.user #case 2
+                  TagStoryMail.inform_author_tag_of_author_success(@story,current_user).deliver
+                else #another user #case 3
+                  TagStoryMail.inform_author_tag_of_user_success(@story,current_user,u).deliver
+                  TagStoryMail.inform_user_been_tagged(@story,current_user,u).deliver
+                end
+              end                
+              
+              
+              
+              
+              
+              
+              
+              
+              
             end
           #   #taginfo.verify equal to TRUE when no need to pass to verifying process
           #   #when there is no need to verify, there is no need to wait for authorization
