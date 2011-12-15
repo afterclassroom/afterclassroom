@@ -66,12 +66,6 @@ class QaSendMail < ActionMailer::Base
 
 
   #BEGIN send mail for music tag
-  def tag_music_approved(user,mus_album,author)
-    @mus_album = mus_album
-    @user = user
-    @author = author
-    mail :to => @user.email, :subject => "#{author.name} has approved you to music album listeners!"
-  end
 
   def tag_music_removed(user,mus_album,author)
     @mus_album = mus_album

@@ -273,7 +273,6 @@ class MusicAlbumsController < ApplicationController
             TagMusicMail.inform_creator_user_tag_accepted(@music_album,tag_creator,u).deliver
             TagMusicMail.inform_user_tag_created(@music_album,tag_creator,u).deliver
           end
-#          QaSendMail.tag_music_approved(u,@music_album,current_user).deliver
         end
       end #end each
     else
