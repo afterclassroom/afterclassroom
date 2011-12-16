@@ -1,0 +1,21 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @user.name %>, <br/>
+
+
+<a href="<%= user_url(@tag_creator) %>"><%= @tag_creator.name %></a>
+
+ has tagged you to 
+
+<a href="<%= user_story_url(@story.user, @story) %>"><%= @story.title %></a>
+
+.<br/>
+
+     
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>

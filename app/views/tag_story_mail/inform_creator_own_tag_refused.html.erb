@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @tag_creator.name %>, <br/>
+
+
+Invitation of  yourselft at
+
+<a href="<%= user_story_url(@story.user, @story) %>"><%= @story.title %></a>
+
+has been refused.<br/>
+
+     
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>
