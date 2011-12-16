@@ -1,3 +1,4 @@
+<%= display_flash_messages_with_raw %>
 <% form_tag url_for(:controller => "music_albums", :action => "add_tag"), :id => "form_tag_user", :style => "display:none;", :method => :post, :remote => true do %>
   <%= hidden_field_tag "music_album_id", @music_album.id %>
 

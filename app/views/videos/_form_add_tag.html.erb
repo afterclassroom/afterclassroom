@@ -1,3 +1,4 @@
+<%= display_flash_messages_with_raw %>
 <% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
   <%= hidden_field_tag "video_id", @video.id %>
 

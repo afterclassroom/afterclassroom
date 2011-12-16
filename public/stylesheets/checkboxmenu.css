@@ -348,7 +348,7 @@ div.player.inactive
 .form_tags { margin-bottom: 10px; }
 
 /* Setting widget width example */
-.textboxlist { width: 544px; }
+.textboxlist { width: 370px; }
 
 /* Preloader for autocomplete */
 .textboxlist-loading { background: url('images/spinner.gif') no-repeat 380px center; }

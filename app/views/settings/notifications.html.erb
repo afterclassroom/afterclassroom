@@ -2,7 +2,7 @@
   <%= render :partial => 'submenu' %>
 <% end -%>
 <%
-idfortoggle = ["afterclassroomtab","photostab","storytab","musictab","loungetab"] %>
+idfortoggle = [["AfterClassroom", "1"], ["Share a Story", "6"], ["Photos", "2"], ["Music", "8"], ["Video", "9"], ["My lounge", "12"]] %>
 <div class="contMainS" style="margin-bottom: 10px">
   <div class="settCont">
     <div class="settCont1">
@@ -38,16 +38,15 @@ idfortoggle = ["afterclassroomtab","photostab","storytab","musictab","loungetab"
           </div>
           <%= form_tag(save_setting_user_settings_path(current_user), :method => :post, :id => "setting_form") do %>
             <% if @types != nil %>
-              <% count = 1 %>
               <% @types.each do |tp| %>
-                <div id="<%= idfortoggle[count-1] %>">
+								<% idx = idfortoggle.find{|item| item[0] == tp.notify_type} %>
+                <div id="tab_<%= idx[1] if idx != nil %>">
                   <div class="setItemT1">
                     <div class="setItemTL">
-                      <div class="setItemTL<%= count %>">
+                      <div class="setItemTL<%= idx[1] if idx != nil %>">
                         <%=h tp.notify_type %>
                       </div>
                     </div>
-                    <% count = count + 1 %>
                     <div class="setItemTC">
                       <img src="/images/email.png"/>
                     </div>
@@ -107,21 +106,11 @@ idfortoggle = ["afterclassroomtab","photostab","storytab","musictab","loungetab"
           <div class="settNotRTitle">
             View settings for:
           </div>
-          <div class="setNotRItem setNotRItem1">
-            <a href="javascript:;" onclick="TabHandler('afterclassroomtab')">AfterClassroom</a>
+					<% idfortoggle.each do |it| %>
+          <div class="setNotRItem setNotRItem<%= it[1] %>">
+            <a href="javascript:;" onclick="TabHandler('tab_<%= it[1] %>')"><%= it[0] %></a>
           </div>
-          <div class="setNotRItem setNotRItem2">
-            <a href="javascript:;" onclick="TabHandler('storytab')">Story</a>
-          </div>
-          <div class="setNotRItem setNotRItem3">
-            <a href="javascript:;" onclick="TabHandler('photostab')">Photos</a>
-          </div>
-          <div class="setNotRItem setNotRItem4">
-            <a href="javascript:;" onclick="TabHandler('musictab')">Music</a>
-          </div>
-          <div class="setNotRItem setNotRItem5">
-            <a href="javascript:;" onclick="TabHandler('loungetab')">Lounge</a>
-          </div>
+					<% end %>
         </div>
       </div>
     </div>

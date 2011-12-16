@@ -1,10 +1,5 @@
 <div class="stuLtop">
     <div class="menuRL">
-        <!--
-        <div class="menuRItem mnChat">
-        <%= link_to raw('<span class="span1"><span class="span2">Chat</span></span>'), chat_user_student_lounges_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'student_lounges' && @controller.action_name == 'chat'}" %>
-        </div>
-        -->
         <div class="menuRItem mnShare">
             <%= link_to raw('<span class="span1"><span class="span2">Share file</span></span>'), user_shares_path(current_user), :class => "#{'menuRselect'  if controller.controller_name == 'shares'}" %>
         </div>
@@ -20,11 +15,9 @@
         <div class="menuRItem mnVi">
             <%= link_to raw('<span class="span1"><span class="span2">Videos</span></span>'), user_videos_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'videos'}" %>
         </div>
-				<!--
         <div class="menuRItem mnFor">
             <%= link_to raw('<span class="span1"><span class="span2">Forums v2.0</span></span>'), user_u_forums_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'u_forums'}" %>
         </div>
-				-->
     </div>
     <% if ['stories', 'photos', 'musics', 'videos', 'shares'].include?(controller.controller_name) %>
     <%

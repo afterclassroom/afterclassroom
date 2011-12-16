@@ -36,8 +36,9 @@
           <% end %>
           <%= render :partial => "music_playlist" %>
         </div>
+				<div id="music_album_action">
         <%= render :partial => "music_album_action" %>
-
+				</div>
         <div id="rate_pos" style="padding: 4px;width: 81px;float: right; margin-top: -40px; margin-right: 104px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
           <%= render :partial => "music_albums/rating_action", :locals => {:post => @music_album, :controller_name => "music_albums"}%>
         </div>
@@ -66,7 +67,9 @@
   <!--Most Viewed-->
   <%= render :partial => "most_viewed" %>
   <!--Most Viewed-->
+	<div id="on_this_music">
   <%= render :partial => "lets_listen" %>
+	</div>
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->

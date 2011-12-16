@@ -276,7 +276,8 @@ class FriendsController < ApplicationController
       subject = "#{current_user.name} want to be friend with you."
       content = "Hello #{user.name},<br/>"
       content << "<p>#{current_user.name} want to be friend with you, click <a href='#{user_url(current_user)}' target='blank'>here</a> to see  if you know #{current_user.name} OR click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to confirm #{current_user.name} is your friend.</p>"
-      send_notification(user, subject, content, "adds_me_as_a_friend")
+			content << "<p>#{user.name} said: #{invite_message}</p>"      
+			send_notification(user, subject, content, "adds_me_as_a_friend")
     end
     render :text => '<div class="txtsignup1">Still waiting</div>'
   end

@@ -173,7 +173,7 @@ class PostsController < ApplicationController
         when "Video"
           subject = "#{current_user.name} left comments on your Video."
           content = "Hello #{obj.user.name}, <br/>"
-          content << "<p>#{current_user.name} just left comments on your Video, click <a href='#{show_detail_video_user_url(obj.user, :video_id => obj.id)}' target='blank'>here</a> to see what's in it.</p>"
+          content << "<p>#{current_user.name} just left comments on your Video, click <a href='#{user_video_url(obj.user, obj)}' target='blank'>here</a> to see what's in it.</p>"
           send_notification(u, subject, content, "comments_on_my_videos")
         when "Story"
           subject = "#{current_user.name} left comments on your Story."

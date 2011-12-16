@@ -37,16 +37,12 @@
 </div>
 <div class="contMainR">
   <!-- BEGIN list of tagged users for stories -->
+	<div id="on_this_story">
   <%= render :partial => "lets_read" %>
+	</div>
   <!-- END list of tagged users for stories -->
 
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
-<script>
-  $(document).ready(function() {
-  $('.content-center').css({width:'990px'});
-  $('.content').css({width:'620px'});
-});
-</script>

@@ -17,6 +17,7 @@
           <% end %>
           <%= render :partial => "musics/music_playlist" %>
         </div>
+				
         <%= render :partial => "musics/music_album_user_action" %>
         
         <div id="rate_pos" style="padding: 4px;width: 81px;float: right; margin-top: -40px; margin-right: 2px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
@@ -29,13 +30,9 @@
   </div>
 </div>
 <div class="contMainR" style="float: left;margin-top: 30px">
-  <% if @tagged_users.size > 0 %>
-    <div class="col300m slStory">
-      <div class="col300min" id="on_this_music">
-        <%= render :partial => "musics/widget_lets_listen" %>
-      </div>
-    </div>
-  <% end %><!-- end if -->
+  <div id="on_this_music">
+  <%= render :partial => "musics/lets_listen" %>
+	</div>
 </div>
 <script>
   $(document).ready(function() {
