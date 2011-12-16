@@ -1,22 +1,21 @@
 <%= display_flash_messages_with_raw %>
 <% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
   <%= hidden_field_tag "video_id", @video.id %>
-
-  <div class="form_friends" style="margin-left: 50px">
-    <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
-  </div>
-  <div class="submit" style="float: left;margin-left: 410px;margin-top: -26px;" id="send_btn">
-    <a onmouseover="this.style.cursor='pointer';">Send</a>
-     <div class="submit_loader"></div>
+	<div class="form_friends" style="margin-left:10px; margin-top: 10px; width: 440px;">
+    <%= text_field_tag "share_to", "" %>
+		<div class="submit" style="float: right; margin-top: -25px;" id="send_btn">
+		  <a onmouseover="this.style.cursor='pointer';">Send</a>
+		  <div class="submit_loader"></div>
+		</div>
   </div>
 <% end %>
-<style>
-  .textboxlist-autocomplete-result div{
-    background: url("/images/bgi-col300.png") no-repeat scroll 0 0 transparent;
-    padding: 3px;
-    height: 51px;
-  }
-</style>
+
+<% if  @video.user == current_user && @verify_users.size > 0 %>
+
+  <%= render :partial => "videos/form_decision" %>
+
+<% end %><!-- end if -->
+
 <script>
   $(document).ready(function(){
     $(".submit").click(function(){
@@ -34,4 +33,54 @@
       });
     });
   });
+</script>
+<script type="text/javascript">
+  var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
+  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
+  
+  $(document).ready(function(){
+    $('#accept_btn').click(function(){
+      $('#decision_id').val('ACCEPT');
+      $("form#form_tag_decision").submit();
+    });
+    $('#refuse_btn').click(function(){
+      $('#decision_id').val('REFUSE');
+      $("form#form_tag_decision").submit();
+    });
+    /* BEGIN: handle send comment event to send email notification */
+    var sendBtn = $('form#form_comment').find('a');
+    sendBtn.bind('click',function(){
+      var strContent = $('form#form_comment').find('#comment').val();
+      $('form#form_cmt_inf').find('#comment_content').val(''+strContent);
+      $('form#form_cmt_inf').submit();
+    });
+    /* END: handle send comment event to send email notification */
+  });
+
+  $(function(){
+    // Autocomplete initialization
+    var tb = new $.TextboxList('#share_to', {
+      unique: true,
+      plugins: {
+        autocomplete: {
+          onlyFromValues: true
+        }
+      }
+    });
+    tb.getContainer().addClass('textboxlist-loading');
+    $.ajax({
+      url: path,
+      dataType: 'json',
+      success: function(r){
+        tb.plugins['autocomplete'].setValues(r);
+        tb.getContainer().removeClass('textboxlist-loading');
+      }
+    });
+        
+  });  
+  $(document).ready(function(){
+    $('#send_btn').click(function(){
+      $('form#form_tag_user').submit();
+    });  
+  })
 </script>

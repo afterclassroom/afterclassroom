@@ -1,13 +1,12 @@
 <%= display_flash_messages_with_raw %>
 <% form_tag url_for(:controller => "music_albums", :action => "add_tag"), :id => "form_tag_user", :style => "display:none;", :method => :post, :remote => true do %>
   <%= hidden_field_tag "music_album_id", @music_album.id %>
-
-  <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
-    <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
-  </div>
-  <div class="submit" style="float: right; margin-top: -25px; margin-right: 110px;" id="send_btn">
-    <a onmouseover="this.style.cursor='pointer';">Send</a>
-		<div class="submit_loader"></div>
+<div class="form_friends" style="margin-left:10px; margin-top: 10px; width: 440px;">
+    <%= text_field_tag "share_to", "" %>
+		<div class="submit" style="float: right; margin-top: -25px;" id="send_btn">
+		  <a onmouseover="this.style.cursor='pointer';">Send</a>
+		  <div class="submit_loader"></div>
+		</div>
   </div>
 <% end %>
 

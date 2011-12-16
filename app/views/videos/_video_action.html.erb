@@ -1,91 +1,17 @@
+<div id="add_tag">
 <%= render :partial => "videos/form_add_tag" %>
+</div>
 
-<% if  @video.user == current_user && @verify_users.size > 0 %>
-
-  <%= render :partial => "videos/form_decision" %>
-
-<% end %><!-- end if -->
 <div class="stoDbtm" style="width: 550px">
   <div class="AsDContBtm">
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
-    <span class="btmShare"><%= addthis_bookmark_button { raw("<span>Share</span>") } %></span>
     <span class="btmFav" id="item_favorite_<%= @video.id %>"><%= show_favorite_in_detail("Video", @video) %></span>
     <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Tag Friend</a></span>
-    <span class="btmAbuse" style="margin-left: 85px"><%= show_report_abuse(@video) %></span>
+    <span class="btmAbuse"><%= show_report_abuse(@video) %></span>
+		<span id="rate_pos"><%= render :partial => "videos/rating_action", :locals => {:post => @video, :controller_name => "videos"}%></span>
   </div>
 </div>
 <% form_tag url_for(:controller => "videos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
   <%= hidden_field_tag "comment_content" %>
   <%= hidden_field_tag "video_id", @video.id %>
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
-
-<div id="rate_pos" style="position:absolute;padding: 4px;width: 81px; float: left; margin-top: -40px; margin-left: 347px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
-  <%= render :partial => "videos/rating_action", :locals => {:post => @video, :controller_name => "videos"}%>
-</div>
-
-<script type="text/javascript">
-  var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
-  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
-  
-  $(document).ready(function(){
-    $('#accept_btn').click(function(){
-      $('#decision_id').val('ACCEPT');
-      $("form#form_tag_decision").submit();
-    });
-    $('#refuse_btn').click(function(){
-      $('#decision_id').val('REFUSE');
-      $("form#form_tag_decision").submit();
-    });
-    /* BEGIN: handle send comment event to send email notification */
-    var sendBtn = $('form#form_comment').find('a');
-    sendBtn.bind('click',function(){
-      var strContent = $('form#form_comment').find('#comment').val();
-      $('form#form_cmt_inf').find('#comment_content').val(''+strContent);
-      $('form#form_cmt_inf').submit();
-    });
-    /* END: handle send comment event to send email notification */
-  });
-
-  $(function(){
-    // Autocomplete initialization
-    var tb = new $.TextboxList('#share_to', {
-      unique: true,
-      plugins: {
-        autocomplete: {
-          onlyFromValues: true
-        }
-      }
-    });
-    tb.getContainer().addClass('textboxlist-loading');
-    $.ajax({
-      url: path,
-      dataType: 'json',
-      success: function(r){
-        tb.plugins['autocomplete'].setValues(r);
-        tb.getContainer().removeClass('textboxlist-loading');
-      }
-    });
-        
-  });  
-  $(document).ready(function(){
-    $('.textboxlist').width(350);
-    $('div.textboxlist-autocomplete').width(350);
-    
-    $('#send_btn').click(function(){
-      $('form#form_tag_user').submit();
-    });  
-  })
-    //BEGIN fix issue of rate up/down position
-  $(document).ready(function(){
-    $('.qashdU').css({
-      'float': 'left',
-      'margin-left': '2px'
-    });
-
-    $('.qashdD').css({
-      'float': 'left', 
-      'margin-left': '14px'
-    });
-  });
-  //END fix issue of rate up/down position
-</script>
