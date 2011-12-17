@@ -99,49 +99,21 @@ class TagMusicMail < ActionMailer::Base
     @user = u
     mail :to => u.email, :subject => "You have been tagged!"
   end
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   def inform_creator_own_tag_refused(music_album,tag_creator)
     @music_album = music_album
     @tag_creator = tag_creator
-#    mail :to => tag_creator.email, :subject => "Your invitation has been rejected!"
-    mail :to => "datefield@yahoo.com", :subject => "Your invitation has been rejected!"
+    mail :to => tag_creator.email, :subject => "Your invitation has been rejected!"
   end
   def inform_creator_author_tag_refused(music_album,tag_creator)
     @music_album = music_album
     @tag_creator = tag_creator
-#    mail :to => tag_creator.email, :subject => "Your invitation of #{music_album.user.name} has been rejected!"
-    mail :to => "datefield@yahoo.com", :subject => "Your invitation of #{music_album.user.name} has been rejected!"
+    mail :to => tag_creator.email, :subject => "Your invitation of #{music_album.user.name} has been rejected!"
   end
   def inform_creator_user_tag_refused(music_album,tag_creator,u)
     @music_album = music_album
     @tag_creator=tag_creator
     @user = u
-#    mail :to => tag_creator.email, :subject => "Your invitation of #{u.name} has been rejected!"
-    mail :to => "datefield@yahoo.com", :subject => "Your invitation of #{u.name} has been rejected!"
+    mail :to => tag_creator.email, :subject => "Your invitation of #{u.name} has been rejected!"
   end
 end
 
