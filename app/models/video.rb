@@ -132,12 +132,12 @@ class Video < ActiveRecord::Base
   protected
   
   # This method creates the ffmpeg command that we'll be using
+  # ffmpeg -i #{ s } -ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ @t }
   def convert_command
     #@t = File.join(File.dirname(video_attach.path), "#{ActiveSupport::SecureRandom.hex(16)}.flv")
 		@t = File.join(File.dirname(video_attach.path), "#{ActiveSupport::SecureRandom.hex(16)}.ogv")
     s = video_attach.path.split("?")[0]
     command = <<-end_command
-			#ffmpeg -i #{ s } -ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ @t }
       ffmpeg -i #{ s } #{ @t }
     end_command
     command.gsub!(/\s+/, " ")

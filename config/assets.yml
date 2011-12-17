@@ -89,7 +89,6 @@ javascripts:
     - public/javascripts/jquery.jtruncate.js
     - public/javascripts/flowplayer-3.2.6.min.js
     - public/javascripts/jquery.corner.js
-    - public/javascripts/jquery.ghindaVideoPlayer.js
     - public/javascripts/jquery.imagefit.js
   photo:
     - public/javascripts/jquery.js
@@ -217,7 +216,6 @@ stylesheets:
     - public/stylesheets/video-js.css
     - public/stylesheets/feedback.css
     - public/stylesheets/youTubeEmbed-jquery.css
-    - public/stylesheets/ghindaVideoPlayer.css
   photo:
     - public/stylesheets/main.css
     - public/stylesheets/post.css
