@@ -34,14 +34,11 @@ class TagVidMail < ActionMailer::Base
     @current_user = current_user
     mail :to => video.user.email, :subject => "New tag on your video"
   end
-  
   def inform_user_been_tagged_by_author(video, user)
     @video=video
     @user= user
     mail :to => user.email, :subject => "You have been tagged!"
-    
   end
-  
   def inform_creator_self_tag_success(video,creator)
     @video = video
     @creator = creator
