@@ -110,6 +110,7 @@ class TagMusicMail < ActionMailer::Base
     mail :to => tag_creator.email, :subject => "Your invitation of #{music_album.user.name} has been rejected!"
   end
   def inform_creator_user_tag_refused(music_album,tag_creator,u)
+    #user
     @music_album = music_album
     @tag_creator=tag_creator
     @user = u
