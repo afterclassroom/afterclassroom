@@ -352,8 +352,8 @@ class UserWallsController < ApplicationController
 								File.open(tempfile.path, 'wb') do |f|
 									f.write resp.body
 								end
-									image = MiniMagick::Image.open(tempfile.path)
-									@arr_img << img_url if image[:width].to_i > 90
+                image = MiniMagick::Image.open(tempfile.path)
+                @arr_img << img_url if image[:width].to_i > 90
 							end
 						}
 					rescue
@@ -390,12 +390,12 @@ class UserWallsController < ApplicationController
       id = @wall.user_wall_post.post_id
       obj = eval(type).find(id)
       case type
-        when "MusicAlbum"
-          obj.musics.each do |m|
-            @musics << {:link => m.music_attach.url, :duration => m.length_in_seconds, :title => (m.title == "" ? m.music_attach_file_name : m.title)}
-          end
-        when "Music"
-          @musics << {:link => obj.music_attach.url, :duration => obj.length_in_seconds, :title => (obj.title == "" ? obj.music_attach_file_name : obj.title)}
+      when "MusicAlbum"
+        obj.musics.each do |m|
+          @musics << {:link => m.music_attach.url, :duration => m.length_in_seconds, :title => (m.title == "" ? m.music_attach_file_name : m.title)}
+        end
+      when "Music"
+        @musics << {:link => obj.music_attach.url, :duration => obj.length_in_seconds, :title => (obj.title == "" ? obj.music_attach_file_name : obj.title)}
       end
     end
     render :layout => false
@@ -415,7 +415,21 @@ class UserWallsController < ApplicationController
     render :layout => false
   end
   
-    def jplayer_video_html5
+  def jplayer_video_html5
+    wall_id = params[:wall_id]
+    @wall = UserWall.find(wall_id)
+    if @wall.user_wall_video
+      @link = @wall.user_wall_video.link
+    elsif @wall.user_wall_post and @wall.user_wall_post.post_type == "Video"
+      type = @wall.user_wall_post.post_type
+      id = @wall.user_wall_post.post_id
+      obj = eval(type).find(id)
+      @link = obj.video_file.video_attach.url
+    end
+    render :layout => false
+  end
+  
+  def jplayer_video5_html5
     wall_id = params[:wall_id]
     @wall = UserWall.find(wall_id)
     if @wall.user_wall_video
@@ -435,7 +449,7 @@ class UserWallsController < ApplicationController
     @user = User.find(user_id)
     @page = params[:page]
     case @type
-      when "student_lounge"
+    when "student_lounge"
       @walls = current_user.walls_with_setting.paginate :page => params[:page], :per_page => 10
     else
       @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
@@ -476,8 +490,8 @@ class UserWallsController < ApplicationController
 
 	def send_wall_notification(user_wall, user_post, wall)
 		subject = "#{user_post.name} just posted on your Student Lounge."
-        content = "Hello #{user_wall.name}, <br/>"
-        content << "#{user_post.name} just posted something on your Student Lounge,  click <a href='#{user_profiles_url(user_wall)}' target='blank'>here</a> to see what's in it."
-        send_notification(user_wall, subject, content, "posts_on_my_lounge")
+    content = "Hello #{user_wall.name}, <br/>"
+    content << "#{user_post.name} just posted something on your Student Lounge,  click <a href='#{user_profiles_url(user_wall)}' target='blank'>here</a> to see what's in it."
+    send_notification(user_wall, subject, content, "posts_on_my_lounge")
 	end
 end

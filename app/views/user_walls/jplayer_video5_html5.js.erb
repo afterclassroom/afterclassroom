@@ -1,9 +1,6 @@
 <% if @wall.user_wall_post and @wall.user_wall_post.post_type == "Video" %>
   $("#wall_attach_<%= @wall.id %>").hide("slow");
-  $("#show_jplayer_<%= @wall.id %>").html('<video controls="controls" width="480" height="208" id="video1_<%= @wall.id %>"><source src="<%= @link %>" type='video/ogg; codecs="theora, vorbis"'><source src="sintel-trailer..mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video>');
-  $(function() {
-  $('#video1_<%= @wall.id %>').gVideo();
-  });
+  $("#show_jplayer_<%= @wall.id %>").html('<video id="<%= @wall.id %>" controls="controls" autoplay="autoplay" width="456" height="255"><source src="<%= @link %>" type="video/ogg" /></video>');
 
 <% else %>
   $("#wall_attach_<%= @wall.id %>").hide("slow");

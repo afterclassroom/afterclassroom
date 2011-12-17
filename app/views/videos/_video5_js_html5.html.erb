@@ -3,23 +3,11 @@
 <!-- "Video For Everybody" http://camendesign.com/code/video_for_everybody -->
 <video controls="controls" autoplay="autoplay" poster="" width="530" height="297" style="margin-left: -45px;">
   <source src="<%= get_video_path(@video.video_file.video_attach.url) %>" type="video/ogg" />
-  <img alt="" src="" width="530" height="297" title="" />
 </video>
-<p>
-  <strong>Download video:</strong> <a href="<%= get_video_path(@video.video_file.video_attach.url) %>">Ogg format</a> 
-</p>
-
-
-<a 
-  href="<%= get_video_path(@video.video_file.video_attach.url) %>" 
-  style="display:block;width:530px;height:360px;margin-left: 15px;" 
-  id="player">
-</a>
-
-<div id="mycarousel" class="jcarousel-skin-tango" style="float: right">
-
-  <ul>
-    <%
+<hgroup>
+  <div id="mycarousel" class="jcarousel-skin-tango" style="float: right">
+    <ul id="list">
+        <%
     videos = @video.user.videos_same_category(@video)
   %>
     <% videos.each do |v| %>
@@ -33,41 +21,76 @@
         </li>
       <% end %>
     <% end %>
-  </ul>
+    </ul>
+  </div>
+</hgroup>
 
-</div>
+<script>
+  var obj = [];
+
+  // listener function changes src
+  function myNewSrc() {
+
+    var myVideo = document.getElementsByTagName('video')[0];   
+    mmyVideo.src = obj[(++i)%obj.length];
+    myVideo.load();
+    myVideo.play();
+
+  }
+
+  // function adds listener function to ended event
+  function myAddListener(){
+    var myVideo = document.getElementsByTagName('video')[0];  
+    myVideo.addEventListener('ended', myNewSrc, false);
+    
+  }
+
+  $(document).ready(function(){
+
+    for(i in obj){
+      var text = document.createTextNode(obj[i]);
+      var list = document.getElementById('list');
+      //var href = document.createElement('a');
+      var bullet = document.createElement('li');
+      var mycarousel = document.getElementById('mycarousel');
+      //var all_links = mycarousel.getElementsByTagName('a');
+      var path = "vids/" + text.nodeValue;
+        
+      bullet.innerHTML= "<a href='" + path + "' onclick='return false;'>" + text.nodeValue + "</a>";
+      list.appendChild(bullet);
+      mycarousel.appendChild(list);
+      //all_links[i].addEventListener('click', playThis, false);
+    
+    }
+
+    $('#list > li a').live('click', function(e){
+      var t = e.target;
+      var $this = $(this);
+      var path = $this.attr('href');
+      var myVideo = document.getElementsByTagName('video')[0];
+        
+      myVideo.src = path;
+      myVideo.load();
+      myVideo.play();
+
+    });
+    
+  
+  });
+</script>
+
+
+<a 
+  href="<%= get_video_path(@video.video_file.video_attach.url) %>" 
+  style="display:block;width:30px;height:30px;margin-left: 15px;" 
+  id="player">
+</a>
+
 <!-- let rest of the page float normally -->
 <br clear="all" />
 
 <script>
-  //  install Flowplayer inside a#player
-  $f("player", 
-  {src: "/swfs/flowplayer.commercial-3.2.7-6.swf", wmode:"opaque"}, 
-  {
-    key: '#$de9093c019ae644a1da',
-    clip: {
-      // use first frame of the clip as a splash screen
-      autoPlay: true,
-      autoBuffering: true
 
-    }, 
-    logo: {
-      url: '/images/logo02.png',
-      fullscreenOnly: false,
-      top: '85%',
-      left: '20%'
-    },
-    // gradually show on mouseover
-    onMouseOver: function() {
-      this.getPlugin("logo").fadeTo(1, 1000);
-    },
-    // gradually hide on mouseout
-    onMouseOut: function() {
-      this.getPlugin("logo").fadeTo(0, 1000);
-    }
-    
-
-  });
   // get all links that are inside div#clips
   var links = document.getElementById("mycarousel").getElementsByTagName("a");
 
@@ -98,9 +121,6 @@
       beforeSend: function() {
         $('#on_this_videos').val("");
         $('#action_video').val("");
-      },
-      success: function(r){
-        $f().play(link);
       }
     });
   }
