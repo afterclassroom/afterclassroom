@@ -151,6 +151,7 @@ class FriendsController < ApplicationController
     end
     user_invite = current_user.user_invites.find(:first, :conditions => cond.to_sql)
 		current_user.friend_in_groups.where(:user_id_friend => friend_id).destroy_all
+		@user.friend_in_groups.where(:user_id_friend => current_user.id).destroy_all
 		user_invite.destroy if user_invite
   end
   
