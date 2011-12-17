@@ -1,21 +1,3 @@
-<script type="text/javascript" src="/javascripts/jquery.jcarousel.js"></script>
-
-<!-- "Video For Everybody" http://camendesign.com/code/video_for_everybody -->
-<video controls="controls" autoplay="autoplay" poster="" width="530" height="297" style="margin-left: -45px;">
-  <source src="<%= get_video_path(@video.video_file.video_attach.url) %>" type="video/ogg" />
-  <img alt="" src="" width="530" height="297" title="" />
-</video>
-<p>
-  <strong>Download video:</strong> <a href="<%= get_video_path(@video.video_file.video_attach.url) %>">Ogg format</a> 
-</p>
-
-
-<a 
-  href="<%= get_video_path(@video.video_file.video_attach.url) %>" 
-  style="display:block;width:530px;height:360px;margin-left: 15px;" 
-  id="player">
-</a>
-
 <div id="mycarousel" class="jcarousel-skin-tango" style="float: right">
 
   <ul>
