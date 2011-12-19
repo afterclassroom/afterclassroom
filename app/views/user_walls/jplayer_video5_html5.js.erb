@@ -1,8 +1,0 @@
-<% if @wall.user_wall_post and @wall.user_wall_post.post_type == "Video" %>
-  $("#wall_attach_<%= @wall.id %>").hide("slow");
-  $("#show_jplayer_<%= @wall.id %>").html('<video id="<%= @wall.id %>" controls="controls" autoplay="autoplay" width="456" height="255"><source src="<%= @link %>" type="video/ogg" /></video>');
-
-<% else %>
-  $("#wall_attach_<%= @wall.id %>").hide("slow");
-  $("#show_jplayer_<%= @wall.id %>").html("<%= escape_javascript( render :partial => "user_walls/youtube_embed" ) %>");
-<% end %>

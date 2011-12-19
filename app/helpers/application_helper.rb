@@ -764,7 +764,7 @@ module ApplicationHelper
           title = obj.title
           when "Video"
           link = user_video_url(obj.user, obj)
-          img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video5_html5", :wall_id => wall.id}, :remote => true
+          img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video_html5", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = obj.description

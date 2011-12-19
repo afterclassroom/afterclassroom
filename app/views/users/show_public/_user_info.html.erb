@@ -49,5 +49,7 @@
   $(document).ready(function(){ 
     checkWebFireFox();
     checkWebChrom(); 
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
   });
 </script>

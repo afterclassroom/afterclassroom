@@ -79,6 +79,8 @@
 <script>
 
   $(document).ready(function(){
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
     $('#TB_ajaxContent').css({
       'width':'510px',
       'height':'380px'

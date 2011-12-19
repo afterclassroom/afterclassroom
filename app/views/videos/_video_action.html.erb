@@ -1,5 +1,5 @@
 <div id="add_tag">
-<%= render :partial => "videos/form_add_tag" %>
+  <%= render :partial => "videos/form_add_tag" %>
 </div>
 
 <div class="stoDbtm" style="width: 550px">
@@ -8,7 +8,7 @@
     <span class="btmFav" id="item_favorite_<%= @video.id %>"><%= show_favorite_in_detail("Video", @video) %></span>
     <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Tag Friend</a></span>
     <span class="btmAbuse"><%= show_report_abuse(@video) %></span>
-		<span id="rate_pos"><%= render :partial => "videos/rating_action", :locals => {:post => @video, :controller_name => "videos"}%></span>
+    <span id="rate_pos"><%= render :partial => "videos/rating_action", :locals => {:post => @video, :controller_name => "videos"}%></span>
   </div>
 </div>
 <% form_tag url_for(:controller => "videos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>

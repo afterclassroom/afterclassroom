@@ -1,10 +1,10 @@
 <div class="musicL" style="padding-left: 22px;">
-  <div class="photoImg"><%= link_to raw("<div>#{image_tag music_album.music_album_attach.url(:thumb)}</div>"), show_music_album_user_url(music_album.user, :music_album_id => music_album), :class => "iframe" %></div>
+  <div class="photoImg"><%= link_to raw("<div>#{image_tag music_album.music_album_attach.url(:thumb)}</div>"), "#{show_music_album_user_url(music_album.user, :music_album_id => music_album)}?&height=550&width=920", :class => "thickbox" %></div>
   <div class="mostMSR">
-    <div class="mostMSA"><%= link_to "", show_music_album_user_url(music_album.user, :music_album_id => music_album), :class => "mostMSPlay iframe" %></div>
+    <div class="mostMSA"><%= link_to "", "#{show_music_album_user_url(music_album.user, :music_album_id => music_album)}?&height=550&width=920", :class => "mostMSPlay thickbox" %></div>
   </div>
   <div class="musicB">
   	<div class="musicS" style="margin-top: -5px"><%= pluralize(music_album.musics.size, "song") %></div>
-    <div class="musicN"><%= link_to truncate(music_album.name, :length => 45, :omission => '...'), show_music_album_user_url(music_album.user, :music_album_id => music_album) %></div>
+    <div class="musicN"><%= link_to truncate(music_album.name, :length => 45, :omission => '...'), "#{show_music_album_user_url(music_album.user, :music_album_id => music_album)}?&height=550&width=920", :class => "thickbox" %></div>
   </div>
 </div>

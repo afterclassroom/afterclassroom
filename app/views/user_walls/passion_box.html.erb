@@ -59,5 +59,7 @@
   }
   $(document).ready(function(){
     $('.close').click($.facebox.close);
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
   });
 </script>
