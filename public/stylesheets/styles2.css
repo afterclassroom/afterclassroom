@@ -28,6 +28,7 @@
     -moz-border-radius-bottomright: 5px;
     -webkit-border-bottom-right-radius: 5px;
     opacity: 0.8;
+    z-index: 1;
 }
 .photoTag-tag{
     border: 3px #2EACF4 solid;

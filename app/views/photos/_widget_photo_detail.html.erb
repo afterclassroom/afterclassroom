@@ -44,6 +44,7 @@
   <% end %><!-- end form -->        
 
 <% end %><!-- end if  -->
+<div class="stoDbtmac"></div>
 <%= render :partial => "photos/photo_action" %>
 <div id="rate_pos" style="line-height: 15px;padding: 4px;width: 81px;float:left; margin-top: -40px; margin-left: 384px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
   <%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo_album, :controller_name => "photo_albums"}%>
@@ -54,12 +55,11 @@
   <%= hidden_field_tag "photo_id", @photo.id %>
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 <script type="text/javascript">
-
+  //var posi = $('#container').offset();
   var overallCount = 0;//this variable support for show/hide accept/refuse
   var noOfRemove=0;//this variable support for show/hide ckbox at tag-list
   var begintag = false;//this variable support for phototag
-
-  
+ 
   $(document).ready(function(){
     $('#accept_btn').click(function(){
       $('#decision_id').val('ACCEPT');
@@ -143,6 +143,7 @@
     }//end if
     //END: fix bug for ie8
     $(".photoTag-cpanell").css({
+      'left':$('#container').left,
       'top':$('#container').height()
     });
   }//end function
