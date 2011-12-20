@@ -386,7 +386,6 @@ class StoriesController < ApplicationController
       share_to.each do |i|
         u = User.find(i)
         if u
-#          QaSendMail.tag_story_approved(u,@story,current_user).deliver
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:id],"Story",true, u.id ] )
           #case 1: tag-creator make own tag, send 1 mail to tag creator
           #case 2: tag-creator tag author, send 1 mail to tag creator
@@ -449,7 +448,7 @@ class StoriesController < ApplicationController
     #and then send mail to tagged user
     if @tagged_users.size > 0
       @tagged_users.each do |user|
-        if user != @story.user
+        if user != @story.user && user != current_user
           QaSendMail.story_cmt_added(user,@story,params[:comment_content],current_user).deliver
         end
       end #end each
