@@ -400,7 +400,7 @@ class VideosController < ApplicationController
     if @tagged_users.size > 0
       @tagged_users.each do |user|
         if user != @video.user
-          #          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
+          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
         end
       end #end each
     end #end if

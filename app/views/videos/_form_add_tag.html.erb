@@ -49,6 +49,7 @@
     });
     /* BEGIN: handle send comment event to send email notification */
     var sendBtn = $('form#form_comment').find('a');
+    sendBtn.unbind();
     sendBtn.bind('click',function(){
       var strContent = $('form#form_comment').find('#comment').val();
       $('form#form_cmt_inf').find('#comment_content').val(''+strContent);

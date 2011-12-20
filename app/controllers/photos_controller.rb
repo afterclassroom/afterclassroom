@@ -579,9 +579,6 @@ class PhotosController < ApplicationController
     @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:photo_id],"Photo",true ] )
     @photo = Photo.find(params[:photo_id])
     
-    #send mail to author
-    QaSendMail.photo_cmt_added(@photo.user,@photo,params[:comment_content],current_user).deliver
-    
     #and then send mail to tagged user
     if @tagged_users.size > 0
       @tagged_users.each do |user|
