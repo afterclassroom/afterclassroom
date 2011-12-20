@@ -331,7 +331,10 @@ class PhotosController < ApplicationController
     TagInfo.refuse_photo(params[:tag_checkbox],params[:photo_id])
     u = User.find(params["tag-id"])
     photo = Photo.find(params[:photo_id])
-    QaSendMail.tag_photo_removed(u,photo,current_user).deliver
+
+    if u!= current_user
+      QaSendMail.tag_photo_removed(u,photo,current_user).deliver
+    end
     
     obj = {
       :result => true,
