@@ -50,6 +50,7 @@ javascripts:
     - public/javascripts/rails.js
     - public/javascripts/app.js
     - public/javascripts/swfobject.js
+    - public/javascripts/thickbox.js
     - public/javascripts/jquery-ui.js
     - public/javascripts/jquery.mcdropdown.js
     - public/javascripts/jquery.bgiframe.js
@@ -59,7 +60,6 @@ javascripts:
     - public/javascripts/jquery-carrousel.js
     - public/javascripts/jquery-swfobject.js
     - public/javascripts/jquery-customWindow.js
-    - public/javascripts/thickbox.js
     - public/javascripts/vtip.js
     - public/javascripts/json.js
     - public/javascripts/jquery-galleriffic.js
