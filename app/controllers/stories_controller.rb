@@ -449,7 +449,7 @@ class StoriesController < ApplicationController
     #and then send mail to tagged user
     if @tagged_users.size > 0
       @tagged_users.each do |user|
-        if user != @story.user
+        if user != @story.user && user != current_user
           QaSendMail.story_cmt_added(user,@story,params[:comment_content],current_user).deliver
         end
       end #end each
