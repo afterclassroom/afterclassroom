@@ -4,3 +4,33 @@
 <div id="like_inner<%= post.id %>" style="padding: 5px;">
 </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var likepad_mouse_is_inside<%= post.id %> = false;
+    $('#like_area<%= post.id %>').hover(function(){
+      likepad_mouse_is_inside<%= post.id %>=true;
+    }, function(){
+      likepad_mouse_is_inside<%= post.id %>=false;
+    });//end hover
+    $("body").mouseup(function(){
+      if( likepad_mouse_is_inside<%= post.id %> == false ){
+        if ( $('#like_area<%= post.id %>').is(":visible") == true ){
+          //BEGIN reset like-panel
+          if ( likeAjaxObj<%= post.id %> != undefined){
+            likeAjaxObj<%= post.id %>.abort();
+          }
+          if ( otherAjaxObj<%= post.id %> != undefined){
+            otherAjaxObj<%= post.id %>.abort();
+          }
+          $('#like_area<%= post.id %>').hide();
+          $('#wait_like<%= post.id %>').show();
+          $('#other_area<%= post.id %>').hide();
+          $('#wait_other<%= post.id %>').show();
+          $('#like_inner<%= post.id %>').html('');
+          //END reset like-panel
+        }
+      }//end if likepad
+    });//end body mouseup
+
+  });
+</script>

@@ -4,3 +4,33 @@
 <div id="dislike_inner<%= post.id %>" style="padding: 5px;">
 </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var dislikepad_mouse_is_inside<%= post.id %> = false;
+    $('#like_area<%= post.id %>').hover(function(){
+      dislikepad_mouse_is_inside<%= post.id %>=true;
+    }, function(){
+      dislikepad_mouse_is_inside<%= post.id %>=false;
+    });//end hover
+
+
+    $("body").mouseup(function(){
+      if( dislikepad_mouse_is_inside<%= post.id %> == false ){
+
+        if ( $('#dislike_area<%= post.id %>').is(":visible") == true ){
+          if (dislikeAjaxObj<%= post.id %> != undefined){
+            dislikeAjaxObj<%= post.id %>.abort();
+          }
+          if (otherAjaxObj<%= post.id %> != undefined){
+            otherAjaxObj<%= post.id %>.abort();
+          }
+          $('#dislike_area<%= post.id %>').hide();
+          $('#wait_dislike<%= post.id %>').show();
+          $('#other_area<%= post.id %>').hide();
+          $('#wait_other<%= post.id %>').show();
+          $('#dislike_inner<%= post.id %>').html('');
+        }
+      }//end if dislikepad
+    });//end body mouseup
+  });
+</script>
