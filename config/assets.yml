@@ -1,7 +1,7 @@
-package_assets: on
-embed_assets: on
-compress_assets: on
-allow_debugging: on
+package_assets: off
+embed_assets: off
+compress_assets: off
+allow_debugging: off
 
 javascripts:
   base:
@@ -50,6 +50,7 @@ javascripts:
     - public/javascripts/rails.js
     - public/javascripts/app.js
     - public/javascripts/swfobject.js
+    - public/javascripts/jquery.fancybox.js
     - public/javascripts/thickbox.js
     - public/javascripts/jquery-ui.js
     - public/javascripts/jquery.mcdropdown.js
@@ -60,6 +61,7 @@ javascripts:
     - public/javascripts/jquery-carrousel.js
     - public/javascripts/jquery-swfobject.js
     - public/javascripts/jquery-customWindow.js
+    - public/javascripts/jquery.fancybox.js
     - public/javascripts/vtip.js
     - public/javascripts/json.js
     - public/javascripts/jquery-galleriffic.js
@@ -70,7 +72,6 @@ javascripts:
     - public/javascripts/checkboxmenu.js
     - public/javascripts/drplayer.js
     - public/javascripts/jquery.jqpageflow.js
-    - public/javascripts/jquery.fancybox.js
     - public/javascripts/jquery.fileupload.js
     - public/javascripts/jquery.fileupload-ui.js
     - public/javascripts/ajaxupload.js
