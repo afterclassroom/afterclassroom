@@ -78,12 +78,6 @@ class QaSendMail < ActionMailer::Base
 
   #BEGIN send mail for story tag
 
-  def tag_story_approved(user,story,author)
-    @story = story
-    @user = user
-    @author = author
-    mail :to => @user.email, :subject => "#{author.name} has approved you to read story!"
-  end
   
   def tag_story_removed(user,story,author)
     @story = story
