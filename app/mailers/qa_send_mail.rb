@@ -96,5 +96,11 @@ class QaSendMail < ActionMailer::Base
 
   #END send mail for story tag
 
+  def tag_music_removed(user,mus_album,author)
+    @mus_album = mus_album
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has removed you from music album listeners!"
+  end
 
 end
