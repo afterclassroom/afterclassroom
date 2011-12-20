@@ -14,7 +14,7 @@
     </p>
     <div id="tag_list_place" style="position: relative;text-align: left; margin-left: 33px; width: 495px;"></div>
     <%
-    if controller.action_name == 'show'
+    if controller.action_name == 'show' || controller.action_name == 'show_photo_detail'
     %>
       <div id="title_tag" style="text-align:center;height: 11px"><%= @photo.title %></div>
     <% end %>
@@ -255,7 +255,7 @@
   //BEGIN: select all
   $(document).ready(function(){
     $('#sel_desel_all').click(function(){
-      if ( $(this).html() == 'Select all' ){
+      if ( $(this).html() == 'Select all' ){stoDbtm
         overallCount = $('#approve_panel').find('*[id*=checkbox_]').length;
         $(this).html('Deselect');
         $('#btn_pannel').show('slow');
