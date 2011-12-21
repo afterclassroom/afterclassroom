@@ -27,8 +27,11 @@ class QaSendMail < ActionMailer::Base
     mail :to => post.user.email, :subject => "You've got mail from "+@first_name+"!"
   end
   
-  def learntool_to_dev(current_user, tool)
+  def learntool_to_dev(current_user, tool,title,message_str)
+    @title = title
+    @message_str = message_str
     @tool = tool
+    @current_user = current_user
     mail :to => tool.user.email, :subject => "You've got mail from #{current_user.name}"
   end
 

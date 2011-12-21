@@ -196,7 +196,10 @@ class LearnToolsController < ApplicationController
   
   def send_to_dev
     @tool = Learntool.find(params[:tool_id])
-    QaSendMail.learntool_to_dev(current_user,@tool).deliver
+    title = params[:tel_no]
+    message_str = params[:message_str]
+    
+    QaSendMail.learntool_to_dev(current_user,@tool,title,message_str).deliver
     flash[:notice] = "Your message has been sent to developer!"
     render :layout => false
   end
