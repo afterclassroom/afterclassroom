@@ -16,11 +16,17 @@
       }
       
       if (overallCount <= 0){
-        $('#btn_pannel').hide('slow');
+        $('#btn_pannel').hide();
+        $(".photoTag-cpanell").css({
+          'top':$('#container').height()+ $('.AsVer').height()
+        });
         $('#sel_desel_all').html('Select all');
       }else {
         $('#sel_desel_all').html('Deselect');
-        $('#btn_pannel').show('slow');
+        $('#btn_pannel').show();
+        $(".photoTag-cpanell").css({
+          'top':$('#container').height()+ $('.AsVer').height()
+        });
       }
     });
   });
