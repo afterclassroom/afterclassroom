@@ -452,7 +452,7 @@
             var imageHeight = image.height();
             var imageWidth = image.width();
             var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;display:block;margin:auto;"></div>');
-            var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:relative;left:0;"></div>');
+            var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:relative;left:0;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:'+ imageWidth +'px; display:block;margin:auto;"></div>');
             canvas.append(wrapper);
             var controlPane = $('<div id="'+ options.imageWrapBox.controlPaneIdPrefix + image_id +'" class="photoTag-cpanell"></div>');
             canvas.append(controlPane);
