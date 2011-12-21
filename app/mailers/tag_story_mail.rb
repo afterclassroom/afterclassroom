@@ -22,7 +22,7 @@ class TagStoryMail < ActionMailer::Base
     @user = current_user
     mail :to => story.user.email, :subject => "New invitation on your story"
   end
-  def inform_creator_to_wait_case3(story, user,tag_creator)
+  def inform_creator_to_wait_case3(story, user,tag_creator,current_user)
     @story = story
     @user = user
     @tag_creator=tag_creator
