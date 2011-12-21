@@ -63,17 +63,7 @@ class SharesController < ApplicationController
           user_ids.each do |i|
             u = User.find(i)
             if u
-              mess = Message.new
-              mess.sender_id = current_user.id
-              mess.recipient_id = u.id
-              mess.subject = @share.title
-              content = "File: <a href=\"javascript:downloadFile('#{@share.attach.url}')\" class=\"downarrow\"><span>#{@share.attach.url}</span></a> <br/> #{@share.description}"
-              mess.body = content
-              mess.save
-              @share.recipients << u
-              subject = "You got new file from #{current_user.name}."
-              content = "#{current_user.name} sent you a new file on After Classroom Share File, click <a href='#{user_shares_url(u)}' target='blank'>here</a> to receive a file before it expires in 7 days."
-              send_notification(u, subject, content, "friend_share_file")
+              send_notification_share(u, @share)
             end
             
           end
@@ -90,15 +80,18 @@ class SharesController < ApplicationController
   # PUT /shares
   # PUT /shares.xml
   def update
-    share = Share.find(params[:id])
-    recipient = params[:recipient]
-    user_ids = recipient.split(",")
+    @share = Share.find(params[:id])
+    share_to = params[:share_to]
+    user_ids = share_to.split(",")
     if user_ids.size > 0 
       user_ids.each do |i|
         u = User.find(i)
-        share.users << u if u and !@share.users.include?(u)
+        if u and !@share.recipients.include?(u)
+					send_notification_share(u, @share)
+				end
       end
     end
+		@share.save
     respond_to do |format|
       format.html {redirect_to(user_shares_url(current_user), :notice => 'Share was successfully created.')}   
     end
@@ -126,4 +119,18 @@ class SharesController < ApplicationController
     end
     return @user
   end
+
+	def send_notification_share(user, share)
+		mess = Message.new
+              mess.sender_id = current_user.id
+              mess.recipient_id = user.id
+              mess.subject = share.title
+              content = "File: <a href=\"javascript:downloadFile('#{share.attach.url}')\" class=\"downarrow\"><span>#{share.attach.url}</span></a> <br/> #{share.description}"
+              mess.body = content
+              mess.save
+              share.recipients << user
+              subject = "You got new file from #{current_user.name}."
+              content = "#{current_user.name} sent you a new file on After Classroom Share File, click <a href='#{user_shares_url(user)}' target='blank'>here</a> to receive a file before it expires in 7 days."
+              send_notification(user, subject, content, "friend_share_file")
+	end
 end

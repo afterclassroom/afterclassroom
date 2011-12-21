@@ -26,7 +26,7 @@
       type: "GET",
       data:({
         invite_message:strMessage,
-        full_name:'<%= @full_name %>',
+        full_name:'<%= @full_name.gsub("'", "\\'") %>',
         user_invite: '<%= @user_invite %>'
       }),
       dataType: "html",
