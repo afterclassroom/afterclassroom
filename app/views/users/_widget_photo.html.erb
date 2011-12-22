@@ -1,0 +1,38 @@
+<div class="slStoryL" style="margin-top: -15px">
+  <div class="inboxLeft">
+    <div class="AsDOr RePho" style="margin-left: 0px">
+      <div class="stoDet phoD">
+        <div class="AsDcomImg">
+          <%= show_image_user_post(@photo.user) %>
+        </div>
+        <div class="stoDetR">
+          <div class="stoDetRT">
+            <%= @photo.user.full_name %>: <%= @photo.photo_album.name %>
+          </div>
+        </div>
+      </div>
+
+      <div class="onThisBtm">
+        <div class="stoPre"><%= link_to "", show_photo_detail_user_path(current_user, :photo_id => @prev), :remote => true if @prev %></div>
+        <div class="stoNext"><%= link_to "", show_photo_detail_user_path(current_user, :photo_id => @next), :remote => true if @next %></div>
+      </div>
+      <%= render :partial => "photos/widget_photo_detail" %>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
+    // $('#comment').css({width:'98.5%'});
+    $('div#TB_title').css({
+      'height':'20px'
+    });
+    $('div#TB_window').css({
+      'margin-top':'-230px'
+    });
+    $('#TB_ajaxContent p').css({
+      'padding':'0px 0'
+    });
+  });
+</script>

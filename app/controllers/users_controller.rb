@@ -172,9 +172,9 @@ class UsersController < ApplicationController
 			as_next = @user.stories.nexts(@story.id, @story.state).last
       as_prev = @user.stories.previous(@story.id, @story.state).first
       @next = as_next if as_next
-      @prev = as_prev if as_prev      
+      @prev = as_prev if as_prev
 			update_view_count(@story)
-      render :layout => "photo"
+      render :layout => false
     else
       redirect_to warning_media_user_path(@user)
     end
@@ -216,7 +216,7 @@ class UsersController < ApplicationController
       as_prev = @photo_album.photos.previous(@photo.id).first
       @next = as_next if as_next
       @prev = as_prev if as_prev      
-			render :layout => "photo"
+			render :layout => false
     else
       redirect_to warning_media_user_path(@user)
     end
@@ -227,7 +227,7 @@ class UsersController < ApplicationController
     @photo_album = PhotoAlbum.find(photo_album_id)
     if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @photo_album)
       update_view_count(@photo_album)
-      render :layout => "photo"
+      render :layout => false
     else
       redirect_to warning_user_path(@user)
     end
@@ -252,7 +252,7 @@ class UsersController < ApplicationController
     @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",music_album_id,"MusicAlbum",true ] )
 
       update_view_count(@music_album)
-      render :layout => "photo"
+      render :layout => false
     else
       redirect_to warning_media_user_path(@user)
     end
@@ -282,7 +282,7 @@ class UsersController < ApplicationController
       @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
       @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
       
-      render :layout => "photo"
+      render :layout => false
     else
       redirect_to warning_media_user_path(@user)
     end

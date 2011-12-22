@@ -1,0 +1,44 @@
+<div class="contMainL">
+  <div class="col571 proCen" style="background: none">
+    <div class="col571in" style="background: none">
+      <div class="proCenCont">
+        <div class="stoDet" style="padding:0px;">
+          <div class="stoDetR">
+            <div class="stoDetRT">
+              <%= @story.title %>
+            </div>
+            <div class="stoDetRB">
+              <%= link_to "#{@story.user.name}'s Story", show_stories_user_url(@story.user), :class => "stoDetRBN" %><%= link_to "#{@story.user.name}'s Profile", user_url(@story.user) %>
+            </div>
+          </div>
+        </div>
+        <div class="onThisBtm" style="margin-top: -20px;">
+          <div class="stoPre"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @prev), :remote => true if @prev %></div>
+          <div class="stoNext"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @next), :remote => true if @next %></div>
+        </div>
+        <div class="stoDcont" style="padding:0px">
+          <%= raw(@story.content) %>
+        </div>
+        <%= render :partial => "stories/story_action" %>
+        <%= show_post_comments(@story) %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR" style="margin-right: 22px;margin-top: 15px">
+  <!-- BEGIN list of tagged users for stories -->
+  <% if @tagged_users.size > 0 %>
+
+    <div class="col300s slStory">
+      <div class="col300sin" id="on_this_story">
+        <%= render :partial => "stories/widget_lets_read"%>    
+      </div>
+    </div>
+  <% end %><!-- end if -->
+  <!-- END list of tagged users for stories -->
+</div>
+<script>
+  $(document).ready(function() {
+    $('#comment').css({width:'98.5%'});
+  });
+</script>
