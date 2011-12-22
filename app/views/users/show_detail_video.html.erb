@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="musicVideo" style="margin-left:0px">
-          <%= render :partial => "videos/video_jsuser_html5" %>
+          <%= render :partial => "videos/video_js_html5" %>
         </div>
         <%= render :partial => "videos/video_description" %>
         <%= render :partial => "videos/video_action" %>
@@ -43,6 +43,7 @@
   $(document).ready(function(){
     $('div#TB_title').filter(':gt(0)').remove();
     $('div#TB_ajaxContent').filter(':gt(0)').remove();
+    $('#comment').css({width:'98.5%'});
     $('.AsDcomDes').css({
       'width':'435px'
     });

@@ -5278,6 +5278,17 @@ span.btmTag a:hover{
     margin-top: 30px;
     text-align: center;
 }
+.contMainL .jcarousel-skin-tango .jcarousel-container-horizontal {
+    margin-right: 0px;
+    padding: 20px 40px;
+    width: 495px;
+}
+.contMainL .jcarousel-skin-tango .jcarousel-prev-horizontal {
+    left: 15px;
+}
+.contMainL .jcarousel-skin-tango .jcarousel-next-horizontal {
+    right: -5px;
+}
 .musicNode{
     padding:0px 0px 10px 10px;
     border:1px #ffe205 solid;
@@ -6300,21 +6311,21 @@ div.ufo_sel div.ufo_span2b{
     background: url("/images/btm48Red.png") no-repeat scroll 0 0 transparent;
 }
 #rate_pos{
-	padding: 4px;
-	width: 81px; 
-	float: left; 
-	height: 25px;
-	background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;
+    padding: 4px;
+    width: 81px; 
+    float: left; 
+    height: 25px;
+    background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;
 }
 #rate_pos .qashdU{
-	float: left;
-	margin-left: 2px;
-	margin-top: -3px;
+    float: left;
+    margin-left: 2px;
+    margin-top: -3px;
 }
 #rate_pos .qashdD{
-	float: left;
-	margin-left: 14px;
-	margin-top: -3px;
+    float: left;
+    margin-left: 14px;
+    margin-top: -3px;
 }
 .photoTag-cpanell{
     background:url("/images/btm71.png") no-repeat scroll 0 0 transparent;
