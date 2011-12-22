@@ -1,4 +1,4 @@
-<div class="contMainL">
+<div class="contMainL" style="margin-top: -12px;">
   <div class="col571 proCen" style="background: none">
     <div class="col571in" style="background: none">
       <div class="proCenCont">
@@ -13,8 +13,8 @@
           </div>
         </div>
         <div class="onThisBtm" style="margin-top: -20px;">
-          <div class="stoPre"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @prev), :remote => true if @prev %></div>
-          <div class="stoNext"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @next), :remote => true if @next %></div>
+          <div class="stoPre"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @prev) if @prev %></div>
+          <div class="stoNext"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @next) if @next %></div>
         </div>
         <div class="stoDcont" style="padding:0px">
           <%= raw(@story.content) %>
@@ -25,7 +25,7 @@
     </div>
   </div>
 </div>
-<div class="contMainR" style="margin-right: 22px;margin-top: 15px">
+<div class="contMainR" style="margin-right: 22px;">
   <!-- BEGIN list of tagged users for stories -->
   <% if @tagged_users.size > 0 %>
 
@@ -39,6 +39,14 @@
 </div>
 <script>
   $(document).ready(function() {
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
     $('#comment').css({width:'98.5%'});
+    $('div#TB_title').css({
+      'height':'20px'
+    });
+    $('div#TB_window').css({
+      'margin-top':'-230px'
+    });
   });
 </script>

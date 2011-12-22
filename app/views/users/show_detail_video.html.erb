@@ -1,3 +1,63 @@
+<<<<<<< HEAD
 <div id="video_detail">
 	<%= render :partial => "widget_video" %>
 </div>
+=======
+<div class="contMainL" style="width: 580px;margin-top: -24px">
+  <div class="col571 proCen" style="background: none">
+    <div class="col571in" style="background: none">
+      <div class="proCenCont">
+        <div class="stoDet phoD">
+          <div class="stoDetR">
+            <div class="stoDetRT">
+              <%= @video.title %>
+            </div>
+          </div>
+        </div>
+        <div class="onThisBtm">
+          <div class="stoPre">
+            <%= link_to "", show_detail_video_user_url(@video.user, :video_id => @prev.id) if @prev %>
+          </div>
+          <div class="stoNext">
+            <%= link_to "", show_detail_video_user_url(@video.user, :video_id => @next.id) if @next %>
+          </div>
+        </div>
+        <div class="musicVideo" style="margin-left:0px">
+          <%= render :partial => "videos/video_js_html5" %>
+        </div>
+        <%= render :partial => "videos/video_description" %>
+        <%= render :partial => "videos/video_action" %>
+      </div>
+      <%= show_post_comments(@video) %> 
+    </div>
+  </div>
+</div>
+</div>
+<div class="contMainR" style="float: left">
+  <% if @tagged_users.size > 0 %>
+    <div class="col300v slStory">
+      <div class="col300vin" id="on_this_video">
+        <%= render :partial => "videos/widget_on_this_video" %> 
+      </div>
+    </div>
+  <% end %>
+</div>
+<script type="text/javascript" charset="utf-8">
+  // Add VideoJS to all video tags on the page when the DOM is ready
+  VideoJS.setupAllWhenReady();
+  $(document).ready(function(){
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
+    $('#comment').css({width:'98.5%'});
+    $('.AsDcomDes').css({
+      'width':'435px'
+    });
+    $('div#TB_title').css({
+      'height':'20px'
+    });
+    $('div#TB_window').css({
+      'margin-top':'-230px'
+    });
+  });
+</script>
+>>>>>>> 214604cdffbddf0cd83a5080589376ec3af0000c

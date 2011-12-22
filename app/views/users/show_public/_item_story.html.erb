@@ -4,9 +4,9 @@
     <div class="slsItemLV">viewed</div>
   </div>
   <div class="assImg">
-    <%= link_to raw("<div>#{display_image(story)}</div>"), show_story_detail_user_path(@user, :story_id => story), :class => "iframe" %></div>
+    <%= link_to raw("<div>#{display_image(story)}</div>"), "#{show_story_detail_user_path(@user, :story_id => story)}?&height=550&width=920", :class => "thickbox" %></div>
   <div class="slsItemR" style="margin-left: 0px; width:100%;">
-    <div class="slsItemTitle" style="overflow: hidden;"><%= link_to story.title, show_story_detail_user_path(@user, :story_id => story), :class => "iframe" %></div>
+    <div class="slsItemTitle" style="overflow: hidden;"><%= link_to story.title, "#{show_story_detail_user_path(@user, :story_id => story)}?&height=550&width=920", :class => "thickbox" %></div>
     <div class="slsItemTime"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></div>
     <div class="slsItemDes" style="overflow: hidden;">
       <%= truncate_words(story.content) %>

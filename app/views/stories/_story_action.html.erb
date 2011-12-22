@@ -1,5 +1,5 @@
 <div id="add_tag">
-<%= render :partial => "stories/form_add_tag" %>
+  <%= render :partial => "stories/form_add_tag" %>
 </div>
 
 <div class="stoDbtm">
@@ -8,8 +8,8 @@
     <span class="btmFav" id="item_favorite_<%= @story.id %>"><%= show_favorite_in_detail("Story", @story) %></span>
     <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Let's read</a></span>
     <span class="btmAbuse"><%= link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{@story.id}&reported_type=Story&height=320&width=490", :class => "thickbox", :title => "Report Abuse") %></span>
-		<span id="rate_pos"><%= render :partial => "stories/rating_action", :locals => {:post => @story, :controller_name => "stories"}%></span>
-</div>
+    <span id="rate_pos"><%= render :partial => "stories/rating_action", :locals => {:post => @story, :controller_name => "stories"}%></span>
+  </div>
 </div>
 <% form_tag url_for(:controller => "stories", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
   <%= hidden_field_tag "comment_content" %>
