@@ -238,7 +238,7 @@ class FriendsController < ApplicationController
   def accept
     @invite_id = params[:invite_id]
     @invite = @user.user_invites_in.find_by_id(@invite_id)
-    @user_invite = @invite.user 
+    @user_invite = @invite.user
     @invite.is_accepted = true
     @invite.save
     subject = "#{current_user.name} has accepted you as a friend."

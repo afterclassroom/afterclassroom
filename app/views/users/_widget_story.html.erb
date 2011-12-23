@@ -13,8 +13,8 @@
           </div>
         </div>
         <div class="onThisBtm" style="margin-top: -20px;">
-          <div class="stoPre"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @prev) if @prev %></div>
-          <div class="stoNext"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @next) if @next %></div>
+          <div class="stoPre"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @prev), :remote => true if @prev %></div>
+          <div class="stoNext"><%= link_to "", show_story_detail_user_path(current_user, :story_id => @next), :remote => true if @next %></div>
         </div>
         <div class="stoDcont" style="padding:0px">
           <%= raw(@story.content) %>

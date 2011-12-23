@@ -5,7 +5,7 @@
         <div class="stoDet phoD">
           <div class="stoDetR">
             <div class="stoDetRT">
-              <%= @video.title %>
+              <span id="video_title_span"><%= @video.title %></span>
             </div>
           </div>
         </div>
@@ -22,8 +22,8 @@
         </div>
         <%= render :partial => "videos/video_description" %>
         <%= render :partial => "videos/video_action" %>
-      </div>
-      <%= show_post_comments(@video) %> 
+				<%= show_post_comments(@video) %>
+      </div> 
     </div>
   </div>
 </div>

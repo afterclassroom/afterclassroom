@@ -161,7 +161,6 @@ class UserWallsController < ApplicationController
         subject_f = "#{current_user.name} introduces someone special to you"
 				content_f = "Hello #{usr.name}, <br/>"
         content_f << "<p><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> wants to introduce someone special to you."
-        content_f << "#{user_url(current_user)} says: #{ct}" if ct
         content_f << "<br />" + "Click #{link_to "here", user_url(u), :target => "blank"} to see if you know #{u.name}</p>"
         send_notification(u, subject_f, content_f, "suggests_a_friend_to_me")
       end
@@ -170,6 +169,7 @@ class UserWallsController < ApplicationController
     content = "Hello #{usr.name},<br/>"
     content << "#{current_user.name} introduces some people special to you:<br/>" 
     content << list_name.join(", ")
+		content << "<br/><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> says: #{ct}" if ct
     send_notification(usr, subject, content, "suggests_a_friend_to_me")
     render :text => "Success"
   end
