@@ -264,6 +264,9 @@
         overallCount = $('#approve_panel').find('*[id*=checkbox_]').length;
         $(this).html('Deselect');
         $('#btn_pannel').show();
+        $(".photoTag-cpanell").css({
+          'top':$('#container').height()+ $('.AsVer').height()
+        });
         $('#approve_panel').find('*[id*=checkbox_]').each(function(){
           $(this).attr('checked','checked');
         });
@@ -271,6 +274,9 @@
         overallCount = 0;
         $(this).html('Select all');
         $('#btn_pannel').hide();
+        $(".photoTag-cpanell").css({
+          'top':$('#container').height()+ $('.AsVer').height()
+        });
         $('#approve_panel').find('*[id*=checkbox_]').each(function(){
           $(this).attr('checked','');
         });

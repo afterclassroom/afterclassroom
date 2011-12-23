@@ -45,6 +45,7 @@ body input, body textarea, body select{
     width:662px;float:left;overflow:hidden;padding-bottom:5px;
     background:url('/images/bot654.png') no-repeat left bottom;
     _height:100%;
+    margin-bottom: 10px;
 }
 .contDetLin{
     background:white url('/images/top654.png') no-repeat left top;
