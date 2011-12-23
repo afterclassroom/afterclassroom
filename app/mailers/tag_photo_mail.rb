@@ -25,7 +25,7 @@ class TagPhotoMail < ActionMailer::Base
     @photo = photo
     @user = user
     @tag_creator=tag_creator
-    mail :to => current_user.email, :subject => "Please wait for #{photo.user.name} to authorize your tag"
+    mail :to => tag_creator.email, :subject => "Please wait for #{photo.user.name} to authorize your tag"
   end
   def inform_author_to_authorize_case3(photo, u,current_user)
     @photo = photo
