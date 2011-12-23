@@ -280,7 +280,7 @@ class FriendsController < ApplicationController
 			content << "<p>#{user.name} said: #{invite_message}</p>"      
 			send_notification(user, subject, content, "adds_me_as_a_friend")
     end
-    render :text => '<span class="txtsignup1">Still waiting</span>'
+    render :text => '<div class="txtsignup1">Still waiting</div>'
   end
   
   def become_a_fan

@@ -524,7 +524,7 @@ module ApplicationHelper
         str = link_to(raw("<span class='span1'><span class='span2'>Unfriend</span></span>"), unfriend_user_friends_url(current_user, :friend_id => user.id), :remote => true)
       else
         if current_user.user_invites_out.find_by_user_id_target(user.id)
-          str = raw('<div class="txtsignup1">Still waiting</div>')
+          str = raw('<span class="txtsignup1">Still waiting</span>')
         elsif current_user.user_invites_in.find_by_user_id(user.id)
             str = link_to(raw("<span class='span1'><span class='span2'>Confirm request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
           else
