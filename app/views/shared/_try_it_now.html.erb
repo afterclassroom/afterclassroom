@@ -1,11 +1,11 @@
 <%
-	cas_base = "https://login.afterclassroom.com" 
-    client = CASClient::Client.new( 
-      :cas_base_url => cas_base 
-      ) 
-		@lt = client.request_login_ticket()
+cas_base = "https://login.afterclassroom.com" 
+client = CASClient::Client.new( 
+  :cas_base_url => cas_base 
+) 
+@lt = client.request_login_ticket()
 %>
-<div id="tryitnow" >
+<div id="tryitnow">
   <a class="tryin" style="display: block; position: fixed; top: 283px; left: -2px; margin: 0pt;cursor: pointer;">
     <img style="border: 0pt none;" src="/images/try-it-now.png">
   </a>
@@ -13,40 +13,51 @@
 <div id="popupContact">
   <a id="popupContactClose"></a>
   <div style="margin-bottom: 50px;" class="clearFix" id="OverviewBoxes">
+    <div class="login" style="float:none;width:873px">
+      <div class="signin01" style="float: right;width:600px;margin-bottom: 10px;margin-top: -20px;">
+        <div class="signin02" style="font-weight: bold;">
+          <ul>
+            <li><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller), :style=>"background: none" %></li>
+            <li><%= link_to raw("<span>Simple sign up</span>"), signup_url %></li>
+            <li><%= link_to raw("<span>or Click on Features below to TRY</span>"), user_forgot_password_url %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="contentBox" id="TryNowBox"> 
-			<form id="login-form-without-login" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
-				<input type="hidden" value="<%= @lt %>" name="lt" id="lt">
-				<input type="hidden" value="<%= request.protocol + request.host_with_port %>" name="service" id="service">
-				<input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
-				<input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
-			</form>     
+      <form id="login-form-without-login" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+        <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+        <input type="hidden" value="<%= request.protocol + request.host_with_port %>" name="service" id="service">
+        <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+        <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+      </form>     
       <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Resources</span>
       <a href="javascript:$('#login-form-without-login').submit();">
-      <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;"/>
+        <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;"/>
       </a>
     </div>
     <div class="contentBox" id="CreateClassBox">
-			<form id="login-form-networking" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
-				<input type="hidden" value="<%= @lt %>" name="lt" id="lt">
-				<input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/student_lounges" name="service" id="service">
-				<input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
-				<input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
-			</form>
+      <form id="login-form-networking" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+        <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+        <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/student_lounges" name="service" id="service">
+        <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+        <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+      </form>
       <span style="color: #30424D;font-size: 15px;font-weight: bold;">Social Networking</span>
       <a href="javascript:$('#login-form-networking').submit();">
-      <img src="/images/profile_user.png" style="margin-top: 10px;border: 0 none;"/>
+        <img src="/images/profile_user.png" style="margin-top: 10px;border: 0 none;"/>
       </a>
     </div>
     <div class="contentBox" id="StudentEnrollBox" style="margin-right:0px">
-			<form id="login-form-learn-tools" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
-				<input type="hidden" value="<%= @lt %>" name="lt" id="lt">
-				<input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/learn_tools" name="service" id="service">
-				<input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
-				<input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
-			</form>
+      <form id="login-form-learn-tools" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+        <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+        <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/learn_tools" name="service" id="service">
+        <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+        <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+      </form>
       <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Tools</span>
       <a href="javascript:$('#login-form-learn-tools').submit();">
-      <img src="/images/learning_tool.png" style="margin-top: 10px;border: 0 none;"/>
+        <img src="/images/learning_tool.png" style="margin-top: 10px;border: 0 none;"/>
       </a>
     </div>
   </div>
@@ -136,6 +147,25 @@
 </script>
 
 <style>
+  .signin02 a {
+    background: url("/images/help.png") no-repeat scroll left 4px transparent;
+    cursor: pointer;
+  }
+  .signin02 a span {
+    color: #1FA6F3;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 23px;
+    line-height: 23px;
+    padding-left: 7px;
+  }
+  .signin02 a {
+    cursor: pointer;
+    float: left;
+    padding-right: 7px;
+    text-decoration: none;
+  }
   #backgroundPopup{
     display:none;
     position:fixed;
@@ -149,7 +179,6 @@
     z-index:21;
   }
   #popupContact{
-    display:none;
     position:fixed;
     _position:absolute; /* hack for internet explorer 6*/
     background:#FFFFFF;
