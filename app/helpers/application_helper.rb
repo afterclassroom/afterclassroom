@@ -740,7 +740,7 @@ module ApplicationHelper
             i = 0 
             image = ""
             obj.photos.each do |p|
-              img_link = link_to(raw(image_tag(p.photo_attach.url(:thumb), :style => "width:92px;height:68px")), show_photo_detail_user_url(p.user, :photo_id => p), :class => "iframe")
+              img_link = link_to(raw(image_tag(p.photo_attach.url(:thumb), :style => "width:92px;height:68px")), show_photo_detail_user_url(p.user, :photo_id => p, :height => "550", :width => "920"), :class => "thickbox")
               image << get_image_wall(wall.id, img_link)
               i = i + 1
               break if i == s
@@ -748,7 +748,7 @@ module ApplicationHelper
           end
           when "Photo"
           link = user_photo_url(obj.user, obj)
-          img_link = link_to(raw(image_tag(obj.photo_attach.url(:thumb), :style => "width:92px;height:68px")), show_photo_detail_user_url(obj.user, :photo_id => obj), :class => "iframe")
+          img_link = link_to(raw(image_tag(obj.photo_attach.url(:thumb), :style => "width:92px;height:68px")), show_photo_detail_user_url(obj.user, :photo_id => obj, :height => "550", :width => "920"), :class => "thickbox")
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = truncate_words(obj.description)

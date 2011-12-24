@@ -7,7 +7,7 @@
       <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection (#{@user.user_friends.length.to_s})", user_friends_path(current_user) %></div>
       <div class="friConnect2 <%= "friSelect" if action_name == "find" %>"><%= link_to "Find friends", find_user_friends_path(current_user) %></div>
       <div class="friConnect4 <%= "friSelect" if action_name == "recently_added" %>"><%= link_to "Recently Added (#{@count_recentadded.to_s})", recently_added_user_friends_path(current_user) %></div>
-      <div class="friConnect5 <%= "friSelect" if action_name == "recently_updated" %>"><%= link_to "Recently Updated (#{@count_recentupdate.to_s})", recently_updated_user_friends_path(current_user) %></div>
+      <div class="friConnect5 <%= "friSelect" if action_name == "recently_updated" %>"><%= link_to "Recently Updated (#{@user.user_friends.length.to_s})", recently_updated_user_friends_path(current_user) %></div>
       <div class="friConnect11 <%= "friSelect" if action_name == "friend_request" %>"><%= link_to "Friend Requests (#{@count_request.to_s})", friend_request_user_friends_path(current_user) %></div>
     </div>
     <div class="friendL">List</div>

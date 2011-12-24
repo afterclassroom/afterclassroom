@@ -117,7 +117,16 @@ client = CASClient::Client.new(
 
   //CONTROLLING EVENTS IN jQuery
   $(document).ready(function(){
-	
+		chk = $.cookie("close_try_it_now");
+		if (chk == "yes"){
+			//Nothing
+		}else{
+			//centering with css
+      centerPopup();
+      //load popup
+      loadPopup();
+			$.cookie("close_try_it_now", "no", { expires: 1 });
+		}
     //LOADING POPUP
     //Click the button event!
     $("#tryitnow").click(function(){
@@ -131,6 +140,7 @@ client = CASClient::Client.new(
     //Click the x event!
     $("#popupContactClose").click(function(){
       disablePopup();
+			$.cookie("close_try_it_now", "yes", { expires: 1 });
     });
     //Click out event!
     $("#backgroundPopup").click(function(){
