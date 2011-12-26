@@ -139,7 +139,7 @@ class MusicsController < ApplicationController
           # Nothing
         end
         flash[:notice] = 'Music was successfully created.'
-        post_wall(@music)
+        post_wall(@music) if !check_is_private(current_user, "my_musics")
         redirect_to user_music_album_path(current_user, @music.music_album)
       else
 				flash[:error] = 'Music was error created.'
@@ -205,7 +205,7 @@ class MusicsController < ApplicationController
     @music_album.user = current_user
     @music_album.swfupload_file = params[:music_album_attach] if params[:music_album_attach]
     @music_album.save
-    post_wall(@music_album)
+    post_wall(@music_album) if !check_is_private(current_user, "my_musics")
     render :layout => false
   end
   

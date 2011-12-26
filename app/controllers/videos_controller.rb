@@ -138,7 +138,7 @@ class VideosController < ApplicationController
 					@video.destroy
 					render :action => "new"
 				else
-					post_wall(@video)
+					post_wall(@video) if !check_is_private(current_user, "my_videos")
         	flash[:notice] = 'Video was successfully created.'
 					redirect_to(user_video_url(current_user, @video))
 				end

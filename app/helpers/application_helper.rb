@@ -1071,6 +1071,11 @@ module ApplicationHelper
 		end
 			return check
 	end
+
+  def check_is_private(user, type)
+		ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
+		return ps.share_to == 0 
+	end
   
   def check_private_permission(user_check, user, type)
     check = false
