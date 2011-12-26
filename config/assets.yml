@@ -202,6 +202,8 @@ stylesheets:
     - public/stylesheets/facebox.css
     - public/stylesheets/flash.css
     - public/stylesheets/vtip.css
+    - public/stylesheets/jqpageflow.css
+    - public/stylesheets/thickbox.css
     - public/stylesheets/jquery-wysiwyg.css
     - public/stylesheets/tag.css
     - public/stylesheets/jquery-carrousel.css
@@ -210,13 +212,11 @@ stylesheets:
     - public/stylesheets/jquery.ad-gallery.css
     - public/stylesheets/jquery.fileupload-ui.css
     - public/stylesheets/checkboxmenu.css
-    - public/stylesheets/jqpageflow.css
     - public/stylesheets/jquery.fancybox.css
     - public/stylesheets/jquery.pnotify.default.css
     - public/stylesheets/video-js.css
     - public/stylesheets/feedback.css
     - public/stylesheets/youTubeEmbed-jquery.css
-    - public/stylesheets/thickbox.css
   photo:
     - public/stylesheets/main.css
     - public/stylesheets/post.css
