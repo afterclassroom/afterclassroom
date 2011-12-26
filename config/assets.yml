@@ -202,7 +202,6 @@ stylesheets:
     - public/stylesheets/facebox.css
     - public/stylesheets/flash.css
     - public/stylesheets/vtip.css
-    - public/stylesheets/thickbox.css
     - public/stylesheets/jquery-wysiwyg.css
     - public/stylesheets/tag.css
     - public/stylesheets/jquery-carrousel.css
@@ -217,6 +216,7 @@ stylesheets:
     - public/stylesheets/video-js.css
     - public/stylesheets/feedback.css
     - public/stylesheets/youTubeEmbed-jquery.css
+    - public/stylesheets/thickbox.css
   photo:
     - public/stylesheets/main.css
     - public/stylesheets/post.css
