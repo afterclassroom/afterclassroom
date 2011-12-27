@@ -218,7 +218,7 @@ function send_comment_video(id, type){
 
 function formatFirstLinkForPaginationComment(class_name, id){
     var url = "/posts/comments_list";
-    $("div.assPage").find("a").each(function(){
+    $("div#comments_list div.assPage").find("a").each(function(){
         var linkElement = $(this);
         var page = linkElement.attr('href').split("?page=")[1];
         linkElement.attr({
