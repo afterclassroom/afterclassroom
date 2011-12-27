@@ -200,7 +200,9 @@
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
-    setTimeout($('.photoTag').photoTag({
+		$('#img_to_tag')
+	.load(function(){
+		setTimeout($('.photoTag').photoTag({
       requesTagstUrl: strrequesTagstUrl,
       deleteTagsUrl: strdeleteTagsUrl,
       addTagUrl: straddTagUrl,
@@ -212,7 +214,8 @@
           label: 'Name'
         }
       }
-    }), 5000);
+    }), 5000);	
+	});
     
     $('#stop_tag').click(function(){
       $('#photoTag-add_<%= @photo.id %>').show();
