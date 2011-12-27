@@ -6,7 +6,7 @@
 /* ----------------------------------------------------------------------------------------------------------------*/
 #TB_overlay {
     position: fixed;
-    z-index: 20;
+    z-index: 1;
     top: 0px;
     left: 0px;
     height: 100%;
@@ -31,7 +31,7 @@
 #TB_window {
     position: fixed;
     background: #FFFFFF;
-    z-index: 21;
+    z-index: 1;
     color:#000000;
     display:none;
     border: 3px solid #1d98df;
@@ -104,7 +104,7 @@
     overflow:auto;
     text-align:left;
     line-height:1.4em;
-    position: relative;
+/*    position: relative;*/
 }
 
 #TB_ajaxContent.TB_modal{
