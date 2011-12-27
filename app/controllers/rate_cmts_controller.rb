@@ -11,8 +11,8 @@ class RateCmtsController < ApplicationController
       @post = MusicAlbum.find(params[:post_id])
       @rating_texts = @post.rate_text_musics.where(["rating=? and rated_type=?","1","#{params[:rated_type]}"]).order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
       @like_size = @post.rate_text_musics.where('rating="1"').size
-    when "PhotoAlbum"
-      @post = PhotoAlbum.find(params[:post_id])
+    when "Photo"
+      @post = Photo.find(params[:post_id])
       @rating_texts = @post.rate_text_photos.where(["rating=? and rated_type=?","1","#{params[:rated_type]}"]).order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
       @like_size = @post.rate_text_photos.where('rating="1"').size
     when "Story"
@@ -48,10 +48,10 @@ class RateCmtsController < ApplicationController
       @post = MusicAlbum.find(params[:post_id])
       @cmt = RateTextMusic.new()
       @cmt.music_album = @post
-    when "PhotoAlbum"
-      @post = PhotoAlbum.find(params[:post_id])
+    when "Photo"
+      @post = Photo.find(params[:post_id])
       @cmt = RateTextPhoto.new()
-      @cmt.photo_album = @post
+      @cmt.photo = @post
     when "Story"
       @post = Story.find(params[:post_id])
       @cmt = RateTextStory.new()
@@ -89,8 +89,8 @@ class RateCmtsController < ApplicationController
       @post = MusicAlbum.find(params[:post_id])
       @rating_texts = @post.rate_text_musics.where(["rating=? and rated_type=?","0","#{params[:rated_type]}"]).order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
       @dislike_size = @post.rate_text_musics.where('rating = "0"').size
-    when "PhotoAlbum"
-      @post = PhotoAlbum.find(params[:post_id])
+    when "Photo"
+      @post = Photo.find(params[:post_id])
       @rating_texts = @post.rate_text_photos.where(["rating=? and rated_type=?","0","#{params[:rated_type]}"]).order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
       @dislike_size = @post.rate_text_photos.where('rating = "0"').size
     when "Story"
@@ -119,10 +119,10 @@ class RateCmtsController < ApplicationController
       @post = MusicAlbum.find(params[:post_id])
       @cmt = RateTextMusic.new()
       @cmt.music_album = @post
-    when "PhotoAlbum"
-      @post = PhotoAlbum.find(params[:post_id])
+    when "Photo"
+      @post = Photo.find(params[:post_id])
       @cmt = RateTextPhoto.new()
-      @cmt.photo_album = @post
+      @cmt.photo = @post
     when "Story"
       @post = Story.find(params[:post_id])
       @cmt = RateTextStory.new()

@@ -1,4 +1,4 @@
 class RateTextPhoto < ActiveRecord::Base
   belongs_to :user
-  belongs_to :photo_album
+  belongs_to :photo
 end

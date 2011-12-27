@@ -54,8 +54,8 @@
       </div>
     </div>
     <div class="postItem" style="padding: 0px">
-      <div style="width: 80px; margin-top: 5px;float: none" class="postItem1">
-        Message for <%= %>:
+      <div style="width: 100%; margin-top: 5px;float: none" class="postItem1">
+        Message for <%= @user_post.name %>:
       </div>
       <div class="postInp">
         <%= text_area_tag "body", "", :id => "message_body", :style => "height: 50px;width:500px" %>

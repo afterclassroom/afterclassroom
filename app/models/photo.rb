@@ -4,7 +4,7 @@ class Photo < ActiveRecord::Base
   # Relations
   belongs_to :user
   belongs_to :photo_album
-
+	has_many :rate_text_photos, :dependent => :destroy
   # Attach
   has_attached_file :photo_attach, {
     :bucket => 'afterclassroom_photos',

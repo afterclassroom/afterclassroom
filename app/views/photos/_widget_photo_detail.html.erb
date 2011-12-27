@@ -48,7 +48,7 @@
 <div class="stoDbtmac"></div>
 <%= render :partial => "photos/photo_action" %>
 <div id="rate_pos" style="line-height: 22px;padding: 4px;width: 81px;float:left; margin-top: -40px; margin-left: 304px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
-  <%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo_album, :controller_name => "photo_albums"}%>
+  <%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo, :controller_name => "photos"}%>
 </div>
 <div style="margin-left: 389px;margin-top: -40px;position: relative;" class="done_tag">
   <a style="display:none;font-weight: bold;position: absolute;" id="stop_tag" href="javascript:;">Done</a>

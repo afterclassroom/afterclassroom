@@ -96,7 +96,7 @@ function LoadOtherCmt<%= post.id %>(perpage,page_no){
     if  ( ! ( $.browser.msie && $.browser.version == "8.0" ) ) {
       $('#like_area<%= post.id %>').corner();
     }
-    if ("<%= obj_class_name %>" == "PhotoAlbum" || "<%= obj_class_name %>" =="MusicAlbum" || "<%= obj_class_name %>" == "Video"|| "<%= obj_class_name %>" == "Story"){
+    if ("<%= obj_class_name %>" == "Photo" || "<%= obj_class_name %>" =="MusicAlbum" || "<%= obj_class_name %>" == "Video"|| "<%= obj_class_name %>" == "Story"){
       objQashdU<%= post.id %> = $('div#rate_<%= post.id %>_<%= obj_class_name %>').find('.qashdU');
     }
     else {
@@ -131,7 +131,7 @@ function LoadOtherCmt<%= post.id %>(perpage,page_no){
     if  ( ! ( $.browser.msie && $.browser.version == "8.0" ) ) {
       $('#dislike_area<%= post.id %>').corner();
     }
-    if ("<%= obj_class_name %>"=="PhotoAlbum" || "<%= obj_class_name %>" =="MusicAlbum" || "<%= obj_class_name %>" == "Video"|| "<%= obj_class_name %>" == "Story"){
+    if ("<%= obj_class_name %>"=="Photo" || "<%= obj_class_name %>" =="MusicAlbum" || "<%= obj_class_name %>" == "Video"|| "<%= obj_class_name %>" == "Story"){
       objQashdD<%= post.id %> = $('div#rate_<%= post.id %>_<%= obj_class_name %>').find('.qashdD');
     } else {
       objQashdD<%= post.id %> = $('div#rate_<%= post.id %>_Post').find('.qashdD');

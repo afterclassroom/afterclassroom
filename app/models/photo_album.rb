@@ -7,7 +7,6 @@ class PhotoAlbum < ActiveRecord::Base
   # Relations
   belongs_to :user
   has_many :photos, :dependent => :destroy
-  has_many :rate_text_photos, :dependent => :destroy
   
   # Comments
   acts_as_commentable
