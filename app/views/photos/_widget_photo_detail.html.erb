@@ -53,11 +53,13 @@
 <div style="margin-left: 389px;margin-top: -40px;position: relative;" class="done_tag">
   <a style="display:none;font-weight: bold;position: absolute;" id="stop_tag" href="javascript:;">Done</a>
 </div>
-<%= show_post_comments(@photo) %>
-<% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
-  <%= hidden_field_tag "comment_content" %>
-  <%= hidden_field_tag "photo_id", @photo.id %>
-<% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
+<div class="commentPhoto" style="margin-top: 40px">
+  <%= show_post_comments(@photo) %>
+  <% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
+    <%= hidden_field_tag "comment_content" %>
+    <%= hidden_field_tag "photo_id", @photo.id %>
+  <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
+</div>
 <script type="text/javascript">
   //var posi = $('#container').offset();
   var overallCount = 0;//this variable support for show/hide accept/refuse
@@ -198,7 +200,7 @@
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
-		setTimeout($('.photoTag').photoTag({
+    setTimeout($('.photoTag').photoTag({
       requesTagstUrl: strrequesTagstUrl,
       deleteTagsUrl: strdeleteTagsUrl,
       addTagUrl: straddTagUrl,
