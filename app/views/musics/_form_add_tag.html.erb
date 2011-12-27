@@ -49,8 +49,8 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
-    $(".submit").click(function(){
-      $('.submit').append('<div id="loader_id_submit">');
+    $("#send_btn").click(function(){
+      $('#send_btn').append('<div id="loader_id_submit">');
       $('.submit_loader').append('<%= show_ajax_loader("loader_submit","display: block; position: absolute; float: right; height: 19px; margin-top: -22px; margin-left: 55px;") %>');
       $("#loader_id_submit")
       .height(25)

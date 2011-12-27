@@ -4,7 +4,7 @@
   <div class="form_friends" style="margin-left:10px; margin-top: 10px; width: 440px;">
     <%= text_field_tag "share_to", "" %>
 		<div class="submit" style="float: right; margin-top: -25px;" id="send_btn">
-		  <a onmouseover="this.style.cursor='pointer';">Sendviet</a>
+		  <a onmouseover="this.style.cursor='pointer';">Send</a>
 		  <div class="submit_loader"></div>
 		</div>
   </div>
@@ -44,8 +44,8 @@
     /* END: handle send comment event to send email notification */
   });
   $(document).ready(function(){
-    $(".submit").click(function(){
-      $('.submit').append('<div id="loader_id_submit">');
+    $("#send_btn").click(function(){
+      $('#send_btn').append('<div id="loader_id_submit">');
       $('.submit_loader').append('<%= show_ajax_loader("loader_submit","display: block; position: absolute; float: right; height: 19px; margin-top: -22px; margin-left: 55px;") %>');
       $("#loader_id_submit")
       .height(25)
