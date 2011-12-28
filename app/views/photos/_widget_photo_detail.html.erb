@@ -213,8 +213,7 @@
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
-		$('#img_to_tag')
-	.load(function(){
+		$('#img_to_tag').load(function(){
 		setTimeout($('.photoTag').photoTag({
       requesTagstUrl: strrequesTagstUrl,
       deleteTagsUrl: strdeleteTagsUrl,

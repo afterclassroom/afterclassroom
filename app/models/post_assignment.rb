@@ -2,7 +2,7 @@
 class PostAssignment < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
-  
+
   # Relations
   belongs_to :post, :dependent => :destroy
   
