@@ -103,7 +103,7 @@
       });
       //END change the reasons display per page
       //BEGIN update number of people rate; reasons
-      if ("<%= @rated_type %>" == "PhotoAlbum" || "<%= @rated_type %>" =="MusicAlbum" || "<%= @rated_type %>" == "Video"  || "<%= @rated_type %>" == "Story"    ){
+      if ("<%= @rated_type %>" == "Photo" || "<%= @rated_type %>" =="MusicAlbum" || "<%= @rated_type %>" == "Video"  || "<%= @rated_type %>" == "Story"    ){
         noOfDislike<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @rated_type %>').find('.qashdD').find('a').html();
       }
       else {
