@@ -1,144 +1,143 @@
-        <div class="proList" style="margin: 0px; width: 405px;" id="headerd<%= @post.id %>">
-          <div class="writeCom" style="float:none;">
-            <label id="label1d<%= @post.id %>" style="float: left;">0 people dislike this.</label>
-	    <label id="label2d<%= @post.id %>" style="float: left;">There are <%= @dislike_size %> reasons.</label>
-            <div onclick="" style="float: right; cursor: pointer;" class="" id="hided<%= @post.id %>">
-              <img src="/images/up_panel.png"/>
-            </div>
-          </div>
-        </div>
-        <% @rating_texts.each do |cmt| %>
-        <!-- like_item is the template that used common between LIKE and DISLIKE -->
-	<%= render :partial => "like_item", :locals => {:cmt => cmt} %>
-	<% end %>
-
-	
-	<!-- BEGIN pagination-->
-	<div class="assPage" style="padding:0" id="paging<%= @post.id %>">
-	  <span class="numPage" style="float: left;margin-top: 12px;"><%= page_entries_info @rating_texts %></span>
-	  <div class="reqTi">
-	     &nbsp <input type="text" value="<%= @perpage %>" size="2" name="per_page" id="perpage<%= @post.id %>"  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
-	  </div>
-	  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
-	</div>
-	<!-- END pagination -->
-	<!-- BEGIN form -->
-	<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
-	  <% form_tag url_for(:controller => "rate_cmts", :action => "add_dislike_cmt"), :id => "form_dcmt#{@post.id}", :method => :post, :remote => true, :name => "form_dcmt#{@post.id}" do %>
-	    <%= hidden_field_tag "post_id", "#{@post.id}" %>
-	    <%= hidden_field_tag "rated_type", "#{@rated_type}" %>
-
-	    
-	    <div class="proListPic">
-	      <%= show_image_user_post(current_user) %>
-
-	    </div>
-	    <div class="proListR">
-	      <label style="color: #6F6F63; float: left;">I dislike this because . . .</label>
-	      <div class="writeCom fixerrotie" style="width: 372px;">
-		<textarea name="cmt_dcnt" id="cmt_d<%= @post.id %>" style="width: 364px; background: white;" class="{validate:{required:true}}"></textarea>
-	      </div>
-	    </div>
-	    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
-	      <input type="button" class="buttonCom" name="commit" value="Send" id="send<%= @post.id %>">
-	    </div>
-	    <div style="float:right;" class="postDesInf" id="desc_count<%= @post.id %>">255 characters max - Current: 0 character</div>	      
-	    <% end %>
-	    <%= show_ajax_loader("wait_sendd#{@post.id}", "background: white; width: 18px; margin-left: 5px; margin-top: 5px; display: none; background: none;") %>
-	  </div>
-	<!-- END form -->
-	
-
-<script type="text/javascript">
-var noOfDisLike<%= @post.id %>;
+<div class="proList" style="margin: 0px; width: 405px;" id="headerd<%= @post.id %>">
+  <div class="writeCom" style="float:none;">
+    <label id="label1d<%= @post.id %>" style="float: left;">0 people dislike this.</label>
+    <label id="label2d<%= @post.id %>" style="float: left;">There are <%= @dislike_size %> reasons.</label>
+    <div onclick="" style="float: right; cursor: pointer;" class="" id="hided<%= @post.id %>">
+      <img src="/images/up_panel.png"/>
+    </div>
+  </div>
+</div>
+<% @rating_texts.each do |cmt| %>
+  <!-- like_item is the template that used common between LIKE and DISLIKE -->
+  <%= render :partial => "like_item", :locals => {:cmt => cmt} %>
+<% end %>
 
 
-function SubmitFormDCmt<%= @post.id %>(){
-  var result = $('form#form_dcmt<%= @post.id %>').validate({
-    meta: "validate"
-  });
-  if (result) {
-    $('form#form_dcmt<%= @post.id %>').submit();
-  }
-}
+<!-- BEGIN pagination-->
+<div class="assPage" style="padding:0" id="paging<%= @post.id %>">
+  <span class="numPage" style="float: left;margin-top: 12px;"><%= page_entries_info @rating_texts %></span>
+  <div class="reqTi">
+    &nbsp <input type="text" value="<%= @perpage %>" size="2" name="per_page" id="perpage<%= @post.id %>"  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
+  </div>
+  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
+</div>
+<!-- END pagination -->
+<!-- BEGIN form -->
+<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
+  <% form_tag url_for(:controller => "rate_cmts", :action => "add_dislike_cmt"), :id => "form_dcmt#{@post.id}", :method => :post, :remote => true, :name => "form_dcmt#{@post.id}" do %>
+    <%= hidden_field_tag "post_id", "#{@post.id}" %>
+    <%= hidden_field_tag "rated_type", "#{@rated_type}" %>
 
-$(document).ready(function(){
-  vtip();
-  //BEGIN ajax pagination
-  var curentPage<%= @post.id %> = parseInt('<%= @str_cur_page %>');
-  $('#paging<%= @post.id %> a').each(function(){
-    $(this).attr('href','javascript:;');
-    $(this).click(function(){
-      if ($(this).text() == 'Next'){
-        $('#wait_dislike<%= @post.id %>').show();
-        $('#dislike_inner<%= @post.id %>').html('');
-        curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
-        LoadDisLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
-      }else if ($(this).text() == 'Previous'){
-        $('#wait_dislike<%= @post.id %>').show();
-        $('#dislike_inner<%= @post.id %>').html('');
-        curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
-        LoadDisLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
+
+    <div class="proListPic">
+      <%= show_image_user_post(current_user) %>
+
+    </div>
+    <div class="proListR">
+      <label style="color: #6F6F63; float: left;">I dislike this because . . .</label>
+      <div class="writeCom fixerrotie" style="width: 372px;">
+        <textarea name="cmt_dcnt" id="cmt_d<%= @post.id %>" style="width: 364px; background: white;" class="{validate:{required:true}}"></textarea>
+      </div>
+    </div>
+    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
+      <input type="button" class="buttonCom" name="commit" value="Send" id="send<%= @post.id %>">
+    </div>
+    <div style="float:right;" class="postDesInf" id="desc_count<%= @post.id %>">255 characters max - Current: 0 character</div>	      
+  <% end %>
+  <%= show_ajax_loader("wait_sendd#{@post.id}", "background: white; width: 18px; margin-left: 5px; margin-top: 5px; display: none; background: none;") %>
+</div>
+<!-- END form -->
+
+  <script type="text/javascript">
+    
+    var noOfDisLike<%= @post.id %>;
+
+    function SubmitFormDCmt<%= @post.id %>(){
+      var result = $('form#form_dcmt<%= @post.id %>').validate({
+        meta: "validate"
+      });
+      if (result) {
+        $('form#form_dcmt<%= @post.id %>').submit();
+      }
+    }
+
+    $(document).ready(function(){
+      vtip();
+      //BEGIN ajax pagination
+      var curentPage<%= @post.id %> = parseInt('<%= @str_cur_page %>');
+      $('#paging<%= @post.id %> a').each(function(){
+        $(this).attr('href','javascript:;');
+        $(this).click(function(){
+          if ($(this).text() == 'Next'){
+            $('#wait_dislike<%= @post.id %>').show();
+            $('#dislike_inner<%= @post.id %>').html('');
+            curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
+            LoadDisLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
+          }else if ($(this).text() == 'Previous'){
+            $('#wait_dislike<%= @post.id %>').show();
+            $('#dislike_inner<%= @post.id %>').html('');
+            curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
+            LoadDisLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
+          }
+          else {
+            $('#wait_dislike<%= @post.id %>').show();
+            var strp = $(this).text();
+            $('#dislike_inner<%= @post.id %>').html('');
+            LoadDisLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',strp);
+          }//end if for .text
+        });
+      });//end .each
+      //BEGIN ajax pagination
+      //BEGIN change the reasons display per page
+      $('#perpage<%= @post.id %>').keypress(function(e) {
+        if(e.keyCode == 13) {
+          if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
+            $('#wait_dislike<%= @post.id %>').show();
+            $('#dislike_inner<%= @post.id %>').html('');
+            LoadDisLikeCmt<%= @post.id %><%= @rated_type %>($(this).val(),'1');
+          }
+        }//end if 
+      });//end key press
+      $('#perpage<%= @post.id %>').keyup(function () { 
+        this.value = this.value.replace(/[^0-9\.]/g,'');
+      });
+      //END change the reasons display per page
+      //BEGIN update number of people rate; reasons
+      if ("<%= @rated_type %>" == "PhotoAlbum" || "<%= @rated_type %>" =="MusicAlbum" || "<%= @rated_type %>" == "Video"  || "<%= @rated_type %>" == "Story"    ){
+        noOfDislike<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @rated_type %>').find('.qashdD').find('a').html();
       }
       else {
-        $('#wait_dislike<%= @post.id %>').show();
-        var strp = $(this).text();
-        $('#dislike_inner<%= @post.id %>').html('');
-        LoadDisLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',strp);
-      }//end if for .text
-    });
-  });//end .each
-  //BEGIN ajax pagination
-  //BEGIN change the reasons display per page
-  $('#perpage<%= @post.id %>').keypress(function(e) {
-    if(e.keyCode == 13) {
-      if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
-        $('#wait_dislike<%= @post.id %>').show();
-        $('#dislike_inner<%= @post.id %>').html('');
-        LoadDisLikeCmt<%= @post.id %><%= @rated_type %>($(this).val(),'1');
+        noOfDislike<%= @post.id %> = $('div#rate_<%= @post.id %>_Post').find('.qashdD').find('a').html();
       }
-    }//end if 
-  });//end key press
-  $('#perpage<%= @post.id %>').keyup(function () { 
-    this.value = this.value.replace(/[^0-9\.]/g,'');
-  });
-  //END change the reasons display per page
-  //BEGIN update number of people rate; reasons
-    if ("<%= @rated_type %>" == "PhotoAlbum" || "<%= @rated_type %>" =="MusicAlbum" || "<%= @rated_type %>" == "Video"  || "<%= @rated_type %>" == "Story"    ){
-      noOfDislike<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @rated_type %>').find('.qashdD').find('a').html();
-    }
-    else {
-      noOfDislike<%= @post.id %> = $('div#rate_<%= @post.id %>_Post').find('.qashdD').find('a').html();
-    }
-  $('#label1d<%= @post.id %>').html(noOfDislike<%= @post.id %>+' people dislike this. ');
-  //END update number of people rate; reasons
-  $('#send<%= @post.id %>').click(function(){
-    SubmitFormDCmt<%= @post.id %>();
-  });
-  $('form#form_dcmt<%= @post.id %>').bind('ajax:beforeSend', function(){
-    $(this).hide('slow');
-    $('#wait_sendd<%= @post.id %>').show('slow');
-  }).bind('ajax:success',function(){
-    $('#wait_sendd<%= @post.id %>').hide('slow');
-    document.form_dcmt<%= @post.id %>.reset();
-    $(this).show('slow');
-  });//end .bind
-  //BEGIN word count on textarea
-  $('#cmt_d<%= @post.id %>').keyup(function(){
-    var len = this.value.length;
-    if (len >= 255) {
-      this.value = this.value.substring(0, 255);
-    }
-    $('#descd_count<%= @post.id %>').text("255 characters max - Current: "+len+" characters")
-  });
-  //END
-  //BEGIN hide dislike_cmt_area when user click X
-  $('#hided<%= @post.id %>').click(function(){
-    $('#dislike_area<%= @post.id %>').hide('slow',function(){
-      $('#wait_dislike<%= @post.id %>').show();
-      $('#dislike_inner<%= @post.id %>').html('');
-    });//end .hide
-  });//end .click
-  //END hide dislike_cmt_area when user click X
-});
-</script>
+      $('#label1d<%= @post.id %>').html(noOfDislike<%= @post.id %>+' people dislike this. ');
+      //END update number of people rate; reasons
+      $('#send<%= @post.id %>').click(function(){
+        SubmitFormDCmt<%= @post.id %>();
+      });
+      $('form#form_dcmt<%= @post.id %>').bind('ajax:beforeSend', function(){
+        $(this).hide('slow');
+        $('#wait_sendd<%= @post.id %>').show('slow');
+      }).bind('ajax:success',function(){
+        $('#wait_sendd<%= @post.id %>').hide('slow');
+        document.form_dcmt<%= @post.id %>.reset();
+        $(this).show('slow');
+      });//end .bind
+      //BEGIN word count on textarea
+      $('#cmt_d<%= @post.id %>').keyup(function(){
+        var len = this.value.length;
+        if (len >= 255) {
+          this.value = this.value.substring(0, 255);
+        }
+        $('#desc_count<%= @post.id %>').text("255 characters max - Current: "+len+" characters")
+      });
+      //END
+      //BEGIN hide dislike_cmt_area when user click X
+      $('#hided<%= @post.id %>').click(function(){
+        $('#dislike_area<%= @post.id %>').hide('slow',function(){
+          $('#wait_dislike<%= @post.id %>').show();
+          $('#dislike_inner<%= @post.id %>').html('');
+        });//end .hide
+      });//end .click
+      //END hide dislike_cmt_area when user click X
+    });
+  </script>
