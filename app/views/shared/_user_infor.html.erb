@@ -6,7 +6,6 @@
       <span style="background: url(/images/icon-friend.png) no-repeat scroll left 0 transparent;line-height: 20px;padding: 4px 0 5px 25px;" class="friend" id="friend_status_<%= user.id %>"><%= show_invite_friend(user) %></span>
       <!--<div class="chat"><%#= show_invite_chat(user) %></div>-->
       <span style="background: url(/images/icon-mail.png) no-repeat scroll left 3px transparent;line-height: 20px;padding: 4px 0 5px 25px;" class="mail"><%= show_email(post) %></span>
-      <%= render :partial => "shared/chat_yahoo", :locals => {:user_post => user} %>
     </span>
   <% end %>
 </div>

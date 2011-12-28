@@ -1,109 +1,109 @@
-        <div class="proList" style="margin: 0px; width: 405px;" id="header<%= @post.id %>">
-          <div class="writeCom" style="float:none;">
-            <label id="label1<%= @post.id %>" style="float: left;">0 people like this.</label>
-	    <label id="label2<%= @post.id %>" style="float: left;">There are <%= @like_size %> reasons.</label>
-            <div onclick="" style="float: right; cursor: pointer;" class="" id="hide<%= @post.id %>">
-              <!-- img src="/images/icon-ing.gif"  up_panel.png -->
-              <img src="/images/up_panel.png"/>
-            </div>
-          </div>
-        </div>
-        <% @rating_texts.each do |cmt| %>
-	<%= render :partial => "like_item", :locals => {:cmt => cmt} %>
-	<% end %>
+<div class="proList" style="margin: 0px; width: 405px;" id="header<%= @post.id %>">
+  <div class="writeCom" style="float:none;">
+    <label id="label1<%= @post.id %>" style="float: left;">0 people like this.</label>
+    <label id="label2<%= @post.id %>" style="float: left;">There are <%= @like_size %> reasons.</label>
+    <div onclick="" style="float: right; cursor: pointer;" class="" id="hide<%= @post.id %>">
+      <!-- img src="/images/icon-ing.gif"  up_panel.png -->
+      <img src="/images/up_panel.png"/>
+    </div>
+  </div>
+</div>
+<% @rating_texts.each do |cmt| %>
+  <%= render :partial => "like_item", :locals => {:cmt => cmt} %>
+<% end %>
 
-	
-	<!-- BEGIN pagination-->
-	<div class="assPage" style="padding:0" id="paging<%= @post.id %>">
-	  <span class="numPage" style="float: left;margin-top: 12px"><%= page_entries_info @rating_texts %></span>
-	  <div class="reqTi">
-	     &nbsp <input type="text" value="<%= @perpage %>" size="2" name="per_page" id="perpage<%= @post.id %>"  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
-	  </div>
-	  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
-	</div>
-	<!-- END pagination -->
-	<!-- BEGIN form -->
-	<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
-	  <% form_tag url_for(:controller => "rate_cmts", :action => "add_like_cmt"), :id => "form_cmt#{@post.id}", :method => :post, :remote => true, :name => "form_cmt#{@post.id}" do %>
-	    <%= hidden_field_tag "post_id", "#{@post.id}" %>
-	    <%= hidden_field_tag "rated_type", "#{@rated_type}" %>
 
-	    
-	    <div class="proListPic">
-	      <%= show_image_user_post(current_user) %>
+<!-- BEGIN pagination-->
+<div class="assPage" style="padding:0" id="paging<%= @post.id %>">
+  <span class="numPage" style="float: left;margin-top: 12px"><%= page_entries_info @rating_texts %></span>
+  <div class="reqTi">
+    &nbsp <input type="text" value="<%= @perpage %>" size="2" name="per_page" id="perpage<%= @post.id %>"  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
+  </div>
+  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
+</div>
+<!-- END pagination -->
+<!-- BEGIN form -->
+<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
+  <% form_tag url_for(:controller => "rate_cmts", :action => "add_like_cmt"), :id => "form_cmt#{@post.id}", :method => :post, :remote => true, :name => "form_cmt#{@post.id}" do %>
+    <%= hidden_field_tag "post_id", "#{@post.id}" %>
+    <%= hidden_field_tag "rated_type", "#{@rated_type}" %>
 
-	    </div>
-	    <div class="proListR">
-	      <label style="color: #6F6F63; float: left;">I like this because . . .</label>
-	      <div class="writeCom" style="width: 372px;">
-		<textarea name="cmt_cnt" id="cmt_<%= @post.id %>" style="width: 364px; background: white;" class="{validate:{required:true}}"></textarea>
-	      </div>
-	    </div>
-	    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
-	      <input type="button" class="buttonCom" name="commit" value="Send" id="send<%= @post.id %>">
-	    </div>
-	    <div style="float:right;" class="postDesInf" id="desc_count<%= @post.id %>">255 characters max - Current: 0 character</div>	      
-	    <% end %>
-	    <%= show_ajax_loader("wait_send#{@post.id}", "background: white; width: 18px; margin-left: 5px; margin-top: 5px; display: none; background: none;") %>
-	  </div>
-	<!-- END form -->
-	
+
+    <div class="proListPic">
+      <%= show_image_user_post(current_user) %>
+
+    </div>
+    <div class="proListR">
+      <label style="color: #6F6F63; float: left;">I like this because . . .</label>
+      <div class="writeCom" style="width: 372px;">
+        <textarea name="cmt_cnt" id="cmt_<%= @post.id %>" style="width: 364px; background: white;" class="{validate:{required:true}}"></textarea>
+      </div>
+    </div>
+    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
+      <input type="button" class="buttonCom" name="commit" value="Send" id="send<%= @post.id %>">
+    </div>
+    <div style="float:right;" class="postDesInf" id="desc_count<%= @post.id %>">255 characters max - Current: 0 character</div>	      
+  <% end %>
+  <%= show_ajax_loader("wait_send#{@post.id}", "background: white; width: 18px; margin-left: 5px; margin-top: 5px; display: none; background: none;") %>
+</div>
+<!-- END form -->
+
 
 <script type="text/javascript">
-var noOfLike<%= @post.id %>;
+  var noOfLike<%= @post.id %>;
 
-function SubmitFormCmt<%= @post.id %>(){
-  var result = $('form#form_cmt<%= @post.id %>').validate({
-    meta: "validate"
-  });
-  if (result) {
-    $('form#form_cmt<%= @post.id %>').submit();
-  }
-}
-
-$(document).ready(function(){
-  vtip();
-  //BEGIN ajax pagination
-  var curentPage<%= @post.id %> = parseInt('<%= @str_cur_page %>');
-  $('#paging<%= @post.id %> a').each(function(){
-    $(this).attr('href','javascript:;');
-    $(this).click(function(){
-      if ($(this).text() == 'Next'){
-        $('#wait_like<%= @post.id %>').show();
-        $('#like_inner<%= @post.id %>').html('');
-        curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
-        LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
-      }else if ($(this).text() == 'Previous'){
-        $('#wait_like<%= @post.id %>').show();
-        $('#like_inner<%= @post.id %>').html('');
-        curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
-        LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
-      }
-      else {
-        $('#wait_like<%= @post.id %>').show();
-        var strp = $(this).text()
-        $('#like_inner<%= @post.id %>').html('');
-        LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',strp);
-      }//end if for .text
+  function SubmitFormCmt<%= @post.id %>(){
+    var result = $('form#form_cmt<%= @post.id %>').validate({
+      meta: "validate"
     });
-  });//end .each
-  //BEGIN ajax pagination
-  //BEGIN change the reasons display per page
-  $('#perpage<%= @post.id %>').keypress(function(e) {
-    if(e.keyCode == 13) {
-      if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
-        $('#wait_like<%= @post.id %>').show();
-        $('#like_inner<%= @post.id %>').html('');
-        LoadLikeCmt<%= @post.id %><%= @rated_type %>($(this).val(),'1');
-      }
-    }//end if 
-  });//end key press
-  $('#perpage<%= @post.id %>').keyup(function () { 
-    this.value = this.value.replace(/[^0-9\.]/g,'');
-  });
-  //END change the reasons display per page
+    if (result) {
+      $('form#form_cmt<%= @post.id %>').submit();
+    }
+  }
 
-  //BEGIN update number of people like; reasons
+  $(document).ready(function(){
+    vtip();
+    //BEGIN ajax pagination
+    var curentPage<%= @post.id %> = parseInt('<%= @str_cur_page %>');
+    $('#paging<%= @post.id %> a').each(function(){
+      $(this).attr('href','javascript:;');
+      $(this).click(function(){
+        if ($(this).text() == 'Next'){
+          $('#wait_like<%= @post.id %>').show();
+          $('#like_inner<%= @post.id %>').html('');
+          curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
+          LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
+        }else if ($(this).text() == 'Previous'){
+          $('#wait_like<%= @post.id %>').show();
+          $('#like_inner<%= @post.id %>').html('');
+          curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
+          LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
+        }
+        else {
+          $('#wait_like<%= @post.id %>').show();
+          var strp = $(this).text()
+          $('#like_inner<%= @post.id %>').html('');
+          LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',strp);
+        }//end if for .text
+      });
+    });//end .each
+    //BEGIN ajax pagination
+    //BEGIN change the reasons display per page
+    $('#perpage<%= @post.id %>').keypress(function(e) {
+      if(e.keyCode == 13) {
+        if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
+          $('#wait_like<%= @post.id %>').show();
+          $('#like_inner<%= @post.id %>').html('');
+          LoadLikeCmt<%= @post.id %><%= @rated_type %>($(this).val(),'1');
+        }
+      }//end if 
+    });//end key press
+    $('#perpage<%= @post.id %>').keyup(function () { 
+      this.value = this.value.replace(/[^0-9\.]/g,'');
+    });
+    //END change the reasons display per page
+
+    //BEGIN update number of people like; reasons
     if ("<%= @rated_type %>" == "PhotoAlbum" || "<%= @rated_type %>" =="MusicAlbum" || "<%= @rated_type %>" == "Video"  || "<%= @rated_type %>" == "Story"   ){
       noOfLike<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @rated_type %>').find('.qashdU').find('a').html();
     }
@@ -111,36 +111,36 @@ $(document).ready(function(){
       noOfLike<%= @post.id %> = $('div#rate_<%= @post.id %>_Post').find('.qashdU').find('a').html();
     }
 
-  $('#label1<%= @post.id %>').html(noOfLike<%= @post.id %>+' people like this. ');
-  //END update number of people like; reasons
-  $('#send<%= @post.id %>').click(function(){
-    SubmitFormCmt<%= @post.id %>();
-    //$('form#form_cmt<%= @post.id %>').submit();
+    $('#label1<%= @post.id %>').html(noOfLike<%= @post.id %>+' people like this. ');
+    //END update number of people like; reasons
+    $('#send<%= @post.id %>').click(function(){
+      SubmitFormCmt<%= @post.id %>();
+      //$('form#form_cmt<%= @post.id %>').submit();
+    });
+    $('form#form_cmt<%= @post.id %>').bind('ajax:beforeSend', function(){
+      $(this).hide('slow');
+      $('#wait_send<%= @post.id %>').show('slow');
+    }).bind('ajax:success',function(){
+      $('#wait_send<%= @post.id %>').hide('slow');
+      document.form_cmt<%= @post.id %>.reset();
+      $(this).show('slow');
+    });//end .bind
+    //BEGIN word count on textarea
+    $('#cmt_<%= @post.id %>').keyup(function(){
+      var len = this.value.length;
+      if (len >= 255) {
+        this.value = this.value.substring(0, 255);
+      }
+      $('#desc_count<%= @post.id %>').text("255 characters max - Current: "+len+" characters")
+    });
+    //END
+    //BEGIN hide like_cmt_area when user click X
+    $('#hide<%= @post.id %>').click(function(){
+      $('#like_area<%= @post.id %>').hide('slow',function(){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+      });//end .hide
+    });//end .click
+    //END hide like_cmt_area when user click X
   });
-  $('form#form_cmt<%= @post.id %>').bind('ajax:beforeSend', function(){
-    $(this).hide('slow');
-    $('#wait_send<%= @post.id %>').show('slow');
-  }).bind('ajax:success',function(){
-    $('#wait_send<%= @post.id %>').hide('slow');
-    document.form_cmt<%= @post.id %>.reset();
-    $(this).show('slow');
-  });//end .bind
-  //BEGIN word count on textarea
-  $('#cmt_<%= @post.id %>').keyup(function(){
-    var len = this.value.length;
-    if (len >= 255) {
-      this.value = this.value.substring(0, 255);
-    }
-    $('#desc_count<%= @post.id %>').text("255 characters max - Current: "+len+" characters")
-  });
-  //END
-  //BEGIN hide like_cmt_area when user click X
-  $('#hide<%= @post.id %>').click(function(){
-    $('#like_area<%= @post.id %>').hide('slow',function(){
-      $('#wait_like<%= @post.id %>').show();
-      $('#like_inner<%= @post.id %>').html('');
-    });//end .hide
-  });//end .click
-  //END hide like_cmt_area when user click X
-});
 </script>
