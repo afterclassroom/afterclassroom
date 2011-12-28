@@ -6327,6 +6327,17 @@ div.ufo_sel div.ufo_span2b{
     margin-left: 14px;
     margin-top: -3px;
 }
+#rate_pos .AfterClCom a{
+    float: left;
+    line-height: 13px;
+    height: 0px;
+}
+#rate_pos .AfterClCom span{
+    margin-left: 40px;
+}
+#rate_pos .proListCont{
+    float: none;
+}
 .photoTag-cpanell{
     background:url("/images/btm71.png") no-repeat scroll 0 0 transparent;
     height:25px;
@@ -6352,5 +6363,8 @@ div.ufo_sel div.ufo_span2b{
 }
 #remove_btn:hover{
     background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
+}
+.contAcrating .ratingAction{
+    line-height: 22px;
 }
 /*------*/

@@ -28,7 +28,7 @@
         </div>
         <div id="action_photo">
           <%= render :partial => "photo_album_action" %>
-          <div id="rate_pos" style="line-height: 22px;padding: 4px;width: 81px;float: right; margin-top: -40px; margin-right: 181px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
+          <div id="rate_pos" style="padding: 4px;width: 81px;float: right; margin-top: -40px; margin-right: 181px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
             <%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo_album, :controller_name => "photo_albums"}%>
           </div>
           <%= show_post_comments(@photo_album) %>

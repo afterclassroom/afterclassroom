@@ -1,70 +1,70 @@
-<div class="contMainL" style="margin-top: -12px;">
+<div class="contMainL contAcrating" style="margin-top: -12px;">
   <div class="col571 proCen" style="background: none">
     <div class="col571in" style="background: none">
       <div class="proCenCont">
-			<!-- BEGIN: library for photo-tag -->
-			<link media="screen" type="text/css" href="/stylesheets/styles2.css" rel="stylesheet"/>
-			<script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
-			<!-- END: library for photo-tag -->       
-			<div class="AsDOr RePho">
-				<div>
-					<div id="img_id_loader" style="width: 110px;padding-left: 40px;">
+        <!-- BEGIN: library for photo-tag -->
+        <link media="screen" type="text/css" href="/stylesheets/styles2.css" rel="stylesheet"/>
+        <script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
+        <!-- END: library for photo-tag -->       
+        <div class="AsDOr RePho">
+          <div>
+            <div id="img_id_loader" style="width: 110px;padding-left: 40px;">
 						Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left;" title="Next" src="/images/ajax-loader-a.gif"/>
-					</div>
-				</div>
-				<div id="container">
-					<p style="text-align:center">
-						<%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
-					</p>
-					<div id="tag_list_place" style="position: relative;text-align: left; margin-left: 33px; width: 495px;"></div>
-					<%
-					if controller.action_name == 'show' || controller.action_name == 'show_photo_detail'
-					%>
-						<div id="title_tag" style="text-align:center;height: 11px"><%= @photo.title %></div>
-					<% end %>
-				</div>
-			</div>
-			<div class="AsVer">
-				<% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>
-					<div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
-						Verify users have been tagged 
-						<a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
-						<a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
-					</div>
-					<% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
-						<%= hidden_field_tag "decision_id" %>
-						<%= hidden_field_tag "photo_id", @photo.id %>
-						<div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
-						  <% @usrs_for_verify.each do |user| %>
-						    <%= render :partial => "photos/item_user", :locals => {:user => user} %>
-						  <% end %>
-						</div>
+            </div>
+          </div>
+          <div id="container">
+            <p style="text-align:center">
+              <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
+            </p>
+            <div id="tag_list_place" style="position: relative;text-align: left; margin-left: 33px; width: 495px;"></div>
+            <%
+            if controller.action_name == 'show' || controller.action_name == 'show_photo_detail'
+            %>
+              <div id="title_tag" style="text-align:center;height: 11px"><%= @photo.title %></div>
+            <% end %>
+          </div>
+        </div>
+        <div class="AsVer">
+          <% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>
+            <div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
+                                                  Verify users have been tagged 
+              <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
+              <a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
+            </div>
+            <% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
+              <%= hidden_field_tag "decision_id" %>
+              <%= hidden_field_tag "photo_id", @photo.id %>
+              <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
+                <% @usrs_for_verify.each do |user| %>
+                  <%= render :partial => "photos/item_user", :locals => {:user => user} %>
+                <% end %>
+              </div>
 
-						<div class="stoDbtm" style="display:none;" id="btn_pannel">
-						  <div class="AsDContBtm" style="float:right; margin-right: 39px;">
-						    <span class="btmComment"><a href="javascript:;" id="accept_btn">Accept</a></span>
-						    <span class="btmComment"><a href="javascript:;" id="refuse_btn">Refuse</a></span>
-						  </div>
-						</div>
-					<% end %><!-- end form -->        
-				<% end %><!-- end if  -->
-			</div>
-			<div class="stoDbtmac"></div>
-			<%= render :partial => "photos/photo_action" %>
-			<div id="rate_pos" style="line-height: 22px;padding: 4px;width: 81px;float:left; margin-top: -40px; margin-left: 304px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
-				<%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo, :controller_name => "photos"}%>
-			</div>
-			<div style="margin-left: 389px;margin-top: -40px;position: relative;" class="done_tag">
-				<a style="display:none;font-weight: bold;position: absolute;" id="stop_tag" href="javascript:;">Done</a>
-			</div>
-			<div class="commentPhoto" style="margin-top: 40px">
-				<%= show_post_comments(@photo) %>
-				<% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
-					<%= hidden_field_tag "comment_content" %>
-					<%= hidden_field_tag "photo_id", @photo.id %>
-				<% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
-			</div>
-			</div>
+              <div class="stoDbtm" style="display:none;" id="btn_pannel">
+                <div class="AsDContBtm" style="float:right; margin-right: 39px;">
+                  <span class="btmComment"><a href="javascript:;" id="accept_btn">Accept</a></span>
+                  <span class="btmComment"><a href="javascript:;" id="refuse_btn">Refuse</a></span>
+                </div>
+              </div>
+            <% end %><!-- end form -->        
+          <% end %><!-- end if  -->
+        </div>
+        <div class="stoDbtmac"></div>
+        <%= render :partial => "photos/photo_action" %>
+        <div id="rate_pos" style="padding: 4px;width: 81px;float:left; margin-top: -40px; margin-left: 304px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
+          <%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo, :controller_name => "photos"}%>
+        </div>
+        <div style="margin-left: 389px;margin-top: -40px;position: relative;" class="done_tag">
+          <a style="display:none;font-weight: bold;position: absolute;" id="stop_tag" href="javascript:;">Done</a>
+        </div>
+        <div class="commentPhoto" style="margin-top: 40px">
+          <%= show_post_comments(@photo) %>
+          <% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
+            <%= hidden_field_tag "comment_content" %>
+            <%= hidden_field_tag "photo_id", @photo.id %>
+          <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -213,21 +213,21 @@
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
-		$('#img_to_tag').load(function(){
-		setTimeout($('.photoTag').photoTag({
-      requesTagstUrl: strrequesTagstUrl,
-      deleteTagsUrl: strdeleteTagsUrl,
-      addTagUrl: straddTagUrl,
-      parametersForNewTag: {
-        name: {
-          parameterKey: 'name',
-          isAutocomplete: true,
-          autocompleteUrl: strautocompleteUrl,
-          label: 'Name'
+    $('#img_to_tag').load(function(){
+      setTimeout($('.photoTag').photoTag({
+        requesTagstUrl: strrequesTagstUrl,
+        deleteTagsUrl: strdeleteTagsUrl,
+        addTagUrl: straddTagUrl,
+        parametersForNewTag: {
+          name: {
+            parameterKey: 'name',
+            isAutocomplete: true,
+            autocompleteUrl: strautocompleteUrl,
+            label: 'Name'
+          }
         }
-      }
-    }), 5000);	
-	});
+      }), 5000);	
+    });
     
     $('#stop_tag').click(function(){
       $('#photoTag-add_<%= @photo.id %>').show();
