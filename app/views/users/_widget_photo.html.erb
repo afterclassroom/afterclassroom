@@ -1,7 +1,7 @@
-<div class="slStoryL" style="margin-top: -15px">
-  <div class="inboxLeft">
-    <div class="AsDOr RePho" style="margin-left: 0px">
-      <div class="stoDet phoD">
+<div class="contMainL" style="margin-top: -12px;">
+  <div class="col571 proCen" style="background: none">
+    <div class="col571in" style="background: none">
+      <div class="proCenCont">
         <div class="AsDcomImg">
           <%= show_image_user_post(@photo.user) %>
         </div>
@@ -19,6 +19,12 @@
       <%= render :partial => "photos/widget_photo_detail" %>
     </div>
   </div>
+</div>
+
+<div class="contMainR" style="margin-right: 22px;">
+  <!--Most Viewed-->
+  <%= render :partial => "photos/on_this_photo" %>
+  <!--Most Viewed-->
 </div>
 <script>
   $(document).ready(function() {

@@ -1,7 +1,3 @@
-<div class="contMainL" style="margin-top: -12px;">
-  <div class="col571 proCen" style="background: none">
-    <div class="col571in" style="background: none">
-      <div class="proCenCont">
 			<!-- BEGIN: library for photo-tag -->
 			<link media="screen" type="text/css" href="/stylesheets/styles2.css" rel="stylesheet"/>
 			<script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
@@ -64,15 +60,7 @@
 					<%= hidden_field_tag "photo_id", @photo.id %>
 				<% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 			</div>
-			</div>
-    </div>
-  </div>
-</div>
-<div class="contMainR" style="margin-right: 22px;">
-  <!--Most Viewed-->
-  <%= render :partial => "photos/on_this_photo" %>
-  <!--Most Viewed-->
-</div>
+
 <script type="text/javascript">
   //var posi = $('#container').offset();
   var overallCount = 0;//this variable support for show/hide accept/refuse
