@@ -5,7 +5,7 @@
 	  <div class="proListR">
 	    <div class="AfterClCom">
 	      <%= show_user_post(cmt.user) %> - 
-	      <%= cmt.content %>
+              <span><%= cmt.content %></span>
 	    </div>
 	    <div class="proListCont">
 	      <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
@@ -17,3 +17,8 @@ $(document).ready(function(){
   $('#item_<%= cmt.id %>').find('.AfterClCom a').css('color','#0A81C4');
 });
 </script>
+<style>
+  #rate_pos AfterClCom{
+    line-height: 13px;
+  }
+</style>
