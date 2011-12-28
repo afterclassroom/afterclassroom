@@ -1,5 +1,5 @@
 $("#wall_list_comment_<%= @obj.class.name %>_<%= @obj.id %>").html("<%= escape_javascript( render( :partial => "widget_all_comments") ) %>");
 vtip();
 $(function(){
-    $('.AfterClCom').imagefit();
+    $('img').load(function(){ $('.AfterClCom').imagefit() });
 });
