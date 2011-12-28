@@ -116,21 +116,26 @@ class PostAssignmentsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_assignment = PostAssignment.new(params[:post_assignment])
-    @post_assignment.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
     
     if simple_captcha_valid? 
-      @post.save
-      sc = School.find(@school)
-      sc.tag(@post_assignment, :with => @tag_list, :on => :tags)
-      @post_assignment.post = @post
-      if @post_assignment.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_assignment)
-        redirect_to post_assignment_url(@post_assignment)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
+			begin
+				@post_assignment.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
+				@post.save
+		    sc = School.find(@school)
+		    sc.tag(@post_assignment, :with => @tag_list, :on => :tags)
+		    @post_assignment.post = @post
+		    if @post_assignment.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_assignment)
+		      redirect_to post_assignment_url(@post_assignment)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+			rescue
+				flash[:error] = "Failed to create a new post."
+		    render :action => "new"
+			end
     else
       flash[:warning] = "Captcha does not match."
       render :action => "new"
