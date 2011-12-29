@@ -14,7 +14,7 @@ class TagPhotoMail < ActionMailer::Base
   def inform_creator_to_wait_case2(photo, current_user)
     @photo = photo
     @user = current_user
-    mail :to => current_user.email, :subject => "Please wait for #{@video.user.name} to authorize your tag"
+    mail :to => current_user.email, :subject => "Please wait for #{@photo.user.name} to authorize your tag"
   end
   def inform_author_to_authorize_case2(photo, current_user)
     @photo = photo
@@ -31,7 +31,7 @@ class TagPhotoMail < ActionMailer::Base
     @photo = photo
     @user = u
     @current_user = current_user
-    mail :to => @photo.user.email, :subject => "New tag on your video"
+    mail :to => @photo.user.email, :subject => "New tag on your photo"
   end
   def inform_user_been_tagged_by_author(photo, user)
     @photo = photo
