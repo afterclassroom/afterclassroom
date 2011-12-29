@@ -2649,6 +2649,7 @@ div.helpAdv2{
 .fanEx3 a{
     background:url('/images/icon-share.png') no-repeat left 0px;
     padding-left:20px;
+    padding-bottom: 3px;
 }
 .learnDetimg{
     width:110px;
