@@ -17,3 +17,11 @@
 	<% end %>
   </div>
 </div>
+<!-- BEGIN show LIKE comment area -->
+<%= render :partial => "rate_cmts/like_cmts", :locals => {:post => post} %>
+<!-- END show DISLIKE comment area -->
+<!-- BEGIN show LIKE comment area -->
+<%= render :partial => "rate_cmts/dislike_cmts", :locals => {:post => post} %>
+<!-- END show DISLIKE comment area -->
+<%= render :partial => "rate_cmts/cmt_script_a", :locals => {:post => post, :obj_class_name => post.class.name } %>
+
