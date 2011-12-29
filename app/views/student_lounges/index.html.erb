@@ -29,7 +29,7 @@
 <%= render :partial => "right_panel" %>
 <script>
 $(window).load(function(){
-    $('.AfterDes').imagefit();
+    $('img').load(function(){ $('.AfterDes').imagefit() });
 });
 $(window).load(function(){
     $('img').load(function(){ $('.AfterClCom').imagefit() });

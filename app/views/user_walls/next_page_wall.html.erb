@@ -16,7 +16,7 @@
 </script>
 <script>
 $(function(){
-    $('.AfterDes').imagefit();
+    $('img').load(function(){ $('.AfterDes').imagefit() });
 });
 $(function(){
     $('img').load(function(){ $('.AfterClCom').imagefit() });
