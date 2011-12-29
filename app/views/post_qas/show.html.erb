@@ -139,12 +139,13 @@ You are here: <a href="/">Home</a>
             });
 						formatFirstLinkForPaginationComment('<%= @post.class.name %>', '<%= @post.id %>');
 
-$(window).load(function(){
-    $('.AsDContLdes').imagefit();
-});
+
 $(window).load(function(){
 		$('.list_comments').show();
-    $('.AsDcomDes').imagefit();
+    $('img').load(function(){
+      $('.AsDcomDes').imagefit();
+      $('.AsDContLdes').imagefit();
+    });
 		$('.list_comments').hide();
 });
 </script>

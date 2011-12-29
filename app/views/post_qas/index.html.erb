@@ -74,11 +74,11 @@
 <!--Content-->
 <script>
 $(window).load(function(){
-    $('img').load(function(){$('.assDes').imagefit() });
-});
-$(window).load(function(){
 		$('.list_comments').show();
-		$('img').load(function(){ $('.AfterClCom').imagefit() });
+		$('img').load(function(){
+                  $('.AfterClCom').imagefit();
+                  $('.assDes').imagefit();
+                });
 		$('.list_comments').hide();
 });
 </script>
