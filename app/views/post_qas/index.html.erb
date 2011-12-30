@@ -73,12 +73,8 @@
 </div>
 <!--Content-->
 <script>
-$(window).load(function(){
-		$('.list_comments').show();
-		$('img').load(function(){
-                  $('.AfterClCom').imagefit();
-                  $('.assDes').imagefit();
-                });
-		$('.list_comments').hide();
+$(window).ready(function(){
+    $('.AfterClCom').imagefit();
+    $('.assDes').imagefit();
 });
 </script>

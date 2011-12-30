@@ -140,12 +140,8 @@ You are here: <a href="/">Home</a>
 						formatFirstLinkForPaginationComment('<%= @post.class.name %>', '<%= @post.id %>');
 
 
-$(window).load(function(){
-		$('.list_comments').show();
-    $('img').load(function(){
+$(window).ready(function(){
       $('.AsDcomDes').imagefit();
       $('.AsDContLdes').imagefit();
-    });
-		$('.list_comments').hide();
 });
 </script>

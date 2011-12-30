@@ -15,10 +15,8 @@
     });
 </script>
 <script>
-$(function(){
-    $('img').load(function(){ $('.AfterDes').imagefit() });
-});
-$(function(){
-    $('img').load(function(){ $('.AfterClCom').imagefit() });
+$(window).ready(function(){
+    $('.AfterDes').imagefit();
+    $('.AfterClCom').imagefit();
 });
 </script>
