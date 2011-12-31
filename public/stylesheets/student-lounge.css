@@ -6331,13 +6331,12 @@ div.ufo_sel div.ufo_span2b{
 #rate_pos .AfterClCom a{
     float: left;
     line-height: 13px;
-    height: 0px;
 }
 #rate_pos .AfterClCom span{
-    margin-left: 40px;
+    margin-left: 5px;
 }
 #rate_pos .proListCont{
-    float: none;
+    margin-top: -7px;
 }
 .photoTag-cpanell{
     background:url("/images/btm71.png") no-repeat scroll 0 0 transparent;
