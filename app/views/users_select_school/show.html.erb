@@ -103,6 +103,8 @@
       select: select_state
     });
     $("#city").mcDropdown("#city_menu", {
+      minRows: 10,
+      targetColumnSize: 3,
       width: 170,
       valueAttr: "rel_city",
       select: select_city
