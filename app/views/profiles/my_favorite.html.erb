@@ -77,7 +77,11 @@
 </script>
 <script>
   $(window).ready(function(){
-    $('.AfterClCom').imagefit();
-    $('.assDes').imagefit();
+    $('.AfterClCom').imagesLoaded( function(){
+			$('.AfterClCom').imagefit();
+		});
+                $('.assDes').imagesLoaded( function(){
+			$('.assDes').imagefit();
+		});
   });
 </script>

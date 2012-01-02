@@ -16,7 +16,11 @@
 </script>
 <script>
 $(window).ready(function(){
-    $('.AfterDes').imagefit();
-    $('.AfterClCom').imagefit();
+    $('.AfterClCom').imagesLoaded( function(){
+			$('.AfterClCom').imagefit();
+		});
+                $('.AfterDes').imagesLoaded( function(){
+			$('.AfterDes').imagefit();
+		});
 });
 </script>

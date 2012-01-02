@@ -2,5 +2,7 @@ $("#post_list_comment_<%= @post.id %>").html("<%= escape_javascript( render( :pa
 vtip();
 tb_init('div.com a.thickbox');//pass where to apply thickbox
 $(window).ready(function(){
-    $('img').load(function(){ $('.AfterClCom').imagefit() });
+    $('.AfterClCom').imagesLoaded( function(){
+			$('.AfterClCom').imagefit();
+		});
 });

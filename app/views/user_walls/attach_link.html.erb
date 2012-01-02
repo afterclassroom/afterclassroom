@@ -5,7 +5,7 @@
 <% else %>
   <div style="min-height:100px">
     <% if @arr_img.size > 0 %>
-      <div class="AfterImg">
+      <div class="AfterImg" style="display:none;">
         <div class="imgDiv83" style="padding: 3px;background: url(/images/bgafter83.png) no-repeat scroll 0 0 transparent">
           <ul id="carrousel" class="myCarousel" style="margin-left: -4px;">
             <% @arr_img.each do |img| %>
@@ -39,24 +39,27 @@
     <%= p.hidden_field :sub_content %>
   <% end %>
   <script type="text/javascript">
-    jQuery(document).ready(function(){
-      $('.carrousel_carrousel').css({
+    $(window).ready(function(){
+			$('.carrousel_carrousel').css({
         'width':'77px'
       });
       $('.carrousel').css({
         'width':'77px'
       });
       $('#api').css('padding-left','17px');
-      var carrousel = jQuery("#carrousel").carrousel({
-        controls: 'keys',
-        direction: 'left',
-        speed: 50,
-        dispTimeout: 1000,
-        dispNumber: 1,
-        auto: false,
-        callbacks: [giveCurrent],
-        api: true
-      });
+			$('.imgDiv83').imagesLoaded( function(){
+				var carrousel = jQuery("#carrousel").carrousel({
+		      controls: 'keys',
+		      direction: 'left',
+		      speed: 50,
+		      dispTimeout: 1000,
+		      dispNumber: 1,
+		      auto: false,
+		      callbacks: [giveCurrent],
+		      api: true
+		    });
+				$('.AfterImg').show();
+			});
         
       function giveCurrent(){
         $('#user_wall_link_image_link').val($("div[rel='" + carrousel.getCurrent() + "'] img").attr("src"));
