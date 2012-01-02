@@ -4,6 +4,9 @@
   });
     
   $(document).ready(function(){
+		if ($(".imageLink")) {
+      $(".imageLink").fancybox();
+    }
     $('input[type=text].focus_text_field, textarea.focus_text_field').addClass("idleField"); // reset all ##  
     $('input[type=text].focus_text_field, textarea.focus_text_field').live("focus", function(event){
       $(this).toggleClass("focusField idleField");

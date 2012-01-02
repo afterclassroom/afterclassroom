@@ -371,7 +371,7 @@ class User < ActiveRecord::Base
 		if user_id_posts.size > 0
 			user_wall_id_follows = UserWallFollow.where("user_id IN('#{user_id_posts.join("', '")}')")
 			if user_id_blocks.size > 0
-				user_wall_id_follows = 	user_wall_id_follows.collect{|i| !user_id_blocks.include(i.user_wall.user_id_post)  }.map(&:user_wall_id)
+				user_wall_id_follows = 	user_wall_id_follows.collect{|i| i if !user_id_blocks.include?(i.user_wall.user_id_post)  }.map(&:user_wall_id)
 			end
 			user_wall_ids = user_wall_id_follows - user_wall_id_blocks
 			str_cond << "user_id_post IN('#{user_id_posts.join("', '")}')"
