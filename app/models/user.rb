@@ -367,15 +367,16 @@ class User < ActiveRecord::Base
       user_ids << f.id if check_private_permission(self, f, "my_lounges")
     end
 		user_id_posts = user_ids - user_id_blocks
-		user_wall_id_follows = UserWallFollow.where("user_id IN('#{user_ids.join("', '")}')").map(&:user_wall_id)
-		user_wall_ids = user_wall_id_follows - user_wall_id_blocks
 		str_cond = ""
-		if user_id_posts.size > 0 and user_wall_ids.size > 0
-			str_cond << "user_id_post IN('#{user_id_posts.join("', '")}')" if user_id_posts.size > 0
-			str_cond << " AND " if user_id_posts.size > 0 and user_wall_id_blocks.size > 0
-			str_cond << "id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
-			str_cond << " OR " if (user_id_posts.size > 0 or user_wall_id_blocks.size > 0) and user_wall_ids.size > 0
-			str_cond << " id IN('#{user_wall_ids.join("', '")}')" if user_wall_ids.size > 0
+		if user_id_posts.size > 0
+			user_wall_id_follows = UserWallFollow.where("user_id IN('#{user_id_posts.join("', '")}')")
+			if user_id_blocks.size > 0
+				user_wall_id_follows = 	user_wall_id_follows.collect{|i| !user_id_blocks.include(i.user_wall.user_id_post)  }.map(&:user_wall_id)
+			end
+			user_wall_ids = user_wall_id_follows - user_wall_id_blocks
+			str_cond << "user_id_post IN('#{user_id_posts.join("', '")}')"
+			str_cond << " AND id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
+			str_cond << " OR id IN('#{user_wall_ids.join("', '")}')" if user_wall_ids.size > 0
 		end
 		return str_cond == "" ? [] : UserWall.where(str_cond).order("updated_at DESC")
   end

@@ -16,7 +16,7 @@
           </div>
           <% end %>
           <div class="demoBtm">
-            <a id="play_tool_now" href="javascript:;">Click start</a>
+            <a id="play_tool_now" href="<%= @tool.href %>" target="_blank">Click start</a>
           </div>
           <% if @tool.video_id != nil %>
             <div class="vtip demoBtm" style="margin-top: 10px;" title="Showing the video introduce this tool">
@@ -173,9 +173,9 @@
 
     //BEGIN implement function play now
     
-    $('#play_tool_now').click(function(){
-      window.location = '<%= @tool.href %>';
-    });
+    //$('#play_tool_now').click(function(){
+      //window.location = '<%#= @tool.href %>';
+    //});
     //END implement function play now
     var current_box = $('#checkbox_<%= @tool.id %>');
     
