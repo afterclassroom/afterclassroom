@@ -16,6 +16,11 @@ class PostExamSchedule < ActiveRecord::Base
 
   # Tags
   acts_as_taggable_on :tags
+	
+	# Rating for Bad, Good
+  # Bad: 0
+  # Good: 1
+  acts_as_rated :rating_range => 0..1, :with_stats_table => true
   
   def self.paginated_post_conditions_with_option(params, school, type_sh)
     over = params[:over].to_i
@@ -50,5 +55,23 @@ class PostExamSchedule < ActiveRecord::Base
     post_as = self.random(5).with_school(school).with_type(type)
     post_as.select {|p| posts << p.post}
     return posts
+  end
+
+	def total_good
+    self.ratings.count(:conditions => ["rating = ?", 1])
+  end
+
+  def total_bad
+    self.ratings.count(:conditions => ["rating = ?", 0])
+  end
+
+  def score_good
+    total = self.total_good + self.total_bad
+    (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
+  end
+
+  def score_bad
+    total = self.total_good + self.total_bad
+    (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
   end
 end
