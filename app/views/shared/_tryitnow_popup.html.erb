@@ -1,0 +1,176 @@
+<%
+cas_base = "https://login.afterclassroom.com" 
+client = CASClient::Client.new( 
+  :cas_base_url => cas_base 
+) 
+@lt = client.request_login_ticket()
+%>
+<div id="tryitnow">
+  <a class="tryin" style="display: block; position: fixed; top: 283px; left: -2px; margin: 0pt;cursor: pointer;">
+    <img style="border: 0pt none;" src="/images/try-it-now.png">
+  </a>
+</div>
+<div id="dialog_tryitnow" style="margin-top: -25px;display: none;">
+  <a id="popupContactClose"></a>
+  <div style="margin-bottom: 50px;" class="clearFix" id="OverviewBoxes">
+    <div class="login" style="float:none;width:873px">
+      <div class="signin01" style="float: right;width:600px;margin-bottom: 10px;margin-top: -20px;">
+        <div class="signin02" style="font-weight: bold;">
+          <ul>
+            <li><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller), :style=>"background: none" %></li>
+            <li><%= link_to raw("<span>Simple sign up</span>"), signup_url %></li>
+            <li><span style="color: #1FA6F3; font-weight: bold; line-height: 23px;">or Click on Features below to TRY</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="contentBox" id="TryNowBox"> 
+      <form id="login-form-without-login" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+        <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+        <input type="hidden" value="<%= request.protocol + request.host_with_port %>" name="service" id="service">
+        <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+        <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+      </form>     
+      <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Resources</span>
+      <a href="javascript:$('#login-form-without-login').submit();">
+        <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;"/>
+      </a>
+    </div>
+    <div class="contentBox" id="CreateClassBox">
+      <form id="login-form-networking" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+        <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+        <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/student_lounges" name="service" id="service">
+        <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+        <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+      </form>
+      <span style="color: #30424D;font-size: 15px;font-weight: bold;">Social Networking</span>
+      <a href="javascript:$('#login-form-networking').submit();">
+        <img src="/images/profile_user.png" style="margin-top: 10px;border: 0 none;"/>
+      </a>
+    </div>
+    <div class="contentBox" id="StudentEnrollBox" style="margin-right:0px">
+      <form id="login-form-learn-tools" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+        <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+        <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/learn_tools" name="service" id="service">
+        <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+        <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+      </form>
+      <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Tools</span>
+      <a href="javascript:$('#login-form-learn-tools').submit();">
+        <img src="/images/learning_tool.png" style="margin-top: 10px;border: 0 none;"/>
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $("body").append("<div id='opaque_dialog' style='display: none;'></div>");
+  });
+  $(document).ready(function() {
+    chk = $.cookie("close_try_it_now_dialog");
+    if (chk == "yes"){     
+    }
+    else{
+      $("#opaque_dialog").show();
+      $( "#dialog_tryitnow" ).dialog(
+      { height: 360,
+        width: 1030,
+        resizable: false,
+        open: function(){ $(".ui-dialog-titlebar-close").hide();
+          $(this).parents(".ui-dialog:first").find(".ui-widget-header")
+          .removeClass("ui-widget-header").addClass("ui-widget-header-custom");
+        }
+      });
+    }   
+    $("#popupContactClose").click(function(){
+      $.cookie("close_try_it_now_dialog", "yes", { expires: 1 });
+      $("#dialog_tryitnow").dialog("close");
+      $("#opaque_dialog").hide();
+    });
+  });
+  $(document).ready(function(){
+    $("#tryitnow").click(function(){
+      $("#opaque_dialog").show();
+      $("#dialog_tryitnow").dialog(
+      { height: 360,
+        width: 1030,
+        resizable: false,
+        open: function(){ $(".ui-dialog-titlebar-close").hide();
+          $(this).parents(".ui-dialog:first").find(".ui-widget-header")
+          .removeClass("ui-widget-header").addClass("ui-widget-header-custom");
+        }
+      });
+    });
+    $("#popupContactClose").click(function(){
+      $("#dialog_tryitnow").dialog("close");
+      $("#opaque_dialog").hide();
+    });
+  });
+</script>
+<style>
+  #opaque_dialog {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: none;
+    background-color: black;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+  }
+    #popupContactClose{
+    background: url("/images/Photo/fancybox.png") repeat scroll -40px 0 transparent;
+    cursor: pointer;
+    height: 30px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 30px;
+    z-index: 1103;
+  }
+  .signin02 a {
+    background: url("/images/help.png") no-repeat scroll left 4px transparent;
+    cursor: pointer;
+  }
+  .signin02 a span {
+    color: #1FA6F3;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 23px;
+    line-height: 23px;
+    padding-left: 7px;
+  }
+  .signin02 a {
+    cursor: pointer;
+    float: left;
+    padding-right: 7px;
+    text-decoration: none;
+  }
+  #OverviewBoxes .contentBox {
+    background: #D5E9F2;
+    border: 1px solid #3D76A4;
+    -moz-box-shadow: 0 0 5px #98c7e6;
+    -khtml-box-shadow: 0 0 5px #98c7e6;
+    -webkit-box-shadow: 0 0 5px #98c7e6;
+    box-shadow: 0 0 5px #98c7e6;
+    color: #30424D;
+    float: left;
+    font-size: 13px;
+    padding: 10px 10px;
+    position: relative;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    width: 30%;
+    margin-right: 10px;
+  }
+  .contentBox span a{
+    cursor: pointer;
+  }
+</style>
