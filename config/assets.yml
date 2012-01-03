@@ -44,7 +44,7 @@ javascripts:
     - public/javascripts/jquery.jtruncate.js
     - public/javascripts/jquery.corner.js
     - public/javascripts/jquery.imagefit.js
-
+    - public/javascripts/jquery.imagesloaded.js
   student_lounge:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
@@ -91,6 +91,7 @@ javascripts:
     - public/javascripts/flowplayer-3.2.6.min.js
     - public/javascripts/jquery.corner.js
     - public/javascripts/jquery.imagefit.js
+    - public/javascripts/jquery.imagesloaded.js
   photo:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js

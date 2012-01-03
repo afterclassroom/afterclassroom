@@ -4,6 +4,8 @@
 <% end %>
 <script>
 $(window).ready(function(){
-    $('.AsDcomDes').imagefit();
+    $('.AsDcomDes').imagesLoaded( function(){
+			$('.AsDcomDes').imagefit();
+		});
 });
 </script>

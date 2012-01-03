@@ -40,7 +40,11 @@
 </div>
 <script>
 $(window).ready(function(){
-      $('.AfterClCom').imagefit();
-      $('.AfterDes').imagefit();
+      $('.AfterClCom').imagesLoaded( function(){
+			$('.AfterClCom').imagefit();
+		});
+                $('.AfterDes').imagesLoaded( function(){
+			$('.AfterDes').imagefit();
+		});
 });
 </script>
