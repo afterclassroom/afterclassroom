@@ -64,7 +64,7 @@ class PostExamSchedulesController < ApplicationController
   def rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_tt = post.post_tutor
+    post_tt = post.post_exam_schedule
     post_tt.rate rating.to_i, current_user
     # Update rating status
     score_good = post_tt.score_good

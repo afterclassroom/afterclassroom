@@ -20,6 +20,12 @@
               </div>
             </div>
           <% end %>
+					<!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @friends %></span>
+            <%= will_paginate @friends %>
+          </div>
+          <!--Pagination-->
         </div>
       </div>
     </div>

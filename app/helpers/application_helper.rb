@@ -960,7 +960,7 @@ module ApplicationHelper
           when "PostTeamup"
           render :partial => "post_teamups/rating_action", :locals => {:post => obj.post, :controller_name => "post_teamups"}
           when "PostExamSchedule"
-          render :partial => "post_exam_schedules/rating_action", :locals => {:post => obj.post, :controller_name => "post_exam_schedules"}
+          #render :partial => "post_exam_schedules/rating_action", :locals => {:post => obj.post, :controller_name => "post_exam_schedules"}
         end
       end
 		else
