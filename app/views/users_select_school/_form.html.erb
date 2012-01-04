@@ -36,12 +36,25 @@
     </div>
   <% end %>
 </div>
-<div class="filter">Filter your school by alphabets</div>
-<div class="popupAl" id="list_alphabet">
-  <%= link_to_function "All", "select_alphabet('')", :class => "#{"selected" if @alphabet == ""}" %>
-  <% ('A'..'Z').each do |a| %>
-    <%= link_to_function a.to_s, "select_alphabet('#{a.to_s}')", :class => "#{"selected" if @alphabet == a}" %>
-  <% end %>
+<div class="_school_city_from">
+  <div class="city_form" style="width: 300px;float: left">
+    <div class="filter" style="width: 278px;">Filter your city by alphabets</div>
+    <div class="popupAl" id="list_alphabet">
+      <%= link_to_function "All", "select_alphabet('')", :class => "#{"selected" if @alphabet == ""}" %>
+      <% ('A'..'Z').each do |a| %>
+        <%= link_to_function a.to_s, "select_alphabet('#{a.to_s}')", :class => "#{"selected" if @alphabet == a}" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="schoool_form" style="width: 300px;float: left">
+    <div class="filter" style="width: 278px;">Filter your school by alphabets</div>
+    <div class="popupAl" id="list_alphabet">
+      <%= link_to_function "All", "select_alphabet('')", :class => "#{"selected" if @alphabet == ""}" %>
+      <% ('A'..'Z').each do |a| %>
+        <%= link_to_function a.to_s, "select_alphabet('#{a.to_s}')", :class => "#{"selected" if @alphabet == a}" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 <div class="popupBtm"><a href="javascript:;" onclick="select_school();">Select</a></div>
 
