@@ -6,7 +6,7 @@
   </div>
   <div style="float:right">
     <% if friend != current_user %>
-      <span class="support85"><%= show_invite_friend(friend) %></span>
+      <span class="support85" id="friend_status_<%= friend.id %>"><%= show_invite_friend(friend) %></span>
     <% end %>
   </div>
 </div>

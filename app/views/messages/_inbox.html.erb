@@ -25,7 +25,7 @@
         <% else %>
           <%= link_to "#{h(message.subject)} (unread)", user_message_path(current_user, message) %>
         <% end %></div>
-      <div class="dateT"><%=h message.created_at.to_s(:short) %></div>
+      <div class="dateT"><%=h message.created_at.to_s(:long) %></div>
     </div>
   <% end %>
   <div class="assPage">
