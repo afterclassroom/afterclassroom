@@ -11,7 +11,7 @@
     <!--Attach--><%= show_attach(@wall) if @wall.has_attach %><!--Attach-->
   </div>
   <div class="postItem" style="height: 30px;">
-    <div class="reqTip" style="float:none"><%= text_field_tag "share_type", 0, :id => "share_type" %></div>
+    <div class="reqTip repShare" style="float:none"><%= text_field_tag "share_type", 0, :id => "share_type" %></div>
   </div>
   <%
   sub = [["Share on my lounge", 0], ["Share for a friend", 1]] %>
@@ -119,23 +119,9 @@
     });
             
   });
+  $(document).ready(function(){
+    $('.reqShare .mcdropdown').css({
+      'width': '450px'
+    });
+  });
 </script>
-<style>
-  .textboxlist-autocomplete-result div{
-    background: url("/images/bgi-col300.png") no-repeat scroll 0 0 transparent;
-    padding: 3px;
-    height: 51px;
-  }
-  .reqTip .mcdropdown{
-    width: 450px;
-  }
-  .textboxlist-bits{
-    width: 446px;
-  }
-  .textboxlist-autocomplete-results{
-    width: 454px;
-  }
-  .studentImg div{
-    height: 33px;
-  }
-</style>

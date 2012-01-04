@@ -6368,3 +6368,17 @@ div.ufo_sel div.ufo_span2b{
     line-height: 22px;
 }
 /*------*/
+.repShare .mcdropdown{
+    width: 450px;
+}
+.textboxlist-autocomplete-result div{
+    background: url("/images/bgi-col300.png") no-repeat scroll 0 0 transparent;
+    padding: 3px;
+    height: 51px;
+}
+.textboxlist-bits{
+    width: 446px;
+}
+.textboxlist-autocomplete-results{
+    width: 454px;
+}
