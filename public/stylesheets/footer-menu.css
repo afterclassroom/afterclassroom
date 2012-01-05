@@ -526,6 +526,17 @@ a.feedback-tab {
     margin-left: -188px;
     margin-top: 24px;
     position: absolute;
+    z-index: 1;
+}
+.asslinkdownSt_UserRa{
+    background: #F6F6F6;
+    border: 1px solid;
+    color: #969696;
+    display:none;
+    float: right;
+    font-size: 11px;
+    margin-top: 24px;
+    position: absolute;
     z-index: 1000;
 }
 .asslinkdownSt_UserL{
@@ -539,6 +550,20 @@ a.feedback-tab {
     position: absolute;
     z-index: 1000;
     margin-top: 24px;
+}
+.flistRclosea a{
+    background: url("/images/flistDelete.png") no-repeat scroll center center transparent;
+    display: block;
+    height: 8px;
+    text-decoration: none;
+    width: 8px;
+    margin-left: 268px;
+    margin-top: 2px;
+    position: absolute;
+    cursor: pointer;
+}
+.flistRclosea a:hover{
+    background: url("/images/flistDeleteH.png") no-repeat scroll center center transparent;
 }
 .flistRclose a{
     background: url("/images/flistDelete.png") no-repeat scroll center center transparent;
