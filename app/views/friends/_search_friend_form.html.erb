@@ -2,9 +2,9 @@
   <div class="textS"><%= text_field_tag "search[name]", "#{@search_name || "Search friends"}", :class => "focus_text_field", :id => "search_friend_txt" %></div>
   <div class="btmS"><a id="btnFri_submit" href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
     <% end %>
-<div>
+<span>
   <%= render :partial => "friend_search" %>
-</div>
+</span>
 <script>
   var path_friend = "<%= search_suggestion_user_friends_path(current_user) %>";
   $().ready(function(){
@@ -16,7 +16,7 @@
           url: path_friend,
           data: {search_name: $('#search_friend_txt').val()},
           success: function(data) {
-            $('#search_friend_list').html(data);
+            $('#search_friend_lista').html(data);
             $('#search_friend_wrap').show();
             $('#loader_id_fr').hide();
           }
@@ -25,8 +25,8 @@
     });
   });
   $(document).ready(function(){
-    $('#flistRclose').click(function(){
-      $('.asslinkdownSt_UserR').hide();
+    $('#flistRclosea').click(function(){
+      $('.asslinkdownSt_UserRa').hide();
     });
   });
 </script>

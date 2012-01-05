@@ -76,7 +76,7 @@
           url: path_friend,
           data: {search_name: $('#search_friend_txt').val()},        
           success: function(data) {          
-            $('#search_friend_list').html(data);
+            $('#search_friend_lista').html(data);
             $('#search_friend_wrap').show();
             $('#loader_id_frie').remove();
           }
@@ -88,13 +88,13 @@
     vtip()
   });
   $(document).ready(function(){
-    $('#flistRclose').click(function(){
-      $('.asslinkdownSt_UserR').hide();
+    $('#flistRclosea').click(function(){
+      $('.asslinkdownSt_UserRa').hide();
     });
   });
   $(document).ready(function(){
     $('.contMainR').hover(function(){
-      $('.asslinkdownSt_UserR').hide();
+      $('.asslinkdownSt_UserRa').hide();
     })
     $('.contMainC').hover(function(){
       $('.asslinkdownSt_UserL').hide();
