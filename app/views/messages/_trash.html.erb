@@ -19,9 +19,9 @@
       <div class="fromTtxt"><%= message.sender == current_user ? link_to("You to #{message.recipient.name}", user_path(current_user)) : show_user_post(message.sender) %></div>
     </div>
     <div class="subjectT" style="width:330px;word-wrap: break-word;overflow: hidden"><% if message.read? %>
-        <%= link_to h(message.subject), user_message_path(current_user, message) %>
+        <%= link_to raw(message.subject), user_message_path(current_user, message) %>
       <% else %>
-        <%= link_to "#{h(message.subject)} (unread)", user_message_path(current_user, message) %>
+        <%= link_to "#{raw(message.subject)} (unread)", user_message_path(current_user, message) %>
       <% end %></div>
     <div class="dateT"><%=h message.created_at.to_s(:long) %></div>
   </div>

@@ -1079,47 +1079,49 @@ module ApplicationHelper
   
   def check_private_permission(user_check, user, type)
     check = false
-		if user_check
-		  if user == user_check
-		    check = true
-		  else
-					ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
-				  if ps
-				    share_to = ps.share_to
-				    case share_to
-				      when 1 # Friend from school
-				      if user_check
-				        fg = FriendGroup.where(:label => "friends_from_school").first
-				        fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-				        check = true if fng
-				      end
-				      when 2 # Friend of friends
-				      if user_check
-				        fof = user.friend_of_friends
-				        check = fof.nil? ? false : fof.include?(user_check)
-				      end
-				      when 3 # My Family
-				      if user_check
-				        fg = FriendGroup.where(:label => "family_members").first
-				        fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-				        check = true if fng
-				      end
-				      when 4 # My friends
-				      if user_check
-				        check = true if user.user_friends.include?(user_check)
-				      end
-				      when 5 # Friends from work
-				      if user_check
-				        fg = FriendGroup.where(:label => "friends_from_work").first
-				        fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-				        check = true if fng
-				      end
-				      when 6 # Every one
-				      check = true
-				    end
-				end 
+		ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
+			if ps
+				share_to = ps.share_to
+				if share_to == 6 # Every one
+					check = true
+				else
+					if user_check
+						if user_check and user == user_check
+							check = true
+						else
+							case share_to
+						    when 1 # Friend from school
+						    if user_check
+						      fg = FriendGroup.where(:label => "friends_from_school").first
+						      fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+						      check = true if fng
+						    end
+						    when 2 # Friend of friends
+						    if user_check
+						      fof = user.friend_of_friends
+						      check = fof.nil? ? false : fof.include?(user_check)
+						    end
+						    when 3 # My Family
+						    if user_check
+						      fg = FriendGroup.where(:label => "family_members").first
+						      fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+						      check = true if fng
+						    end
+						    when 4 # My friends
+						    if user_check
+						      check = true if user.user_friends.include?(user_check)
+						    end
+						    when 5 # Friends from work
+						    if user_check
+						      fg = FriendGroup.where(:label => "friends_from_work").first
+						      fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+						      check = true if fng
+						    end
+							end
+						end
+					end
+				end
 			end
-    end
     return check
   end
   

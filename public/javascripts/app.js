@@ -220,7 +220,7 @@ function formatFirstLinkForPaginationComment(class_name, id){
     var url = "/posts/comments_list";
     $("div#comments_list div.assPage").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.attr('href').split("?page=")[1];
+        var page = getUrlVars(linkElement.attr('href'))["page"];
         linkElement.attr({
             "href": "javascript:;"
         });
@@ -244,6 +244,13 @@ function formatFirstLinkForPaginationComment(class_name, id){
     });
 }
 
+function getUrlVars(link) {
+	var vars = {};
+	var parts = link.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
 function formatLinkForPaginationComment(){
     $("div.assPage").find("a").each(function(){
         var linkElement = $(this);

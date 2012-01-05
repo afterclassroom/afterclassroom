@@ -81,7 +81,7 @@
           '<\/tr>');
       },
       beforeSend: function(event, files, index, xhr, handler, callBack){
-        var regexp = /\.(png)|(jpg)|(gif)$/i;
+        var regexp = /\.(png)|(jpg)|(jpeg)|(gif)$/i;
         // Using the filename extension for our test,
         // as legacy browsers don't report the mime type
         if (!regexp.test(files[index].name)) {

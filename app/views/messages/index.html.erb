@@ -70,18 +70,23 @@
       });
 
     }else{
-      $("#dialog-delete-message").dialog({
-        modal: true,
-        buttons: {
-          Ok: function() {
-            $('#act').val(act);
-            $('#msg_form').submit();
-          },
-          Cancel: function() {
-            $(this).dialog('close');
-          }
-        }
-      });
+			if (act == 'delete'){
+				$("#dialog-delete-message").dialog({
+		      modal: true,
+		      buttons: {
+		        Ok: function() {
+		          $('#act').val(act);
+		          $('#msg_form').submit();
+		        },
+		        Cancel: function() {
+		          $(this).dialog('close');
+		        }
+		      }
+		    });
+			}else{
+				$('#act').val(act);
+		    $('#msg_form').submit();
+			}
     }
   }
 
