@@ -67,7 +67,7 @@ div#toolbar, div#toolbarbut {
 }
 div#toolbar {
     width: 85%;
-    min-width: 700px; /* to limit the width when an excessive window resize */
+    min-width: 785px; /* to limit the width when an excessive window resize */
     margin: 0px auto; /* centered toolbar */
     left: 0px;
 
@@ -109,7 +109,7 @@ a.chatt, a.share_story, a.musics, a.photos, a.videos, a.inbox, a.friends, a.prof
 a.play_games, a.shopping, a.assignments, a.lecture_notes, a.projects, a.past_tests, a.past_exams, a.events, a.qas, a.tutors, a.books,
 a.jobs, a.foods, a.party, a.myx, a.student_awareness, a.housing, a.teamUp, a.share {
     display: inline-block;
-    width: 40px;
+    width: 35px;
     height: 30px;
     margin-top: 3px;
     border-right:1px solid #EBEBEB;
@@ -233,87 +233,87 @@ a.share {
     left: -20px;
 }
 #tipshare_story {
-    left: 30px;
+    left: 23px;
 }
 #tipprojects {
-    left: 30px;
+    left: 23px;
 }
 #tipphotos {
-    left: 77px;
+    left: 67px;
 }
 #tippast_tests {
-    left: 80px;
+    left: 67px;
 }
 #tipmusics {
-    left: 129px;
+    left: 112px;
 }
 #tippast_exams {
-    left: 126px;
+    left: 111px;
 }
 #tiplecture_notes {
-    left: 176px;
+    left: 155px;
 }
 #tipvideos {
-    left: 175px;
+    left: 156px;
 }
 #tipevents {
-    left: 224px;
+    left: 198px;
 }
 #tipqas {
-    left: 273px;
+    left: 199px;
 }
 #tipinbox {
-    left: 225px;
+    left: 200px;
 }
 #tiptutors {
-    left: 324px;
+    left: 226px;
 }
 #tipfriends {
-    left: 274px;
+    left: 242px;
 }
 #tipbooks {
-    left: 372px;
+    left: 332px;
 }
 #tipprofile {
-    left: 322px;
+    left: 286px;
 }
 #tipjobs {
-    left: 422px;
+    left: 376px;
 }
 #tipsetting {
-    left: 372px;
+    left: 331px;
 }
 #tipfoods {
-    left: 470px;
+    left: 420px;
 }
 #tipphone_app {
     left: 421px;
 }
 #tipparty {
-    left: 518px;
+    left: 464px;
 }
 #tipplay_games {
     left: 470px;
 }
 #tipmyx {
-    left: 569px;
+    left: 506px;
 }
 #tipshopping {
     /*--left: 517px; --*/
-    left: 470px;
+    left: 419px;
 }
 #tipstudent_awareness {
-    left: 617px;
+    left: 551px;
 }
 #tiphousing {
-    left: 665px;
+    left: 595px;
 }
 #tipteamUp {
-    left: 715px;
+    left: 639px;
 }
 #tipshare {
     /*-- left: 570px; --*/
-    left: 422px;
+    left: 376px;
 }
 .tip ul {
     padding: 22px 0 0 25px;

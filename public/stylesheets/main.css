@@ -4,6 +4,7 @@ html, body {
 .after_main {
     min-height: 100%;
     position: relative;
+    min-width: 1100px;
 }
 .footer {
     bottom: 0;
