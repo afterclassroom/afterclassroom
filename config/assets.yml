@@ -200,6 +200,7 @@ stylesheets:
     - public/stylesheets/jquery-customWindow.css
     - public/stylesheets/pagination.css
     - public/stylesheets/validation.css
+    - public/stylesheets/jquery.fancybox.css
     - public/stylesheets/facebox.css
     - public/stylesheets/flash.css
     - public/stylesheets/vtip.css
@@ -213,7 +214,6 @@ stylesheets:
     - public/stylesheets/swfupload.css
     - public/stylesheets/jquery.ad-gallery.css
     - public/stylesheets/jquery.fileupload-ui.css
-    - public/stylesheets/jquery.fancybox.css
     - public/stylesheets/jquery.pnotify.default.css
     - public/stylesheets/video-js.css
     - public/stylesheets/feedback.css
