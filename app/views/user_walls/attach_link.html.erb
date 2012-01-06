@@ -40,12 +40,6 @@
   <% end %>
   <script type="text/javascript">
     $(document).ready(function(){
-      $('.carrousel_carrousel').css({
-        'width':'77px'
-      });
-      $('.carrousel').css({
-        'width':'77px'
-      });
       $('#api').css('padding-left','17px');
       var carrousel = jQuery("#carrousel").carrousel({
         controls: 'keys',
@@ -69,6 +63,12 @@
       jQuery('#prev').click(function(){
         carrousel.prev();
         return false;
+      });
+			$('.carrousel_carrousel').css({
+        'width':'77px'
+      });
+      $('.carrousel').css({
+        'width':'77px'
       });
     });
   </script>

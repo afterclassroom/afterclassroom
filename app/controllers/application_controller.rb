@@ -130,6 +130,24 @@ class ApplicationController < ActionController::Base
       # authentication_logic_goes_here
   end
 
+	def update_wall(comnd)
+		post_type = comnd.commentable_type
+		post_id = comnd.commentable_id
+		if post_type == "Post"
+			post = Post.find(post_id)
+			if post
+				post_type = post.type_name 
+				post_id = eval(post_type).find_by_post_id(post_id).id
+			end
+		end
+		user_wall_post = UserWallPost.find_by_post_type_and_post_id(post_type, post_id)
+		user_wall = user_wall_post.user_wall if user_wall_post
+		if user_wall		
+			user_wall.update_attribute(:updated_at, Time.now) 
+			update_user_wall_follow(user_wall, current_user)
+		end
+	end
+
   private
   
   def authenticate

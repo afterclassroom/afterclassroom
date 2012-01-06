@@ -7,7 +7,7 @@ post_aware = PostAwareness.require_rating(@school).first
       <h1 class="col195Title">Poll this Awareness</h1>
       <div class="col195Cont">
         <div class="QAsPCont">
-          <p><%= link_to post_aware.post.title, post_aware.post %></p>
+          <p><%= link_to post_aware.post.title, post_aware %></p>
           <p><%= truncate_words(post_aware.post.description) %></p>
         </div>
         <div id="require_rating_action">
