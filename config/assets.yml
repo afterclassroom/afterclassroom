@@ -174,15 +174,15 @@ stylesheets:
     - public/stylesheets/validation.css
     - public/stylesheets/flash.css
     - public/stylesheets/vtip.css
+    - public/stylesheets/checkboxmenu.css
+    - public/stylesheets/jquery.autogeocomplete.css
     - public/stylesheets/thickbox.css
     - public/stylesheets/jquery-wysiwyg.css
     - public/stylesheets/tag.css
     - public/stylesheets/footer-menu.css
     - public/stylesheets/jquery.fileupload-ui.css
-    - public/stylesheets/checkboxmenu.css
     - public/stylesheets/jquery.fancybox.css
     - public/stylesheets/jquery.pnotify.default.css
-    - public/stylesheets/jquery.autogeocomplete.css
     - public/stylesheets/facebox.css
     - public/stylesheets/youTubeEmbed-jquery.css
   student_lounge:
@@ -203,6 +203,7 @@ stylesheets:
     - public/stylesheets/facebox.css
     - public/stylesheets/flash.css
     - public/stylesheets/vtip.css
+    - public/stylesheets/checkboxmenu.css
     - public/stylesheets/jqpageflow.css
     - public/stylesheets/thickbox.css
     - public/stylesheets/jquery-wysiwyg.css
@@ -212,7 +213,6 @@ stylesheets:
     - public/stylesheets/swfupload.css
     - public/stylesheets/jquery.ad-gallery.css
     - public/stylesheets/jquery.fileupload-ui.css
-    - public/stylesheets/checkboxmenu.css
     - public/stylesheets/jquery.fancybox.css
     - public/stylesheets/jquery.pnotify.default.css
     - public/stylesheets/video-js.css

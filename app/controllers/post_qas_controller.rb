@@ -216,6 +216,7 @@ class PostQasController < ApplicationController
       obj_comment.comment = comment
       obj_comment.user = current_user
       post.comments << obj_comment
+			update_wall(obj_comment)
     end
     get_comments(post, show)
     render :layout => false

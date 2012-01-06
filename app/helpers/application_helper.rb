@@ -1031,7 +1031,6 @@ module ApplicationHelper
 	def check_view_permission(user_check, obj)
 		check = false
 		
-		if user_check
 			check = true if obj.class.name == "Post"
 			if check == false
 				class_name = obj.class.name
@@ -1057,18 +1056,19 @@ module ApplicationHelper
 				end
 			
 				if check == false
-					if user_check == obj.user
-						check = true
-					elsif obj.class.name == "UserWall"
-						check = true if obj.user_post == user_check
-					else
-						cond = "tagable_type = '#{obj.class.name}' AND tagable_user = #{user_check.id} AND verify = 1 AND tagable_id = #{obj.id}"
-						tg = TagInfo.where(cond)
-						check = true if tg.size > 0
+					if user_check
+						if user_check == obj.user
+							check = true
+						elsif obj.class.name == "UserWall"
+							check = true if obj.user_post == user_check
+						else
+							cond = "tagable_type = '#{obj.class.name}' AND tagable_user = #{user_check.id} AND verify = 1 AND tagable_id = #{obj.id}"
+							tg = TagInfo.where(cond)
+							check = true if tg.size > 0
+						end
 					end
 				end
 			end
-		end
 			return check
 	end
 
