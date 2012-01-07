@@ -24,7 +24,7 @@
       <div class="popupNumb">3</div>
       <div class="popupCoun">City</div>
       <div class="popupSelect">
-        <input type="text" name="city" id="city" value="<%= @city.id %>" disabled="disabled"/>
+        <input type="text" name="city" id="city" value="<%= @city.id if @city %>" disabled="disabled"/>
       </div>
     </div>
     <div class="popupR">
@@ -39,17 +39,17 @@
 <div class="_school_city_from">
   <div class="city_form" style="width: 300px;float: left">
     <div class="filter" style="width: 278px;">Filter your city by alphabets</div>
-    <div class="popupAl" id="list_alphabet">
-      <%= link_to_function "All", "select_alphabet('')", :class => "#{"selected" if @alphabet == ""}" %>
+    <div class="popupAl" id="list_alphabet_city">
+      <%= link_to_function "All", "select_alphabet_city('All')", :class => "#{"selected" if @alphabet_city == "All"}" %>
       <% ('A'..'Z').each do |a| %>
-        <%= link_to_function a.to_s, "select_alphabet('#{a.to_s}')", :class => "#{"selected" if @alphabet == a}" %>
+        <%= link_to_function a.to_s, "select_alphabet_city('#{a.to_s}')", :class => "#{"selected" if @alphabet_city == a}" %>
       <% end %>
     </div>
   </div>
   <div class="schoool_form" style="width: 300px;float: left">
     <div class="filter" style="width: 278px;">Filter your school by alphabets</div>
     <div class="popupAl" id="list_alphabet">
-      <%= link_to_function "All", "select_alphabet('')", :class => "#{"selected" if @alphabet == ""}" %>
+      <%= link_to_function "All", "select_alphabet('All')", :class => "#{"selected" if @alphabet == "All"}" %>
       <% ('A'..'Z').each do |a| %>
         <%= link_to_function a.to_s, "select_alphabet('#{a.to_s}')", :class => "#{"selected" if @alphabet == a}" %>
       <% end %>

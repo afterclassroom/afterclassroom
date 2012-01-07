@@ -6,18 +6,30 @@
   <% end %>
 </ul>
 <ul id="state_menu" class="mcdropdown_menu">
-  <% @states.each do |s| %>
-    <li rel_state="<%= s.id %>">
-      <%= s.name %>
+	<% if @states.size > 0 %>
+		<% @states.each do |s| %>
+		  <li rel_state="<%= s.id %>">
+		    <%= s.name %>
+		  </li>
+		<% end %>
+	<% else %>
+		<li rel_state="">
+      No State
     </li>
-  <% end %>
+	<% end %>
 </ul>
 <ul id="city_menu" class="mcdropdown_menu">
-  <% @cities.each do |ct| %>
-    <li rel_city="<%= ct.id %>">
-      <%= ct.name %>
+	<% if @cities.size > 0 %>
+		<% @cities.each do |ct| %>
+		  <li rel_city="<%= ct.id %>">
+		    <%= ct.name %>
+		  </li>
+		<% end %>
+	<% else %>
+		<li rel_city="">
+      No City
     </li>
-  <% end %>
+	<% end %>
 </ul>
 <ul id="school_menu" class="mcdropdown_menu">
   <% if @schools.size > 0 %>
