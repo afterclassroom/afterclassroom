@@ -6382,3 +6382,9 @@ div.ufo_sel div.ufo_span2b{
 .textboxlist-autocomplete-results{
     width: 454px;
 }
+#add_tag .textboxlist-bits {
+    width: 370px;
+}
+#add_tag .textboxlist-autocomplete-results {
+    width: 378px;
+}

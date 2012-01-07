@@ -3,10 +3,10 @@
   <%= hidden_field_tag "id", @story.id %>
   <div class="form_friends" style="margin-left:10px; margin-top: 10px; width: 440px;">
     <%= text_field_tag "share_to", "" %>
-		<div class="submit" style="float: right; margin-top: -25px;" id="send_btn">
-		  <a onmouseover="this.style.cursor='pointer';">Send</a>
-		  <div class="submit_loader"></div>
-		</div>
+    <div class="submit" style="float: right; margin-top: -25px;" id="send_btn">
+      <a onmouseover="this.style.cursor='pointer';">Send</a>
+      <div class="submit_loader"></div>
+    </div>
   </div>
 <% end %>
 
@@ -20,9 +20,15 @@
     padding: 3px;
     height: 51px;
   }
+  #add_tag .textboxlist-bits {
+    width: 370px;
+  }
+  #add_tag .textboxlist-autocomplete-results {
+    width: 378px;
+  }
 </style>
 <script>
-	var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
+  var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
     
   $(document).ready(function(){
     $('#accept_btn').click(function(){
@@ -59,7 +65,7 @@
       });
     });
   });
-var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @story.id %>&tagable_type=<%= @story.class.name %>";
+  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @story.id %>&tagable_type=<%= @story.class.name %>";
 
   $(function(){
     
@@ -84,7 +90,12 @@ var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @st
         
   });
     
-    $('#send_btn').click(function(){
-      $('form#form_tag_user').submit();
+  $('#send_btn').click(function(){
+    $('form#form_tag_user').submit();
+  });
+  $(document).ready(function(){
+    $('.textboxlist-autocomplete').css({
+      'width':'380px'
     });
+  });
 </script>
