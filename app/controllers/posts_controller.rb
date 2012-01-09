@@ -74,6 +74,12 @@ class PostsController < ApplicationController
     render :layout => false
   end
   
+  def report_abuse_video
+    @reported_id = params[:reported_id]
+    @reported_type = params[:reported_type]
+    render :layout => false
+  end
+  
   def create_report_abuse
     reported_id = params[:reported_id]
     reported_type = params[:reported_type]

@@ -71,20 +71,20 @@ module ApplicationHelper
   
   def action_to_text(activity)
     case activity.action
-      when "updated_profile"
+    when "updated_profile"
       "updated profile"
-      when "updated_avatar"
+    when "updated_avatar"
       "updated avatar"
-      when "post"
+    when "post"
       post_category_name = Post.find(activity.item_id).post_category.name
       "posted " + post_category_name
-      when "story"
+    when "story"
       "shared a story"
-      when "photo"
+    when "photo"
       "post a photo"
-      when "music"
+    when "music"
       "post a music"
-      when "video"
+    when "video"
       "post a video"
     end
   end
@@ -104,39 +104,39 @@ module ApplicationHelper
     end
     
     case ctrl_name
-      when "post_assignments"
+    when "post_assignments"
       path = file_path ? path : "/images/icons/icon_defaut/icon_assignment.png"
-      when "post_projects"
+    when "post_projects"
       path = file_path ? path : "/images/icons/icon_defaut/icon_project.png"
-      when "post_tests"
+    when "post_tests"
       path = file_path ? path : "/images/icons/icon_defaut/icon_test.png"
-			when "post_exams"
+    when "post_exams"
       path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
-      when "post_lecture_notes"
+    when "post_lecture_notes"
       path = file_path ? path : "/images/icons/icon_defaut/lecture_note.jpg"
-      when "post_events"
+    when "post_events"
       path = file_path ? path : "/images/icons/icon_defaut/icon_event.png"
-      when "post_qas"
+    when "post_qas"
       path = "/images/icons/icon_defaut/icon_qa.png"
-      when "post_tutors"
+    when "post_tutors"
       path = file_path ? path : "/images/icons/icon_defaut/icon_tutor.png"
-      when "post_books"
+    when "post_books"
       path = file_path ? path : "/images/icons/icon_defaut/icon_book.png"
-      when "post_jobs"
+    when "post_jobs"
       path = file_path ? path : "/images/icons/icon_defaut/icon_job.png"
-      when "post_foods"
+    when "post_foods"
       path = file_path ? path : "/images/icons/icon_defaut/icon_food.png"
-      when "post_parties"
+    when "post_parties"
       path = file_path ? path : "/images/icons/icon_defaut/icon_party.png"
-      when "post_myxes"
+    when "post_myxes"
       path = file_path ? path : "/images/icons/icon_defaut/icon_myx.png"
-      when "post_awarenesses"
+    when "post_awarenesses"
       path = file_path ? path : "/images/icons/icon_defaut/icon_awarenesse.png"
-      when "post_housings"
+    when "post_housings"
       path = file_path ? path : "/images/icons/icon_defaut/icon_housing.png"
-      when "post_teamups"
+    when "post_teamups"
       path = file_path ? path : "/images/icons/icon_defaut/icon_teamup.png"
-      when "post_exam_schedules"
+    when "post_exam_schedules"
       path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
     else
       path = "/images/noimg.png"
@@ -185,55 +185,55 @@ module ApplicationHelper
   
   def show_search_form(ctrl_name, query)
     case ctrl_name
-      when "post_assignments"
+    when "post_assignments"
       type = PostCategory.find_by_class_name("PostAssignment").id
       search_post_path = search_post_assignments_path
-      when "post_projects"
+    when "post_projects"
       type = PostCategory.find_by_class_name("PostProject").id
       search_post_path = search_post_projects_path
-      when "post_tests"
+    when "post_tests"
       type = PostCategory.find_by_class_name("PostTest").id
       search_post_path = search_post_tests_path
-      when "post_exams"
+    when "post_exams"
       type = PostCategory.find_by_class_name("PostExam").id
       search_post_path = search_post_exams_path
-			when "post_lecture_notes"
+    when "post_lecture_notes"
       type = PostCategory.find_by_class_name("PostLectureNote").id
       search_post_path = search_post_lecture_notes_path
-      when "post_events"
+    when "post_events"
       type = PostCategory.find_by_class_name("PostEvent").id
       search_post_path = search_post_events_path
-      when "post_qas"
+    when "post_qas"
       type = PostCategory.find_by_class_name("PostQa").id
       search_post_path = search_post_qas_path
-      when "post_tutors"
+    when "post_tutors"
       type = PostCategory.find_by_class_name("PostTutor").id
       search_post_path = search_post_tutors_path
-      when "post_books"
+    when "post_books"
       type = PostCategory.find_by_class_name("PostBook").id
       search_post_path = search_post_books_path
-      when "post_jobs"
+    when "post_jobs"
       type = PostCategory.find_by_class_name("PostJob").id
       search_post_path = search_post_jobs_path
-      when "post_foods"
+    when "post_foods"
       type = PostCategory.find_by_class_name("PostFood").id
       search_post_path = search_post_foods_path
-      when "post_parties"
+    when "post_parties"
       type = PostCategory.find_by_class_name("PostParty").id
       search_post_path = search_post_parties_path
-      when "post_myxes"
+    when "post_myxes"
       type = PostCategory.find_by_class_name("PostMyx").id
       search_post_path = search_post_myxes_path
-      when "post_awarenesses"
+    when "post_awarenesses"
       type = PostCategory.find_by_class_name("PostAwareness").id
       search_post_path = search_post_awarenesses_path
-      when "post_housings"
+    when "post_housings"
       type = PostCategory.find_by_class_name("PostHousing").id
       search_post_path = search_post_housings_path
-      when "post_teamups"
+    when "post_teamups"
       type = PostCategory.find_by_class_name("PostTeamup").id
       search_post_path = search_post_teamups_path
-      when "post_exam_schedules"
+    when "post_exam_schedules"
       type = PostCategory.find_by_class_name("PostExamSchedule").id
       search_post_path = search_post_exam_schedules_path
     else
@@ -245,39 +245,39 @@ module ApplicationHelper
   
   def link_to_edit_post(post)
     case post.type_name
-      when "PostAssignment"
+    when "PostAssignment"
       link_edit = edit_post_assignment_url(post.post_assignment)
-      when "PostProject"
+    when "PostProject"
       link_edit = edit_post_project_url(post.post_project)
-      when "PostTest"
+    when "PostTest"
       link_edit = edit_post_test_url(post.post_test)
-      when "PostExam"
+    when "PostExam"
       link_edit = edit_post_exam_url(post.post_exam)
-			when "PostLectureNote"
+    when "PostLectureNote"
       link_edit = edit_post_lecture_note_url(post.post_lecture_note)
-      when "PostEvent"
+    when "PostEvent"
       link_edit = edit_post_event_url(post.post_event)
-      when "PostQa"
+    when "PostQa"
       link_edit = edit_post_qa_url(post.post_qa)
-      when "PostTutor"
+    when "PostTutor"
       link_edit = edit_post_tutor_url(post.post_tutor)
-      when "PostBook"
+    when "PostBook"
       link_edit = edit_post_book_url(post.post_book)
-      when "PostJob"
+    when "PostJob"
       link_edit = edit_post_job_url(post.post_job)
-      when "PostFood"
+    when "PostFood"
       link_edit = edit_post_food_url(post.post_food)
-      when "PostParty"
+    when "PostParty"
       link_edit = edit_post_party_url(post.post_party)
-      when "PostMyx"
+    when "PostMyx"
       link_edit = edit_post_myx_url(post.post_myx)
-      when "PostAwareness"
+    when "PostAwareness"
       link_edit = edit_post_awareness_url(post.post_awareness)
-      when "PostHousing"
+    when "PostHousing"
       link_edit = edit_post_housing_url(post.post_housing)
-      when "PostTeamup"
+    when "PostTeamup"
       link_edit = edit_post_teamup_url(post.post_teamup)
-      when "PostExamSchedule"
+    when "PostExamSchedule"
       link_edit = edit_post_exam_schedule_url(post.post_exam_schedule)
     end
     return link_edit
@@ -285,39 +285,39 @@ module ApplicationHelper
   
   def link_to_show_post(post)
     case post.type_name
-      when "PostAssignment"
+    when "PostAssignment"
       link_show = post_assignment_url(post.post_assignment)
-      when "PostProject"
+    when "PostProject"
       link_show = post_project_url(post.post_project)
-      when "PostTest"
+    when "PostTest"
       link_show = post_test_url(post.post_test)
-      when "PostExam"
+    when "PostExam"
       link_show = post_exam_url(post.post_exam)
-			when "PostLectureNote"
+    when "PostLectureNote"
       link_show = post_lecture_note_url(post.post_lecture_note)
-      when "PostEvent"
+    when "PostEvent"
       link_show = post_event_url(post.post_event)
-      when "PostQa"
+    when "PostQa"
       link_show = post_qa_url(post.post_qa)
-      when "PostTutor"
+    when "PostTutor"
       link_show = post_tutor_url(post.post_tutor)
-      when "PostBook"
+    when "PostBook"
       link_show = post_book_url(post.post_book)
-      when "PostJob"
+    when "PostJob"
       link_show = post_job_url(post.post_job)
-      when "PostFood"
+    when "PostFood"
       link_show = post_food_url(post.post_food)
-      when "PostParty"
+    when "PostParty"
       link_show = post_party_url(post.post_party)
-      when "PostMyx"
+    when "PostMyx"
       link_show = post_myx_url(post.post_myx)
-      when "PostAwareness"
+    when "PostAwareness"
       link_show = post_awareness_url(post.post_awareness)
-      when "PostHousing"
+    when "PostHousing"
       link_show = post_housing_url(post.post_housing)
-      when "PostTeamup"
+    when "PostTeamup"
       link_show = post_teamup_url(post.post_teamup)
-      when "PostExamSchedule"
+    when "PostExamSchedule"
       link_show = post_exam_schedule_url(post.post_exam_schedule)
     end
     return link_show
@@ -325,39 +325,39 @@ module ApplicationHelper
   
   def get_controler_name_from_class_name(class_name)
     case class_name
-      when "PostAssignment"
+    when "PostAssignment"
       controler_name = "post_assignments"
-      when "PostProject"
+    when "PostProject"
       controler_name = "post_projects"
-      when "PostTest"
+    when "PostTest"
       controler_name = "post_tests"
-      when "PostExam"
+    when "PostExam"
       controler_name = "post_exams"
-			when "PostLectureNote"
+    when "PostLectureNote"
       controler_name = "post_lecture_notes"
-      when "PostEvent"
+    when "PostEvent"
       controler_name = "post_events"
-      when "PostQa"
+    when "PostQa"
       controler_name = "post_qas"
-      when "PostTutor"
+    when "PostTutor"
       controler_name = "post_tutors"
-      when "PostBook"
+    when "PostBook"
       controler_name = "post_books"
-      when "PostJob"
+    when "PostJob"
       controler_name = "post_jobs"
-      when "PostFood"
+    when "PostFood"
       controler_name = "post_foods"
-      when "PostParty"
+    when "PostParty"
       controler_name = "post_parties"
-      when "PostMyx"
+    when "PostMyx"
       controler_name = "post_myxes"
-      when "PostAwareness"
+    when "PostAwareness"
       controler_name = "post_awarenesses"
-      when "PostHousing"
+    when "PostHousing"
       controler_name = "post_housings"
-      when "PostTeamup"
+    when "PostTeamup"
       controler_name = "post_teamups"
-      when "PostExamSchedule"
+    when "PostExamSchedule"
       controler_name = "post_exam_schedules"
     end
     return controler_name
@@ -526,9 +526,9 @@ module ApplicationHelper
         if current_user.user_invites_out.find_by_user_id_target(user.id)
           str = raw('<span class="txtsignup1">Still waiting</span>')
         elsif current_user.user_invites_in.find_by_user_id(user.id)
-            str = link_to(raw("<span class='span1'><span class='span2'>Confirm request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
-          else
-            str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{user.full_name}")
+          str = link_to(raw("<span class='span1'><span class='span2'>Confirm request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
+        else
+          str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{user.full_name}")
         end
       end
     end
@@ -546,9 +546,9 @@ module ApplicationHelper
         if current_user.user_invites_out.find_by_user_id_target(user.id)
           str = raw('<div class="txtsignup1">Still waiting</div>')
         elsif current_user.user_invites_in.find_by_user_id(user.id)
-            str = link_to(raw("<span class='span1'><span class='span2'>Confirm request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
-          else
-            str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{user.full_name}")
+          str = link_to(raw("<span class='span1'><span class='span2'>Confirm request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
+        else
+          str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{user.full_name}")
         end
       end
     end
@@ -734,7 +734,7 @@ module ApplicationHelper
       
       if obj
         case post_type
-          when "PhotoAlbum"
+        when "PhotoAlbum"
           if obj.photos.size > 0
             s = obj.photos.size < 4 ? obj.photos.size : 4
             i = 0 
@@ -746,29 +746,29 @@ module ApplicationHelper
               break if i == s
             end
           end
-          when "Photo"
+        when "Photo"
           link = user_photo_url(obj.user, obj)
           img_link = link_to(raw(image_tag(obj.photo_attach.url(:thumb), :style => "width:92px;height:68px")), show_photo_detail_user_url(obj.user, :photo_id => obj, :height => "550", :width => "920"), :class => "thickbox")
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = truncate_words(obj.description)
-          when "MusicAlbum"
+        when "MusicAlbum"
           link = play_list_user_musics_path(obj.user, :music_album_id => obj)
           img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'></span>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.name
-          when "Music"
+        when "Music"
           link = user_music_url(obj.user, obj)
           img_link = link_to image_tag(obj.music_album.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'></span>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
-          when "Video"
+        when "Video"
           link = user_video_url(obj.user, obj)
           img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video_html5", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = obj.description
-          when "Story"
+        when "Story"
           link = user_story_path(obj.user, obj)
           if display_image(obj) != ""
             img_link = link_to display_image(obj, {:style => "width:92px;height:68px"}), link, :target => "_blank"
@@ -776,55 +776,55 @@ module ApplicationHelper
           end
           title = obj.title
           sub_content = truncate_words(obj.content)
-          when "Ufo"
-            link = user_u_forum_path(obj.user, obj)
-            title = obj.title
-            sub_content = truncate_html(obj.content, :length => 100, :omission => '...')
-          when "Learntool"
-            #<%= user_learn_tool_path(current_user,learntool) %>
+        when "Ufo"
+          link = user_u_forum_path(obj.user, obj)
+          title = obj.title
+          sub_content = truncate_html(obj.content, :length => 100, :omission => '...')
+        when "Learntool"
+          #<%= user_learn_tool_path(current_user,learntool) %>
           link = user_learn_tool_path(current_user,obj)
           #img_link = link_to image_post_thumb("post_assignments", obj), link, :target => "_blank"
           img_link = link_to image_tag(obj.tool_img.url(:thumb), :style => "width:92px;height:68px"), link, :target => "_blank"
           image = get_image_wall(wall.id, img_link)
           title = obj.name
           sub_content = truncate_html(obj.description, :length => 100, :omission => '...')
-          when "PostAssignment"
+        when "PostAssignment"
           link = post_assignment_path(obj)
           img_link = link_to image_post_thumb("post_assignments", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostProject"
+        when "PostProject"
           link = post_project_path(obj)
           img_link = link_to image_post_thumb("post_projects", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostTest"
+        when "PostTest"
           link = post_test_path(obj)
           img_link = link_to image_post_thumb("post_tests", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostExam"
+        when "PostExam"
           link = post_exam_path(obj)
           img_link = link_to image_post_thumb("post_exams", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-					when "PostLectureNote"
+        when "PostLectureNote"
           link = post_lecture_note_path(obj)
           img_link = link_to image_post_thumb("post_lecture_notes", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostEvent"
+        when "PostEvent"
           link = post_event_path(obj)
           img_link = link_to image_post_thumb("post_events", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostQa"
+        when "PostQa"
           link = post_qa_path(obj)
           img_link = link_to image_post_thumb("post_qas", obj.post), link, :target => "_blank"
           if !check_image_in_content(obj.post.description)
@@ -834,61 +834,61 @@ module ApplicationHelper
 					end
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostTutor"
+        when "PostTutor"
           link = post_tutor_path(obj)
           img_link = link_to image_post_thumb("post_tutors", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostBook"
+        when "PostBook"
           link = post_book_path(obj)
           img_link = link_to image_post_thumb("post_books", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostJob"
+        when "PostJob"
           link = post_job_path(obj)
           img_link = link_to image_post_thumb("post_jobs", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostFood"
+        when "PostFood"
           link = post_food_path(obj)
           img_link = link_to image_post_thumb("post_foods", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostParty"
+        when "PostParty"
           link = post_party_path(obj)
           img_link = link_to image_post_thumb("post_parties", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostMyx"
+        when "PostMyx"
           link = post_myx_path(obj)
           img_link = link_to image_post_thumb("post_myxes", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostAwareness"
+        when "PostAwareness"
           link = post_awareness_path(obj)
           img_link = link_to image_post_thumb("post_awarenesses", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostHousing"
+        when "PostHousing"
           link = post_housing_path(obj)
           img_link = link_to image_post_thumb("post_housings", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostTeamup"
+        when "PostTeamup"
           link = post_teamup_path(obj)
           img_link = link_to image_post_thumb("post_teamups", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          when "PostExamSchedule"
+        when "PostExamSchedule"
           link = post_exam_schedule_path(obj)
           img_link = link_to image_post_thumb("post_exam_schedules", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
@@ -913,53 +913,53 @@ module ApplicationHelper
       
       if obj
         case post_type
-          when "PhotoAlbum"
+        when "PhotoAlbum"
           render :partial => "photo_albums/rating_action", :locals => {:post => obj, :controller_name => "photo_albums"}
-          when "Photo"
+        when "Photo"
           render :partial => "photos/rating_action", :locals => {:post => obj, :controller_name => "photos"}
-          when "MusicAlbum"
+        when "MusicAlbum"
           render :partial => "music_albums/rating_action", :locals => {:post => obj, :controller_name => "music_albums"}
-          when "Music"
+        when "Music"
           render :partial => "musics/rating_action", :locals => {:post => obj, :controller_name => "musics"}
-          when "Video"
+        when "Video"
           render :partial => "videos/rating_action", :locals => {:post => obj, :controller_name => "videos"}
-          when "Story"
+        when "Story"
           render :partial => "stories/rating_action", :locals => {:post => obj, :controller_name => "stories"}
-          when "Learntool"
+        when "Learntool"
           render :partial => "learn_tools/rating_action", :locals => {:post => obj, :controller_name => "learn_tools"}  
-          when "PostAssignment"
+        when "PostAssignment"
           #render :partial => "post_assignments/rating_action", :locals => {:post => obj.post, :controller_name => "post_assignments"}
-          when "PostProject"
+        when "PostProject"
           #render :partial => "post_projects/rating_action", :locals => {:post => obj.post, :controller_name => "post_projects"}
-          when "PostTest"
+        when "PostTest"
           #render :partial => "post_tests/rating_action", :locals => {:post => obj.post, :controller_name => "post_tests"}
-          when "PostExam"
+        when "PostExam"
           #render :partial => "post_exams/rating_action", :locals => {:post => obj.post, :controller_name => "post_exams"}
-					when "PostLectureNote"
+        when "PostLectureNote"
           #render :partial => "post_lecture_notes/rating_action", :locals => {:post => obj.post, :controller_name => "post_lecture_notes"}
-          when "PostEvent"
+        when "PostEvent"
           render :partial => "post_events/rating_action", :locals => {:post => obj.post, :controller_name => "post_events"}
-          when "PostQa"
+        when "PostQa"
           render :partial => "post_qas/rating_action", :locals => {:post => obj.post, :controller_name => "post_qas"}
-          when "PostTutor"
+        when "PostTutor"
           render :partial => "post_tutors/rating_action", :locals => {:post => obj.post, :controller_name => "post_tutors"}
-          when "PostBook"
+        when "PostBook"
           render :partial => "post_books/rating_action", :locals => {:post => obj.post, :controller_name => "post_books"}
-          when "PostJob"
+        when "PostJob"
           render :partial => "post_jobs/rating_action", :locals => {:post => obj.post, :controller_name => "post_jobs"}
-          when "PostFood"
+        when "PostFood"
           render :partial => "post_foods/rating_action", :locals => {:post => obj.post, :controller_name => "post_foods"}
-          when "PostParty"
+        when "PostParty"
           render :partial => "post_parties/rating_action", :locals => {:post => obj.post, :controller_name => "post_parties"}
-          when "PostMyx"
+        when "PostMyx"
           render :partial => "post_myxes/rating_action", :locals => {:post => obj.post, :controller_name => "post_myxes"}
-          when "PostAwareness"
+        when "PostAwareness"
           render :partial => "post_awarenesses/rating_action", :locals => {:post => obj.post, :controller_name => "post_awarenesses"}
-          when "PostHousing"
+        when "PostHousing"
           render :partial => "post_housings/rating_action", :locals => {:post => obj.post, :controller_name => "post_housings"}
-          when "PostTeamup"
+        when "PostTeamup"
           render :partial => "post_teamups/rating_action", :locals => {:post => obj.post, :controller_name => "post_teamups"}
-          when "PostExamSchedule"
+        when "PostExamSchedule"
           #render :partial => "post_exam_schedules/rating_action", :locals => {:post => obj.post, :controller_name => "post_exam_schedules"}
         end
       end
@@ -996,6 +996,14 @@ module ApplicationHelper
     end
   end
   
+  def show_report_abuse_video(post)
+    if !logged_in?
+      link_to_require_login(raw("<span>Report Abuse</span>"))
+    else
+      link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_video_posts_path}?reported_id=#{post.id}&reported_type=#{post.class.name}&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
+    end
+  end
+  
   def show_report_abuse_comment(comnt)
     if !logged_in?
       link_to_require_login(raw("Report Abuse"))
@@ -1010,11 +1018,11 @@ module ApplicationHelper
   
   def gmap_key
     case Rails.env
-      when 'production'
+    when 'production'
       key = GMAP_KEY_SITE
-      when 'development'
+    when 'development'
       key = GMAP_KEY_LOCAL
-      when 'staging'
+    when 'staging'
       key = GMAP_KEY_STAGING
     end
     return key
@@ -1031,45 +1039,45 @@ module ApplicationHelper
 	def check_view_permission(user_check, obj)
 		check = false
 		
-			check = true if obj.class.name == "Post"
-			if check == false
-				class_name = obj.class.name
-				type = case class_name
-					when "PhotoAlbum"
-						"my_photos"
-					when "Photo"
-						"my_photos"
-					when "MusicAlbum"
-						"my_musics"
-					when "Music"
-						"my_musics"
-					when "Video"
-						"my_videos"
-					when "Story"
-						"my_stories"
-					when "UserWall"
-						"my_lounges"
-				end
+    check = true if obj.class.name == "Post"
+    if check == false
+      class_name = obj.class.name
+      type = case class_name
+      when "PhotoAlbum"
+        "my_photos"
+      when "Photo"
+        "my_photos"
+      when "MusicAlbum"
+        "my_musics"
+      when "Music"
+        "my_musics"
+      when "Video"
+        "my_videos"
+      when "Story"
+        "my_stories"
+      when "UserWall"
+        "my_lounges"
+      end
 		
-				if type != ""
-					check = check_private_permission(user_check, obj.user, type)
-				end
+      if type != ""
+        check = check_private_permission(user_check, obj.user, type)
+      end
 			
-				if check == false
-					if user_check
-						if user_check == obj.user
-							check = true
-						elsif obj.class.name == "UserWall"
-							check = true if obj.user_post == user_check
-						else
-							cond = "tagable_type = '#{obj.class.name}' AND tagable_user = #{user_check.id} AND verify = 1 AND tagable_id = #{obj.id}"
-							tg = TagInfo.where(cond)
-							check = true if tg.size > 0
-						end
-					end
-				end
-			end
-			return check
+      if check == false
+        if user_check
+          if user_check == obj.user
+            check = true
+          elsif obj.class.name == "UserWall"
+            check = true if obj.user_post == user_check
+          else
+            cond = "tagable_type = '#{obj.class.name}' AND tagable_user = #{user_check.id} AND verify = 1 AND tagable_id = #{obj.id}"
+            tg = TagInfo.where(cond)
+            check = true if tg.size > 0
+          end
+        end
+      end
+    end
+    return check
 	end
 
   def check_is_private(user, type)
@@ -1080,48 +1088,48 @@ module ApplicationHelper
   def check_private_permission(user_check, user, type)
     check = false
 		ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
-			if ps
-				share_to = ps.share_to
-				if share_to == 6 # Every one
-					check = true
-				else
-					if user_check
-						if user_check and user == user_check
-							check = true
-						else
-							case share_to
-						    when 1 # Friend from school
-						    if user_check
-						      fg = FriendGroup.where(:label => "friends_from_school").first
-						      fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-						      check = true if fng
-						    end
-						    when 2 # Friend of friends
-						    if user_check
-						      fof = user.friend_of_friends
-						      check = fof.nil? ? false : fof.include?(user_check)
-						    end
-						    when 3 # My Family
-						    if user_check
-						      fg = FriendGroup.where(:label => "family_members").first
-						      fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-						      check = true if fng
-						    end
-						    when 4 # My friends
-						    if user_check
-						      check = true if user.user_friends.include?(user_check)
-						    end
-						    when 5 # Friends from work
-						    if user_check
-						      fg = FriendGroup.where(:label => "friends_from_work").first
-						      fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-						      check = true if fng
-						    end
-							end
-						end
-					end
-				end
-			end
+    if ps
+      share_to = ps.share_to
+      if share_to == 6 # Every one
+        check = true
+      else
+        if user_check
+          if user_check and user == user_check
+            check = true
+          else
+            case share_to
+            when 1 # Friend from school
+              if user_check
+                fg = FriendGroup.where(:label => "friends_from_school").first
+                fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+                check = true if fng
+              end
+            when 2 # Friend of friends
+              if user_check
+                fof = user.friend_of_friends
+                check = fof.nil? ? false : fof.include?(user_check)
+              end
+            when 3 # My Family
+              if user_check
+                fg = FriendGroup.where(:label => "family_members").first
+                fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+                check = true if fng
+              end
+            when 4 # My friends
+              if user_check
+                check = true if user.user_friends.include?(user_check)
+              end
+            when 5 # Friends from work
+              if user_check
+                fg = FriendGroup.where(:label => "friends_from_work").first
+                fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+                check = true if fng
+              end
+            end
+          end
+        end
+      end
+    end
     return check
   end
   
@@ -1166,18 +1174,18 @@ module ApplicationHelper
   def get_among_for_tag(num, num_total)
     num_percent = (num / num_total)*100
     case num_percent
-      when  0..20  then 1
-      when 21..40  then 2
-      when 41..60  then 3
-      when 61..80  then 4
-      when 81..100 then 5
+    when  0..20  then 1
+    when 21..40  then 2
+    when 41..60  then 3
+    when 61..80  then 4
+    when 81..100 then 5
     end
   end
   
   def get_video_id(link)
     video_regexp = [/^(?:https?:\/\/)?(?:www\.)?youtube\.com(?:\/v\/|\/watch\?v=)([A-Za-z0-9_-]{11})/, 
-    /^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([A-Za-z0-9_-]{11})/, 
-    /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/user\/[^\/]+\/?#(?:[^\/]+\/){1,4}([A-Za-z0-9_-]{11})/]
+      /^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([A-Za-z0-9_-]{11})/, 
+      /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/user\/[^\/]+\/?#(?:[^\/]+\/){1,4}([A-Za-z0-9_-]{11})/]
     video_regexp.each { |m| return link.match(m)[1] unless link.match(m).nil? }
   end
   
@@ -1201,14 +1209,14 @@ module ApplicationHelper
   
 	def get_level_list(type_school)
 		case type_school
-			when "HighSchool"
-				LEVEL_1
-			when "University"
-				LEVEL_2
-			when "College"
-				LEVEL_2
-			else
-				LEVEL
+    when "HighSchool"
+      LEVEL_1
+    when "University"
+      LEVEL_2
+    when "College"
+      LEVEL_2
+    else
+      LEVEL
 		end
 	end
 
