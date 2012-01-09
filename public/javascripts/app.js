@@ -195,6 +195,10 @@ function send_comment(id, type){
 
 function send_comment_video(id, type){
     comment = $('#comment').val();
+		anonymous = "0";
+		if ($('#anonymous')){
+			anonymous = $("#anonymous:checked").val();
+		}
     if (comment != "") {
         $.ajax({
             url: '/posts/create_comment_video',
@@ -204,10 +208,11 @@ function send_comment_video(id, type){
             data: ({
                 commentable_id: id,
                 commentable_type: type,
-                comment: comment
+                comment: comment,
+								anonymous: anonymous
             }),
             success: function(data){
-                $('#list_comments').append(data);
+                $('#add_comments').append(data);
                 $('#comment').val('');
                 $('#form_comment').toggle('slow');
                 $('#comment_count').html($('div .AsDcomItem').size());

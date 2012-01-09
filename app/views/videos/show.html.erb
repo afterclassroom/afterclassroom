@@ -43,21 +43,21 @@
           <% end %>
         </div>
         <%= render :partial => "video_description" %>
-          <div id="load_video_action"><%= render :partial => "video_action" %></div>
-          <%= show_post_comments(@video) %>
-        </div>
-        <div class="goTop">
-          <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
-        </div>
+        <div id="load_video_action"><%= render :partial => "video_action" %></div>
+        <%= show_post_comments(@video) %>
+      </div>
+      <div class="goTop">
+        <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
       </div>
     </div>
   </div>
 </div>
+</div>
 <div class="contMainR">
   <!--Most Viewed-->
-	<div id="on_this_video">
-  <%= render :partial => "on_this_video" %>
-	</div>
+  <div id="on_this_video">
+    <%= render :partial => "on_this_video" %>
+  </div>
   <!--Most Viewed-->
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
@@ -67,5 +67,9 @@
      
   // Add VideoJS to all video tags on the page when the DOM is ready
   VideoJS.setupAllWhenReady();
-
+  $(document).ready(function($) {
+    $('#facebox').css({
+      'position':'fixed'
+    });
+  });
 </script>

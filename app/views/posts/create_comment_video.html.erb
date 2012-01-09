@@ -1,0 +1,15 @@
+<%= render :partial => "shared/item_comment_video", :locals => {:comnt => @obj_comment} %>
+<script>
+    $(document).ready(function(){
+        $(".AsDcomItem").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
+        //on page load call tb_init 
+        $('a[rel*=facebox]').facebox();
+        tb_init(' div.AsDcomRe3 a.thickbox');//pass where to apply thickbox
+        imgLoader = new Image();// preload image
+        imgLoader.src = tb_pathToImage;
+    });
+</script>

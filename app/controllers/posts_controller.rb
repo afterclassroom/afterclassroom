@@ -3,10 +3,29 @@ class PostsController < ApplicationController
   include ApplicationHelper
   
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:report_abuse, :create_report_abuse, :download]
+  before_filter RubyCAS::Filter, :except => [:report_abuse, :report_abuse_video, :create_report_abuse, :download]
   before_filter :cas_user
   
   def create_comment
+    comment = params[:comment]
+    commentable_id = params[:commentable_id]
+    commentable_type = params[:commentable_type]
+    
+    if comment && commentable_id && commentable_type
+      @obj_comment = Comment.new()
+      @obj_comment.comment = comment
+      @obj_comment.commentable_id = commentable_id
+      @obj_comment.commentable_type = commentable_type
+      @obj_comment.user = current_user if params[:anonymous].nil? or params[:anonymous] == 0
+      @obj_comment.save
+      obj = eval(commentable_type).find(commentable_id)
+			update_wall(@obj_comment)
+      send_notification_when_comment(obj, @obj_comment)
+    end
+    render :layout => false
+  end
+  
+  def create_comment_video
     comment = params[:comment]
     commentable_id = params[:commentable_id]
     commentable_type = params[:commentable_type]
