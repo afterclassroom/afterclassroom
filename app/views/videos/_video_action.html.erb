@@ -8,7 +8,10 @@
     <span class="btmFav" id="item_favorite_<%= @video.id %>"><%= show_favorite_in_detail("Video", @video) %></span>
     <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Tag Friend</a></span>
     <span class="btmAbuse"><%= show_report_abuse_video(@video) %></span>
-    <span><a class="various" href="#{report_abuse_video_posts_path}?reported_id=#{post.id}&reported_type=#{post.class.name}">Inline</a></span>
+    <span>
+      <%= show_report_abuse_video(@video) %>
+      
+    </span>
     <span id="rate_pos"><%= render :partial => "videos/rating_action", :locals => {:post => @video, :controller_name => "videos"}%></span>
   </div>
 </div>
@@ -17,17 +20,7 @@
   <%= hidden_field_tag "video_id", @video.id %>
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 <script>
-  $(document).ready(function() {
-	$(".various").fancybox({
-		maxWidth	: 800,
-		maxHeight	: 600,
-		fitToView	: false,
-		width		: '70%',
-		height		: '70%',
-		autoSize	: false,
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-});
+jQuery(document).ready(function($) {
+  $('a[rel*=facebox]').facebox()
+})
 </script>
