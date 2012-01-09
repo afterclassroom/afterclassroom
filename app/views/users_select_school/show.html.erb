@@ -69,19 +69,32 @@
       document.location.href = "/session/change_school?school_id=" + school_id;
     }
   }
+	
+	function select_alphabet(alphabet){
+    var alphabet_city = $('#list_alphabet_city a.selected').html();
+		var city_id = $('#city').val();
+		load("",city_id ,alphabet, alphabet_city);
+  }
 
-  function select_alphabet(alphabet){
-    var school_type = $("input[name='school_type']:checked").val();
-    ShowFeaturedOverlay();
-    city_id = $('#city').val();
+  function select_alphabet_city(alphabet_city){
+    var alphabet = $('#list_alphabet a.selected').html();
+		var state_id = $('#state').val();
+		load(state_id,"" ,alphabet, alphabet_city);
+  }
+
+	function load(state_id, city_id, alphabet, alphabet_city){
+		var school_type = $("input[name='school_type']:checked").val();
+		ShowFeaturedOverlay();
     $.ajax({
       url: '/users_select_school/list_school',
       type: 'GET',
       cache: false,
       dataType: 'html',
       data: ({
+				state_id : state_id,
         city_id : city_id,
         alphabet : alphabet,
+				alphabet_city : alphabet_city,
         type_school: school_type
       }),
       success: function(data){
@@ -89,7 +102,7 @@
         load_menus();
       }
     });
-  }
+	}
 
   function load_menus (){
     $("#country").mcDropdown("#country_menu", {

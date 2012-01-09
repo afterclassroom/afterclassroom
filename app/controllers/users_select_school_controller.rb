@@ -3,7 +3,8 @@ class UsersSelectSchoolController < ApplicationController
   before_filter :get_variables, :only => [:update_form, :update_form_signup]
   
   def show
-    @alphabet = ""
+    @alphabet = "All"
+		@alphabet_city = "All"
     @countries = Country.has_cities
     if session[:your_school]
       @school = School.find(session[:your_school])
@@ -36,15 +37,22 @@ class UsersSelectSchoolController < ApplicationController
   end
 
   def list_school
+		state_id = params[:state_id]
     city_id = params[:city_id]
 		@type_school = params[:type_school]
     @alphabet = params[:alphabet]
+		@alphabet_city = params[:alphabet_city]
     @countries = Country.has_cities
-    @city = City.find(city_id)
-    @state = @city.state
+		if city_id != "" 
+			@city = City.find(city_id)
+    	@state = @city.state
+		elsif state_id != ""
+			@state = State.find(state_id)
+		end
     @country = @state.country
     @states = @country.states.has_cities
-    @cities = @state.cities
+    @cities = @state.cities.with_alphabet(@alphabet_city)
+		@city = @cities.first if @city.nil?
     if @alphabet == ""
       @schools = City.find(city_id).schools.where(:type_school => @type_school)
     else
@@ -59,7 +67,8 @@ class UsersSelectSchoolController < ApplicationController
   def get_variables
     type = params[:type]
     id = params[:id]
-    @alphabet = ""
+    @alphabet = "All"
+		@alphabet_city = "All"
     @countries = Country.has_cities
 		@type_school = params[:type_school]
     case type
