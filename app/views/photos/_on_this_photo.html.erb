@@ -6,7 +6,7 @@
         <a href="javascript:;" style="margin-left: 80px; position: absolute; color: #0A81C4;" id="manage_btn"><span class="hover_manage_btn">Manage Tagged Users</span></a>
       <% end %>
       </h1>
-      <% if current_user != @photo.user %>
+      <% if current_user and current_user != @photo.user %>
         <% tagged_user_ids = @tag_usr.map(&:id) %>
         <% if tagged_user_ids.include?(current_user.id) == true%>
           <%= link_to "UnTag", {:controller => "photos", :action => "self_untag", :photo_id => @photo.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Photo", :style => "color: #0A81C4; float: right; margin-top:-24px;" %>

@@ -6,7 +6,7 @@
 
 </h1>
 
-<% if current_user != @music_album.user && @tagged_users.size > 0 %>
+<% if current_user and current_user != @music_album.user && @tagged_users.size > 0 %>
   <% tagged_user_ids = @tagged_users.map(&:id) %>
   <% if tagged_user_ids.include?(current_user.id) == true%>
     <%= link_to "Leave", {:controller => "music_albums", :action => "self_untag", :music_album_id => @music_album.id}, :remote => true, :id => "self_remove",:title => "Stop following this album", :style => "color: #0A81C4; float: right; margin-top:-24px;" %>

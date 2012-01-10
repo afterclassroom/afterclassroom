@@ -1,13 +1,16 @@
+<% if logged_in? %>
 <div id="add_tag">
   <%= render :partial => "musics/form_add_tag" %>
 </div>
-
+<% end %>
 <div class="stoDbtm">
   <div class="AsDContBtm">
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
     <span class="btmFav" id="item_favorite_<%= @music_album.id %>"><%= show_favorite_in_detail("MusicAlbum", @music_album) %></span>
     <span class="btmAbuse"><%= show_report_abuse(@music_album) %></span>
-    <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Let's Listen</a></span>
+    <% if logged_in? %>
+		<span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Let's Listen</a></span>
+		<% end %>
     <span id="rate_pos"><%= render :partial => "music_albums/rating_action", :locals => {:post => @music_album, :controller_name => "music_albums"}%></span>
   </div>
 </div>

@@ -3,11 +3,13 @@
 			<script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
 			<!-- END: library for photo-tag -->       
 			<div class="AsDOr RePho">
+				<% if logged_in? %>				
 				<div>
 					<div id="img_id_loader" style="width: 110px;padding-left: 40px;">
 						Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left;" title="Next" src="/images/ajax-loader-a.gif"/>
 					</div>
 				</div>
+				<% end %>
 				<div id="container">
 					<p style="text-align:center">
 						<%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
@@ -194,7 +196,7 @@
     }//end if 
 
   }
-  
+  <% if logged_in? %>
   //BEGIN: code for tag user
   var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
@@ -287,6 +289,7 @@
       }      
     });
   });
+<% end %>
   $(document).ready(function(){
     $('.qashdU').css({
       'float': 'left',
