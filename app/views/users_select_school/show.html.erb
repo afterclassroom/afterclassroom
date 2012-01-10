@@ -28,6 +28,8 @@
   $('.close').click($.facebox.close);
   
   function update_form(type_select, id){
+		var alphabet = $('#list_alphabet a.selected').html();
+		var alphabet_city = $('#list_alphabet_city a.selected').html();
     var school_type = $("input[name='school_type']:checked").val();
     ShowFeaturedOverlay();
     $.ajax({
@@ -38,6 +40,8 @@
       data: ({
         type : type_select,
         id : id,
+				alphabet : alphabet,
+        alphabet_city : alphabet_city,
         type_school: school_type
       }),
       success: function(data){
