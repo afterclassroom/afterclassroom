@@ -6422,3 +6422,14 @@ div.ufo_sel div.ufo_span2b{
     width: 100px;
     z-index: 1000;
 }
+.favorite_item .assDes div.assImg{
+    background:none;
+    padding:0px;
+}
+.favorite_item .assImg div{
+    background: url("/images/bgimg71.png") no-repeat scroll 0 0 transparent;
+    height: 61px;
+    padding: 5px;
+    text-align: center;
+    width: 71px;
+}
