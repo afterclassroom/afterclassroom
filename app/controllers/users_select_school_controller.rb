@@ -67,46 +67,35 @@ class UsersSelectSchoolController < ApplicationController
   def get_variables
     type = params[:type]
     id = params[:id]
-    @alphabet = "All"
-		@alphabet_city = "All"
+		@alphabet = params[:alphabet]
+		@alphabet_city = params[:alphabet_city]
     @countries = Country.has_cities
 		@type_school = params[:type_school]
+		@type_school ||= "University"
     case type
       when "country"
         @country = Country.find(id)
         @states = @country.states.has_cities
         @state = @states.first
-        @cities = @state.cities
+        @cities = @state.cities.with_alphabet(@alphabet_city)
         @city = @cities.first
-        if @type_school
-        	@schools = @city.schools.where(:type_school => @type_school)
-        else
-        	@schools = @city.schools
-        end
+        @schools = School.list_school(@city.id, @alphabet, @type_school)
         @school = @schools.first
       when "state"
         @state = State.find(id)
         @country = @state.country
         @states = @country.states.has_cities
-        @cities = @state.cities
+        @cities = @state.cities.with_alphabet(@alphabet_city)
         @city = @cities.first
-        if @type_school
-        	@schools = @city.schools.where(:type_school => @type_school)
-        else
-        	@schools = @city.schools
-        end
+        @schools = School.list_school(@city.id, @alphabet, @type_school)
         @school = @schools.first
       when "city"
         @city = City.find(id)
         @state = @city.state
         @country = @state.country
         @states = @country.states.has_cities
-        @cities = @state.cities
-        if @type_school
-        	@schools = @city.schools.where(:type_school => @type_school)
-        else
-        	@schools = @city.schools
-        end
+        @cities = @state.cities.with_alphabet(@alphabet_city)
+        @schools = School.list_school(@city.id, @alphabet, @type_school)
         @school = @schools.first
     end
   end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:create]
   protect_from_forgery :only => [:create]
   
-  before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
+  before_filter RubyCAS::Filter::GatewayFilter, :except => [:create, :show_story_detail, :show_photo_detail, :show_music_album, :show_detail_video]
   before_filter RubyCAS::Filter, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_password]
@@ -206,12 +206,13 @@ class UsersController < ApplicationController
     if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @photo)
       @photo_album = @photo.photo_album
       update_view_count(@photo_album)
-			#display user for partial on_this_photo
-		  list_friends = current_user.user_friends
-		  @tag_usr = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",photo_id,"Photo",true ] )
-		  
-		  #find all the user need to be verified
-		  @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",photo_id,"Photo",false ] )
+			if current_user
+				#display user for partial on_this_photo
+				list_friends = current_user.user_friends
+		  	#find all the user need to be verified
+		  	@usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",photo_id,"Photo",false ] )
+			end
+			@tag_usr = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",photo_id,"Photo",true ] )
 			as_next = @photo_album.photos.nexts(@photo.id).last
       as_prev = @photo_album.photos.previous(@photo.id).first
       @next = as_next if as_next
