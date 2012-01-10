@@ -70,31 +70,31 @@
     }
   }
 	
-	function select_alphabet(alphabet){
+  function select_alphabet(alphabet){
     var alphabet_city = $('#list_alphabet_city a.selected').html();
-		var city_id = $('#city').val();
-		load("",city_id ,alphabet, alphabet_city);
+    var city_id = $('#city').val();
+    load("",city_id ,alphabet, alphabet_city);
   }
 
   function select_alphabet_city(alphabet_city){
     var alphabet = $('#list_alphabet a.selected').html();
-		var state_id = $('#state').val();
-		load(state_id,"" ,alphabet, alphabet_city);
+    var state_id = $('#state').val();
+    load(state_id,"" ,alphabet, alphabet_city);
   }
 
-	function load(state_id, city_id, alphabet, alphabet_city){
-		var school_type = $("input[name='school_type']:checked").val();
-		ShowFeaturedOverlay();
+  function load(state_id, city_id, alphabet, alphabet_city){
+    var school_type = $("input[name='school_type']:checked").val();
+    ShowFeaturedOverlay();
     $.ajax({
       url: '/users_select_school/list_school',
       type: 'GET',
       cache: false,
       dataType: 'html',
       data: ({
-				state_id : state_id,
+        state_id : state_id,
         city_id : city_id,
         alphabet : alphabet,
-				alphabet_city : alphabet_city,
+        alphabet_city : alphabet_city,
         type_school: school_type
       }),
       success: function(data){
@@ -102,23 +102,27 @@
         load_menus();
       }
     });
-	}
+  }
 
   function load_menus (){
     $("#country").mcDropdown("#country_menu", {
+      width: 183,
       valueAttr: "rel_country",
       select: select_country 
     });
     $("#state").mcDropdown("#state_menu", {
+      width: 183,
       valueAttr: "rel_state",
       select: select_state
     });
     $("#city").mcDropdown("#city_menu", {
-			showACOnEmptyFocus: true,
+      width: 183,
+      showACOnEmptyFocus: true,
       valueAttr: "rel_city",
       select: select_city
     });
     $("#school").mcDropdown("#school_menu", {
+      width: 183,
       valueAttr: "rel_school"
     });
   }
