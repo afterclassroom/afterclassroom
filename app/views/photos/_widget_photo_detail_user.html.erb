@@ -46,7 +46,7 @@
   <% end %><!-- end if  -->
 </div>
 <div class="stoDbtmac"></div>
-<%= render :partial => "photos/photo_action" %>
+<%= render :partial => "photos/photo_action_user" %>
 <div id="rate_pos" style="line-height: 22px;padding: 4px;width: 81px;float:left; margin-top: -40px; margin-left: 304px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
   <%= render :partial => "photos/rating_action", :locals => {:post => @photo, :controller_name => "photos"}%>
 </div>
@@ -54,7 +54,7 @@
   <a style="display:none;font-weight: bold;position: absolute;" id="stop_tag" href="javascript:;">Done</a>
 </div>
 <div class="commentPhoto" style="margin-top: 40px">
-  <%= show_post_comments(@photo) %>
+  <%= show_post_comments_video(@photo) %>
   <% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
     <%= hidden_field_tag "comment_content" %>
     <%= hidden_field_tag "photo_id", @photo.id %>

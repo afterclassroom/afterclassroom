@@ -1,4 +1,5 @@
 <a class="close" href="#"></a>
+<div id="faceboxTitle" style="color: #0A81C4;font-size: 12px;font-weight: bold;margin-bottom: 3px;">Report Abuse</div>
 <div class="postCont" id="div_send_report" style="width: 470px">
   <%= form_tag create_report_abuse_posts_url(), :remote => true, :id => "form_send_report", :name => "form_send_report" do %>
     <%= hidden_field_tag "reported_id", @reported_id %>
@@ -37,7 +38,9 @@
     $('.close').click($.facebox.close);
     $('div#TB_title').filter(':gt(0)').remove();
     $('div#TB_ajaxContent').filter(':gt(0)').remove();
-    $('div#facebox').filter(':gt(0)').remove();
+    $('div#div_send_report').filter(':gt(0)').remove();
+    $('a.close').filter(':gt(0)').remove();
+    $('div#faceboxTitle').filter(':gt(0)').remove();
   });
   //END fix bug 1210
 </script>
