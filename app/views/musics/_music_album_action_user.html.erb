@@ -1,0 +1,32 @@
+<div id="add_tag">
+  <%= render :partial => "musics/form_add_tag" %>
+</div>
+
+<div class="stoDbtm">
+  <div class="AsDContBtm">
+    <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
+    <span class="btmFav" id="item_favorite_<%= @music_album.id %>"><%= show_favorite_in_detail("MusicAlbum", @music_album) %></span>
+    <span class="btmAbuse"><%= show_report_abuse_video(@music_album) %></span>
+    <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Let's Listen</a></span>
+    <span id="rate_pos"><%= render :partial => "music_albums/rating_action", :locals => {:post => @music_album, :controller_name => "music_albums"}%></span>
+  </div>
+</div>
+<script>
+  $(document).ready(function($) {
+    $('a[rel*=facebox]').facebox();
+  });
+  $(document).ready(function(){
+    $("body").append("<div id='opaque' style='display: none;'></div>");
+        
+    $(document).bind('loading.facebox', function(){
+      $("#opaque").show();
+    });
+    $(document).bind('close.facebox', function(){
+      $("#opaque").hide();
+    });
+    $(document).bind('afterReveal.facebox', function(){
+      // this is a fix for IE6 which resets the height to 100% of the window height
+      $("#opaque").height($(document).height());
+    });
+  });
+</script>
