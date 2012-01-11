@@ -19,8 +19,10 @@
         <div class="stoDcont" style="padding:0px">
           <%= raw(@story.content) %>
         </div>
-        <%= render :partial => "stories/story_action_user" %>
-        <%= show_post_comments_video(@story) %>
+        <% if logged_in? %>
+          <%= render :partial => "stories/story_action_user" %>
+          <%= show_post_comments_video(@story) %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -50,6 +52,6 @@
     $('div#TB_window').css({
       'top':'320px'
     });
-		vtip();
+    vtip();
   });
 </script>

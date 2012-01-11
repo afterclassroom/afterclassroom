@@ -17,10 +17,10 @@
           <% end %>
           <%= render :partial => "musics/music_playlist" %>
         </div>
-
-        <%= render :partial => "musics/music_album_action_user" %>
-
-        <%= show_post_comments_video(@music_album) %>
+        <% if logged_in? %>
+          <%= render :partial => "musics/music_album_action_user" %>
+          <%= show_post_comments_video(@music_album) %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -42,5 +42,5 @@
       'top':'320px'
     });
   });
-	vtip();
+  vtip();
 </script>
