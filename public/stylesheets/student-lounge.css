@@ -27,6 +27,19 @@
     _height:100%;
     /* margin-top:50px;*/
 }
+/*** column 759 public ***/
+.col759{
+    background:white url('/images/top759.png') no-repeat;
+    width:759px;
+    margin-bottom:8px;
+}
+.col759in{
+    background:url('/images/bot759.png') no-repeat left bottom;
+    overflow:hidden;
+    padding:10px;
+    _height:100%;
+    /* margin-top:50px;*/
+}
 /*** column 210 public ***/
 .contMainR210{
     width:210px;
