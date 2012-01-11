@@ -17,10 +17,10 @@
           <% end %>
           <%= render :partial => "musics/music_playlist" %>
         </div>
-        <% if logged_in? %>
-          <%= render :partial => "musics/music_album_action_user" %>
-          <%= show_post_comments_video(@music_album) %>
-        <% end %>
+
+        <%= render :partial => "musics/music_album_action_user" %>
+
+        <%= show_post_comments_video(@music_album) %>
       </div>
     </div>
   </div>
@@ -32,6 +32,7 @@
 </div>
 <script>
   $(document).ready(function() {
+    $("a.require_login").attr("href", "#")
     $('div#TB_title').filter(':gt(0)').remove();
     $('div#TB_ajaxContent').filter(':gt(0)').remove();
     $('#comment').css({width:'98.5%'});
@@ -42,5 +43,5 @@
       'top':'320px'
     });
   });
-  vtip();
+	vtip();
 </script>
