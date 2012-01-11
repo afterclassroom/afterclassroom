@@ -40,7 +40,7 @@
   <div class="city_form" style="width: 300px;float: left">
     <div class="filter" style="width: 278px;">Filter your city by alphabets</div>
     <div class="popupAl" id="list_alphabet_city">
-      <%= link_to_function "All", "select_alphabet_city('All')", :class => "#{"selected" if @alphabet_city == "All"}" %>
+      <%= link_to_function "All", "select_alphabet_city('')", :class => "#{"selected" if @alphabet_city == ""}" %>
       <% ('A'..'Z').each do |a| %>
         <%= link_to_function a.to_s, "select_alphabet_city('#{a.to_s}')", :class => "#{"selected" if @alphabet_city == a}" %>
       <% end %>
@@ -49,7 +49,7 @@
   <div class="schoool_form" style="width: 300px;float: left">
     <div class="filter" style="width: 278px;">Filter your school by alphabets</div>
     <div class="popupAl" id="list_alphabet">
-      <%= link_to_function "All", "select_alphabet('All')", :class => "#{"selected" if @alphabet == "All"}" %>
+      <%= link_to_function "All", "select_alphabet('')", :class => "#{"selected" if @alphabet == ""}" %>
       <% ('A'..'Z').each do |a| %>
         <%= link_to_function a.to_s, "select_alphabet('#{a.to_s}')", :class => "#{"selected" if @alphabet == a}" %>
       <% end %>

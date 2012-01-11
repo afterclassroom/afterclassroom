@@ -3,8 +3,8 @@ class UsersSelectSchoolController < ApplicationController
   before_filter :get_variables, :only => [:update_form, :update_form_signup]
   
   def show
-    @alphabet = "All"
-		@alphabet_city = "All"
+    @alphabet = ""
+		@alphabet_city = ""
     @countries = Country.has_cities
     if session[:your_school]
       @school = School.find(session[:your_school])
@@ -53,11 +53,7 @@ class UsersSelectSchoolController < ApplicationController
     @states = @country.states.has_cities
     @cities = @state.cities.with_alphabet(@alphabet_city)
 		@city = @cities.first if @city.nil?
-    if @alphabet == ""
-      @schools = City.find(city_id).schools.where(:type_school => @type_school)
-    else
-      @schools = School.list_school(city_id, @alphabet, @type_school)
-    end
+    @schools = School.list_school(@city.id, @alphabet, @type_school)
     @school ||= @schools.first if @schools.size > 0
     render :layout => false
   end

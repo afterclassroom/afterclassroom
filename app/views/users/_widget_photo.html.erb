@@ -16,14 +16,14 @@
         <div class="stoPre"><%= link_to "", show_photo_detail_user_path(current_user, :photo_id => @prev), :remote => true if @prev %></div>
         <div class="stoNext"><%= link_to "", show_photo_detail_user_path(current_user, :photo_id => @next), :remote => true if @next %></div>
       </div>
-      <%= render :partial => "photos/widget_photo_detail_user" %>
+      <%= render :partial => "photos/widget_photo_detail" %>
     </div>
   </div>
 </div>
 
 <div class="contMainR" style="margin-right: 22px;">
   <!--Most Viewed-->
-  <%= render :partial => "photos/on_this_photo_user" %>
+  <%= render :partial => "photos/on_this_photo" %>
   <!--Most Viewed-->
 </div>
 <script>

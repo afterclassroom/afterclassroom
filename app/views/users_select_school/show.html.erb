@@ -30,6 +30,12 @@
   function update_form(type_select, id){
 		var alphabet = $('#list_alphabet a.selected').html();
 		var alphabet_city = $('#list_alphabet_city a.selected').html();
+		if (alphabet == "All"){
+			alphabet = "";
+		}
+		if (alphabet_city == "All"){
+			alphabet_city = "";
+		}
     var school_type = $("input[name='school_type']:checked").val();
     ShowFeaturedOverlay();
     $.ajax({
@@ -76,12 +82,18 @@
 	
   function select_alphabet(alphabet){
     var alphabet_city = $('#list_alphabet_city a.selected').html();
+		if (alphabet_city == "All"){
+			alphabet_city = "";
+		}
     var city_id = $('#city').val();
     load("",city_id ,alphabet, alphabet_city);
   }
 
   function select_alphabet_city(alphabet_city){
     var alphabet = $('#list_alphabet a.selected').html();
+		if (alphabet == "All"){
+			alphabet = "";
+		}
     var state_id = $('#state').val();
     load(state_id,"" ,alphabet, alphabet_city);
   }
