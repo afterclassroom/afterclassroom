@@ -14,7 +14,7 @@ class City < ActiveRecord::Base
   #SQL: select count(*) from schools where schools.city_id = cities.id) > 0
   cond = "(select count(*) from schools where schools.city_id = cities.id) > 0"
   scope :has_schools, :conditions => cond
-  scope :with_alphabet, lambda {|arg| return {} if arg == "All"; {:conditions => ["SUBSTR(LOWER(name), 1, 1) LIKE ?", arg]}}
+  scope :with_alphabet, lambda {|arg| return {} if arg == ""; {:conditions => ["SUBSTR(LOWER(name), 1, 1) LIKE ?", arg]}}
   
   def full_address_city
     address = self.name

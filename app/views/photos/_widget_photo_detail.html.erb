@@ -1,44 +1,3 @@
-<<<<<<< HEAD
-			<!-- BEGIN: library for photo-tag -->
-			<link media="screen" type="text/css" href="/stylesheets/styles2.css" rel="stylesheet"/>
-			<script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
-			<!-- END: library for photo-tag -->       
-			<div class="AsDOr RePho">
-				<% if logged_in? %>				
-				<div>
-					<div id="img_id_loader" style="width: 110px;padding-left: 40px;">
-						Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left;" title="Next" src="/images/ajax-loader-a.gif"/>
-					</div>
-				</div>
-				<% end %>
-				<div id="container">
-					<p style="text-align:center">
-						<%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
-					</p>
-					<div id="tag_list_place" style="position: relative;text-align: left; margin-left: 33px; width: 495px;"></div>
-					<%
-					if controller.action_name == 'show' || controller.action_name == 'show_photo_detail'
-					%>
-						<div id="title_tag" style="text-align:center;height: 11px"><%= @photo.title %></div>
-					<% end %>
-				</div>
-			</div>
-			<div class="AsVer">
-				<% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>
-					<div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
-						Verify users have been tagged 
-						<a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
-						<a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
-					</div>
-					<% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
-						<%= hidden_field_tag "decision_id" %>
-						<%= hidden_field_tag "photo_id", @photo.id %>
-						<div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
-						  <% @usrs_for_verify.each do |user| %>
-						    <%= render :partial => "photos/item_user", :locals => {:user => user} %>
-						  <% end %>
-						</div>
-=======
 <!-- BEGIN: library for photo-tag -->
 <link media="screen" type="text/css" href="/stylesheets/styles2.css" rel="stylesheet"/>
 <script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
@@ -76,7 +35,6 @@
           <%= render :partial => "photos/item_user", :locals => {:user => user} %>
         <% end %>
       </div>
->>>>>>> 94654cdf744809b3f25f9821e894f7fb4908c490
 
       <div class="stoDbtm" style="display:none;" id="btn_pannel">
         <div class="AsDContBtm" style="float:right; margin-right: 39px;">
@@ -274,7 +232,7 @@
 
   
   });//end document.ready
-
+<% end %>
   $('#img_to_tag').load(function(){
     //fix the issue of google does not load image properly when hit f5
     var userAgent = navigator.userAgent.toLowerCase(); 
@@ -329,7 +287,6 @@
       }      
     });
   });
-<% end %>
   $(document).ready(function(){
     $('.qashdU').css({
       'float': 'left',

@@ -6,7 +6,7 @@
   <% end %>
 </ul>
 <ul id="state_menu" class="mcdropdown_menu">
-	<% if @states.size > 0 %>
+	<% if @states %>
 		<% @states.each do |s| %>
 		  <li rel_state="<%= s.id %>">
 		    <%= s.name %>
@@ -19,7 +19,7 @@
 	<% end %>
 </ul>
 <ul id="city_menu" class="mcdropdown_menu">
-	<% if @cities.size > 0 %>
+	<% if @cities and @cities.size > 0 %>
 		<% @cities.each do |ct| %>
 		  <li rel_city="<%= ct.id %>">
 		    <%= ct.name %>
@@ -32,7 +32,7 @@
 	<% end %>
 </ul>
 <ul id="school_menu" class="mcdropdown_menu">
-  <% if @schools.size > 0 %>
+  <% if @schools and @schools.size > 0 %>
     <% @schools.each do |sc| %>
       <li rel_school="<%= sc.id %>">
         <%= sc.name %>

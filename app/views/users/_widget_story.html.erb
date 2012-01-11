@@ -31,7 +31,6 @@
   <div class="contMainR" style="margin-right: 22px;">
     <!-- BEGIN list of tagged users for stories -->
     <% if @tagged_users.size > 0 %>
-
       <div class="col300s slStory">
         <div class="col300sin" id="on_this_story">
           <%= render :partial => "stories/widget_lets_read"%>    
@@ -43,7 +42,7 @@
 <% end %>
 <script>
   $(document).ready(function() {
-    $("a.require_login").attr("href", "#")
+    $("a.require_login").attr("href", "#");
 
     $('div#TB_title').filter(':gt(0)').remove();
     $('div#TB_ajaxContent').filter(':gt(0)').remove();

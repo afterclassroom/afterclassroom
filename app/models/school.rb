@@ -11,7 +11,7 @@ class School < ActiveRecord::Base
   has_and_belongs_to_many :departments
 
   # Named Scope
-  scope :list_school, lambda {|*args| {:conditions => ["city_id = ? AND SUBSTR(LOWER(name), 1, 1) LIKE ? AND type_school = ?", args[0], args[1], args[2]]}}
+  scope :list_school, lambda {|*args| return {} if args[1] == ""; {:conditions => ["city_id = ? AND SUBSTR(LOWER(name), 1, 1) LIKE ? AND type_school = ?", args[0], args[1], args[2]]}}
   
   # Tag post with school
   acts_as_tagger
@@ -20,7 +20,7 @@ class School < ActiveRecord::Base
     @city = City.find(city_id)
     @countryname = Country.find(@city.country_id).name
     @statename = State.find(@city.state_id).name
-    name + ', ' + @city.name + ', ' +  @statename + ', ' +  @countryname 
+    name + ', ' + @city.name + ', ' +  @statename + ', ' +  @countryname
   end
 
   def self.paginated_schools_conditions_with_search(params)

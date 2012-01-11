@@ -194,7 +194,7 @@
     }//end if 
 
   }
-  
+  <% if logged_in? %>
   //BEGIN: code for tag user
   var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
@@ -232,7 +232,7 @@
 
   
   });//end document.ready
-
+<% end %>
   $('#img_to_tag').load(function(){
     //fix the issue of google does not load image properly when hit f5
     var userAgent = navigator.userAgent.toLowerCase(); 
@@ -288,6 +288,7 @@
     });
   });
   $(document).ready(function(){
+  $("a.require_login").attr("href", "#");
     $('.qashdU').css({
       'float': 'left',
       'margin-left': '2px'
