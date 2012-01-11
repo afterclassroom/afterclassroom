@@ -52,9 +52,12 @@ class UsersSelectSchoolController < ApplicationController
     @country = @state.country
     @states = @country.states.has_cities
     @cities = @state.cities.with_alphabet(@alphabet_city)
-		@city = @cities.first if @city.nil?
-    @schools = School.list_school(@city.id, @alphabet, @type_school)
-    @school ||= @schools.first if @schools.size > 0
+		@city = @cities.first if @cities.size > 0
+		@schools, @school = nil
+		if @city
+		  @schools = School.list_school(@city.id, @alphabet, @type_school)
+		  @school = @schools.first if @schools.size > 0
+		end
     render :layout => false
   end
 
@@ -74,17 +77,17 @@ class UsersSelectSchoolController < ApplicationController
         @states = @country.states.has_cities
         @state = @states.first
         @cities = @state.cities.with_alphabet(@alphabet_city)
-        @city = @cities.first
-        @schools = School.list_school(@city.id, @alphabet, @type_school)
-        @school = @schools.first
+        @city = @cities.first if @cities.size > 0
+        @schools = School.list_school(@city.id, @alphabet, @type_school) if @city
+        @school = @schools.first if @schools.size > 0
       when "state"
         @state = State.find(id)
         @country = @state.country
         @states = @country.states.has_cities
         @cities = @state.cities.with_alphabet(@alphabet_city)
-        @city = @cities.first
-        @schools = School.list_school(@city.id, @alphabet, @type_school)
-        @school = @schools.first
+        @city = @cities.first if @cities.size > 0
+        @schools = School.list_school(@city.id, @alphabet, @type_school) if @city
+        @school = @schools.first if @schools.size > 0
       when "city"
         @city = City.find(id)
         @state = @city.state
@@ -92,7 +95,7 @@ class UsersSelectSchoolController < ApplicationController
         @states = @country.states.has_cities
         @cities = @state.cities.with_alphabet(@alphabet_city)
         @schools = School.list_school(@city.id, @alphabet, @type_school)
-        @school = @schools.first
+        @school = @schools.first if @schools.size > 0
     end
   end
 end
