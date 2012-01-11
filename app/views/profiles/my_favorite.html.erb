@@ -15,10 +15,10 @@
       <div class="proCenCont">
         <% @favorites.each do |f| %>
           <div class="favorite_item" style="float:left; width:100%">
-            <div class="del_wall" style="float: right; display: none; cursor: pointer;" onclick="DeleteFavorite('<%= f.id %>')">
+            <div class="del_wall" style="margin-left: 540px;display: none; cursor: pointer;position: absolute" onclick="DeleteFavorite('<%= f.id %>')">
               <img id="block_wall_img" src="/images/icon-ing.gif" />
             </div>
-            <div style="float:left; width:95%">
+            <div class="favorite_style" style="float:left;width: 100%">
               <%= item_favorite(f) %>
             </div>
           </div>
@@ -50,40 +50,40 @@
 <!--Alert-->
 
 <script>
-	function DeleteFavorite(id){
-		$("#delete_favorite_alert").dialog({
-  modal: true,
-  buttons: {
-  Ok: function() {
-  document.location.href = "<%= delete_prof_user_profiles_path(current_user) %>?prf_id=" + id
-  },
-  Cancel: function() {
-  $(this).dialog('close');
-  }
-  }
-  });
+  function DeleteFavorite(id){
+    $("#delete_favorite_alert").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          document.location.href = "<%= delete_prof_user_profiles_path(current_user) %>?prf_id=" + id
+        },
+        Cancel: function() {
+          $(this).dialog('close');
+        }
+      }
+    });
 
-	}
+  }
   $(document).ready(function(){
-  $('.assContT').css('width','400px');
+    $('.assContT').css('width','400px');
   });
-	$(document).ready(function(){
-  $(".favorite_item").hover(function(){
-  $(".del_wall", this).show();
-  }, function(){
-  $(".del_wall", this).hide();
-  })
+  $(document).ready(function(){
+    $(".favorite_item").hover(function(){
+      $(".del_wall", this).show();
+    }, function(){
+      $(".del_wall", this).hide();
+    })
   });
 </script>
 <script>
   $(window).ready(function(){
     $('.AfterClCom').imagesLoaded( function(){
-			$('.list_comments').show();
-			$('.AfterClCom').imagefit();
-			$('.list_comments').hide();
-		});
-                $('.assDes').imagesLoaded( function(){
-			$('.assDes').imagefit();
-		});
+      $('.list_comments').show();
+      $('.AfterClCom').imagefit();
+      $('.list_comments').hide();
+    });
+    $('.assDes').imagesLoaded( function(){
+      $('.assDes').imagefit();
+    });
   });
 </script>
