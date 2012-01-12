@@ -19,6 +19,8 @@
         <ul>
           <li><%= link_to content_tag(:span, 'Help'), :controller => 'forums', :action => 'index' %></li>
           <li><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller) %></li>
+          <li><%= render :partial => 'shared/signin_pp' %></li>
+          <li><%= render :partial => 'shared/signup_pp' %></li>
           <li><%= link_to raw("<span>Simple sign up</span>"), signup_url %></li>
           <li><%= link_to raw("<span>Forget password</span>"), user_forgot_password_url %></li>
         </ul>
