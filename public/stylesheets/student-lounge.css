@@ -6446,3 +6446,33 @@ div.ufo_sel div.ufo_span2b{
     text-align: center;
     width: 71px;
 }
+/*.file_upload {
+    position: relative;
+    overflow: hidden;
+    direction: ltr;
+    cursor: pointer;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    width: 110px;
+    height: 25px;
+    line-height: 25px;
+    background: #E4E4E4;
+    border: 1px solid limegreen;
+}
+.file_upload input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    border: 300px solid transparent;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    filter: alpha(opacity=0);
+    -o-transform: translate(-300px, -300px) scale(10);
+    -moz-transform: translate(-800px, 0) scale(10);
+    cursor: pointer;
+}*/

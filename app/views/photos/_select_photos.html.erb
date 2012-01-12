@@ -1,26 +1,26 @@
 <div class="files">
-    <%= form_for :photo, :url => upload_user_photos_url(current_user), :html => { :class => "upload", :multipart => true, :id => "photo_form" } do |f| %>
-      <%= hidden_field_tag "photo[photo_album_id]", "" %>
-      <%= file_field_tag "photo[photo_attach]", :multiple => true %>
-      <div>
-        Select photos
-      </div>
-    <% end %>
-    <table class="upload_files" width="100%">
-    </table>
-    <div class="stoExBtm">
-      <div class="stoExSave" id="create_bt">
-        <a onclick="check_form_photo_album();" href="javascript:;">Create</a>
-      </div>
-			<div class="stoExSave" id="start_uploads" style="display:none;">
-        <a href="javascript:;">Upload</a>
-      </div>
-      <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').hide();">Cancel</a></div>
+  <%= form_for :photo, :url => upload_user_photos_url(current_user), :html => { :class => "upload", :multipart => true, :id => "photo_form" } do |f| %>
+    <%= hidden_field_tag "photo[photo_album_id]", "" %>
+    <%= file_field_tag "photo[photo_attach]", :multiple => true %>
+    <div>
+      Select photos
     </div>
-    <br/>
-    <table class="download_files" width="100%">
-    </table>
+  <% end %>
+  <table class="upload_files" width="100%">
+  </table>
+  <div class="stoExBtm">
+    <div class="stoExSave" id="create_bt">
+      <a onclick="check_form_photo_album();" href="javascript:;">Create</a>
+    </div>
+    <div class="stoExSave" id="start_uploads" style="display:none;">
+      <a href="javascript:;">Upload</a>
+    </div>
+    <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').hide();">Cancel</a></div>
   </div>
+  <br/>
+  <table class="download_files" width="100%">
+  </table>
+</div>
 <!--Alert-->
 <div id="delete-dialog-message" title="Confirm delete" style="display:none;">
   <p>
@@ -54,12 +54,12 @@
             fileNames = fileNames + files[i].name + '<br>';
           }
         }
-				var bt_upload = "";
-				if ($('#photo_photo_album_id').val() != ""){
-					bt_upload = '<td class="file_upload_start">' + '<button class="ui-state-default ui-corner-all" title="Start Upload">' + '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' + '<\/button><\/td>';
-				}else{
-					bt_upload = '<td class="file_upload_start">' + '<button class="ui-state-default ui-corner-all" title="Start Upload" style="display:none;">' + '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' + '<\/button><\/td>';
-				}
+        var bt_upload = "";
+        if ($('#photo_photo_album_id').val() != ""){
+          bt_upload = '<td class="file_upload_start">' + '<button class="ui-state-default ui-corner-all" title="Start Upload">' + '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' + '<\/button><\/td>';
+        }else{
+          bt_upload = '<td class="file_upload_start">' + '<button class="ui-state-default ui-corner-all" title="Start Upload" style="display:none;">' + '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' + '<\/button><\/td>';
+        }
         return $('<tr><td class="file_upload_preview"><\/td>' +
           '<td class="file_upload_title">' +
           '<span>'+
@@ -164,11 +164,11 @@
     });
   }
 
-	function upload_files(){
-		$('.file_upload_start button').click();
-		$('#create_bt').hide();
-		$('#start_uploads').show();
-	}
+  function upload_files(){
+    $('.file_upload_start button').click();
+    $('#create_bt').hide();
+    $('#start_uploads').show();
+  }
 
   function deleteFile(key) {
     var path = "<%= user_photos_url(current_user)%>/" + key;
@@ -197,3 +197,35 @@
   });
 
 </script>
+<style>
+  .file_upload {
+    position: relative;
+    overflow: hidden;
+    direction: ltr;
+    cursor: pointer;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    width: 110px;
+    height: 25px;
+    line-height: 25px;
+    background: #E4E4E4;
+    border: 1px solid limegreen;
+  }
+  .file_upload input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    border: 300px solid transparent;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    filter: alpha(opacity=0);
+    -o-transform: translate(-300px, -300px) scale(10);
+    -moz-transform: translate(-800px, 0) scale(10);
+    cursor: pointer;
+  }
+</style>
