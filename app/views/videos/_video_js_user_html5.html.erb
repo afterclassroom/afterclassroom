@@ -1,0 +1,181 @@
+<script language="javascript" type="text/javascript" src="/javascripts/carousel2.0.js"></script>    
+<script type="text/javascript">
+  $(document).ready(function(){	
+    $(".demo1").carousel({
+      vertical: false,
+      scrollNext: ".next1",
+      scrollPrev: ".prev1",
+      scrollNum: 4,
+      circular: false,
+      scrollVisible: 4,
+      itemHeight: 90,
+      itemWidth: 105,
+      scrollSpeed : 1000
+    });
+  });
+</script>
+<a 
+  href="<%= get_video_path(@video.video_file.video_attach.url) %>" 
+  style="display:block;width:530px;height:360px;margin-left: 15px;" 
+  id="player">
+</a>
+<div id="wrap">      	  
+  <div class="content">
+    <div class="page carouselDemoPage">     	  			
+      <div class="demoCarousel demo1">
+        <a href="" class="prevBtn prev1">prev</a>
+        <div class="demoPane" id="mycarousel">
+          <ul>
+            <%
+            videos = @video.user.videos_same_category(@video)
+          %>
+            <% videos.each do |v| %>
+              <% if check_private_permission(current_user, @video.user, "my_videos") or check_view_permission(current_user, v) %>
+                <li>
+                  <a href="<%= get_video_path(v.video_file.video_attach.url) %>" rel="<%= v.id %>">
+                    <%= truncate(v.title, :length=>12, :omission=>"...") %>
+                    <div class="jcarousel-skin-tango-img"><%= display_image_video(v) %></div>
+                    <span class="play_videoJ"></span>
+                  </a>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>  <!-- end of scrollPane -->
+        <a href="" class="nextBtn next1">next</a>
+      </div>  <!-- end of demo1 -->  			      	  			
+    </div>  <!-- end of page -->
+  </div>
+</div>  <!-- end of wrap div -->
+<script>
+  //  install Flowplayer inside a#player
+  $f("player", 
+  {src: "/swfs/flowplayer.commercial-3.2.7-6.swf", wmode:"opaque"}, 
+  {
+    key: '#$de9093c019ae644a1da',
+    clip: {
+      // use first frame of the clip as a splash screen
+      autoPlay: true,
+      autoBuffering: true
+
+    }, 
+    logo: {
+      url: '/images/logo02.png',
+      fullscreenOnly: false,
+      top: '85%',
+      left: '20%'
+    },
+    // gradually show on mouseover
+    onMouseOver: function() {
+      this.getPlugin("logo").fadeTo(1, 1000);
+    },
+    // gradually hide on mouseout
+    onMouseOut: function() {
+      this.getPlugin("logo").fadeTo(0, 1000);
+    }
+  });
+  // get all links that are inside div#clips
+  var links = document.getElementById("mycarousel").getElementsByTagName("a");
+
+  // loop those links and alter their click behaviour
+  for (var i = 0; i < links.length; i++) {
+    links[i].onclick = function() {		
+      // play the clip specified in href- attribute with Flowplayer
+      load_on_this_video(this.getAttribute("rel", 2), this.getAttribute("href", 2));
+      //$f().play(this.getAttribute("href", 2));
+      //$f().setPlaylist(load_on_this_video);	
+      // by returning false normal link behaviour is skipped
+      return false;
+    }
+  }
+  // Ride the carousel...
+  jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel();
+  }); 
+
+  function load_on_this_video(video_id, link){
+    $.ajax({
+      url: '/videos/get_on_this_video',
+      dataType: 'script',
+      data: {
+        video_id: video_id
+      },
+      beforeSend: function() {
+        $('#on_this_videos').val("");
+        $('#action_video').val("");
+      },
+      success: function(r){
+        $f().play(link);
+      }
+    });
+  }
+</script>
+<style>
+
+  /*  Page Content  */
+  .content {padding:20px;overflow:hidden;clear:both;}
+  .content ul {padding-left:3em}
+  .content .viewRecent {display:block;width:250px;border:2px solid #fff;text-align:center;font-weight:bold;height:30px;line-height:30px;text-decoration:none;font-size:1.4em;margin:0 auto;background:#777}
+
+  /*  Home Gallery  */
+  .homeGallery {width:710px;height:300px;overflow:hidden;position:relative;margin:50px auto}
+  .homeGallery h3 {text-align:center;padding:0.5em 0}
+  .homeGalleryPane {width:600px;margin:0 auto;height:250px;overflow:hidden;position:relative;border:1px solid #444}
+  .homeGalleryPane .shading {position:absolute;top:0;left:0;right:0;bottom:0;background:url(img/shading.png);z-index:1}
+  .homeGallery img {display:none;}
+  .homeGallery a {display:block;position:absolute;width:50px;height:20px;line-height:20px;font-weight:bold;text-decoration:none;border:1px solid #444;text-align:center}
+  .homeGallery a.prev {top:150px;left:0}
+  .homeGallery a.next {top:150px;right:0}
+  .popupBox {background:#fff}
+
+  /*  Projects Page  */
+  .projectThumb {width:274px;padding:15px 15px;margin:5px;float:left;text-align:center;border:1px solid #888}
+  .projectThumb h2 {padding:0.5em 0}
+  .projectThumb a {padding:0.5em 0;font-weight:bold;font-size:1.1em}
+
+  .projectsGallery {overflow:hidden;position:relative}
+  .projectsGallery .scroller {width:400px;margin:0 auto}
+  .projectsGallery .scroller img {cursor:pointer}
+  .projectsGallery .next, .projectsGallery .prev {display:block;width:50px;height:30px;line-height:30px;text-align:center;position:absolute;top:50px;font-weight:bold;text-decoration:none;font-size:1.2em}
+  .projectsGallery .next {right:20px;}
+  .projectsGallery .prev {left:20px;}
+  .projectsGallery li {height:117px;width:150px;}
+  .projectsGallery li img {padding:5px}
+  .projectBox {background:#fff;border:1px solid #ccc}
+  .projectBox .galleryTitle h2 {text-align:center;line-height:30px}
+  .projectBox .galleryTitle .popupClose {position:absolute;display:block;height:20px;width:50px;top:5px;right:0px;color:#000}
+  .projectBox .galleryControls {text-align:center}
+  .projectBox .galleryControls li {display:inline}
+  .projectBox .galleryControls a {color:#000;font-weight:bold;text-decoration:none;padding:0 10px;line-height:40px;font-size:1.2em}
+
+  /*  Contact Page  */
+  .contactForm fieldset {padding:20px 50px;}
+  .contactForm label {display:block;width:120px;height:15px;float:left;clear:left;margin-top:10px;font-size:1.2em;font-weight:bold;text-transform:uppercase}
+  .contactForm .text {display:block;width:150px;height:15px;float:left;margin-top:10px;border:1px solid #777;background:#ddd;}
+  .contactForm textarea {float:left;margin-top:10px;border:1px solid #777;background:#ddd;}
+  .contactForm .submit {clear:both;float:left;margin-left:120px;margin-top:10px;display:block;height:30px;line-height:30px;border:2px solid #777;background:#ddd;font-weight:bold;text-align:center;text-transform:uppercase}
+
+  /* jQuery Plugin Pages  */
+  .carouselDemoPage h2 {margin-top:20px}
+  .carouselDemoPage strong {display:block;float:left;width:150px;clear:left}
+  .carouselDemoPage hr, .tooltipDemoPage hr {border-bottom:1px solid #999;padding-top:20px;display:block;height:1px;clear:both}
+  .demoCarousel {position:relative;padding-bottom:10px;}
+  .demoCarousel .demoPane {margin:0 auto}
+  .demoCarousel .demoPane li p {text-align:center;font-weight:bold;color:#fff;font-size:0.9em;padding:0}
+  .demoCarousel .prevBtn, .demoCarousel .nextBtn {display:block;height:30px;line-height:30px;width:50px;text-align:center;font-weight:bold;position:absolute;top:30px;text-decoration:none;border:1px solid #666;color:#444}
+  .demoCarousel .prevBtn {left:5px}
+  .demoCarousel .nextBtn {right:5px;}
+  .controlPane ul {width:100%;overflow:hidden;padding-top:5px;padding-left:25px}
+  .controlPane ul li {color:#fff;list-style:none;display:block;height:18px;width:18px;float:left;background:#666;text-align:center;cursor:pointer;margin-right:5px;font-weight:bold;line-height:18px;font-size:11px;border:1px solid #666;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;}
+  .controlPane ul li:hover {background:#fff;color:#666}
+  .controlPane ul.controlList li.active {color:#666;background:#eee;border:1px solid #bbb}
+  .controlPane ul.verticalList {width:20px;position:absolute;top:5px;right:5px;overflow:hidden;padding-top:0;padding-left:0}
+  .controlPane ul.verticalList li {margin-bottom:5px}
+  #wrap .disabled {display:none}
+
+  /* carousel stylings */
+  .demo1, .demo2 {width:500px;margin:0 auto;padding:5px;background:#aaa;border:2px solid #ccc;overflow:hidden;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;}
+  .demo1 .prev1, .demo1 .next1, .demo2 .prev2, .demo2 .next2 {z-index:3;height:20px;line-height:20px;font-weight:bold;font-size:1.1em;width:35px;background:#fff;top:35px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;}
+
+
+</style>
