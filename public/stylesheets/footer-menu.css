@@ -403,10 +403,10 @@ span.downarr a {
 }
 /*------ search for people--*/
 .feedback-panel {
-    width: 330px;
+    width: 0px;
     position:fixed;
     top:32%;
-    right:-30px;
+    right:0px;
     z-index: 1;
 }
 
@@ -414,7 +414,7 @@ a.feedback-tab {
     background:transparent url('/images/search_for_friends1.png') no-repeat scroll 0 0;
     display:block;
     height:192px;
-    left:-28px;
+    left:-27px;
     position:absolute;
     float:left;
     text-indent:-9999px;
@@ -423,7 +423,7 @@ a.feedback-tab {
     margin-top: -20px;
     cursor: pointer;
     margin-top: 5px;
-		z-index: 999;
+    z-index: 999;
 }
 .feed_close{
     margin-right: -11px;

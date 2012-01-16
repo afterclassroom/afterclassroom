@@ -65,15 +65,20 @@ client = CASClient::Client.new(
 <script>
   $(document).ready(function(){
     $("body").append("<div id='opaque_dialog' style='display: none;'></div>");
+    <%#*$(window).resize(function() {%>
+    <%#*$('#dialog_tryitnow').dialog({position: ['center', 'center']});%>
+  <%#*});%>
   });
   $(document).ready(function() {
+
     chk = $.cookie("close_try_it_now_dialog");
     if (chk == "yes"){     
     }
     else{
       $("#opaque_dialog").show();
       $( "#dialog_tryitnow" ).dialog(
-      { height: 360,
+      { position: ['center', 'center'],
+        height: 360,
         width: 1030,
         resizable: false,
         open: function(){ $(".ui-dialog-titlebar-close").hide();
@@ -97,7 +102,8 @@ client = CASClient::Client.new(
     $("#tryitnow").click(function(){
       $("#opaque_dialog").show();
       $("#dialog_tryitnow").dialog(
-      { height: 360,
+      { position: ['center', 'center'],
+        height: 360,
         width: 1030,
         resizable: false,
         open: function(){ $(".ui-dialog-titlebar-close").hide();
