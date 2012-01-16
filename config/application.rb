@@ -52,6 +52,6 @@ module Afterclassroom
     
     config.serve_static_assets = true
     
-    config.middleware.use OAuth::Rack::OAuthFilter
+    #config.middleware.use OAuth::Rack::OAuthFilter
   end
 end

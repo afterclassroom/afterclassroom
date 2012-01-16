@@ -3,22 +3,46 @@
 class SessionsController < ApplicationController
   include AuthenticatedSystem
   
-  before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:new, :change_school]
-  before_filter :cas_user
+  #before_filter RubyCAS::Filter::GatewayFilter
+  #before_filter RubyCAS::Filter, :except => [:new, :change_school]
+  #before_filter :cas_user
   
   def new
     if logged_in?
       redirect_back_or_default(root_path)
-    else
-      redirect_to RubyCAS::Filter.login_url(self)
     end
   end
+
+	def create
+		path = params[:path]
+		email = params[:email]
+		password = params[:password]
+		user = User.authenticate(email, password)
+		if user
+			self.current_user = user
+			self.current_user.update_attribute("online", true)
+      self.current_user.set_time_zone_from_ip(request.remote_ip)
+			if !user.school_id.nil? and user.school_id != 0
+		    # Set session your school
+		    session[:your_school] = user.school.id
+				session[:your_school_type] = user.school.type_school
+			end
+			if self.current_user.email == "demotoyou@gmail.com"
+				redirect_to path	
+			else
+				redirect_to user_student_lounges_path(user)
+			end
+		else
+			flash[:error] = "Incorrect username or password."
+			render :action => "new"
+		end
+	end
   
   def destroy
     flash[:notice] = "You have been logged out."
-    self.current_user.update_attribute("online", false)
-		RubyCAS::Filter.logout(self, root_url) and return
+    current_user.update_attribute("online", false)
+		logout_keeping_session!
+		redirect_back_or_default(root_path)
   end
   
   def change_school

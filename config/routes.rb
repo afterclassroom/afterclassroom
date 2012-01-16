@@ -1,4 +1,6 @@
 Afterclassroom::Application.routes.draw do
+  resources :omnitauths
+
   get 'kindeditor/images_list'
 
   post 'kindeditor/upload'
@@ -442,6 +444,8 @@ Afterclassroom::Application.routes.draw do
 
   match '/oauth',               :to => 'oauth#index',         :as => :oauth
   
+	# Omniauth
+	match '/auth/:provider/callback' => 'omnitauths#create'
 
   # Dashboard as the default location
   root :to => 'dashboards#index'

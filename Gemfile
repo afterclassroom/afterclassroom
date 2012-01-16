@@ -76,8 +76,11 @@ gem 'koala', '~> 1.2.0beta'
 gem 'friendly_id', '~> 4.0.0.beta8'
 gem 'delayed_job_admin'
 gem 'sunspot-rails-http-basic-auth', '~> 0.0.2'
-gem 'linkedin'
 gem 'email_valid'
 gem 'haml'
 gem 'mini_magick'
 #gem 'maktoub'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem "nifty-generators", :group => :development
+gem "mocha", :group => :test

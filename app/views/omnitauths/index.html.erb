@@ -1,0 +1,18 @@
+<% title "Omnitauths" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Provider</th>
+    <th>Uid</th>
+  </tr>
+  <% for omnitauth in @omnitauths %>
+    <tr>
+      <td><%= omnitauth.user_id %></td>
+      <td><%= omnitauth.provider %></td>
+      <td><%= omnitauth.uid %></td>
+      <td><%= link_to "Destroy", omnitauth, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+

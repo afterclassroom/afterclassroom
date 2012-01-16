@@ -11,24 +11,7 @@
     <div class="signinCont">
       <%= display_flash_messages_with_raw %>
       <div class="postReq">*(asterisk) is required.</div>
-      <%= form_tag session_path, :name => "form", :id => "form" do -%>
-        <div class="signinItem">
-          <div class="signinTit">Email*</div>
-          <div class="signinInp"><%= text_field_tag 'email', '', :class => 'required email' %></div>
-        </div>
-        <div class="signinItem">
-          <div class="signinTit">Password*</div>
-          <div class="signinInp"><%= password_field_tag 'password', '', :class => '{validate:{required:true}}' %></div>
-        </div>
-        <div class="signincCheck">
-          <div><%= check_box_tag('remember_me') %> </div>
-          <div class="signincCheckTxt">Remember me for next login</div>
-        </div>
-        <div class="btmLogme">
-          <input id="add_new_fr" type="submit" value="Log me in" name="commit" class="buttonCom" onclick="submitLog();"/>
-        </div>
-        <div class="forgotPass"><span><%= link_to "Forgot Password", user_forgot_password_url %></span></div>
-      <% end -%>
+      <%= render :partial => "sessions/login_form" %>
     </div>
   </div>
 </div>
