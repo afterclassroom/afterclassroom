@@ -1,42 +1,16 @@
 <a id="signin_pp" href="#"><span>Sign in pp</span></a>
 
-
 <div id="dialog_signin_pp" style="margin-top: -25px;display: none;">
   <a id="signin_ppClose"></a>
   <div>
     <div class="contDetL" style="background:none">
       <div class="contDetLin" style="background:none">
-        <div class="AsDTop">
-          <h1 class="titleH1" style="padding-right: 35px;">Sign In</h1>
-          <div>	
-            <a href="/auth/twitter" class="auth_provider">
-              <%= image_tag "twitter_64.png", :size => "44x44", :alt => "Twitter" %>
-            </a>
-            <a href="/auth/facebook" class="auth_provider">
-              <%= image_tag "facebook_64.png", :size => "44x44", :alt => "Facebook" %>
-            </a>
-          </div>
-        </div>
         <div class="signinCont">
           <div class="postReq">*(asterisk) is required.</div>
-          <form onsubmit="submitbutton = document.getElementById('login-submit'); submitbutton.value='Please wait...'; submitbutton.disabled=true; return true;" id="login-form" action="login" method="post">
-            <input type="hidden" value="LT-1326339340rDDDA856751DFE74A7F" name="lt" id="lt">
-            <input type="hidden" value="https://dev.afterclassroom.com/post_projects" name="service" id="service">
-            <div class="signinItem">
-              <div class="signinTit">Email*</div>
-              <div class="signinInp"><input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username"></div>
-            </div>
-            <div class="signinItem">
-              <div class="signinTit">Password*</div>
-              <div class="signinInp"><input type="password" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password"></div>
-            </div>
-            <div class="btmLogme"><a id="submit_form" href="javascript:;"><input type="submit" value="Log me in" name="commit" id="login-submit"></a></div>
-            <div class="forgotPass"><span><a href="http://afterclassroom.com/users/forgot_password">Forgot Password</a></span></div>
-          </form>
+          <%= render :partial => "sessions/login_form" %>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 <script>
@@ -46,7 +20,15 @@
   });
   $(document).ready(function(){
     $("#signin_pp").click(function(){
-      $("#signin_pp_dialog").show();
+      open_signin();
+    });
+    $("#signin_ppClose").click(function(){
+      $("#dialog_signin_pp").dialog("close");
+      $("#signin_pp_dialog").hide();
+    });
+  });
+	function open_signin(){
+		$("#signin_pp_dialog").show();
       $("#dialog_signin_pp").dialog(
       { height: 360,
         width: 680,
@@ -56,12 +38,7 @@
           .removeClass("ui-widget-header").addClass("ui-widget-header-custom");
         }
       });
-    });
-    $("#signin_ppClose").click(function(){
-      $("#dialog_signin_pp").dialog("close");
-      $("#signin_pp_dialog").hide();
-    });
-  });
+	}
 </script>
 <style>
   #signin_pp_dialog {

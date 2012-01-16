@@ -1,0 +1,34 @@
+<%= form_for :user, :url => users_path, :html => {:id => "form_signup", :name => "form_signup"} do |f| -%>
+        <div class="signNode">*(asterisk) is required.</div>
+        <div class="signinItem">
+          <div class="signinTit">First Name*:</div>
+          <div class="signinInp"><%= text_field_tag :first_name, session[:first_name],  :class => '{validate:{required:true}}' %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">Last Name*:</div>
+          <div class="signinInp"><%= text_field_tag :last_name, session[:last_name], :class => '{validate:{required:true}}' %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">Email*:</div>
+          <div class="signinInp"><%= f.text_field :email, :class => '{validate:{required:true, email:true}}' %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">New Password*:</div>
+          <div class="signinInp"><%= f.password_field :password, :class => "{validate:{required:true, minlength:6}}" %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">Confirm*:</div>
+          <div class="signinInp"><%= f.password_field :password_confirmation, :class => "{validate:{equalTo:'#user_password'}}" %></div>
+        </div>
+        <div class="signincCheck" style="padding-left:106px">
+          <div><%= f.check_box :allow_search_by_email %></div>
+          <div class="signincCheckTxt">Let others find my post on Afterclassroom if they have my email address.</div>
+        </div>
+        <div class="btmCreAc" style="padding-left:110px"><a href="javascript:;" onclick="submitt();"><%= submit_tag 'Create my account' %></a></div>
+        <div class="signincCheck" style="padding-left:110px">
+          By clicking "Create my account", you agree to Afterclassroom <%= link_to 'Terms of use', :controller => 'statics', :action => 'terms' %> and <%= link_to 'Privacy Policy', :controller => 'statics', :action => 'privacy' %>.
+        </div>
+				<div class="signincCheck" style="padding-left:106px">
+          <%= render :partial => "shared/social_login" %>
+        </div>
+      <% end -%>

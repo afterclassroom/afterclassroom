@@ -2,7 +2,16 @@ class OmnitauthsController < ApplicationController
   def create
 		auth = request.env["omniauth.auth"]
     omnitauth = Omnitauth.find_by_provider_and_uid(auth['provider'], auth['uid'])
-    redirect_to "/"
+		if omnitauth
+			self.current_user = omnitauth.user
+			redirect_back_or_default(root_path)
+		elsif self.current_user
+			self.current_user.omnitauths << Omnitauth.build(auth)
+			redirect_back_or_default(root_path)
+		else
+			session[:auth] = auth
+			redirect_to signup_url
+		end
   end
 
   def destroy

@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:create]
   protect_from_forgery :only => [:create]
   
-  before_filter RubyCAS::Filter::GatewayFilter, :except => [:create, :show_story_detail, :show_photo_detail, :show_music_album, :show_detail_video]
-  before_filter RubyCAS::Filter, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
-  before_filter :cas_user
+  #before_filter RubyCAS::Filter::GatewayFilter, :except => [:create, :show_story_detail, :show_photo_detail, :show_music_album, :show_detail_video]
+  #before_filter RubyCAS::Filter, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
+  #before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_password]
   before_filter :require_current_user,
     :except => [:add_tag, :index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
@@ -103,7 +103,7 @@ class UsersController < ApplicationController
 					user.activate!
       		flash[:notice] = "Signup complete! Please sign in to continue."
 				end
-				redirect_to RubyCAS::Filter.login_url(self)
+				redirect_to login_url
 			else
 				flash[:error]  = "We couldn't find a user with that activation code -- check your email?<br/>Or maybe you've already activated -- try signing in."
 				redirect_back_or_default(root_path)
@@ -436,41 +436,27 @@ class UsersController < ApplicationController
     @user = User.new(attributes[:user])
     @user.name = name
     @user.login = to_slug(name)
-    session[:your_school] = @user.school_id
+		@user.school_id = 0
+    #session[:your_school] = @user.school_id
     
     if @user && @user.valid?
-      @user.register!
-      # User information
-      UserInformation.create(:user_id => @user.id)
-      UserEducation.create(:user_id => @user.id)
-      UserEmployment.create(:user_id => @user.id)
-			# Setting private
-			PRIVATE_SETTING.each do |type|
-				setting = 6 #Every one
-				PrivateSetting.create(:user_id => @user.id, :type_setting => type, :share_to => setting)
-			end
-      # Setting notification
-      notifications = Notification.find(:all)
-      notifications.each do |f|
-        NotifyEmailSetting.create(:user_id => @user.id, :notification_id => f.id)
-      end
-			# Send email notificaton for user same school
-			school = @user.school
-			users = school.users.where("id <> #{@user.id}")
-			if users.size > 0
-				users.each do |u|
-					email = u.email
-					subject = "Do you know #{@user.name}?"
-					content = "Dear #{u.name},<br>"
-					content << "<p>You might know #{@user.name} who just joined After Classroom from #{@user.school.name}.<br>"
-					content << "Click <a href='#{show_lounge_user_url(@user)}'>here</a> to check who is #{@user.name}.<br></p>"
-					Delayed::Job.enqueue SignupNotificationJob.new(email, subject, content)
-				end
+			if session[:auth]
+				@user.omnitauths << Omnitauth.new(session[:auth])
+				@user.register!
+				@user.activate!
+				session[:auth] = nil
+			else
+				@user.register!
 			end
     end
     
     if @user.errors.empty?
-      render :action => :successful_creation
+			adduser_info(@user)
+			if @user.state == "active"
+				redirect_to user_student_lounges_path(@user)
+			else
+      	render :action => :successful_creation
+			end
     else
       failed_creation(@user, @user.errors.full_messages)
     end
@@ -509,4 +495,33 @@ class UsersController < ApplicationController
     end
   end
   
+	def adduser_info(user)
+		# User information
+      UserInformation.create(:user_id => user.id)
+      UserEducation.create(:user_id => user.id)
+      UserEmployment.create(:user_id => user.id)
+			# Setting private
+			PRIVATE_SETTING.each do |type|
+				setting = 6 #Every one
+				PrivateSetting.create(:user_id => user.id, :type_setting => type, :share_to => setting)
+			end
+      # Setting notification
+      notifications = Notification.find(:all)
+      notifications.each do |f|
+        NotifyEmailSetting.create(:user_id => @user.id, :notification_id => f.id)
+      end
+			# Send email notificaton for user same school
+			#school = @user.school
+			#users = school.users.where("id <> #{user.id}")
+			#if users.size > 0
+				#users.each do |u|
+					#email = u.email
+					#subject = "Do you know #{user.name}?"
+					#content = "Dear #{u.name},<br>"
+					#content << "<p>You might know #{user.name} who just joined After Classroom from #{user.school.name}.<br>"
+					#content << "Click <a href='#{show_lounge_user_url(user)}'>here</a> to check who is #{user.name}.<br></p>"
+					#Delayed::Job.enqueue SignupNotificationJob.new(email, subject, content)
+				#end
+			#end
+	end
 end

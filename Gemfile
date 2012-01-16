@@ -81,5 +81,6 @@ gem 'haml'
 gem 'mini_magick'
 #gem 'maktoub'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem "nifty-generators", :group => :development
 gem "mocha", :group => :test

@@ -73,7 +73,7 @@
         </div>
         <div class="settItemB">
           <div class="settItemBL">Your school</div>
-          <div class="settItemBR"><%= current_user.school.address %></div>
+          <div class="settItemBR"><%= current_user.school.address if current_user.school %></div>
         </div>
       </div>
       <div class="settItem">
