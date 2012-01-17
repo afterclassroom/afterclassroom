@@ -1,24 +1,20 @@
-<a id="signup_pp" href="#"><span>Sign up pp</span></a>
-
-
-<div id="dialog_signup_pp" style="margin-top: -25px;display: none;">
-  <a id="signup_ppClose"></a>
-
-  <div>
-<!--Content-->
-<div class="contDetL" style="background:none">
-  <div class="contDetLin" style="background:none">
-    <div class="AsDTop">
-      <h1 class="titleH1">Sign Up</h1>
-    </div>
-    <div class="signUpCont">
-      <%= display_flash_messages_with_raw %>
-      <%= render :partial => "users/signup_form" %>
-    </div>
+<a id="btnShowModala" href="#"><span>Sign up pp</span></a>
+<div id="overlaya" class="web_dialog_overlaya"></div>
+<div id="dialoga" class="web_dialoga">
+  <div class="web_dialog_titlea align_righta">
+    <span href="#" id="btnClosea"></span>
   </div>
-</div>
+
+  <div class="AsDTop">
+    <h1 class="titleH1">Sign Up</h1>
   </div>
+  <div class="signUpCont" style="width: 620px">
+    <%= display_flash_messages_with_raw %>
+    <%= render :partial => "users/signup_form" %>
+  </div>
+
 </div>
+
 <script>
   function submitt(){
     var result = $("#form_signup").validate({
@@ -28,54 +24,108 @@
       $("#form_signup").submit();
     }
   }
-
-  $(document).ready(function(){
-    $("body").append("<div id='signup_pp_dialog' style='display: none;'></div>");
-  });
-  $(document).ready(function(){
-    $("#signup_pp").click(function(){
-      open_signup();
-    });
-    $("#signup_ppClose").click(function(){
-      $("#dialog_signup_pp").dialog("close");
-      $("#signup_pp_dialog").hide();
-    });
-  });
-	function open_signup(){
-		$("#signup_pp_dialog").show();
-      $("#dialog_signup_pp").dialog(
-      { height: 360,
-        width: 680,
-        resizable: false,
-        open: function(){ $(".ui-dialog-titlebar-close").hide();
-          $(this).parents(".ui-dialog:first").find(".ui-widget-header")
-          .removeClass("ui-widget-header").addClass("ui-widget-header-custom");
-        }
-      });
-	}
 </script>
-<style>
-  #signup_pp_dialog {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 99;
-    display: none;
-    background-color: black;
-    filter: alpha(opacity=70);
-    opacity: 0.7;
+<script type="text/javascript">
+  $(document).ready(function ()
+  {
+    $("#btnShowModala").click(function (e)
+    {
+      ShowDialoga(true);
+      e.preventDefault();
+    });
+    $("#btnClosea").click(function (e)
+    {
+      HideDialoga();
+      e.preventDefault();
+    });
+    $("#add_new_fr").click(function (e)
+    {
+      HideDialog();
+      e.preventDefault();
+    });
+  });
+  function ShowDialoga(modala)
+  {
+    $("#overlaya").show();
+    $("#dialoga").fadeIn(300);
+    if (modala)
+    {
+      $("#overlaya").unbind("click");
+    }
+    else
+    {
+      $("#overlaya").click(function (e)
+      {
+        HideDialoga();
+      });
+    }
   }
-  #signup_ppClose{
+  function HideDialoga()
+  {
+    $("#overlaya").hide();
+    $("#dialoga").fadeOut(300);
+  }    
+</script>
+<style type="text/css">
+  .web_dialog_overlaya
+  {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    opacity: .7;
+    filter: alpha(opacity=70);
+    -moz-opacity: .7;
+    z-index: 101;
+    display: none;
+  }
+  .web_dialoga
+  {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -325px;
+    margin-top: -180px;
+    background-color: #ffffff;
+    border-radius: 4px 4px 4px 4px;
+    padding: 0px;
+    z-index: 102;
+    width: 650px;
+    padding-bottom: 10px;
+  }
+  .web_dialog_titlea span
+  {
     background: url("/images/Photo/fancybox.png") repeat scroll -40px 0 transparent;
     cursor: pointer;
     height: 30px;
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: 0;
+    top: 0;
     width: 30px;
     z-index: 1103;
   }
-
+  .align_righta
+  {
+    text-align: right;
+  }
+  .signincCheck a:hover
+  {
+    background: none;
+    color: #DD0000;
+    text-decoration: underline;
+  }
+  .signupNone a{
+    background: none;
+    color: #1C97DD;
+    text-decoration: underline;
+    float: right;
+    padding-left: 5px;
+  }
 </style>

@@ -4,7 +4,7 @@ class StudentLoungesController < ApplicationController
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter
   #before_filter :cas_user
-  #before_filter :login_required
+  before_filter :login_required
   
   def index
     @type = "student_lounge"

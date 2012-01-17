@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostTeamupsController < ApplicationController
-  before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
+  #before_filter RubyCAS::Filter::GatewayFilter
+  #before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
   before_filter :cas_user
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_org, :worse_org]
-  #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_org, :worse_org]
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
