@@ -11,9 +11,9 @@
     margin: 0;
     padding: 0;
     background: #000000;
-    opacity: .15;
-    filter: alpha(opacity=15);
-    -moz-opacity: .15;
+    opacity: .7;
+    filter: alpha(opacity=70);
+    -moz-opacity: .7;
     z-index: 101;
     display: none;
   }
@@ -21,42 +21,50 @@
   {
     display: none;
     position: fixed;
-    width: 780px;
-    height: 200px;
     top: 50%;
     left: 50%;
-    margin-left: -392px;
-    margin-top: -100px;
+    margin-left: -390px;
+    margin-top: -180px;
     background-color: #ffffff;
-    border: 2px solid #336699;
+    border-radius: 4px 4px 4px 4px;
     padding: 0px;
     z-index: 102;
-    font-family: Verdana;
-    font-size: 10pt;
+    width: 780px;
+    padding-bottom: 10px;
   }
-  .web_dialog_titlev
+  .web_dialog_titlev span
   {
-    border-bottom: solid 2px #336699;
-    background-color: #336699;
-    padding: 4px;
-    color: White;
-    font-weight:bold;
-  }
-  .web_dialog_titlev a
-  {
-    color: White;
-    text-decoration: none;
+    background: url("/images/Photo/fancybox.png") repeat scroll -40px 0 transparent;
+    cursor: pointer;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    z-index: 1103;
   }
   .align_rightv
   {
     text-align: right;
   }
-  .Level2HeadingStylev
-  {
-    font-weight: bold;
-    font-size: 15pt;
-    color: #2D84A7;
-    line-height: 20px;
+  .contentBox {
+    background: #D5E9F2;
+    border: 1px solid #3D76A4;
+    -moz-box-shadow: 0 0 5px #98c7e6;
+    -khtml-box-shadow: 0 0 5px #98c7e6;
+    -webkit-box-shadow: 0 0 5px #98c7e6;
+    box-shadow: 0 0 5px #98c7e6;
+    color: #30424D;
+    float: left;
+    font-size: 13px;
+    padding: 2px;
+    position: relative;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
   }
 </style>
 <script type="text/javascript">
@@ -81,13 +89,6 @@
       e.preventDefault();
     });
 
-    $("#btnSubmit").click(function (e)
-    {
-      var brand = $("#brands input:radio:checked").val();
-      $("#output").html("<b>Your favorite mobile brand: </b>" + brand);
-      HideDialogv();
-      e.preventDefault();
-    });
   });
 
   function ShowDialogv(modalv)
@@ -134,7 +135,7 @@
     <tr>
       <td class="web_dialog_titlev">Online Survey</td>
       <td class="web_dialog_titlev align_rightv">
-        <a href="#" id="btnClosev">Close</a>
+        <span href="#" id="btnClosev"></span>
       </td>
     </tr>
     <tr>
@@ -147,42 +148,39 @@
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
           </form>     
           <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Resources</span>
-          <a href="javascript:$('#login-form-without-login').submit();">
-            <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;"/>
+          <a href="javascript:$('#login-form-without-login').submit();" style="padding-right: 0px">
+            <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;width: 250px"/>
           </a>
         </div>
       </td>
 
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="2" style="padding-left: 15px;">
-        <b>Choose your favorite mobile brand? </b>
-      </td>
-    </tr>
-    <tr>
-
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="2" style="padding-left: 15px;">
-        <div id="brands">
-          <input id="brand1" name="brand" type="radio" checked="checked" value="Nokia" /> Nokia
-          <input id="brand2" name="brand" type="radio" value="Sony" /> Sony 
-          <input id="brand3" name="brand" type="radio" value="Motorola" /> Motorola
+      <td>
+        <div class="contentBox" id="CreateClassBox">
+          <form id="login-form-networking" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+            <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+            <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/student_lounges" name="service" id="service">
+            <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+            <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+          </form>
+          <span style="color: #30424D;font-size: 15px;font-weight: bold;">Social Networking</span>
+          <a href="javascript:$('#login-form-networking').submit();" style="padding-right: 0px">
+            <img src="/images/profile_user.png" style="margin-top: 10px;border: 0 none;width: 250px"/>
+          </a>
         </div>
-
       </td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="2" style="text-align: center;">
-        <input id="btnSubmit" type="button" value="Submit" />
-
+      <td>
+        <div class="contentBox" id="StudentEnrollBox" style="margin-right:0px">
+          <form id="login-form-learn-tools" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+            <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+            <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/learn_tools" name="service" id="service">
+            <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+            <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+          </form>
+          <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Tools</span>
+          <a href="javascript:$('#login-form-learn-tools').submit();" style="padding-right: 0px">
+            <img src="/images/learning_tool.png" style="margin-top: 10px;border: 0 none;width: 250px"/>
+          </a>
+        </div>
       </td>
     </tr>
   </table>

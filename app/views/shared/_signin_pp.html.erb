@@ -23,7 +23,7 @@
   {
     $("#btnShowModal").click(function (e)
     {
-      ShowDialog(true);
+      open_signin(true);
       e.preventDefault();
     });
     $("#btnClose").click(function (e)
@@ -37,7 +37,7 @@
       e.preventDefault();
     });
   });
-  function ShowDialog(modal)
+  function open_signin(modal)
   {
     $("#overlay").show();
     $("#dialog").fadeIn(300);
