@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter, :except => [:new, :change_school]
-  #before_filter :cas_user
+  ##before_filter :cas_user
   
   def new
     if logged_in?

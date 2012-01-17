@@ -5,7 +5,7 @@ include ApplicationHelper
 class UserWallsController < ApplicationController
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter
-  before_filter :cas_user
+  #before_filter :cas_user
   before_filter :login_required
   
   def create_wall

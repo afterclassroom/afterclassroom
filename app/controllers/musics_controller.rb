@@ -10,7 +10,7 @@ class MusicsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :upload
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter
-  before_filter :cas_user
+  #before_filter :cas_user
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
   
