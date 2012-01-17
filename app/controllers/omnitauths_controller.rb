@@ -1,4 +1,5 @@
 class OmnitauthsController < ApplicationController
+	before_filter :login_required
   def create
 		auth = request.env["omniauth.auth"]
     omnitauth = Omnitauth.find_by_provider_and_uid(auth['provider'], auth['uid'])
@@ -6,7 +7,7 @@ class OmnitauthsController < ApplicationController
 			self.current_user = omnitauth.user
 			redirect_back_or_default(root_path)
 		elsif self.current_user
-			self.current_user.omnitauths << Omnitauth.build(auth)
+			self.current_user.omnitauths << Omnitauth.create(auth)
 			redirect_back_or_default(root_path)
 		else
 			session[:auth] = auth
@@ -17,6 +18,6 @@ class OmnitauthsController < ApplicationController
   def destroy
     @omnitauth = Omnitauth.find(params[:id])
     @omnitauth.destroy
-    redirect_to omnitauths_url, :notice => "Successfully destroyed omnitauth."
+    redirect_back_or_default(root_path)
   end
 end

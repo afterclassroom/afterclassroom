@@ -445,6 +445,7 @@ Afterclassroom::Application.routes.draw do
   match '/oauth',               :to => 'oauth#index',         :as => :oauth
   
 	# Omniauth
+	resources :omnitauths
 	match '/auth/:provider/callback' => 'omnitauths#create'
 
   # Dashboard as the default location

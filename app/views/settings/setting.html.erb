@@ -88,6 +88,27 @@
           <div class="settItemBR"><%= current_user.time_zone %></div>
         </div>
       </div>
+			<%
+			fb_st, fb_link = show_status_and_link_social_connect(current_user, "facebook")
+			tw_st, tw_link = show_status_and_link_social_connect(current_user, "twitter")
+			%>
+			<div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Connect your accounts for easy sharing!</div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL">Facebook: <%= fb_st %></div>
+          <div class="settItemBR"><div class="settItemTR">
+              <%= fb_link %>
+            </div></div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL">Twitter: <%= tw_st %></div>
+          <div class="settItemBR"><div class="settItemTR">
+              <%= tw_link %>
+            </div></div>
+        </div>
+      </div>
       <div class="settItem">
         <div class="settItemT">
           <div class="settItemTL">Chat ID</div>
