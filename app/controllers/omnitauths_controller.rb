@@ -1,5 +1,5 @@
 class OmnitauthsController < ApplicationController
-	before_filter :login_required
+	before_filter :login_required, :only => ["destroy"]
   def create
 		auth = request.env["omniauth.auth"]
     omnitauth = Omnitauth.find_by_provider_and_uid(auth['provider'], auth['uid'])

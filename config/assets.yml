@@ -45,6 +45,7 @@ javascripts:
     - public/javascripts/jquery.corner.js
     - public/javascripts/jquery.imagefit.js
     - public/javascripts/jquery.imagesloaded.js
+    - public/javascripts/slidernav.js 
   student_lounge:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
@@ -185,6 +186,7 @@ stylesheets:
     - public/stylesheets/jquery.pnotify.default.css
     - public/stylesheets/facebox.css
     - public/stylesheets/youTubeEmbed-jquery.css
+    - public/stylesheets/slidernav.css
   student_lounge:
     - public/stylesheets/main.css
     - public/stylesheets/post.css

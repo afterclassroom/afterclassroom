@@ -1,59 +1,101 @@
 <% cache "select_department_post_#{@school}" do %>
-<%
-	str_cond = case session[:your_school_type]
-			when "HighSchool"
-				"type_school = 'HighSchool'"
-			when "University"
-				"type_school <> 'HighSchool' or type_school is null"
-			when "College"
-				"type_school <> 'HighSchool' or type_school is null"
-			else
-				"1=1"
-		end
-%>  
 <div class="postItemDep">
     <div class="postTit">Program</div>
-    <div class="postDep"><%= post.text_field :department_id, :id => "department" %></div>
+    <div class="postDep mcdropdown_slider">
+			<% department_value = @post.department.nil? ? "Choose program" : @post.department.name %>
+			<input type="text" value="<%= department_value %>" name="" id="department_name" style="width: 275px;" autocomplete="">
+			<%= post.hidden_field :department_id, :id => "department_id" %>
+			<span></span>
+		</div>
   </div>
-  <% depcate = DepartmentCategory.find(:all, :conditions => str_cond, :order => "department_categories.name ASC") %>
+  <div id="slider" style="display:none">
+    <div class="slider-content">
+      <ul>
+				<% ('A'..'Z').each do |a| %>
+					<%
+						str_cond = case session[:your_school_type]
+							when "HighSchool"
+								"type_school = 'HighSchool'"
+							when "University"
+								"type_school <> 'HighSchool' or type_school is null"
+							when "College"
+								"type_school <> 'HighSchool' or type_school is null"
+							else
+								"1=1"
+						end
+						str = "SUBSTR(LOWER(departments.name), 1, 1) LIKE '#{a.downcase}'"				
+						depcate = Department.joins(:department_category).where(str_cond).find(:all, :conditions => str, :order => "departments.name ASC")
+					%>
+        <li id="<%= a.downcase %>"><a name="<%= a.downcase %>" class="title"><%= a %></a>
+          <ul>
+						<% depcate.each do |c| %>
+            <li><a class="select_program" href="javascript:;" rel="<%= c.id %>"><%= c.name %></a></li>
+						<% end %>
+          </ul>
+        </li>
+			<% end %>
+      </ul>
+    </div>
+  </div>
 
-  <ul id="department_menu" class="mcdropdown_menu">
-    <li rel_department="">
-      Choose program
-    </li>
-    <% depcate.each do |dc| %>
-      <li rel="category_id_<%= dc.id %>">
-        <%= dc.name %>
-        <% departments = dc.departments.order("name ASC") %>
-        <ul>
-          <% departments.each do |dp| %>
-            <li rel_department="<%= dp.id %>">
-              <%= dp.name %>
-            </li>
-          <% end %>
-        </ul>
-      </li>    
-    <% end %>
-  </ul>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $("#department").mcDropdown("#department_menu", {
-        width: 275,
-        valueAttr: "rel_department"    
-      });
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#slider').sliderNav();
+		$('a.select_program').click(function(){
+			$('#department_name').val($(this).html());
+			$('#department_id').val($(this).attr("rel"));
+			$('.slider').hide();
+		});
+    $('.mcdropdown_slider').click(function(){
+      $('.slider').show();
+      $('.slider-content').css({'height':'520px'});
+      $('.slider-nav').css({'height':'520px'});
     });
-    $(document).ready(function(){
-      $('#department_menu,#year_menu').hover(function() {
-        $(this).stop().show();
-      }, function() {
-        $(this).stop().hide();
-      });
+  });
+  $(document).ready(function(){
+    $('#slider').hover(function() {
+      $(this).stop().show();
+    }, function() {
+      $(this).stop().hide();
     });
-    $(document).ready(function(){
-      $('div.postItemDep').hover(function() {
-      }, function() {
-        $('#department_menu,#year_menu').stop().hide();
-      });
-    });
-  </script>
+  });
+</script>
+<style>
+  div.mcdropdown_slider {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    height: 16px;
+    padding: 2px;
+    position: absolute;
+    width: 98%;
+  }
+  div.mcdropdown_slider span {
+    background: url("/images/mcdropdown/mcdd_select_button_sprite.gif") no-repeat scroll left top transparent;
+    display: inline-block;
+    font-size: 0;
+    height: 16px;
+    outline: 0 none;
+    position: absolute;
+    right: 1px;
+    text-decoration: none;
+    top: 1px;
+    width: 15px;
+    z-index: 1;
+    cursor: pointer;
+  }
+  div.mcdropdown_slider input, div.mcdropdown_slider div {
+    background-color: #FFFFFF;
+    border: 0 none;
+    font: 11px Arial,Helvetica,sans-serif;
+    left: 0;
+    padding: 2px 0 0 3px;
+    position: absolute;
+    top: 0;
+    width: 98%;
+  }
+  div.mcdropdown_slider span:hover, div.mcdropdown_slider span:focus {
+    background-position: 0 -16px;
+  }
+</style>
 <% end %>

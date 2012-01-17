@@ -22,7 +22,6 @@ type ||= 1 %>
               <%= text_field_tag "post_book[book_type_id]", type %>
             </div>
           </div>
-          <%= render :partial => "/shared/form_request_post/select_department_slider", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
