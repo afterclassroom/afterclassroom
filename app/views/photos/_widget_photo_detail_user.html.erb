@@ -3,11 +3,13 @@
 <script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
 <!-- END: library for photo-tag -->       
 <div class="AsDOr RePho">
-  <div>
-    <div id="img_id_loader" style="width: 110px;padding-left: 40px;">
-						Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left;" title="Next" src="/images/ajax-loader-a.gif"/>
+  <% if logged_in? %>
+    <div>
+      <div id="img_id_loader" style="width: 110px;padding-left: 40px;">
+        Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left;" title="Next" src="/images/ajax-loader-a.gif"/>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div id="container">
     <p style="text-align:center">
       <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
@@ -23,7 +25,7 @@
 <div class="AsVer">
   <% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>
     <div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
-                                                  Verify users have been tagged 
+      Verify users have been tagged 
       <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
       <a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
     </div>
@@ -194,44 +196,44 @@
     }//end if 
 
   }
-  <% if logged_in? %>
-  //BEGIN: code for tag user
-  var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
-  var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
-  var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
-  var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
-  $(document).ready(function(){
-    $('#img_to_tag').load(function(){
-      setTimeout($('.photoTag').photoTag({
-        requesTagstUrl: strrequesTagstUrl,
-        deleteTagsUrl: strdeleteTagsUrl,
-        addTagUrl: straddTagUrl,
-        parametersForNewTag: {
-          name: {
-            parameterKey: 'name',
-            isAutocomplete: true,
-            autocompleteUrl: strautocompleteUrl,
-            label: 'Name'
+<% if logged_in? %>
+    //BEGIN: code for tag user
+    var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+    var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+    var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+    var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+    $(document).ready(function(){
+      $('#img_to_tag').load(function(){
+        setTimeout($('.photoTag').photoTag({
+          requesTagstUrl: strrequesTagstUrl,
+          deleteTagsUrl: strdeleteTagsUrl,
+          addTagUrl: straddTagUrl,
+          parametersForNewTag: {
+            name: {
+              parameterKey: 'name',
+              isAutocomplete: true,
+              autocompleteUrl: strautocompleteUrl,
+              label: 'Name'
+            }
           }
-        }
-      }), 5000);	
-    });
+        }), 5000);	
+      });
     
-    $('#stop_tag').click(function(){
-      $('#photoTag-add_<%= @photo.id %>').show();
-      $('.photoTag-cpanell').show();
-      $(this).hide();
-      begintag = false;
-      $('.inputCancel').click();
-    });
+      $('#stop_tag').click(function(){
+        $('#photoTag-add_<%= @photo.id %>').show();
+        $('.photoTag-cpanell').show();
+        $(this).hide();
+        begintag = false;
+        $('.inputCancel').click();
+      });
 
-    $('#img_to_tag').click(function(e){
-      TagByClick(e);
-    });//end image.click
+      $('#img_to_tag').click(function(e){
+        TagByClick(e);
+      });//end image.click
 
 
   
-  });//end document.ready
+    });//end document.ready
 <% end %>
   $('#img_to_tag').load(function(){
     //fix the issue of google does not load image properly when hit f5
@@ -288,7 +290,7 @@
     });
   });
   $(document).ready(function(){
-  $("a.require_login").attr("href", "#");
+    $("a.require_login").attr("href", "#");
     $('.qashdU').css({
       'float': 'left',
       'margin-left': '2px'

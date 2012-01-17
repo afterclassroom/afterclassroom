@@ -5,9 +5,9 @@ type ||= 1 %>
   <div class="col300in">
     <h1 class="col300Title">Quick post for Book</h1>
     <div class="col300Cont">
-			<% if !logged_in? %>
-			<div class="reqLa"><label style="color:red">This option is only available to registered users</label></div>
-			<% end %>
+      <% if !logged_in? %>
+        <div class="reqLa"><label style="color:red">This option is only available to registered users</label></div>
+      <% end %>
       <%= form_for :post_book, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%
         book_type = BookType.find_by_label("your_friends_needed_books") %>
@@ -22,6 +22,7 @@ type ||= 1 %>
               <%= text_field_tag "post_book[book_type_id]", type %>
             </div>
           </div>
+          <%= render :partial => "/shared/form_request_post/select_department_slider", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>

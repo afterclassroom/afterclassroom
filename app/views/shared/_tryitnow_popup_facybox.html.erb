@@ -1,0 +1,46 @@
+<%#*<script>%>
+  <%#*jQuery(document).ready(function() {%>
+    <%#*$.fancybox('<div style="width:900px"><a class="fancybox" href="1_b.jpg" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet"><img src="/images/learning_tool.png" alt="" /></a></div>', {padding: 20});%>
+  <%#*});%>
+    
+    <%#*$(document).ready(function(){%>
+
+<%#*/**%>
+      <%#**  MODAL BOX%>
+      <%#**/%>
+    <%#*// if the requested cookie does not have the value I am looking for show the modal box%>
+    <%#*if($.cookie("modal") != 'true')%>
+    <%#*{%>
+        <%#*var _message_to_show = '<h2>Hi!</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis mi eu elit tempor facilisis id et neque</p> <br /><br /><a href="#" id="modal_close">ENTER</a> <a href="http://www.google.com" id="modal_exit">EXIT</a><br /><br />';%>
+       
+        <%#*// on page load show the modal box%>
+        <%#*// more info about the options you can find on the fancybox site%>
+        <%#*$.fancybox(%>
+            <%#*_message_to_show,%>
+            <%#*{%>
+                <%#*'width'             : 350,%>
+                <%#*'height'            : 300,%>
+                <%#*'transitionIn'      : 'none',%>
+                <%#*'transitionOut'     : 'elastic',%>
+                <%#*'centerOnScroll'    : 'true',%>
+                <%#*'overlayOpacity'    : 0.9,%>
+                <%#*'overlayColor'      : '#000',%>
+                <%#*'modal'             : 'true',%>
+                <%#*'allowfullscreen'	: 'true'%>
+            <%#*}%>
+        <%#*);%>
+       
+        <%#*// in the message is a link with the id "modal_close"%>
+        <%#*// when you click on that link the modal will close and the cookie is set to "true"%>
+        <%#*// path "/" means it's active for the entire root site.. if you set it to "/admin" will be active on the "admin" folder%>
+        <%#*// expires in 7 days%>
+        <%#*// "modal" is the name i gave the cookie.. you can name it anything you want%>
+        <%#*$('#modal_close').live('click', function(e) {%>
+            <%#*e.preventDefault();%>
+            <%#*$.cookie("modal", "true", { path: '/', expires: 7 });%>    
+            <%#*$.fancybox.close()%>
+        <%#*});%>
+    <%#*}%>    
+   
+<%#*});%>
+<%#*</script>%>
