@@ -66,6 +66,9 @@
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
   }
+  .contentBox a:hover{
+    background: none
+  }
 </style>
 <script type="text/javascript">
 
@@ -133,7 +136,9 @@
   <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
 
     <tr>
-      <td class="web_dialog_titlev">Online Survey</td>
+      <td class="web_dialog_titlev">
+        aaaaa
+      </td>
       <td class="web_dialog_titlev align_rightv">
         <span href="#" id="btnClosev"></span>
       </td>
@@ -148,14 +153,14 @@
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
           </form>     
           <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Resources</span>
-          <a href="javascript:$('#login-form-without-login').submit();" style="padding-right: 0px">
+          <a href="javascript:$('#login-form-without-login').submit();" style="padding-right: 0px;background: none">
             <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;width: 250px"/>
           </a>
         </div>
       </td>
 
       <td>
-        <div class="contentBox" id="CreateClassBox">
+        <div class="contentBox" id="CreateClassBox" style="margin-left:-3px">
           <form id="login-form-networking" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
             <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
             <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/student_lounges" name="service" id="service">
@@ -163,13 +168,13 @@
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
           </form>
           <span style="color: #30424D;font-size: 15px;font-weight: bold;">Social Networking</span>
-          <a href="javascript:$('#login-form-networking').submit();" style="padding-right: 0px">
+          <a href="javascript:$('#login-form-networking').submit();" style="padding-right: 0px;background: none">
             <img src="/images/profile_user.png" style="margin-top: 10px;border: 0 none;width: 250px"/>
           </a>
         </div>
       </td>
       <td>
-        <div class="contentBox" id="StudentEnrollBox" style="margin-right:0px">
+        <div class="contentBox" id="StudentEnrollBox" style="margin-left:-3px">
           <form id="login-form-learn-tools" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
             <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
             <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/learn_tools" name="service" id="service">
@@ -177,7 +182,7 @@
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
           </form>
           <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Tools</span>
-          <a href="javascript:$('#login-form-learn-tools').submit();" style="padding-right: 0px">
+          <a href="javascript:$('#login-form-learn-tools').submit();" style="padding-right: 0px;background: none">
             <img src="/images/learning_tool.png" style="margin-top: 10px;border: 0 none;width: 250px"/>
           </a>
         </div>
