@@ -25,9 +25,12 @@
       <% end %>
     </div>
   </div>
-	<% if !logged_in? %> 
-		<div class="social_login" style="float: right">
-		<%= render :partial => "shared/social_login" %>
-		</div>
-	<% end %>
+  <% if !logged_in? %> 
+    </br>
+    <div class ="social_loginNet" style="float: right;width: 500px">
+      <div class="social_login" style="float: right">
+        <%= render :partial => "shared/social_login" %>
+      </div>
+    </div>
+  <% end %>
 </div>

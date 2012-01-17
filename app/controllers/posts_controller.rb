@@ -2,8 +2,8 @@
 class PostsController < ApplicationController
   include ApplicationHelper
   
-  before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:report_abuse, :report_abuse_video, :create_report_abuse, :download]
+  #before_filter RubyCAS::Filter::GatewayFilter
+  #before_filter RubyCAS::Filter, :except => [:report_abuse, :report_abuse_video, :create_report_abuse, :download]
   before_filter :cas_user
   
   def create_comment

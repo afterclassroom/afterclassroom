@@ -2,8 +2,8 @@ class LearnToolsController < ApplicationController
   include LearnToolsHelper
   
   layout 'student_lounge'
-  before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index]
+  #before_filter RubyCAS::Filter::GatewayFilter
+  #before_filter RubyCAS::Filter, :except => [:index]
   before_filter :cas_user
 
   

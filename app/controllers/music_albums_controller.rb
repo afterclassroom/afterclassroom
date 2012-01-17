@@ -3,10 +3,10 @@
 class MusicAlbumsController < ApplicationController
   layout "student_lounge"
   
-  before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter
+  #before_filter RubyCAS::Filter::GatewayFilter
+  #before_filter RubyCAS::Filter
   before_filter :cas_user
-  #before_filter :login_required
+  before_filter :login_required
   before_filter :require_current_user,
                 :only => [:edit, :show, :update, :destroy]
   # GET /music_albums

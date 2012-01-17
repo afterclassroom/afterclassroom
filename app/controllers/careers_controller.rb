@@ -1,6 +1,6 @@
 class CareersController < ApplicationController
-	before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :view_pr, :searchpr]
+	#before_filter RubyCAS::Filter::GatewayFilter
+  #before_filter RubyCAS::Filter, :except => [:index, :view_pr, :searchpr]
   before_filter :cas_user
 
   def index

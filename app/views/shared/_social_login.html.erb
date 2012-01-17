@@ -1,16 +1,16 @@
-<div class="facebookSignIn">
-<form class="connect-button" name="login" method="post" action="/auth/facebook">
-<div style="display: none; ">
-<input type="hidden" name="csrfmiddlewaretoken" value="423ea7211f2d69826aa0b9fffa039c8e"/>
+<div class="facebookSignIn" style="float: left;padding-right: 10px;padding-top: 10px;">
+  <form class="connect-button" name="login" method="post" action="/auth/facebook">
+    <div style="display: none; ">
+      <input type="hidden" name="csrfmiddlewaretoken" value="423ea7211f2d69826aa0b9fffa039c8e"/>
+    </div>
+    <input type="image" onclick="facebookConnect(this.form);return false;" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_large_long.gif"/>
+  </form>
 </div>
-<input type="image" onclick="facebookConnect(this.form);return false;" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_large_long.gif"/>
-</form>
-</div>
-<div class="twitterSignIn">
-<form class="connect-button" name="login" method="post" action="/auth/twitter">
-<div style="display: none; ">
-<input type="hidden" name="csrfmiddlewaretoken" value="423ea7211f2d69826aa0b9fffa039c8e"/>
-</div>
-<input type="image" onclick="this.form.submit();" src="https://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png"/>
-</form>
+<div class="twitterSignIn" style="float: right;padding-top: 11px;">
+  <form class="connect-button" name="login" method="post" action="/auth/twitter">
+    <div style="display: none; ">
+      <input type="hidden" name="csrfmiddlewaretoken" value="423ea7211f2d69826aa0b9fffa039c8e"/>
+    </div>
+    <input type="image" onclick="this.form.submit();" src="https://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png"/>
+  </form>
 </div>

@@ -29,7 +29,7 @@ Finally, to enable the CAS filter for a controller:
 
     class MyController < ApplicationController
   
-      before_filter RubyCAS::Filter
+      #before_filter RubyCAS::Filter
   
 Many other configuration options are available. For example you can instruct
 the client to log its actions to the default Rails logger using:

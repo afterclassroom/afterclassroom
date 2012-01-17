@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class ForumsController < ApplicationController
-  before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :view_all_no_loggin, :see_all_top_fr, :search]
+  #before_filter RubyCAS::Filter::GatewayFilter
+  #before_filter RubyCAS::Filter, :except => [:index, :view_all_no_loggin, :see_all_top_fr, :search]
   before_filter :cas_user
 
   def index
