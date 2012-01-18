@@ -1,7 +1,8 @@
 <div class="assDrop">
   <form id="action_option" name="option" action="" method="Get">
-    <div class="option_item_1">
-      <input type="text" name="department" id="department" value="<%= department %>" />
+    <div class="option_item_1 mcdropdown_slider">
+			<input type="text" value="Choose program" name="" id="department_name" style="width: 275px;" autocomplete="">
+      <%= hidden_field_tag :department, :id => "department_id" %>
     </div>
     <div class="option_item_2">
       <input type="text" name="year" id="year" value="<%= year %>" />
@@ -17,37 +18,96 @@
   </form>
 </div>
 <% cache "option_select_department_#{@school}" do %>
-<%
-	str_cond = case session[:your_school_type]
-			when "HighSchool"
-				"type_school = 'HighSchool'"
-			when "University"
-				"type_school <> 'HighSchool' or type_school is null"
-			when "College"
-				"type_school <> 'HighSchool' or type_school is null"
-			else
-				"1=1"
-		end
-%>
-  <% depcate = DepartmentCategory.find(:all, :conditions => str_cond, :order => "department_categories.name ASC") %>
-  <ul id="department_menu" class="mcdropdown_menu">
-    <li rel_department="">
-      Choose program
-    </li>
-    <% depcate.each do |dc| %>
-      <li rel="category_id_<%= dc.id %>">
-        <%= dc.name %>
-        <% departments = dc.departments.order("name ASC") %>
-        <ul>
-          <% departments.each do |dp| %>
-            <li rel_department="<%= dp.id %>">
-              <%= dp.name %>
-            </li>
-          <% end %>
-        </ul>
-      </li>    
-    <% end %>
-  </ul>
+<div id="slider" style="display:none">
+    <div class="slider-content">
+      <ul>
+				<% ('A'..'Z').each do |a| %>
+					<%
+						str_cond = case session[:your_school_type]
+							when "HighSchool"
+								"type_school = 'HighSchool'"
+							when "University"
+								"type_school <> 'HighSchool' or type_school is null"
+							when "College"
+								"type_school <> 'HighSchool' or type_school is null"
+							else
+								"1=1"
+						end
+						str = "SUBSTR(LOWER(departments.name), 1, 1) LIKE '#{a.downcase}'"				
+						depcate = Department.joins(:department_category).where(str_cond).find(:all, :conditions => str, :order => "departments.name ASC")
+					%>
+        <li id="<%= a.downcase %>"><a name="<%= a.downcase %>" class="title"><%= a %></a>
+          <ul>
+						<% depcate.each do |c| %>
+            <li><a class="select_program" href="javascript:;" rel="<%= c.id %>"><%= c.name %></a></li>
+						<% end %>
+          </ul>
+        </li>
+			<% end %>
+      </ul>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#slider').sliderNav();
+		$('a.select_program').click(function(){
+			$('#department_name').val($(this).html());
+			$('#department_id').val($(this).attr("rel"));
+			$('.slider').hide();
+		});
+    $('.mcdropdown_slider').click(function(){
+      $('.slider').show();
+      $('.slider-content').css({'height':'520px'});
+      $('.slider-nav').css({'height':'520px'});
+    });
+  });
+  $(document).ready(function(){
+    $('#slider').hover(function() {
+      $(this).stop().show();
+    }, function() {
+      $(this).stop().hide();
+    });
+  });
+</script>
+<style>
+  div.mcdropdown_slider {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    height: 16px;
+    padding: 2px;
+    position: absolute;
+    width: 98%;
+  }
+  div.mcdropdown_slider span {
+    background: url("/images/mcdropdown/mcdd_select_button_sprite.gif") no-repeat scroll left top transparent;
+    display: inline-block;
+    font-size: 0;
+    height: 16px;
+    outline: 0 none;
+    position: absolute;
+    right: 1px;
+    text-decoration: none;
+    top: 1px;
+    width: 15px;
+    z-index: 1;
+    cursor: pointer;
+  }
+  div.mcdropdown_slider input, div.mcdropdown_slider div {
+    background-color: #FFFFFF;
+    border: 0 none;
+    font: 11px Arial,Helvetica,sans-serif;
+    left: 0;
+    padding: 2px 0 0 3px;
+    position: absolute;
+    top: 0;
+    width: 98%;
+  }
+  div.mcdropdown_slider span:hover, div.mcdropdown_slider span:focus {
+    background-position: 0 -16px;
+  }
+</style>
 <% end %>
 
 <ul id="year_menu" class="mcdropdown_menu">
