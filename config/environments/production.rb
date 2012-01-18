@@ -71,10 +71,5 @@ Afterclassroom::Application.configure do
   Paperclip::Railtie.insert
   Paperclip.options[:command_path] = "/usr/bin/"
 
-	# Omniauth
-	ENV['FACEBOOK_KEY'] = "260832390618390"
-	ENV['FACEBOOK_SECRET'] = "7e3a91740c2d48d5d065ab5a6344f3d9"
-
-	ENV['TWITTER_KEY'] = "8VFiOPrVrh6s3pDOPEZEjA"
-	ENV['TWITTER_SECRET'] = "tLN93NsBLt5c7wpy6uL8yZIWgp3QcAUCWCsqD2tQ"
+	
 end
