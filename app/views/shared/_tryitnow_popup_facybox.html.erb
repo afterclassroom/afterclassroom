@@ -137,7 +137,26 @@
 
     <tr>
       <td class="web_dialog_titlev">
-        aaaaa
+        <div class="signin02" style="font-weight: bold;">
+          <ul>
+            <li><%= link_to raw("<div>Sign in</div>"), RubyCAS::Filter.login_url(controller) %></li>
+          </ul>
+        </div>
+      </td>
+      <td class="web_dialog_titlev">
+        <div class="signin02" style="font-weight: bold;">
+          <ul>
+            <li><%= link_to raw("<div>Simple sign up</div>"), signup_url, :class=>'signup_url' %></li>
+          </ul>
+        </div>
+
+      </td>
+      <td class="web_dialog_titlev">
+        <div class="signin02" style="font-weight: bold;">
+          <ul>
+            <li><div style="color: #1FA6F3; font-weight: bold; line-height: 23px;">or Click on Features below to TRY</div></li>
+          </ul>
+        </div>
       </td>
       <td class="web_dialog_titlev align_rightv">
         <span href="#" id="btnClosev"></span>

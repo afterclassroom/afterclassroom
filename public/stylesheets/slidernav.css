@@ -20,3 +20,22 @@
 .slider .arrow { font-size: 0px; line-height: 0%; width: 0px; border-bottom: 8px solid #fff; border-left: 5px solid #1FA6F3; border-right: 5px solid #1FA6F3; position: relative; top: -4px; }
 .slider .down { border-bottom: none; border-top: 8px solid #fff; top: 5px; }
 .slider .slide-up, .slider .slide-down { height: 20px; background: #1FA6F3; text-align: center; cursor: pointer; float: right; width: 100%; position: relative; }
+
+/*---slider_option----*/
+
+.slider_option {z-index: 2; margin-top: 18px; border-left: 2px solid #1FA6F3; display: block; width: 210px; min-height: 250px; position: absolute; background: #fff; overflow: hidden; }
+.slider_option ul { list-style: none }
+.slider-content { float: left; width: 100%; display: block; overflow: auto; min-height: 250px; }
+.slider-content ul { float: left; padding: 0px; margin: 0px; width: 100%; display: block; position: relative; }
+.slider-content ul li { float: left; width: 100%; }
+.slider-content ul ul li a { padding: 5px 10px; display: block; border-bottom: 1px solid #f3f3f3; text-transform: capitalize; }
+.slider-content ul ul li a:hover { background: #f3faff; border-color: #d5ebf9; }
+.slider-content .title { padding: 5px 0; text-indent: 10px; background: #ccc; color: #fff; width: 100%; float: left; font-weight: bold; text-transform: uppercase; }
+.slider-content .selected .title { background: #666; }
+.slider_option .slider-nav { position: absolute; right: 0; top: 0; background: #1FA6F3; min-height: 250px; }
+.slider_option .slider-nav ul { padding: 5px 0; }
+.slider_option .slider-nav li a { padding: 3px 5px; line-height: 13px; text-align: center; color: #fff; font-weight: bold; display: block; text-transform: uppercase; cursor: pointer; }
+.slider_option #debug { position: absolute; bottom: 0; left: 0; padding: 5px; background: #000; color: #fff; }
+.slider_option .arrow { font-size: 0px; line-height: 0%; width: 0px; border-bottom: 8px solid #fff; border-left: 5px solid #1FA6F3; border-right: 5px solid #1FA6F3; position: relative; top: -4px; }
+.slider_option .down { border-bottom: none; border-top: 8px solid #fff; top: 5px; }
+.slider_option .slide-up, .slider_option .slide-down { height: 20px; background: #1FA6F3; text-align: center; cursor: pointer; float: right; width: 100%; position: relative; }
