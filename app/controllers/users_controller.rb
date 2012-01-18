@@ -8,9 +8,9 @@ class UsersController < ApplicationController
   #before_filter RubyCAS::Filter::GatewayFilter, :except => [:create, :show_story_detail, :show_photo_detail, :show_music_album, :show_detail_video]
   #before_filter RubyCAS::Filter, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
   #before_filter :cas_user
-  before_filter :login_required, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
+  before_filter :login_required, :except => [:index, :new, :show, :create, :successful_creation, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
   before_filter :require_current_user,
-    :except => [:add_tag, :index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
+    :except => [:add_tag, :index, :new, :show, :create, :successful_creation, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
   before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
   
 	# render new.rhtml
@@ -31,7 +31,6 @@ class UsersController < ApplicationController
     
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
     filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
-    
     
     arr = []
     filtered_friends.each do |f|
@@ -442,22 +441,31 @@ class UsersController < ApplicationController
     if @user && @user.valid?
 			if session[:auth]
 				@user.omnitauths << Omnitauth.new(session[:auth])
-				@user.register!
+				@user.register
 				@user.activate!
 				session[:auth] = nil
+				puts "Tao user tu social network"
 			else
 				@user.register!
+				puts "Tao user tu Afterclassroom"
 			end
     end
     
     if @user.errors.empty?
 			adduser_info(@user)
+			puts "Trang thai cua user #{@user.state}"
 			if @user.state == "active"
+				puts "Tao user tu social network thanh cong"
+				self.current_user = @user
+				self.current_user.update_attribute("online", true)
+      	self.current_user.set_time_zone_from_ip(request.remote_ip)
 				redirect_to user_student_lounges_path(@user)
 			else
+				puts "Tao user tu Afterclassroom thanh cong"
       	render :action => :successful_creation
 			end
     else
+			puts "Loi tao user"
       failed_creation(@user, @user.errors.full_messages)
     end
   end
