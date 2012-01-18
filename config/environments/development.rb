@@ -42,4 +42,11 @@ Afterclassroom::Application.configure do
   
   # Paperclip
   PAPERCLIP_STORAGE_OPTIONS = {}
+
+	# Omniauth
+	ENV['FACEBOOK_KEY'] = "181815955248907"
+	ENV['FACEBOOK_SECRET'] = "2b729f219e09904eccbc9840d2c540fc"
+
+	ENV['TWITTER_KEY'] = "8VFiOPrVrh6s3pDOPEZEjA"
+	ENV['TWITTER_SECRET'] = "tLN93NsBLt5c7wpy6uL8yZIWgp3QcAUCWCsqD2tQ"
 end
