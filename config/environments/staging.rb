@@ -53,7 +53,7 @@ Afterclassroom::Application.configure do
 	# ExceptionNotifier
 	config.after_initialize do
 	config.middleware.use ExceptionNotifier,
-		    :email_prefix => "[ERROR: Afterclassroom] ",
+		    :email_prefix => "[ERROR: Afterclassroom] ",																																																																															
 		    :sender_address => '"Notifier" <support@afterclassroom.com>',
 		    :exception_recipients => ['dungtqa@gmail.com']
 	end
@@ -63,7 +63,14 @@ Afterclassroom::Application.configure do
   REST_AUTH_DIGEST_STRETCHES = 15
   
   # Paperclip
-  PAPERCLIP_STORAGE_OPTIONS = {}
+  PAPERCLIP_STORAGE_OPTIONS = {}																																																																																																																																																																			
   Paperclip::Railtie.insert
   Paperclip.options[:command_path] = "/usr/bin/"
+
+	# Omniauth
+	ENV['FACEBOOK_KEY'] = "218775308176828"
+	ENV['FACEBOOK_SECRET'] = "3efcc24468e3e3ab9a6cd9bd05b9a2de"
+
+	ENV['TWITTER_KEY'] = "ghvSN5NMgK7E5HduYox0Lg"
+	ENV['TWITTER_SECRET'] = "woc6ZABfUprSUQujpHMEJiKkk1ztNX73ufeJZDz3lk"
 end

@@ -1,6 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'contacts'
-require 'linkedin'
 
 class FriendsController < ApplicationController
   layout 'student_lounge'
@@ -340,61 +339,6 @@ class FriendsController < ApplicationController
   def get_suggestion_list
     @suggestions = current_user.suggestions
     render :layout => false
-  end
-  
-  def auth_linkedin
-    # get your api keys at https://www.linkedin.com/secure/developer
-    client = LinkedIn::Client.new(LinkedInConfig::APP_ID.to_s, LinkedInConfig::SECRET.to_s)
-    request_token = client.request_token(:oauth_callback => LinkedInConfig::CALL_BACK.to_s)
-    session[:rtoken] = request_token.token
-    session[:rsecret] = request_token.secret
-    
-    redirect_to client.request_token.authorize_url
-  end
-  
-  def callback_linkedin
-    client = LinkedIn::Client.new(LinkedInConfig::APP_ID.to_s, LinkedInConfig::SECRET.to_s)
-    if session[:atoken].nil?
-      pin = params[:oauth_verifier]
-      atoken, asecret = client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
-      session[:atoken] = atoken
-      session[:asecret] = asecret
-    else
-      client.authorize_from_access(session[:atoken], session[:asecret])
-    end
-    @profile = client.profile
-    @connections = client.connections
-		render :layout => "photo"
-  end
-
-	def send_invite_linkedin
-    contacts = params[:contacts]
-		client = LinkedIn::Client.new(LinkedInConfig::APP_ID.to_s, LinkedInConfig::SECRET.to_s)
-		puts client.methods
-    if session[:atoken].nil?
-      pin = params[:oauth_verifier]
-      atoken, asecret = client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
-      session[:atoken] = atoken
-      session[:asecret] = asecret
-    else
-      client.authorize_from_access(session[:atoken], session[:asecret])
-    end
-    @profile = client.profile
-		@connections = client.connections
-    sender_name = @profile.first_name + " " + @profile.last_name
-		@connections.all.each do |con|
-			if contacts.include?(con.id)
-				subject = "#{sender_name} has invited you to join Afterclassroom"
-				body = "Hello, #{con.first_name + " " + con.last_name}"
-				body << "<p>I found After Classroom as a great place to make new friends and study after school, and I think you might like it as well.</p>" 
-				body << "<p>What's are you waiting for, it's absolutely FREE to join After Classroom.</p>"
-				body << "<p>Click <a href='https://afterclassroom.com'>here</a> to join now.</p>"
-				body << "<p>Your Sincerely,<br/>"
-				body << "#{sender_name}</p>"
-				client.send_message(subject, body, "/people/#{con.id}")
-			end
-		end
-		render :layout => "photo"
   end
   
   protected

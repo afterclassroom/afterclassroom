@@ -70,4 +70,6 @@ Afterclassroom::Application.configure do
   }
   Paperclip::Railtie.insert
   Paperclip.options[:command_path] = "/usr/bin/"
+
+	
 end
