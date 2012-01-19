@@ -209,24 +209,28 @@ class PostPartiesController < ApplicationController
     @post_party = PostParty.new(params[:post_party])
     @post_party.start_time = DateTime.strptime(params[:start_time], "%m/%d/%Y %I:%M %p") if params[:start_time] != ""
     @post_party.end_time = DateTime.strptime(params[:end_time], "%m/%d/%Y %I:%M %p") if params[:end_time] != ""
-    
-    if simple_captcha_valid?  
-      @post.save    
-      sc = School.find(@school)
-      sc.tag(@post_party, :with => @tag_list, :on => :tags)
-      @post_party.post = @post
-      if @post_party.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_party)
-        redirect_to post_party_url(@post_party)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?  
+		    @post.save    
+		    sc = School.find(@school)
+		    sc.tag(@post_party, :with => @tag_list, :on => :tags)
+		    @post_party.post = @post
+		    if @post_party.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_party)
+		      redirect_to post_party_url(@post_party)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_parties/1

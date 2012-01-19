@@ -124,25 +124,29 @@ class PostTeamupsController < ApplicationController
     @post.type_name = @class_name
     @post_teamup = PostTeamup.new(params[:post_teamup])
     @post_teamup.teamup_category_id ||= TeamupCategory.first.id
-    
-    if simple_captcha_valid?   
-      @post.save     
-      sc = School.find(@school)
-      sc.tag(@post_teamup, :with => @tag_list, :on => :tags)
-      @post_teamup.post = @post
-      
-      if @post_teamup.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_teamup)
-        redirect_to post_teamup_path(@post_teamup)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?   
+		    @post.save     
+		    sc = School.find(@school)
+		    sc.tag(@post_teamup, :with => @tag_list, :on => :tags)
+		    @post_teamup.post = @post
+		    
+		    if @post_teamup.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_teamup)
+		      redirect_to post_teamup_path(@post_teamup)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_teamups/1

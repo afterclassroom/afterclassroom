@@ -170,25 +170,28 @@ class PostAwarenessesController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_awareness = PostAwareness.new(params[:post_awareness])
-    
-    if simple_captcha_valid?     
-      @post.save
-      sc = School.find(@school)
-      sc.tag(@post_awareness, :with => @tag_list, :on => :tags)
-      @post_awareness.post = @post
-      if @post_awareness.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_awareness)
-        redirect_to post_awareness_url(@post_awareness)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?     
+		    @post.save
+		    sc = School.find(@school)
+		    sc.tag(@post_awareness, :with => @tag_list, :on => :tags)
+		    @post_awareness.post = @post
+		    if @post_awareness.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_awareness)
+		      redirect_to post_awareness_url(@post_awareness)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
     end
-    
   end
   
   # PUT /post_awarenesses/1

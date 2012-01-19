@@ -106,24 +106,28 @@ class PostExamsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_exam = PostExam.new(params[:post_exam])
-    
-    if simple_captcha_valid?
-      @post.save
-      sc = School.find(@school)
-      sc.tag(@post_exam, :with => @tag_list, :on => :tags)
-      @post_exam.post = @post
-      if @post_exam.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_exam)
-        redirect_to post_exam_url(@post_exam)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?
+		    @post.save
+		    sc = School.find(@school)
+		    sc.tag(@post_exam, :with => @tag_list, :on => :tags)
+		    @post_exam.post = @post
+		    if @post_exam.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_exam)
+		      redirect_to post_exam_url(@post_exam)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_exams/1

@@ -163,24 +163,28 @@ class PostQasController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_qa = PostQa.new(params[:post_qa])
-    
-    if simple_captcha_valid?   
-      @post.save 
-      sc = School.find(@school)
-      sc.tag(@post_qa, :with => @tag_list, :on => :tags)
-      @post_qa.post = @post
-      if @post_qa.save!
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_qa) if !@post_qa.anonymous or @post_qa.anonymous.nil?
-        redirect_to post_qa_url(@post_qa)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?   
+		    @post.save 
+		    sc = School.find(@school)
+		    sc.tag(@post_qa, :with => @tag_list, :on => :tags)
+		    @post_qa.post = @post
+		    if @post_qa.save!
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_qa) if !@post_qa.anonymous or @post_qa.anonymous.nil?
+		      redirect_to post_qa_url(@post_qa)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_qas/1

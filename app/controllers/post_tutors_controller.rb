@@ -156,25 +156,29 @@ class PostTutorsController < ApplicationController
     @post.type_name = @class_name
     @post_tutor = PostTutor.new(params[:post_tutor])
     @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
-    
-    if simple_captcha_valid?     
-      @post.save    
-      sc = School.find(@school)
-      sc.tag(@post_tutor, :with => @tag_list, :on => :tags)
-      @post_tutor.post = @post
-      
-      if @post_tutor.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_tutor)
-        redirect_to post_tutor_url(@post_tutor)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?     
+		    @post.save    
+		    sc = School.find(@school)
+		    sc.tag(@post_tutor, :with => @tag_list, :on => :tags)
+		    @post_tutor.post = @post
+		    
+		    if @post_tutor.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_tutor)
+		      redirect_to post_tutor_url(@post_tutor)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_tutors/1

@@ -183,32 +183,36 @@ class PostJobsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_job = PostJob.new(params[:post_job])
-    
-    if simple_captcha_valid?  
-      @post.save  
-      sc = School.find(@school)
-      sc.tag(@post_job, :with => params[:tag], :on => :tags)
-      @post_job.post = @post   
-      if (@post_job.job_type.label == "i_m_looking_for_job")
-        #If user does not upload file, records for these 3 files are created with empty url
-        #user can upload these files later
-        tempfile = @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
-        @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
-        @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
-      end
-      if @post_job.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_job)
-        redirect_to post_job_url(@post_job)
-      else
-        error  "Failed to create a new post. Possibly due to your file size is too large!"
-        render :action => "new"
-      end
-    else
-      session["cur_job_type_id"] = @post_job.job_type_id#fix bug 974
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?  
+		    @post.save  
+		    sc = School.find(@school)
+		    sc.tag(@post_job, :with => params[:tag], :on => :tags)
+		    @post_job.post = @post   
+		    if (@post_job.job_type.label == "i_m_looking_for_job")
+		      #If user does not upload file, records for these 3 files are created with empty url
+		      #user can upload these files later
+		      tempfile = @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
+		      @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
+		      @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
+		    end
+		    if @post_job.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_job)
+		      redirect_to post_job_url(@post_job)
+		    else
+		      error  "Failed to create a new post. Possibly due to your file size is too large!"
+		      render :action => "new"
+		    end
+		  else
+		    session["cur_job_type_id"] = @post_job.job_type_id#fix bug 974
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_jobs/1
