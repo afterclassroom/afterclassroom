@@ -120,24 +120,28 @@ class PostEventsController < ApplicationController
     @post_event.start_time = DateTime.strptime(params[:start_time], "%m/%d/%Y %I:%M %p") if params[:start_time] != ""
     
     @post_event.end_time = DateTime.strptime(params[:end_time], "%m/%d/%Y %I:%M %p") if params[:end_time] != ""
-    
-    if simple_captcha_valid?
-      @post.save
-      sc = School.find(@school)
-      sc.tag(@post_event, :with => @tag_list, :on => :tags)
-      @post_event.post = @post
-      if @post_event.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_event)
-        redirect_to post_event_url(@post_event)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?
+		    @post.save
+		    sc = School.find(@school)
+		    sc.tag(@post_event, :with => @tag_list, :on => :tags)
+		    @post_event.post = @post
+		    if @post_event.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_event)
+		      redirect_to post_event_url(@post_event)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_events/1

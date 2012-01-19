@@ -152,24 +152,28 @@ class PostBooksController < ApplicationController
     @post.type_name = @class_name
     @post_book = PostBook.new(params[:post_book])
     @post_book.book_type_id ||= BookType.first.id
-    
-    if simple_captcha_valid?      
-      @post.save      
-      sc = School.find(@school)
-      sc.tag(@post_book, :with => @tag_list, :on => :tags)
-      @post_book.post = @post
-      if @post_book.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_book)
-        redirect_to post_book_path(@post_book)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?      
+		    @post.save      
+		    sc = School.find(@school)
+		    sc.tag(@post_book, :with => @tag_list, :on => :tags)
+		    @post_book.post = @post
+		    if @post_book.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_book)
+		      redirect_to post_book_path(@post_book)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_books/1

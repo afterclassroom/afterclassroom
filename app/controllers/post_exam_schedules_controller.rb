@@ -128,23 +128,29 @@ class PostExamSchedulesController < ApplicationController
     @post_exam_schedule = PostExamSchedule.new(params[:post_exam_schedule])
     @post_exam_schedule.starts_at = DateTime.strptime(params[:starts_at], "%m/%d/%Y %I:%M %p") if params[:starts_at] != ""
     @post_exam_schedule.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y %I:%M %p") if params[:due_date] != ""
-    if simple_captcha_valid?    
-      @post.save    
-      sc = School.find(@school)
-      sc.tag(@post_exam_schedule, :with => @tag_list, :on => :tags)
-      @post_exam_schedule.post = @post
-      if @post_exam_schedule.save
-        flash[:notice] = "Your post was successfully created."
-				post_wall(@post_exam_schedule)
-        redirect_to post_exam_schedule_path(@post_exam_schedule)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+
+		if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?    
+		    @post.save    
+		    sc = School.find(@school)
+		    sc.tag(@post_exam_schedule, :with => @tag_list, :on => :tags)
+		    @post_exam_schedule.post = @post
+		    if @post_exam_schedule.save
+		      flash[:notice] = "Your post was successfully created."
+					post_wall(@post_exam_schedule)
+		      redirect_to post_exam_schedule_path(@post_exam_schedule)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
 
   # PUT /post_exam_schedules/1

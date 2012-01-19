@@ -157,24 +157,28 @@ class PostFoodsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_food = PostFood.new(params[:post_food])
-    
-    if simple_captcha_valid? 
-      @post.save
-      sc = School.find(@school)
-      sc.tag(@post_food, :with => @tag_list, :on => :tags)
-      @post_food.post = @post
-      if @post_food.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_food)
-        redirect_to post_food_url(@post_food)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid? 
+		    @post.save
+		    sc = School.find(@school)
+		    sc.tag(@post_food, :with => @tag_list, :on => :tags)
+		    @post_food.post = @post
+		    if @post_food.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_food)
+		      redirect_to post_food_url(@post_food)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_foods/1

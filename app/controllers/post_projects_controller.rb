@@ -115,30 +115,34 @@ class PostProjectsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_project = PostProject.new(params[:post_project])
-    
-    if simple_captcha_valid? 
-			begin 
-				@post_project.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
-		    @post.save
-		    sc = School.find(@school)
-		    sc.tag(@post_project, :with => @tag_list, :on => :tags)
-		    @post_project.post = @post
-		    if @post_project.save
-		      flash[:notice] = "Your post was successfully created."
-		      post_wall(@post_project)
-		      redirect_to post_project_url(@post_project)
-		    else
-		      flash[:error] = "Failed to create a new post."
-		      render :action => "new"
-		    end
-			rescue
-				flash[:error] = "Failed to create a new post."
-		      render :action => "new"
-			end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid? 
+				begin 
+					@post_project.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
+				  @post.save
+				  sc = School.find(@school)
+				  sc.tag(@post_project, :with => @tag_list, :on => :tags)
+				  @post_project.post = @post
+				  if @post_project.save
+				    flash[:notice] = "Your post was successfully created."
+				    post_wall(@post_project)
+				    redirect_to post_project_url(@post_project)
+				  else
+				    flash[:error] = "Failed to create a new post."
+				    render :action => "new"
+				  end
+				rescue
+					flash[:error] = "Failed to create a new post."
+				    render :action => "new"
+				end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_projects/1

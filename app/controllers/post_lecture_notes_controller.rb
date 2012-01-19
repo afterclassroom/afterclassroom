@@ -118,24 +118,28 @@ class PostLectureNotesController < ApplicationController
     @post.type_name = @class_name
     @post_lecture_note = PostLectureNote.new(params[:post_lecture_note])
     @post_lecture_note.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
-    
-    if simple_captcha_valid? 
-      @post.save
-      sc = School.find(@school)
-      sc.tag(@post_lecture_note, :with => @tag_list, :on => :tags)
-      @post_lecture_note.post = @post
-      if @post_lecture_note.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_lecture_note)
-        redirect_to post_lecture_note_url(@post_lecture_note)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid? 
+		    @post.save
+		    sc = School.find(@school)
+		    sc.tag(@post_lecture_note, :with => @tag_list, :on => :tags)
+		    @post_lecture_note.post = @post
+		    if @post_lecture_note.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_lecture_note)
+		      redirect_to post_lecture_note_url(@post_lecture_note)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_lecture_notes/1

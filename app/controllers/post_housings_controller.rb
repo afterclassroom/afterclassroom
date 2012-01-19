@@ -121,24 +121,28 @@ class PostHousingsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_housing = PostHousing.new(params[:post_housing])
-    
-    if simple_captcha_valid?    
-      @post.save
-      sc = School.find(@school)
-      sc.tag(@post_housing, :with => @tag_list, :on => :tags)
-      @post_housing.post = @post
-      if @post_housing.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_housing)
-        redirect_to post_housing_url(@post_housing)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?    
+		    @post.save
+		    sc = School.find(@school)
+		    sc.tag(@post_housing, :with => @tag_list, :on => :tags)
+		    @post_housing.post = @post
+		    if @post_housing.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_housing)
+		      redirect_to post_housing_url(@post_housing)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_housings/1

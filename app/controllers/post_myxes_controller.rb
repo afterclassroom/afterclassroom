@@ -156,24 +156,28 @@ class PostMyxesController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_myx = PostMyx.new(params[:post_myx])
-    
-    if simple_captcha_valid?  
-      @post.save 
-      sc = School.find(@school)
-      sc.tag(@post_myx, :with => @tag_list, :on => :tags)
-      @post_myx.post = @post
-      if @post_myx.save
-        flash[:notice] = "Your post was successfully created."
-        post_wall(@post_myx) if !@post_myx.anonymous or @post_myx.anonymous.nil?
-        redirect_to post_myx_url(@post_myx)
-      else
-        flash[:error] = "Failed to create a new post."
-        render :action => "new"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new"
-    end
+    if @school.nil?
+			flash[:error] = "Please select school."
+		  render :action => "new"
+		else
+		  if simple_captcha_valid?  
+		    @post.save 
+		    sc = School.find(@school)
+		    sc.tag(@post_myx, :with => @tag_list, :on => :tags)
+		    @post_myx.post = @post
+		    if @post_myx.save
+		      flash[:notice] = "Your post was successfully created."
+		      post_wall(@post_myx) if !@post_myx.anonymous or @post_myx.anonymous.nil?
+		      redirect_to post_myx_url(@post_myx)
+		    else
+		      flash[:error] = "Failed to create a new post."
+		      render :action => "new"
+		    end
+		  else
+		    flash[:warning] = "Captcha does not match."
+		    render :action => "new"
+		  end
+		end
   end
   
   # PUT /post_myxes/1
