@@ -7,9 +7,9 @@
       scrollPrev: ".prev1",
       scrollNum: 4,
       circular: false,
-      scrollVisible: 4,
+      scrollVisible: 5,
       itemHeight: 90,
-      itemWidth: 105,
+      itemWidth: 102,
       scrollSpeed : 1000
     });
   });
@@ -22,8 +22,8 @@
 <div id="wrap">      	  
   <div class="content">
     <div class="page carouselDemoPage">     	  			
-      <div class="demoCarousel demo1">
-        <a href="" class="prevBtn prev1">prev</a>
+      <div class="demoCarousel demo1" style="margin-left:-6px">
+        <a href="" class="prevBtn prev1"></a>
         <div class="demoPane" id="mycarousel">
           <ul>
             <%
@@ -42,7 +42,7 @@
             <% end %>
           </ul>
         </div>  <!-- end of scrollPane -->
-        <a href="" class="nextBtn next1">next</a>
+        <a href="" class="nextBtn next1"></a>
       </div>  <!-- end of demo1 -->  			      	  			
     </div>  <!-- end of page -->
   </div>
@@ -113,7 +113,7 @@
 <style>
 
   /*  Page Content  */
-  .content {padding:20px;overflow:hidden;clear:both;}
+  .content {padding-bottom:20px;padding-top: 20px;width: 565px;overflow:hidden;clear:both;}
   .content ul {padding-left:3em}
   .content .viewRecent {display:block;width:250px;border:2px solid #fff;text-align:center;font-weight:bold;height:30px;line-height:30px;text-decoration:none;font-size:1.4em;margin:0 auto;background:#777}
 
@@ -162,7 +162,7 @@
   .demoCarousel {position:relative;padding-bottom:10px;}
   .demoCarousel .demoPane {margin:0 auto}
   .demoCarousel .demoPane li p {text-align:center;font-weight:bold;color:#fff;font-size:0.9em;padding:0}
-  .demoCarousel .prevBtn, .demoCarousel .nextBtn {display:block;height:30px;line-height:30px;width:50px;text-align:center;font-weight:bold;position:absolute;top:30px;text-decoration:none;border:1px solid #666;color:#444}
+  .demoCarousel .prevBtn, .demoCarousel .nextBtn {display:block;height:30px;line-height:30px;width:50px;text-align:center;font-weight:bold;position:absolute;top:30px;text-decoration:none;color:#444}
   .demoCarousel .prevBtn {left:5px}
   .demoCarousel .nextBtn {right:5px;}
   .controlPane ul {width:100%;overflow:hidden;padding-top:5px;padding-left:25px}
@@ -171,11 +171,39 @@
   .controlPane ul.controlList li.active {color:#666;background:#eee;border:1px solid #bbb}
   .controlPane ul.verticalList {width:20px;position:absolute;top:5px;right:5px;overflow:hidden;padding-top:0;padding-left:0}
   .controlPane ul.verticalList li {margin-bottom:5px}
-  #wrap .disabled {display:none}
+  #wrap .disabledPrev {
+    z-index:3;
+    height:32px;
+    line-height:20px;
+    width:35px;
+    background:url("/images/prev-horizontal.png") no-repeat scroll -96px 0 transparent;
+    top:35px;
+    cursor: default;
+  }
+  #wrap .disabledNext {
+    z-index:3;
+    height:32px;
+    line-height:20px;
+    width:35px;
+    background:url("/images/next-horizontal.png") no-repeat scroll -96px 0 transparent;
+    top:35px;
+    cursor: default;
+  }
 
   /* carousel stylings */
-  .demo1, .demo2 {width:500px;margin:0 auto;padding:5px;background:#aaa;border:2px solid #ccc;overflow:hidden;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;}
-  .demo1 .prev1, .demo1 .next1, .demo2 .prev2, .demo2 .next2 {z-index:3;height:20px;line-height:20px;font-weight:bold;font-size:1.1em;width:35px;background:#fff;top:35px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;}
-
-
+  .demo1, .demo2 {width:575px;overflow:hidden;}
+  .demo1 .next1 {z-index:3;height:32px;line-height:20px;font-weight:bold;font-size:1.1em;width:35px;background:url("/images/next-horizontal.png") no-repeat scroll 0 0 transparent;top:35px;}
+  .demo1 .prev1 {z-index:3;height:32px;line-height:20px;font-weight:bold;font-size:1.1em;width:35px;background:url("/images/prev-horizontal.png") no-repeat scroll 0 0 transparent;top:35px;}
+  .demo1 .next1:hover, .demo1 .next1:focus {
+    background:url("/images/next-horizontal.png") no-repeat scroll -32px 0 transparent;
+  }
+  .demo1 .next1:active {
+    background:url("/images/next-horizontal.png") no-repeat scroll -64px 0 transparent;
+  }
+  .demo1 .prev1:hover, .demo1 .prev1:focus {
+    background:url("/images/prev-horizontal.png") no-repeat scroll -32px 0 transparent;
+  }
+  .demo1 .prev1:active {
+    background:url("/images/prev-horizontal.png") no-repeat scroll -64px 0 transparent;
+  }
 </style>

@@ -1,7 +1,7 @@
 <% cache "select_department_post_#{@school}" do %>
   <div class="postItemDep">
     <div class="postTit">Program</div>
-    <div class="postDep mcdropdown_slider">
+    <div class="postDep mcdropdown_slider" style="position:relative">
       <% department_value = @post.department.nil? ? "Choose program" : @post.department.name %>
       <input type="text" value="<%= department_value %>" name="" id="department_name" style="width: 357px;" autocomplete="">
       <%= post.hidden_field :department_id, :id => "department_id" %>
@@ -67,7 +67,6 @@
       display: inline-block;
       height: 16px;
       padding: 2px;
-      position: absolute;
       width: 357px;
     }
     div.mcdropdown_slider span {

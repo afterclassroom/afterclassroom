@@ -332,11 +332,11 @@
 					if (this.el.counter > (this.el.carouselSize - this.el.scrollVisible))
 					{
 						this.el.counter = this.el.carouselSize - this.el.scrollVisible + 1;
-						$(this.opts.scrollNext).addClass("disabled");
+						$(this.opts.scrollNext).addClass("disabledNext");
 					}
 					if (this.el.counter > 1)
 					{
-						$(this.opts.scrollPrev).removeClass("disabled");
+						$(this.opts.scrollPrev).removeClass("disabledPrev");
 					}
 					startPosition = (this.el.counter * this.el.itemDimension) - this.el.itemDimension;
 				}
@@ -372,7 +372,7 @@
 						this.el.theList.css("left", this.el.animationEnd);
 					}
 					this.el.scrollPos = (this.opts.scrollVisible * this.el.itemDimension) - (this.el.carouselSize * this.el.itemDimension);
-					$(this.opts.scrollNext).addClass("disabled");
+					$(this.opts.scrollNext).addClass("disabledNext");
 					this.el.counter = (this.el.carouselSize - this.opts.scrollVisible) + 1;
 				}
 				   // otherwise just scroll to the next position
@@ -380,7 +380,7 @@
 				{
 					this.el.counter = this.el.counter + this.el.scrollNum;
 				}
-				$(this.opts.scrollPrev).removeClass("disabled");
+				$(this.opts.scrollPrev).removeClass("disabledPrev");
 			}
 			// backward motion
 			else
@@ -396,10 +396,10 @@
 				 {
 					 this.el.counter = this.el.counter - this.el.scrollNum;
 				 }
-				 $(this.opts.scrollNext).removeClass("disabled");
+				 $(this.opts.scrollNext).removeClass("disabledNext");
 				 if (this.el.counter == 1)
 				 {
-					 $(this.opts.scrollPrev).addClass("disabled");
+					 $(this.opts.scrollPrev).addClass("disabledPrev");
 				 }
 			}
 		},
@@ -517,19 +517,19 @@
 			{
 				if (newPosition > 1)
 				{
-					$(this.opts.scrollPrev).removeClass("disabled");
+					$(this.opts.scrollPrev).removeClass("disabledPrev");
 				}
 				if (newPosition <= 1)
 				{
-					$(this.opts.scrollPrev).addClass("disabled");
+					$(this.opts.scrollPrev).addClass("disabledPrev");
 				}
 				if (newPosition <= (this.el.carouselSize - (this.el.scrollVisible)))
 				{
-					$(this.opts.scrollNext).removeClass("disabled");
+					$(this.opts.scrollNext).removeClass("disabledNext");
 				}
 				if (newPosition > (this.el.carouselSize - (this.el.scrollVisible)))
 				{
-					$(this.opts.scrollNext).addClass("disabled");
+					$(this.opts.scrollNext).addClass("disabledNext");
 				}
 			}
 	
@@ -715,7 +715,7 @@
 			}
 			if (this.opts.circular === false)
 			{
-				$(this.el.scrollPrev).addClass("disabled");
+				$(this.el.scrollPrev).addClass("disabledPrev");
 			}
 			// carousel now styled!!!
 		},
