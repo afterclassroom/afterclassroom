@@ -69,7 +69,7 @@ Afterclassroom::Application.configure do
 
 	# Omniauth
 	ENV['FACEBOOK_KEY'] = "218775308176828"
-	ENV['FACEBOOK_SECRET'] = "3efcc24468e3e3ab9a6cd9bd05b9a2de"
+	ENV['FACEBOOK_SECRET'] = "aae359b7c268836a7ecae7fb28d2e253"
 
 	ENV['TWITTER_KEY'] = "ghvSN5NMgK7E5HduYox0Lg"
 	ENV['TWITTER_SECRET'] = "woc6ZABfUprSUQujpHMEJiKkk1ztNX73ufeJZDz3lk"

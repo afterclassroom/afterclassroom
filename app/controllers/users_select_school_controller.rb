@@ -79,7 +79,7 @@ class UsersSelectSchoolController < ApplicationController
         @cities = @state.cities.with_alphabet(@alphabet_city)
         @city = @cities.first if @cities.size > 0
         @schools = School.list_school(@city.id, @alphabet, @type_school) if @city
-        @school = @schools.first if @schools.size > 0
+        @school = @schools.first if !@schools.nil? and @schools.size > 0
       when "state"
         @state = State.find(id)
         @country = @state.country
@@ -87,7 +87,7 @@ class UsersSelectSchoolController < ApplicationController
         @cities = @state.cities.with_alphabet(@alphabet_city)
         @city = @cities.first if @cities.size > 0
         @schools = School.list_school(@city.id, @alphabet, @type_school) if @city
-        @school = @schools.first if @schools.size > 0
+        @school = @schools.first if !@schools.nil? and @schools.size > 0
       when "city"
         @city = City.find(id)
         @state = @city.state
@@ -95,7 +95,7 @@ class UsersSelectSchoolController < ApplicationController
         @states = @country.states.has_cities
         @cities = @state.cities.with_alphabet(@alphabet_city)
         @schools = School.list_school(@city.id, @alphabet, @type_school)
-        @school = @schools.first if @schools.size > 0
+        @school = @schools.first if !@schools.nil? and @schools.size > 0
     end
   end
 end
