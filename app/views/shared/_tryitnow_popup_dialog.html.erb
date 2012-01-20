@@ -14,18 +14,24 @@ client = CASClient::Client.new(
 
 <div id="overlayv" class="web_dialog_overlayv"></div>
 <div id="dialogv" class="web_dialogv">
-  <div class="login" style="float:left;width:500px;margin-left: 165px">
-    <div class="signin01" style="float: left;width:700px">
+  <div class="login" style="float:left;width:500px;margin-left: 105px">
+    <div class="signin01" style="float: left;width:600px">
       <div class="signin02" style="font-weight: bold;">
         <ul>
-          <li style="float:left;font-size: 13px;padding-right: 5px;color: #1FA6F3;"><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller), :style=>'color: #1FA6F3' %> |</li>
+          <li><span style="float:left;margin-top: -13px"><%= render :partial => "shared/social_login" %></span></li>
+          <li style="float:left;font-size: 13px;padding-right: 5px;padding-LEFT: 5px;color: #1FA6F3;"><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller), :style=>'color: #1FA6F3' %> |</li>
           <li style="float:left;font-size: 13px;padding-right: 5px"><%= link_to raw("<span>Simple sign up</span>"), signup_url, :class=>'signup_url', :style=>'color: #1FA6F3' %></li>
-          <li><span style="color: #1FA6F3; font-weight: bold; line-height: 15px;font-size: 13px">or Click on Features below to TRY</span></li>
         </ul>
       </div>
     </div>
-    <div style="margin-left: 48px;width: 355px;">
-      <%= render :partial => "shared/social_login" %>
+  </div>
+  <div class="login" style="float:left;width:500px;margin-left: 255px">
+    <div class="signin01" style="float: left;width:500px">
+      <div class="signin02" style="font-weight: bold;">
+        <ul>
+          <li><span style="color: #1FA6F3; font-weight: bold; line-height: 15px;font-size: 13px"> Click on Features below to TRY</span></li>
+        </ul>
+      </div>
     </div>
   </div>
 
