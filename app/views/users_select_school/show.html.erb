@@ -5,9 +5,9 @@
 </div>
 <script type="text/javascript">
   function ShowFeaturedOverlay(){
-    $('#select_school').append('<div id="overlay"></div>');
+    $('#select_school').append('<div id="overlayt"></div>');
     var position = $('#select_school').offset();
-    $("#overlay")
+    $("#overlayt")
     .height(143)
     .css({
       'display':'block',
@@ -28,14 +28,14 @@
   $('.close').click($.facebox.close);
   
   function update_form(type_select, id){
-		var alphabet = $('#list_alphabet a.selected').html();
-		var alphabet_city = $('#list_alphabet_city a.selected').html();
-		if (alphabet == "All"){
-			alphabet = "";
-		}
-		if (alphabet_city == "All"){
-			alphabet_city = "";
-		}
+    var alphabet = $('#list_alphabet a.selected').html();
+    var alphabet_city = $('#list_alphabet_city a.selected').html();
+    if (alphabet == "All"){
+      alphabet = "";
+    }
+    if (alphabet_city == "All"){
+      alphabet_city = "";
+    }
     var school_type = $("input[name='school_type']:checked").val();
     ShowFeaturedOverlay();
     $.ajax({
@@ -46,7 +46,7 @@
       data: ({
         type : type_select,
         id : id,
-				alphabet : alphabet,
+        alphabet : alphabet,
         alphabet_city : alphabet_city,
         type_school: school_type
       }),
@@ -82,19 +82,19 @@
 	
   function select_alphabet(alphabet){
     var alphabet_city = $('#list_alphabet_city a.selected').html();
-		if (alphabet_city == "All"){
-			alphabet_city = "";
-		}
-		var state_id = $('#state').val();
+    if (alphabet_city == "All"){
+      alphabet_city = "";
+    }
+    var state_id = $('#state').val();
     var city_id = $('#city').val();
     load(state_id, city_id,alphabet, alphabet_city);
   }
 
   function select_alphabet_city(alphabet_city){
     var alphabet = $('#list_alphabet a.selected').html();
-		if (alphabet == "All"){
-			alphabet = "";
-		}
+    if (alphabet == "All"){
+      alphabet = "";
+    }
     var state_id = $('#state').val();
     load(state_id, "",alphabet, alphabet_city);
   }
