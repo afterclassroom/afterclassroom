@@ -1,11 +1,3 @@
-<%
-cas_base = "https://login.afterclassroom.com" 
-client = CASClient::Client.new( 
-  :cas_base_url => cas_base 
-) 
-@lt = client.request_login_ticket()
-%>
-
 <div id="tryitnow">
   <a class="tryin" style="display: block; position: fixed; top: 283px; left: -2px; margin: 0pt;cursor: pointer;">
     <img style="border: 0pt none;" src="/images/try-it-now.png">
@@ -19,7 +11,7 @@ client = CASClient::Client.new(
       <div class="signin02" style="font-weight: bold;">
         <ul>
           <li><span style="float:left;margin-top: -13px"><%= render :partial => "shared/social_login" %></span></li>
-          <li style="float:left;font-size: 13px;padding-right: 5px;padding-LEFT: 5px;color: #1FA6F3;"><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller), :style=>'color: #1FA6F3' %> |</li>
+          <li style="float:left;font-size: 13px;padding-right: 5px;padding-LEFT: 5px;color: #1FA6F3;"><%= link_to raw("<span>Sign in</span>"), "/session/new", :style=>'color: #1FA6F3' %> |</li>
           <li style="float:left;font-size: 13px;padding-right: 5px"><%= link_to raw("<span>Simple sign up</span>"), signup_url, :class=>'signup_url', :style=>'color: #1FA6F3' %></li>
         </ul>
       </div>
@@ -29,6 +21,7 @@ client = CASClient::Client.new(
     <div class="signin01" style="float: left;width:500px">
       <div class="signin02" style="font-weight: bold;">
         <ul>
+					<li><span style="color: #1FA6F3; font-weight: bold; line-height: 15px;font-size: 13px; margin-left: 85px;"> Or </span></li>
           <li><span style="color: #1FA6F3; font-weight: bold; line-height: 15px;font-size: 13px"> Click on Features below to TRY</span></li>
         </ul>
       </div>
@@ -44,12 +37,11 @@ client = CASClient::Client.new(
     <tr>
       <td>
         <div class="contentBox" id="TryNowBox"> 
-          <form id="login-form-without-login" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
-            <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+					<%= form_tag session_path, :name => "form", :id => "login-form-without-login", :style => "display:none;" do -%>
             <input type="hidden" value="<%= request.protocol + request.host_with_port %>" name="service" id="service">
             <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
-          </form>     
+          <% end %>     
           <span style="color: #30424D;font-size: 13px;font-weight: bold;margin-left: 60px">Learning Resources</span>
           <a href="javascript:$('#login-form-without-login').submit();" style="padding-right: 0px;background: none">
             <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;width: 250px"/>
@@ -58,12 +50,11 @@ client = CASClient::Client.new(
       </td>
       <td>
         <div class="contentBox" id="CreateClassBox" style="margin-left:-3px">
-          <form id="login-form-networking" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
-            <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+          <%= form_tag session_path, :name => "form", :id => "login-form-networking", :style => "display:none;" do -%>
             <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/student_lounges" name="service" id="service">
             <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
-          </form>
+          <% end %>
           <span style="color: #30424D;font-size: 13px;font-weight: bold;margin-left: 65px">Social Networking</span>
           <a href="javascript:$('#login-form-networking').submit();" style="padding-right: 0px;background: none">
             <img src="/images/profile_user.png" style="margin-top: 10px;border: 0 none;width: 250px"/>
@@ -72,12 +63,11 @@ client = CASClient::Client.new(
       </td>
       <td>
         <div class="contentBox" id="StudentEnrollBox" style="margin-left:-3px">
-          <form id="login-form-learn-tools" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
-            <input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+          <%= form_tag session_path, :name => "form", :id => "login-form-learn-tools", :style => "display:none;" do -%>
             <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/learn_tools" name="service" id="service">
             <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
-          </form>
+          <% end %>
           <span style="color: #30424D;font-size: 13px;font-weight: bold;margin-left: 75px">Learning Tools</span>
           <a href="javascript:$('#login-form-learn-tools').submit();" style="padding-right: 0px;background: none">
             <img src="/images/learning_tool.png" style="margin-top: 10px;border: 0 none;width: 250px"/>

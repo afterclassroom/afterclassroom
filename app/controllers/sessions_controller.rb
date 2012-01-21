@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
 	def create
-		path = params[:path]
+		service = params[:service]
 		email = params[:email]
 		password = params[:password]
 		user = User.authenticate(email, password)
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 				session[:your_school_type] = user.school.type_school
 			end
 			if self.current_user.email == "demotoyou@gmail.com"
-				redirect_to path	
+				redirect_to service	
 			else
 				redirect_to user_student_lounges_path(user)
 			end

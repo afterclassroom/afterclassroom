@@ -46,6 +46,10 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       @user = User.new
+			if session[:auth]
+				session[:name] ||= session[:auth][:info][:name]
+				@avatar = session[:auth][:info][:image]
+			end
       get_variables()
     end
   end
@@ -426,11 +430,8 @@ class UsersController < ApplicationController
   end
   
   def create_user(attributes)
-    first_name = attributes[:first_name]
-    last_name = attributes[:last_name]
-    session[:first_name] = first_name
-    session[:last_name] = last_name
-    name = first_name + " " + last_name
+    name = attributes[:name]
+    session[:name] = name
     
     @user = User.new(attributes[:user])
     @user.name = name
@@ -443,11 +444,15 @@ class UsersController < ApplicationController
 				@user.omnitauths << Omnitauth.new(session[:auth])
 				@user.register
 				@user.activate!
+				image = nil
+				open(session[:auth][:info][:image]) do |file|
+					image = MiniMagick::Image.from_blob(file.read) rescue nil
+				end
+				@user.avatar = image if image
+				@user.save
 				session[:auth] = nil
-				puts "Tao user tu social network"
 			else
 				@user.register!
-				puts "Tao user tu Afterclassroom"
 			end
     end
     
@@ -461,11 +466,9 @@ class UsersController < ApplicationController
       	self.current_user.set_time_zone_from_ip(request.remote_ip)
 				redirect_to user_student_lounges_path(@user)
 			else
-				puts "Tao user tu Afterclassroom thanh cong"
       	render :action => :successful_creation
 			end
     else
-			puts "Loi tao user"
       failed_creation(@user, @user.errors.full_messages)
     end
   end
