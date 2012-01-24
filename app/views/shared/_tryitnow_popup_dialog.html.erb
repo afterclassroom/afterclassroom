@@ -80,7 +80,10 @@
 
 <script type="text/javascript">
   $(document).ready(function ()
-  {
+  {	
+  <% if ["sessions", "users"].include?(controller.controller_name) %>
+  $.cookie("close_try_it_now", "yes");
+  <% end %>
     chk = $.cookie("close_try_it_now");
     if (chk == "yes"){
     }else{
