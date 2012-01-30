@@ -39,7 +39,7 @@
         <div class="contentBox" id="TryNowBox"> 
 					<%= form_tag session_path, :name => "form", :id => "login-form-without-login", :style => "display:none;" do -%>
             <input type="hidden" value="<%= request.protocol + request.host_with_port %>" name="service" id="service">
-            <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+            <input type="text" accesskey="u" tabindex="1" size="32" name="email" id="email" value="demotoyou@gmail.com">
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
           <% end %>     
           <span style="color: #30424D;font-size: 13px;font-weight: bold;margin-left: 60px">Learning Resources</span>
@@ -52,7 +52,7 @@
         <div class="contentBox" id="CreateClassBox" style="margin-left:-3px">
           <%= form_tag session_path, :name => "form", :id => "login-form-networking", :style => "display:none;" do -%>
             <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/student_lounges" name="service" id="service">
-            <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+            <input type="text" accesskey="u" tabindex="1" size="32" name="email" id="email" value="demotoyou@gmail.com">
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
           <% end %>
           <span style="color: #30424D;font-size: 13px;font-weight: bold;margin-left: 65px">Social Networking</span>
@@ -65,7 +65,7 @@
         <div class="contentBox" id="StudentEnrollBox" style="margin-left:-3px">
           <%= form_tag session_path, :name => "form", :id => "login-form-learn-tools", :style => "display:none;" do -%>
             <input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/learn_tools" name="service" id="service">
-            <input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+            <input type="text" accesskey="u" tabindex="1" size="32" name="email" id="email" value="demotoyou@gmail.com">
             <input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
           <% end %>
           <span style="color: #30424D;font-size: 13px;font-weight: bold;margin-left: 75px">Learning Tools</span>

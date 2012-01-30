@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
 		    session[:your_school] = user.school.id
 				session[:your_school_type] = user.school.type_school
 			end
-			if self.current_user.email == "demotoyou@gmail.com"
+			if self.current_user.email == "demotoyou@gmail.com" and service
 				redirect_to service	
 			else
 				redirect_to user_student_lounges_path(user)
