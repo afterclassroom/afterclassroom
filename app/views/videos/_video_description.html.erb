@@ -2,10 +2,16 @@
   <div class="musicNode">
     <div class="NodeCont">
       <p>
-        <span>Category: </span><%= raw(Youtube.video_categories[Youtube.video_categories.map {|a,b| b}.index(@video.category)][0]) %>
+        <span style="font-weight:bold">Category: </span><%= raw(Youtube.video_categories[Youtube.video_categories.map {|a,b| b}.index(@video.category)][0]) %>
       </p>
-      <p>
-        <span>Description:</span> <%= raw(@video.description) %>
+      <p class="AfterDes">
+        <span style="font-weight:bold">Description:</span> <%= raw(@video.description) %>
       </p>
     </div>
   </div>
+  <script>
+    $(document).ready(function() {
+      $('.AfterDes').jTruncate({
+      });
+    });
+  </script>
