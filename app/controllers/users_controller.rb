@@ -445,11 +445,9 @@ class UsersController < ApplicationController
 				@user.register
 				@user.activate!
 				image = nil
-				open(session[:auth][:info][:image]) do |file|
-					image = MiniMagick::Image.from_blob(file.read) rescue nil
-				end
+				image = open(session[:auth][:info][:image])
 				@user.avatar = image if image
-				@user.save
+				@user.save!
 				session[:auth] = nil
 			else
 				@user.register!
@@ -458,9 +456,7 @@ class UsersController < ApplicationController
     
     if @user.errors.empty?
 			adduser_info(@user)
-			puts "Trang thai cua user #{@user.state}"
 			if @user.state == "active"
-				puts "Tao user tu social network thanh cong"
 				self.current_user = @user
 				self.current_user.update_attribute("online", true)
       	self.current_user.set_time_zone_from_ip(request.remote_ip)
