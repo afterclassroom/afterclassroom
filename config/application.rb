@@ -46,9 +46,9 @@ module Afterclassroom
 
     config.active_record.observers = :user_observer
     
-    config.rubycas.cas_base_url = 'https://login.afterclassroom.com'
+    #config.rubycas.cas_base_url = 'https://login.afterclassroom.com'
     
-    config.rubycas.logger = Rails.logger
+    #config.rubycas.logger = Rails.logger
     
     config.serve_static_assets = true
     

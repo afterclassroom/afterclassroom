@@ -203,22 +203,6 @@ Afterclassroom::Application.routes.draw do
     end
   end
 
-  # Department
-  resources :department_categories
-  resources :departments do 
-    collection do
-      get :create_department
-    end
-  end
-
-  # Post Categories
-  resources :post_categories
-  resources :housing_categories
-  resources :teamup_categories
-  resources :party_types
-  resources :job_types
-  resources :awareness_types
-
   # Posts
   resources :posts do
     collection do
@@ -378,50 +362,6 @@ Afterclassroom::Application.routes.draw do
       get :view_pr, :view_detail, :delpr, :searchpr
       post :save
     end
-  end
-  
-  # Administration
-  
-  namespace :admin do
-    resources :dashboards
-    resources :settings
-    resources :posts do
-      collection do
-        get :with_type
-      end
-    end
-    
-    resources :setnotifies do
-      collection do
-        get :addnew
-        get :delete
-        get :edit
-        post :save_edit
-        post :save
-      end
-    end
-    
-    resources :tool_categories do
-      collection do
-        get :edit
-        get :delete
-        get :addnew
-        post :savenew
-        post :saveedit
-      end
-    end
-
-    resources :users do
-      member do
-        put :suspend, :unsuspend, :activate, :reset_password
-        delete :purge
-      end
-
-      collection do
-        get :pending, :active, :suspended, :deleted
-      end
-    end
-    root :to => 'dashboards#index'
   end
   
   # OAuth
