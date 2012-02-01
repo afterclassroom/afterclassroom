@@ -4,9 +4,9 @@ class SessionsController < ApplicationController
   include AuthenticatedSystem
   
   #before_filter RubyCAS::Filter::GatewayFilter
-  #before_filter RubyCAS::Filter, :except => [:new, :change_school]
+  #before_filter RubyCAS::Filter, :except => [:new, :create, :change_school]
   ##before_filter :cas_user
-	before_filter :login_required, :except => [:new, :change_school]
+	before_filter :login_required, :except => [:new, :create, :change_school]
   
   def new
     if logged_in?

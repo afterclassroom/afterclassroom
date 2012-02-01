@@ -6,6 +6,7 @@ Afterclassroom::Application.routes.draw do
   post 'kindeditor/upload'
 
   # RESTful rewrites
+	match '/login' => 'sessions#new', :as => :login
   match '/signup' => 'users#new', :as => :signup
   match '/activate/:activation_code' => 'users#activate', :as => :activate
   match '/logout' => 'sessions#destroy', :as => :logout, :conditions => {:method => :delete}
