@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     else
       @user = User.new
 			if session[:auth]
-				session[:name] ||= session[:auth][:info][:name]
+				session[:name] = session[:auth][:info][:name]
 				@avatar = session[:auth][:info][:image]
 			end
       get_variables()

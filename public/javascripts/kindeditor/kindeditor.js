@@ -2700,7 +2700,8 @@ KE.create = function(id, mode) {
 	var srcTextarea = KE.$(id) || document.getElementsByName(id)[0];
 	mode = (typeof mode == "undefined") ? 0 : mode;
 	if (mode == 0 && KE.g[id].container) return;
-	var width = KE.g[id].width || srcTextarea.style.width || srcTextarea.offsetWidth + 'px';
+	//var width = KE.g[id].width || srcTextarea.style.width || srcTextarea.offsetWidth + 'px';
+	var width = KE.g[id].width || srcTextarea.offsetWidth + 'px';
 	var height = KE.g[id].height || srcTextarea.style.height || srcTextarea.offsetHeight + 'px';
 	var tableObj = KE.util.createTable();
 	var container = tableObj.table;

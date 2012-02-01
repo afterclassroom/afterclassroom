@@ -5,8 +5,7 @@ class LearnToolsController < ApplicationController
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter, :except => [:index]
   #before_filter :cas_user
-
-  
+	before_filter :login_required, :except => [:index]
   before_filter :get_variables, :only => [:index, :search_tool, :new_tool, :submit_new_tool, :new_tool_with_api, :create_tool_with_api]
   
   def index

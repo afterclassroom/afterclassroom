@@ -7,7 +7,7 @@ class FriendsController < ApplicationController
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter, :except => [:find_people_without_login, :find_people_suggestion]
   #before_filter :cas_user
-  before_filter :login_required
+  before_filter :login_required, :except => [:find_people_without_login, :find_people_suggestion]
   before_filter :require_current_user, :except => [:auth_linkedin, :callback_linkedin, :send_invite_linkedin, :find_people_without_login, :find_people_suggestion]
   before_filter :get_variables, :except => [:auth_linkedin, :callback_linkedin, :send_invite_linkedin, :find_people_without_login, :find_people_suggestion]
   

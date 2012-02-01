@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter, :except => [:new, :change_school]
   ##before_filter :cas_user
+	before_filter :login_required, :except => [:new, :change_school]
   
   def new
     if logged_in?
@@ -27,6 +28,11 @@ class SessionsController < ApplicationController
 		    session[:your_school] = user.school.id
 				session[:your_school_type] = user.school.type_school
 			end
+			#Rubycas server
+			cas_base = "https://login.afterclassroom.com" 
+			client = CASClient::Client.new(:cas_base_url => cas_base)
+			credentials = {:username => email, :password => password}
+			client.login_to_service(credentials, "https://afterclassroom.com")
 			if self.current_user.email == "demotoyou@gmail.com" and service
 				redirect_to service	
 			else

@@ -3,7 +3,7 @@ class ForumsController < ApplicationController
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter, :except => [:index, :view_all_no_loggin, :see_all_top_fr, :search]
   #before_filter :cas_user
-
+	before_filter :login_required, :except => [:index, :view_all_no_loggin, :see_all_top_fr, :search]
   def index
     @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 10, :order => "created_at")
     @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 10)

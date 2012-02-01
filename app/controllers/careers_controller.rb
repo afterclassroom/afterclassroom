@@ -2,6 +2,7 @@ class CareersController < ApplicationController
 	#before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter, :except => [:index, :view_pr, :searchpr]
   #before_filter :cas_user
+	before_filter :login_required, :except => [:index, :view_pr, :searchpr]
 
   def index
     @presses = Career.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 10, :order => "created_at")
