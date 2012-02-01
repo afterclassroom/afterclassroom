@@ -47,20 +47,6 @@
             <div class="suggesAdd">
               <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
             </div>
-
-            <div class="yahoo_skype" style="margin-top: 2px;">
-              <% if get_chat_id(u, "yahoo") != "" and 1 == 0 %>
-                <a href="ymsgr:SendIM?<%=  get_chat_id(u, "yahoo")%>">
-                  <img border="0" style="height: 12px; width: 12px; float: left;padding-right: 5px" src="http://opi.yahoo.com/online?u=<%=  get_chat_id(u, "yahoo")%>&amp;m=g&amp;t=0">
-                </a>
-              <% end %>
-              <% if get_chat_id(u, "skype") != "" and 1 == 0 %>                
-                <a href="skype:<%=  get_chat_id(u, "skype")%>?chat">
-                  <img border="0" style="float: left; height: 16px; width: 16px" src="http://mystatus.skype.com/smallicon/<%=  get_chat_id(u, "skype")%>">
-                </a>
-              <% end %>
-            </div>
-
           </div>
         <% end %>
       </div>

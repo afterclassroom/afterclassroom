@@ -3,17 +3,5 @@
   <div class="flistInf" style="width: 195px">
     <div class="flistN"><%= link_to name, user_path(user) %></div>
     <div class="flistS"><span>at</span><%= user.school.name %></div>
-    <div class="yahoo_skype" style="margin-top: 2px;">
-      <% if get_chat_id(user, "yahoo") != "" %>
-        <a href="ymsgr:SendIM?<%=  get_chat_id(user, "yahoo")%>">
-          <img border="0" style="height: 12px; width: 12px; float: left;padding-right: 5px" src="http://opi.yahoo.com/online?u=<%=  get_chat_id(user, "yahoo")%>&amp;m=g&amp;t=0">
-        </a>
-      <% end %>
-      <% if get_chat_id(user, "skype") != "" %>
-        <a href="skype:<%=  get_chat_id(user, "skype")%>?chat">
-          <img border="0" style="float: left; height: 16px; width: 16px" src="http://mystatus.skype.com/smallicon/<%=  get_chat_id(user, "skype")%>">
-        </a>
-      <% end %>
-    </div>
   </div>
 </div>
