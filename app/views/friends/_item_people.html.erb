@@ -2,7 +2,9 @@
   <div class="assPic"><%= show_image_user_post(user) %></div>
   <div class="flistInf">
     <div class="flistN"><%= link_to name, user_path(user) %></div>
+		<% if user.school %>
     <div class="flistS"><span>at</span><%= user.school.name %></div>
+		<% end %>
   </div>
   <% if current_user != user %>
   <span style="padding-left:20px" class="support85" id="friend_status_<%= user.id %>"><%= show_invite_friend(user) %></span>

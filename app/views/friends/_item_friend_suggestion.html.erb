@@ -6,9 +6,11 @@
     <div class="flistN">
       <%= show_user_post(friend) %>
     </div><br></br>
+		<% if friend.school %>
     <div class="flistS">
       <span>at</span>
       <%= friend.school.name %>
     </div>
+		<% end %>
   </div>
 </div>
