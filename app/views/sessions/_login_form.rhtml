@@ -15,7 +15,7 @@
     <input type="submit" value="Login" name="commit" class="buttonCom"/>
   </div>
   <div class="forgotPass"><span><%= link_to "Forgot Password", user_forgot_password_url, :style=>'background:none' %></span></div>
-  <div class="forgotPass" style="float: left;padding-top: 0px">
-    <%= render :partial => "shared/social_login" %>
-  </div>
 <% end -%>
+<div class="forgotPass" style="float: left;padding-top: 0px">
+  <%= render :partial => "shared/social_login" %>
+</div>
