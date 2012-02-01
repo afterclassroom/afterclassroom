@@ -4,7 +4,7 @@
     <div class="signinTit">Name*:</div>
     <div class="signinInp"><%= text_field_tag :name, session[:name], :class => '{validate:{required:true}}' %></div>
   </div>
-<div class="signinItem">
+  <div class="signinItem">
     <div class="signinTit">Email*:</div>
     <div class="signinInp"><%= f.text_field :email, :class => '{validate:{required:true, email:true}}' %></div>
   </div>
@@ -16,13 +16,13 @@
     <div class="signinTit">Confirm*:</div>
     <div class="signinInp"><%= f.password_field :password_confirmation, :class => "{validate:{equalTo:'#user_password'}}" %></div>
   </div>
-	<% if @avatar %>
-	<div style="float: right; margin-right: 85px; margin-top: -85px;">
-		<div class="assPic">
-            <div><%= image_tag(@avatar) %></div>
-        </div>
-	</div>	
-	<% end %>
+  <% if @avatar %>
+    <div style="float: right; margin-right: 85px; margin-top: -85px;">
+      <div class="assPic">
+        <div><%= image_tag(@avatar) %></div>
+      </div>
+    </div>	
+  <% end %>
   <div class="signincCheck" style="padding-left:106px">
     <div><%= f.check_box :allow_search_by_email %></div>
     <div class="signincCheckTxt">Let others find my post on Afterclassroom if they have my email address.</div>
@@ -31,7 +31,7 @@
   <div class="signincCheck signupNone" style="padding-left:110px;float: left">
     By clicking "Create my account", you agree to Afterclassroom <%= link_to 'Terms of use', :controller => 'statics', :action => 'terms'%> and <%= link_to 'Privacy Policy', :controller => 'statics', :action => 'privacy'%>.
   </div>
-  <div class="signincCheck" style="padding-left:106px;float: left">
-    <%= render :partial => "shared/social_login" %>
-  </div>
 <% end -%>
+<div class="signincCheck" style="padding-left:106px;float: left">
+  <%= render :partial => "shared/social_login" %>
+</div>
