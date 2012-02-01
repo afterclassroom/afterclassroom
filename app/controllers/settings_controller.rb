@@ -7,7 +7,7 @@ class SettingsController < ApplicationController
   ##before_filter :cas_user
   before_filter :login_required
   before_filter :require_current_user
-	after_filter :store_location, :only => [:setting]
+	after_filter :store_location, :only => [:index, :setting]
   
   def index
     redirect_to :action => "setting"
