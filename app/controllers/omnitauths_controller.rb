@@ -1,11 +1,12 @@
 class OmnitauthsController < ApplicationController
 	before_filter :login_required, :only => ["destroy"]
-  def create
+  
+	def create
 		auth = request.env["omniauth.auth"]
     omnitauth = Omnitauth.find_by_provider_and_uid(auth['provider'], auth['uid'])
 		if omnitauth
 			self.current_user = omnitauth.user
-			redirect_back_or_default(root_path)
+			redirect_to user_student_lounges_path(self.current_user)
 		elsif self.current_user
 			self.current_user.omnitauths << Omnitauth.create(auth)
 			redirect_back_or_default(root_path)

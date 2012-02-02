@@ -1,8 +1,8 @@
 <div class="ass_down">
   <div id="detele_wall_<%= wall.id %>">
-    <%= link_to "Delete this post", "/user_walls/block_wall?user_wall_id=#{wall.id}", :remote => true %>
+    <%= link_to "Delete this post", "/user_walls/block_wall?user_wall_id=#{wall.id}", :remote => true, :confirm => "Are you sure?" %>
   </div>
   <div>
-    <%= link_to "BLock this user", "/user_walls/block_user?user_wall_id=#{wall.id}", :remote => true %>
+    <%= link_to "BLock this user", "/user_walls/block_user?user_wall_id=#{wall.id}", :remote => true, :confirm => "Are you sure?" %>
   </div>
 </div>
