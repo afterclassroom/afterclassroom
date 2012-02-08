@@ -1,44 +1,44 @@
 <div class="col300 Request">
-    <div class="col300in">
-        <h1 class="col300Title">Got questions? Ask experts now</h1>
-        <div class="col300Cont">
-					<% if !logged_in? %>
-			<div class="reqLa"><label style="color:red">This option is only available to registered users</label></div>
-			<% end %>
-            <%= form_for :post_qa, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-		          <%= fields_for :post do |p| %>
-				        <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
-				        <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
-				        <div class="reqLa">
-				            <label>
-				                Your question*
-				            </label>
-				        </div>
-				        <div class="reqTi">
-				            <%= p.text_field :title, :value => "", :class => '{validate:{required:true}}' %>
-				        </div>
-				        <div class="reqLa">
-				            <label>
-				                Content*
-				            </label>
-				        </div>
-				        <div class="reqEn">
-				            <%= text_area_tag "post[description]", "", :id => "kindeditor", :style => "height: 150px" %>
-										<label for="kindeditor" id="kindeditor_error" class="error" style="display:none;">This field is required.</label>
-				        </div>
-								<div class="reqLa">
-				            <label>
-				                Post as anonymous <%= f.check_box :anonymous, :value => "0" %> 
-				            </label>
-				        </div>
-				        <%= render :partial => "/shared/form_request_post/select_tag" %>
-				        <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-				        <div class="submit" style="margin-top: 5px;">
-				            <%= show_submit_form() %>
-				        </div>
-		          <% end %>
-            <% end %>
-        </div>
+  <div class="col300in">
+    <h1 class="col300Title">Got questions? Ask experts now</h1>
+    <div class="col300Cont">
+      <% if !logged_in? %>
+        <div class="reqLa"><label style="color:red">This option is only available to registered users</label></div>
+      <% end %>
+      <%= form_for :post_qa, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+        <%= fields_for :post do |p| %>
+          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
+          <div class="reqLa">
+            <label>
+                                                    Your question*
+            </label>
+          </div>
+          <div class="reqTi">
+            <%= p.text_field :title, :value => "", :class => '{validate:{required:true}}' %>
+          </div>
+          <div class="reqLa">
+            <label>
+                                                    Content*
+            </label>
+          </div>
+          <div class="reqEn">
+            <%= text_area_tag "post[description]", "", :id => "kindeditor", :style => "height: 150px" %>
+            <label for="kindeditor" id="kindeditor_error" class="error" style="display:none;">This field is required.</label>
+          </div>
+          <div class="reqLa">
+            <label>
+                                                    Post as anonymous <%= f.check_box :anonymous, :value => "0" %> 
+            </label>
+          </div>
+          <%= render :partial => "/shared/form_request_post/select_tag" %>
+          <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+          <div class="submit" style="margin-top: 5px;">
+            <%= show_submit_form() %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 <script>
@@ -61,5 +61,6 @@
     });
   });
 </script>
-
-
+<script src="/javascripts/kindeditor/kindeditor.js?1322457000" type="text/javascript"></script>
+<script src="/javascripts/kindeditor/kindeditor_config.js?1322541691" type="text/javascript"></script>
+<script src="/javascripts/kindeditor/qnaeditor_config.js?1322472395" type="text/javascript"></script>

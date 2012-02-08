@@ -653,7 +653,7 @@ span.ke-dialog-empty {
     color: #222222;
 }
 .ke-tl, .ke-tc, .ke-tr, .ke-ml, .ke-mr, .ke-bl, .ke-bc, .ke-br {
-    background-color:#000;
+/*    background-color:#000;*/
     filter:alpha(opacity=20);
     opacity:0.2;
     font-size:0;
