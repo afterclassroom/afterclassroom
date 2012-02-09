@@ -40,7 +40,7 @@
           <h1 class="titleH1">Another photo albums</h1>
           <% @another_photo_albums.each do |pb| %>
             <div class="AsDOrItem">
-              <%= link_to pb.name, show_album_user_photos_url(current_user, :photo_album_id => pb) %>
+              <%= link_to pb.name, show_album_with_list_user_photos_url(current_user, :photo_album_id => pb) %>
             </div>
           <% end %>
         </div>
