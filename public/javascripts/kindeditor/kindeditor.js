@@ -4438,3 +4438,4 @@ KE.plugin['advtable'] = {
 };
 
 })(KindEditor);
+
