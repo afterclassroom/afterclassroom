@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   #before_filter RubyCAS::Filter::GatewayFilter
   #before_filter RubyCAS::Filter, :except => [:report_abuse, :report_abuse_video, :create_report_abuse, :download]
   #before_filter :cas_user
-  before_filter :login_required, :except => [:report_abuse, :report_abuse_video, :create_report_abuse, :download]
+  before_filter :login_required, :except => [:report_abuse, :report_abuse_video, :create_report_abuse, :download, :comments_list, :view_all_comments]
 
   def create_comment
     comment = params[:comment]
