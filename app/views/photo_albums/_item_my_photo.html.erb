@@ -1,7 +1,7 @@
 <div class="photoItem">
   <div class="photoImg"><%= link_to raw("<div>#{image_tag photo.photo_attach.url(:thumb)}</div>"), user_photo_url(current_user, photo) %>
 		<% if current_user == photo.user %>
-    <span style="margin-top: -5px; position: absolute; z-index: 5;margin-left: -4px">
+    <span style="margin-top: -5px; position: absolute; z-index: 1;margin-left: -4px">
       <%= check_box_tag "photo_id", photo.id %>
     </span>
 		<% end %>
