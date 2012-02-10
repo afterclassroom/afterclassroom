@@ -1,4 +1,5 @@
 <%= display_flash_messages_with_raw %>
+<% if current_user %>
 <% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
   <%= hidden_field_tag "video_id", @video.id %>
 	<div class="form_friends" style="margin-left:10px; margin-top: 10px; width: 440px;">
@@ -9,7 +10,7 @@
 		</div>
   </div>
 <% end %>
-
+<% end %>
 <% if  @video.user == current_user && @verify_users.size > 0 %>
 
   <%= render :partial => "videos/form_decision" %>
@@ -34,10 +35,10 @@
     });
   });
 </script>
+	<% if current_user %>
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
-  
   $(document).ready(function(){
     $('#accept_btn').click(function(){
       $('#decision_id').val('ACCEPT');
@@ -90,3 +91,4 @@
     });
   });
 </script>
+<% end %>		

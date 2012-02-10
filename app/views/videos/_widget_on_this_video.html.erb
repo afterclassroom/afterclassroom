@@ -10,6 +10,7 @@
         <% end %>
       <% end %>
     </h1> 
+	<% if current_user %>	
     <% form_tag url_for(:controller => "videos", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
       <%= hidden_field_tag "video_id", @video.id %>
       <div class="onThis">
@@ -41,6 +42,7 @@
         </div>
       </div>
     <% end %> <!-- end form -->   
+<% end %>
 		<script type="text/javascript">
   
   var noOfRemove = 0;//this variable is used to show/hide Remove button
