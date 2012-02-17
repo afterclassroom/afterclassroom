@@ -24,7 +24,7 @@
       </form>
     </div>
   <% else %>
-    You must be <%= link_to raw("Sign in"), RubyCAS::Filter.login_url(controller) %>to post a comment.<% end %>
+    You must be <%= link_to_function raw("Sign in"), "open_signin()" %> to post a comment.<% end %>
 </div>
 <div class="AsDcomL" id="list_comments">
   <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comments</a></h1>

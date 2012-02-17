@@ -108,13 +108,11 @@ class User < ActiveRecord::Base
   friendly_id :login, :use => :slugged
   
   # Solr search index
-  searchable do
+  searchable :auto_index => true, :auto_remove => true do
     text :name, :default_boost => 2, :stored => true
     text :email, :stored => true
     time :created_at
   end
-  
-  handle_asynchronously :solr_index
   
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

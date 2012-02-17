@@ -5,6 +5,6 @@ class UserInformation < ActiveRecord::Base
 
 	protected
 	def remove_protocol_of_website
-		self.website = self.website.gsub(/(http:\/\/|https:\/\/)/, "")
+		self.website = self.website.gsub(/(http:\/\/|https:\/\/)/, "") if self.website
 	end
 end
