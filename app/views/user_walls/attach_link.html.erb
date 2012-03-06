@@ -41,17 +41,6 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('#api').css('padding-left','17px');
-      var carrousel = jQuery("#carrousel").carrousel({
-        controls: 'keys',
-        direction: 'left',
-        speed: 50,
-        dispTimeout: 1000,
-        dispNumber: 1,
-        auto: false,
-        callbacks: [giveCurrent],
-        api: true
-      });
-        
       function giveCurrent(){
         $('#user_wall_link_image_link').val($("div[rel='" + carrousel.getCurrent() + "'] img").attr("src"));
       }
@@ -69,6 +58,16 @@
       });
       $('.carrousel').css({
         'width':'77px'
+      });
+			var carrousel = jQuery("#carrousel").carrousel({
+        controls: 'keys',
+        direction: 'left',
+        speed: 50,
+        dispTimeout: 1000,
+        dispNumber: 1,
+        auto: false,
+        callbacks: [giveCurrent],
+        api: true
       });
     });
   </script>

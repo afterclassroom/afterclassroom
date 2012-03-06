@@ -53,7 +53,7 @@ class Post < ActiveRecord::Base
   friendly_id :title, :use => :slugged
   
   # Solr search index
-  searchable do
+  searchable :auto_index => true, :auto_remove => true do
     text :title, :default_boost => 2, :stored => true
     text :description, :stored => true
     integer :user_id, :references => User
@@ -61,8 +61,6 @@ class Post < ActiveRecord::Base
     integer :school_id, :references => School
     time :created_at
   end
-  
-  handle_asynchronously :solr_index
   
   def self.paginated_post_conditions_with_search(params, school, type)
     Post.search do
